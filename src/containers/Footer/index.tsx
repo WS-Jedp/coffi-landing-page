@@ -1,24 +1,42 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
-  const producNavOptions = [
+  const productNavOptions = [
     {
       name: "About",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Pricing",
-      link: "#pricing",
+      link: "/#pricing",
+    },
+ 
+  ];
+
+  const helpNavOptions = [
+    {
+      name: "Terms And Conditions",
+      link: "/terms-of-service",
+    },
+    {
+      name: "Privacy Policy",
+      link: "/privacy-policy",
+    },
+    {
+      name: "FAQs",
+      link: "/faqs",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/contact-us",
     },
-  ];
+  ]
+
   return (
     <footer className="w-full min-h-[330px] bg-gradient-to-tr from-coffi-blue to-coffi-purple text-coffi-white py-6 px-6 xl:px-0">
       <div className="flex flex-col md:flex-row items-center md:items-start justify-between  w-full max-w-[1200px] h-full mx-auto mt-9">
@@ -34,16 +52,16 @@ export const Footer: React.FC = () => {
           <p className="font-semibold text-xs">© Coffi, Inc. 2025.</p>
         </article>
 
-        <nav className="flex flex-row items-center justify-between text-center md:text-start">
+        <nav className="flex flex-row items-start justify-between text-center md:text-start">
           <section className="mr-16">
             <h3 className="font-bold text-2xl mb-1">Product</h3>
             <ul>
-              {producNavOptions.map((option) => (
+              {productNavOptions.map((option) => (
                 <li
                   key={option.name}
                   className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
                 >
-                  <a href={option.link}>{option.name}</a>
+                  <Link href={option.link}>{option.name}</Link>
                 </li>
               ))}
             </ul>
@@ -51,7 +69,7 @@ export const Footer: React.FC = () => {
           <section className="mr-16">
             <h3 className="font-bold text-2xl mb-1">Help</h3>
             <ul>
-              {producNavOptions.map((option) => (
+              {helpNavOptions.map((option) => (
                 <li
                   key={option.name}
                   className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
@@ -64,7 +82,7 @@ export const Footer: React.FC = () => {
           <section>
             <h3 className="font-bold text-2xl mb-1">Social</h3>
             <ul>
-              {producNavOptions.map((option) => (
+              {productNavOptions.map((option) => (
                 <li
                   key={option.name}
                   className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"

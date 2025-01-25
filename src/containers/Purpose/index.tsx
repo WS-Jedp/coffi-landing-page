@@ -1,8 +1,14 @@
+import { useRouter } from "next/navigation";
 import {  SimpleLightButton } from "@/components/buttons";
 
 export const Purpose: React.FC = () => {
+  const router = useRouter();
+
+  const toAboutUs = () => {
+    router.push("/about-us"); // Replace with your target URL
+  };
   return (
-    <article className="flex flex-col items-center justify-center w-full h-[90vh] text-center mx-auto px-6 xl:px-0">
+    <article className="flex flex-col items-center justify-center w-full h-[90vh] text-center mx-auto px-6 xl:px-0" id="about">
       <h1 className="font-bold text-4xl md:text-7xl mx-auto mb-9">
         Empowering Digital Nomads, <br />
         One at a Time
@@ -15,7 +21,7 @@ export const Purpose: React.FC = () => {
       </p>
       <div className="w-full md:w-3/12">
         <SimpleLightButton 
-            action={() => {}}
+            action={toAboutUs}
             text="Discover the Story Behind Coffi"
             full
         />

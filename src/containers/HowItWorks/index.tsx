@@ -265,7 +265,7 @@ export const HowItWorks: React.FC = () => {
   }
 
   return (
-    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12">
+    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12" id="features">
       <h1 className="font-bold text-4xl md:text-7xl mx-auto">
         The Path to your <br />
         Perfect Spot
@@ -277,7 +277,7 @@ export const HowItWorks: React.FC = () => {
         Save time and get back to what matters—your Coffi.
       </p>
 
-      <section className="relative w-full h-auto justify-between flex flex-row-reverse mt-9">
+      <section className="relative w-full h-auto justify-between flex flex-col md:flex-row-reverse mt-9">
         <article className="flex flex-col items-center justify-start md:items-end w-full md:w-2/3">
           <div className="relative flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
             <div className="relative mr-2 mt-1 h-full">
@@ -330,7 +330,7 @@ export const HowItWorks: React.FC = () => {
           </div>
         </article>
 
-        <article className="w-full h-[420px] pt-[42px]">
+        <article className="relative w-full  h-auto md:h-[420px]  mb-[180px] md:mb-0  mt-[240px] md:mt-[42px]">
               <FilteredPlaces placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]} commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities} realTimeDataSelected={selectedPlaceInsights} />
         </article>
       </section>

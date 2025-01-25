@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const Subscriptions: React.FC = () => {
   return (
-    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14">
+    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14" id="pricing">
       <h1 className="font-bold text-4xl md:text-7xl mx-auto">
         Choose the Plan <br />
         That Fits Your Journey

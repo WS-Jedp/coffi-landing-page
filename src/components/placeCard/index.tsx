@@ -34,7 +34,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
     return commodities;
   }, [place]);
   return (
-    <article className="min-w-[390px] w-full max-w-[420px] h-[390px] max-h-[390px] flex flex-col items-start justify-start text-start overflow-hidden p-4 rounded-lg  shadow-lg text-coffi- bg-white">
+    <article className="min-w-[300px] w-full max-w-[330px] md:min-w-[390px] md:w-full md:max-w-[420px] h-[390px] max-h-[390px] flex flex-col items-start justify-start text-start overflow-hidden p-4 rounded-lg  shadow-lg text-coffi-black bg-white">
       {/* image of the place */}
       <figure className="relative w-full h-[150px] overflow-hidden bg-coffi-black/10 rounded-md">
         <img src="/lol" alt="" className="w-full h-full object-cover" />

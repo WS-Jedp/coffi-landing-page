@@ -1,9 +1,11 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
-import { SimpleButtonOutline } from "../buttons";
+import Link from "next/link";
 
 export const Header: React.FC = () => {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
 
@@ -18,23 +20,30 @@ export const Header: React.FC = () => {
   }
 
   const menuOptions = [
-    {
-      name: "About",
-      link: "#about",
-    },
+  
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Pricing",
-      link: "#pricing",
+      link: "/#pricing",
+    },
+    {
+      name: "About",
+      link: "/#about",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/contact-us",
     },
   ];
+
+  function handleMenuOption(link: string) {
+    setIsMenuOpen(false);
+    setTimeout(() => setShouldRenderMenu(false), 300); // Match duration with animation
+    router.push(link);
+  }
   return (
     <header className="sticky top-0 left-0 w-full h-20 drop-shadow-md bg-white flex flex-row flex-nowrap items-center justify-between px-6 z-[999]">
       <div className="w-full max-w-[1200px] h-full flex items-center justify-between mx-auto">
@@ -46,6 +55,7 @@ export const Header: React.FC = () => {
             height={45}
             className="mr-1"
           />
+          <Link href="/">
           <div className="flex flex-col items-start jusitfy-center h-full border-solid border-black">
             <h1 className="block font-black text-xl md:text-2xl cursor-pointer my-0 py-0">
               Coffi
@@ -54,6 +64,8 @@ export const Header: React.FC = () => {
               Be where you thrive
             </h2>
           </div>
+          </Link>
+
         </article>
 
         <menu className="relative flex items-center text-coffi-black">
@@ -63,7 +75,7 @@ export const Header: React.FC = () => {
                 key={option.name}
                 className="font-normal text-xs md:text-sm cursor-pointer hover:text-coffi-purple"
               >
-                <a href={option.link}>{option.name}</a>
+                <Link href={option.link}>{option.name}</Link>
               </li>
             ))}
           </ul>
@@ -100,40 +112,17 @@ export const Header: React.FC = () => {
             >
               <h2 className="font-bold text-5xl">Menu</h2>
               <ul className="flex flex-col space-y-4 p-4 w-full">
-                <li >
-                  <a
-                    href="#home"
-                    className="text-coffi-black hover:text-blue-500"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#about"
-                    className="text-coffi-black hover:text-blue-500"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#services"
-                    className="text-coffi-black hover:text-blue-500"
-                  >
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-coffi-black hover:text-blue-500"
-                  >
-                    Contact
-                  </a>
-                </li>
+                {
+                  menuOptions.map((option) => (
+                    <li
+                      key={option.name}
+                      className="font-normal text-xl cursor-pointer hover:text-coffi-purple"
+                    >
+                      <button onClick={() => handleMenuOption(option.link)}>{option.name}</button>
+                    </li>
+                  ))
+                }
                 <hr />
-
                 <li>
                   <button
                     className="
