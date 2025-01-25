@@ -1,0 +1,24 @@
+/* Animation on Enter */
+.place-card-enter {
+    opacity: 0;
+    transform: translateY(-50px) translate(var(--base-transform, 0, 0)) !important; /* Start above */
+  }
+  
+  .place-card-enter-active {
+    opacity: 1;
+    transform: var(--base-transform) !important; /* Reset to the base position */
+    transition: opacity 600ms ease, transform 600ms ease-in-out;
+  }
+  
+  /* Animation on Exit */
+  .place-card-exit {
+    opacity: 1;
+    transform: var(--base-transform) !important; /* Start from the base position */
+  }
+  
+  .place-card-exit-active {
+    opacity: 0;
+    transform: translateY(-50px) translate(var(--base-transform, 0, 0)) !important; /* Move upward */
+    transition: opacity 600ms ease-in-out, transform 600ms ease-in-out;
+  }
+  

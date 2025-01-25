@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sf antialiased text-coffi-black bg-coffi-white`}>
         <Header />
-        <main className="w-full max-w-[1200px] mx-auto">{children}</main>
+        <main className="w-full mx-auto">{children}</main>
 
         <Footer />
       </body>
