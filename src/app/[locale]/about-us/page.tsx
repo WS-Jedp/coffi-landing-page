@@ -1,11 +1,13 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutUs() {
+  const t = useTranslations();
   return (
     <article className="relative flex flex-col items-start justify-items-start w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
       <h2 className="font-bold text-4xl md:text-7xl mb-6 w-full md:w-3/4 ">
-        Your Partner in Thriving as a Digital Nomad
+        {t("aboutUs.yourPartner")}
       </h2>
       <section className="relative w-full h-auto grid grid-cols-4 grid-rows-2 gap-4 md:gap-4">
         {/* Section One */}
@@ -19,21 +21,14 @@ export default function AboutUs() {
               className="mb-3"
             />
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
-              Why we do it?
+              {t("aboutUs.why.text")}
             </h2>
 
             <p className="font-light text-lg mb-2">
-              At Coffi, we believe that finding the perfect place to work,
-              study, or relax should be effortless. That’s why we’ve created a
-              platform where digital nomads like you can discover the best spots
-              in any city, connect with like-minded individuals, and contribute
-              to a global network of explorers.
+              {t("aboutUs.why.ourBelieve")}
             </p>
             <p className="font-light text-lg">
-              From real-time insights powered by the community to features that
-              help you earn rewards for your contributions, Coffi is here to
-              make your nomadic journey easier, more productive, and full of
-              meaningful connections.
+              {t("aboutUs.why.anEasierJourney")}
             </p>
           </section>
         </article>
@@ -47,13 +42,10 @@ export default function AboutUs() {
             className="mb-3"
           />
           <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
-            How we do it?
+            {t("aboutUs.how.text")}
           </h2>
           <p className="font-light text-lg">
-            Behind the scenes, we’re a small but dedicated team—led by a digital
-            nomad just like you—who understands the joys and challenges of this
-            lifestyle. We’re passionate about building a space that supports and
-            celebrates your journey.
+            {t("aboutUs.how.digitalNomadTeam")}
           </p>
         </article>
 
@@ -68,25 +60,26 @@ export default function AboutUs() {
               className="mb-3"
             />
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
-              What we offer?
+              {t("aboutUs.what.text")}
             </h2>
             <p className="font-light text-lg">
-              Discover a platform built by nomads, for nomads. We’re here to
-              make your journey effortless, connected, and inspiring.
+              {t("aboutUs.what.discoverThePlatform")}
             </p>
           </section>
 
-          <Link className="font-bold underline flex flex-row flex-nowrap" href="https://coffi.com.co">
-            Learn more{" "}
-              <Image
-                alt="Link icon"
-                src="/assets/icons/link-icon.svg"
-                width={11}
-                height={11}
-                className="ml-1"
-              />
+          <Link
+            className="font-bold underline flex flex-row flex-nowrap"
+            href="https://coffi.com.co"
+          >
+            {t("aboutUs.what.action")}
+            <Image
+              alt="Link icon"
+              src="/assets/icons/link-icon.svg"
+              width={11}
+              height={11}
+              className="ml-1"
+            />
           </Link>
-
         </article>
       </section>
     </article>

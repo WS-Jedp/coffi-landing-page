@@ -1,0 +1,44 @@
+{
+    "adminDashboard": "Coffi Admin Dashboard",
+    "about": "Empowering Businesses with Data & Engagement. Gain insights, promote your spot, and engage with the Coffi community.",
+    "why": "At Coffi, we believe that great places deserve great visibility. That’s why we’re building the Coffi Admin Dashboard, a powerful tool designed to help registered spots gain deeper insights into their audience, promote their services, and create stronger connections with the digital nomad community.",
+    "placesSubscriptions": {
+        "title": "Subscription Plans & Benefits",
+        "about": "With flexible subscription plans, businesses of all sizes—from small local cafés to large co-working chains—can access real-time stats, launch promotions, and offer exclusive perks to their loyal customers.",
+        "benefitsAndFeatures": "Benefits & Features",
+        "basicLayer": {
+            "title": "Basic Layer",
+            "about": "Get started with the essentials, get to know the platform.",
+            "benefits": {
+                "basicAnalytics": "Basic spot analytics",
+                "promotionPlatform": "List promotions on the Coffi Platform"
+            }
+        },
+        "localBusiness": {
+            "title": "Local Business Plan",
+            "about": "For local businesses looking to grow their audience.",
+            "benefits": {
+                "fidelitySystem": "Full access to the Fidelity System",
+                "detailedAnalytics": "Detailed visitor analytics",
+                "directInteractionWithUsers": "Direct interaction with users",
+                "enhancedPromotions": "Enhanced promotions"
+            }
+        },
+        "enterprise": {
+            "title": "Enterprise Plan",
+            "about": "For businesses looking to scale and connect with a wider audience.",
+            "benefits": {
+                "multiplePlaces": "Manage multiple locations",
+                "strategicPartnerships": "Strategic partnerships",
+                "advancedVisitorAnalytics": "Advanced visitor analytics"
+            }
+        }
+    },
+    "helpingPlacesGrow": {
+        "title": "Helping Spots Grow & Connect",
+        "gameChanger": "The Coffi Admin Dashboard isn’t just a tool—it’s a game-changer for businesses that want to engage, grow, and thrive in the digital nomad community.",
+        "forEveryPlace": "Whether you’re a local coffee shop looking to boost customer loyalty or a global workspace chain managing multiple locations, Coffi gives you the tools to understand your audience, interact with them, and create meaningful experiences.",
+        "ready": "Ready to be part of the future of work & travel?",
+        "stayTuned": "Stay tuned—Coffi Admin Dashboard is coming soon."
+    }
+}

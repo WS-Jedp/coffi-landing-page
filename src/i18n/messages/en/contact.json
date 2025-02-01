@@ -1,0 +1,20 @@
+{
+    "contactUs": "Contact Us",
+    "description": "We'd love to hear from you! If you have any questions, issues, or suggestions, feel free to reach out. Our team is here to help.",
+    "getInTouch": "Get in Touch with Us",
+    "howItWorks": {
+        "description": "Once we receive your message, here’s what will happen:",
+        "initialAcknowledgment": {
+            "title": "Initial Acknowledgment",
+            "description": "You’ll receive an email confirming that we’ve received your message."
+        },
+        "review": {
+            "title": "Review",
+            "description": "YOur team will review your query or suggestion to ensure we provide the best possible assistance."
+        },
+        "response": {
+            "title": "Response",
+            "description": "You can expect a reply from us within 1-2 business days. For urgent matters, we’ll aim to respond as quickly as possible."
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "contactUs": "Contáctanos",
+    "description": "¡Nos encantaría saber de ti! Si tienes preguntas, problemas o sugerencias, no dudes en escribirnos. Nuestro equipo está aquí para ayudarte.",
+    "getInTouch": "Ponte en contacto con nosotros",
+    "howItWorks": {
+        "description": "Cuando recibamos tu mensaje, esto es lo que sucederá:",
+        "initialAcknowledgment": {
+            "title": "Confirmación Inicial",
+            "description": "Recibirás un correo electrónico confirmando que hemos recibido tu mensaje."
+        },
+        "review": {
+            "title": "Revisión",
+            "description": "Nuestro equipo analizará tu consulta o sugerencia para asegurarnos de brindarte la mejor asistencia posible."
+        },
+        "response": {
+            "title": "Respuesta",
+            "description": "Te responderemos en un plazo de 1-2 días hábiles. Para asuntos urgentes, haremos nuestro mejor esfuerzo para responder lo antes posible."
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "title": "Plan Wanderlust: Para los Verdaderos Aventureros",
+    "subTitle": "Explora cada rincón del mundo sin perder de vista tu propósito con Coffi.",
+    "description": "El Plan Wanderlust es nuestra ambiciosa visión para los aventureros que se atreven a explorar sin límites. Está diseñado para quienes desean descubrir el mundo sin dejar de ser productivos y mantenerse alineados con sus objetivos. Aunque aún está en desarrollo, estamos emocionados de compartir lo que viene.",
+    "buildingTheFutureTogether": "Construyendo el Futuro de Coffi Juntos",
+    "inDevelopment": {
+        "text": "Como una startup recién lanzada con un equipo pequeño pero apasionado—actualmente liderado por un único ingeniero de software—Coffi está comprometido con un crecimiento sostenible. El Plan Wanderlust está en desarrollo y se hará realidad tan pronto como tengamos los recursos para hacerlo perfecto para nuestros usuarios. Tu apoyo como early adopter nos ayuda a hacer este sueño posible.",
+        "realTimePlaceInteraction": {
+            "title": "Interacción en Tiempo Real con los Lugares",
+            "stayConnected": "Encontrar el lugar ideal es solo el comienzo—mantenerte conectado es lo que realmente importa. Con esta función exclusiva, podrás interactuar directamente con el personal de cada lugar para obtener actualizaciones en tiempo real, reservar un espacio o resolver cualquier duda antes de llegar.",
+            "noMoreGuessing": "Se acabó la incertidumbre sobre si un lugar está demasiado lleno o si hay un rincón tranquilo disponible—Coffi te mantiene informado para que puedas planificar tu día con confianza."
+        },
+        "productivityTools": {
+            "title": "Herramientas de Productividad",
+            "aboutThriving": "Ser un nómada digital no es solo viajar, es también sobre prosperar. Las Herramientas de Productividad de Coffi te ayudan a mantener el enfoque, seguir tu progreso y optimizar tu flujo de trabajo en movimiento.",
+            "aboutThrivingTogether": "Y como Coffi es una comunidad, también podrás crear grupos de productividad colaborativa, trabajando juntos para alcanzar metas compartidas mientras te mantienes motivado. La productividad siempre es mejor cuando prosperamos juntos.",
+            "aboutTheSystem": {
+                "description": "Esto es lo que podrás hacer",
+                "benefits": {
+                    "setSessionGoals": {
+                        "title": "Define tus objetivos de la sesión",
+                        "description": "Establece lo que deseas lograr en un lugar y el tiempo que dedicarás para cumplirlo."
+                    },
+                    "productivityStrategy": {
+                        "title": "Elige tu Estrategia de Productividad",
+                        "description": "Selecciona el método de enfoque que mejor se adapte a ti."
+                    },
+                    "trackYourProgress": {
+                        "title": "Haz Seguimiento a tu Progreso",
+                        "description": "Consulta estadísticas personalizadas sobre tu flujo de productividad con el tiempo."
+                    }
+                }
+            }
+        },
+        "expandingTheCoffiDatabase": {
+            "title": "Ampliando la Base de Datos",
+            "about": "Trabajamos sin descanso para expandir nuestra base de datos con nuevos lugares, asegurándonos de que cada nómada digital tenga acceso a los mejores lugares para trabajar, estudiar o relajarse. Nuestro objetivo es construir alianzas significativas con negocios locales, ofreciendo beneficios tanto para los usuarios como para los espacios que forman parte de Coffi.",
+            "action": "Descubre más sobre nuestros planes para los lugares registrados"
+        },
+        "partnershipWithCompanies": {
+            "title": "Alianzas con Empresas",
+            "about": "Creemos que el futuro del trabajo es remoto y queremos ayudar a las empresas a apoyar a sus equipos distribuidos. Estamos desarrollando un plan especial para negocios, permitiendo que sus empleados disfruten de los beneficios de Coffi mientras brindamos herramientas que mejoran su bienestar y productividad.",
+            "action": "¡Estamos trabajando en ello!"
+        }
+    },
+    "joinTheCoffiJourney": {
+        "bePart": "Sé parte del viaje de Coffi",
+        "moreThanAPlatform": "Coffi es más que una plataforma: es un movimiento. Como early adopter, tu apoyo nos ayuda a crecer, mejorar nuestras funciones y hacer realidad proyectos ambiciosos como el Plan Wanderlust.",
+        "everyActionCounts": "Cada spot compartido, cada actualización y cada conexión nos acerca a construir el espacio definitivo para los nómadas digitales.",
+        "joinUs": "Únete y sé parte de este viaje. Juntos, crearemos un mundo donde cada nómada encuentre el lugar perfecto para prosperar."
+    }
+}

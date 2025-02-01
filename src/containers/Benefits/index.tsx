@@ -13,7 +13,7 @@ export const Benefits: React.FC = () => {
 
       <section className="relative w-full h-auto grid grid-cols-4 grid-rows-2 gap-4 md:gap-4">
         {/* Section One */}
-        <article className="flex flex-col items-start justify-start text-start col-span-4 md:col-span-2 h-[360px] bg-coffi-blue/20 text-coffi-purple rounded-md p-6">
+        <article className="flex flex-col items-start justify-start text-start col-span-4 md:col-span-2 h-[390px] bg-coffi-blue/20 text-coffi-purple rounded-md p-6">
           <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
             {t("home.benefits.matchYourFavoriteSpots.title")}
           </h2>

@@ -1,0 +1,52 @@
+{
+    "title": "Wanderlust Plan: For the True Adventurers",
+    "subTitle": "Explore every corner of the world while staying connected to your purpose with Coffi.",
+    "description": "The Wanderlust Plan is our ambitious vision for adventurers who dare to explore without limits. It’s for those who want to experience the world, yet stay productive and aligned with their life goals. While it’s still in development, we’re excited to share what’s coming.",
+    "buildingTheFutureTogether": "Building the Future of Coffi Together",
+    "inDevelopment": {
+        "text": "As a newly launched startup with a small but passionate team—currently led by a single software engineer—Coffi is committed to growing sustainably. The Wanderlust Plan is in development and will become a reality as soon as we have the resources to make it perfect for our users. Your support as early adopters helps pave the way for this vision.",
+        "realTimePlaceInteraction": {
+            "title": "Real-Time Place Interaction",
+            "stayConnected": "Finding the right spot is just the beginning—staying connected is what truly matters. With this exclusive feature, you can interact directly with spot staff to get real-time updates, book a reservation, or ask any questions before you even step in.",
+            "noMoreGuessing": "No more guessing if a place is too crowded or if there’s a quiet corner available—Coffi keeps you in the loop so you can plan your day with confidence." 
+        },
+        "productivityTools": {
+            "title": "Productivity Tools",
+            "aboutThriving": "Being a digital nomad isn’t just about exploring—it’s about thriving. Coffi Productivity Tools help you stay focused, track progress, and optimize your workflow on the go. ",
+            "aboutThrivingTogether": "Coffi is a community, you can also create collaborative productivity groups, working together to achieve shared goals while staying motivated. Productivity is always better when we thrive together.",
+            "aboutTheSystem": {
+                "description": "Here’s what you’ll be able to do",
+                "benefits": {
+                    "setSessionGoals": {
+                        "title": "Set Your Session Goals",
+                        "description": "Define what you want to achieve at a spot and the timeframe to get it done."
+                    },
+                    "productivityStrategy": {
+                        "title": "Choose a Productivity Strategy",
+                        "description": "Pick a focus method that works best for you."
+                    },
+                    "trackYourProgress": {
+                        "title": "Track Your Progress",
+                        "description": "View personalized stats on your productivity flow over time."
+                    }
+                }
+            }
+        },
+        "expandingTheCoffiDatabase": {
+            "title": "Expanding the Database",
+            "about": "We are working tirelessly to expand our database of spots, ensuring that every digital nomad has access to the best places to work, study, or relax. Our goal is to create meaningful alliances with local businesses, offering benefits that serve both the users and the places they visit.",
+            "action": "Learn more about our plans for registered places"
+        },
+        "partnershipWithCompanies": {
+            "title": "Partnerships with Companies",
+            "about": "We believe that the future of work is remote, and we want to help companies support their remote teams. We’re developing a special plan for businesses, enabling their employees to enjoy Coffi’s benefits while empowering companies with tools to enhance employee well-being and productivity.",
+            "action": "Working on it!"
+        }
+    },
+    "joinTheCoffiJourney": {
+        "bePart": "Be Part of Coffi’s Journey" ,
+        "moreThanAPlatform": "Coffi is more than a platform—it’s a movement. As an early adopter, your support helps us grow, refine our features, and turn ambitious projects like the Wanderlust Plan into reality." ,
+        "everyActionCounts": "Every spot shared, every update, and every connection made brings us closer to building the ultimate space for digital nomads.",
+        "joinUs": "Join us and be part of this journey. Together, we’ll create a worldwhere every nomad finds the perfect place to thrive."
+    }
+}

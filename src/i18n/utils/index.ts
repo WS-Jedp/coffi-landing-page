@@ -7,11 +7,23 @@ export async function loadMessages(locale: string) {
     .default;
   const places = (await import(`../../i18n/messages/${locale}/places.json`))
     .default;
+  const wanderlust = (await import(`../../i18n/messages/${locale}/wanderlust.json`))
+    .default;
+  const contact = (await import(`../../i18n/messages/${locale}/contact.json`))
+    .default;
+  const aboutUs = (await import(`../../i18n/messages/${locale}/aboutUs.json`))
+    .default;
+  const forPlaces = (await import(`../../i18n/messages/${locale}/forPlaces.json`))
+    .default;
 
   return {
     home,
     actions,
     utils,
-    places
+    places,
+    wanderlust,
+    contact,
+    aboutUs,
+    forPlaces
   };
 }

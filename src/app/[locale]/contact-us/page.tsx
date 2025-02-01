@@ -1,17 +1,19 @@
+import { useTranslations } from "next-intl";
+
 export default function ContactUs() {
+  const t = useTranslations();
   return (
     <article className="relative flex flex-col items-center w-full max-w-[1200px]  mx-auto py-20 md:py-7 mb-0 md:mb-20 px-5 md:px-0">
       <h1 className="font-bold text-4xl md:text-7xl mb-6 text-center">
-        Contact Us
+        {t("contact.contactUs")}
       </h1>
       <p className="text-lg font-light mt-1 mb-6 text-center w-full max-w-[600px]">
-        We'd love to hear from you! If you have any questions, issues, or
-        suggestions, feel free to reach out. Our team is here to help.
+        {t("contact.description")}
       </p>
 
       <section className="w-full">
         <h2 className="font-bold text-xl md:text-4xl mb-4 text-start">
-          Get in Touch with Us
+          {t("contact.getInTouch")}
         </h2>
         <div className="text-md font-normal text-start space-y-4">
           <p>
@@ -22,20 +24,16 @@ export default function ContactUs() {
               help@coffi.com
             </a>
           </p>
-          <p>Once we receive your message, here’s what will happen:</p>
+          <p>{t("contact.howItWorks.description")}</p>
           <ol className="list-decimal list-inside space-y-2">
             <li>
-              <strong>Initial Acknowledgment:</strong> You’ll receive an email
-              confirming that we’ve received your message.
+              <strong>{t("contact.howItWorks.initialAcknowledgment.title")}:</strong> {t("contact.howItWorks.initialAcknowledgment.description")}
             </li>
             <li>
-              <strong>Review:</strong> Our team will review your query or
-              suggestion to ensure we provide the best possible assistance.
+              <strong>{t("contact.howItWorks.review.title")}:</strong> {t("contact.howItWorks.review.description")}
             </li>
             <li>
-              <strong>Response:</strong> You can expect a reply from us within{" "}
-              <span className="font-semibold">1-2 business days</span>. For
-              urgent matters, we’ll aim to respond as quickly as possible.
+              <strong>{t("contact.howItWorks.response.title")}:</strong> {t("contact.howItWorks.response.description")}
             </li>
           </ol>
         </div>

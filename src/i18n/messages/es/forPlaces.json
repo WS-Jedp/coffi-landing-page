@@ -1,0 +1,44 @@
+{
+    "adminDashboard": "Coffi Admin Dashboard",
+    "about": "Impulsando negocios con datos e interacción. Obtén insights, promociona tu spot y conéctate con la comunidad Coffi.",
+    "why": "En Coffi, creemos que los grandes espacios merecen gran visibilidad. Por eso estamos construyendo el Coffi Admin Dashboard, una herramienta poderosa diseñada para ayudar a los spots registrados a conocer mejor a su audiencia, promocionar sus servicios y fortalecer su conexión con la comunidad de nómadas digitales.",
+    "placesSubscriptions": {
+        "title": "Planes de Suscripción y Beneficios",
+        "about": "Con planes de suscripción flexibles, negocios de todos los tamaños—desde pequeñas cafeterías locales hasta grandes cadenas de coworking—pueden acceder a estadísticas en tiempo real, lanzar promociones y ofrecer beneficios exclusivos a sus clientes más fieles.",
+        "benefitsAndFeatures": "Beneficios y ventajas",
+        "basicLayer": {
+            "title": "Plan Básico",
+            "about": "Comienza con lo esencial y descubre la plataforma.",
+            "benefits": {
+                "basicAnalytics": "Análisis básico del spot",
+                "promotionPlatform": "Publica promociones en la plataforma Coffi"
+            }
+        },
+        "localBusiness": {
+            "title": "Plan Negocio Local",
+            "about": "Para negocios locales que buscan ampliar su audiencia.",
+            "benefits": {
+                "fidelitySystem": "Acceso completo al Sistema de Fidelización",
+                "detailedAnalytics": "Análisis detallado de visitantes",
+                "directInteractionWithUsers": "Interacción directa con los usuarios",
+                "enhancedPromotions": "Promociones destacadas"
+            }
+        },
+        "enterprise": {
+            "title": "Plan Empresarial",
+            "about": "Para negocios que buscan escalar y conectar con una audiencia más amplia.",
+            "benefits": {
+                "multiplePlaces": "Gestiona múltiples ubicaciones",
+                "strategicPartnerships": "Alianzas estratégicas",
+                "advancedVisitorAnalytics": "Análisis avanzado de visitantes"
+            }
+        }
+    },
+    "helpingPlacesGrow": {
+        "title": "Ayudando a cada lugar a Crecer y Conectar",
+        "gameChanger": "El Coffi Admin Dashboard no es solo una herramienta, es un cambio de juego para los negocios que quieren crecer, conectar y prosperar en la comunidad de nómadas digitales.",
+        "forEveryPlace": "Ya sea que tengas un cafe local y quieras fidelizar a tus clientes o una cadena de espacios de trabajo que gestiona múltiples ubicaciones, Coffi te da las herramientas para conocer a tu audiencia, interactuar con ella y crear experiencias significativas.",
+        "ready": "¿Listo para ser parte del futuro del trabajo y los viajes?",
+        "stayTuned": "Pronto disponible: ¡El Coffi Admin Dashboard está en camino!"
+    }
+}
