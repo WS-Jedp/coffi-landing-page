@@ -1,13 +1,31 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import LanguageSelector from "../langSelector";
 
 export const Header: React.FC = () => {
-  const router = useRouter()
+  const t = useTranslations();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [shouldRenderMenu, setShouldRenderMenu] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function handleClickMenu() {
     if (isMenuOpen) {
@@ -20,22 +38,21 @@ export const Header: React.FC = () => {
   }
 
   const menuOptions = [
-  
     {
       name: "Features",
-      link: "/#features",
+      link: `/#features`,
     },
     {
       name: "Pricing",
-      link: "/#pricing",
+      link: `/#pricing`,
     },
     {
       name: "About",
-      link: "/#about",
+      link: `/#about`,
     },
     {
       name: "Contact",
-      link: "/contact-us",
+      link: `/contact-us `,
     },
   ];
 
@@ -45,7 +62,11 @@ export const Header: React.FC = () => {
     router.push(link);
   }
   return (
-    <header className="sticky top-0 left-0 w-full h-20 drop-shadow-md bg-white flex flex-row flex-nowrap items-center justify-between px-6 z-[999]">
+    <header className={`
+      sticky top-0 left-0 w-full h-20 flex flex-row flex-nowrap items-center justify-between px-6 z-[999]
+      transition-all duration-300 ease-in-out
+      ${isScrolled ? "drop-shadow-md bg-white/80 backdrop-blur-md" : "bg-transparent"}
+    `}>
       <div className="w-full max-w-[1200px] h-full flex items-center justify-between mx-auto">
         <article className="flex flex-row flex-nowrap items-center cursor-pointer text-coffi-black">
           <Image
@@ -56,16 +77,15 @@ export const Header: React.FC = () => {
             className="mr-1"
           />
           <Link href="/">
-          <div className="flex flex-col items-start jusitfy-center h-full border-solid border-black">
-            <h1 className="block font-black text-xl md:text-2xl cursor-pointer my-0 py-0">
-              Coffi
-            </h1>
-            <h2 className="font-light text-xs md:text-sm my-0 py-0 pl-[1px] mt-[-3px]">
-              Be where you thrive
-            </h2>
-          </div>
+            <div className="flex flex-col items-start jusitfy-center h-full border-solid border-black">
+              <h1 className="block font-black text-xl md:text-2xl cursor-pointer my-0 py-0">
+                Coffi
+              </h1>
+              <h2 className="font-light text-xs md:text-sm my-0 py-0 pl-[1px] mt-[-3px]">
+                Be where you thrive
+              </h2>
+            </div>
           </Link>
-
         </article>
 
         <menu className="relative flex items-center text-coffi-black">
@@ -75,9 +95,15 @@ export const Header: React.FC = () => {
                 key={option.name}
                 className="font-normal text-xs md:text-sm cursor-pointer hover:text-coffi-purple"
               >
-                <Link href={option.link}>{option.name}</Link>
+                <Link href={option.link}>
+                  {t(`utils.navigationLinks.${option.name.toLowerCase()}`)}
+                </Link>
               </li>
             ))}
+
+            <li>
+              <LanguageSelector />
+            </li>
           </ul>
 
           <button
@@ -112,16 +138,16 @@ export const Header: React.FC = () => {
             >
               <h2 className="font-bold text-5xl">Menu</h2>
               <ul className="flex flex-col space-y-4 p-4 w-full">
-                {
-                  menuOptions.map((option) => (
-                    <li
-                      key={option.name}
-                      className="font-normal text-xl cursor-pointer hover:text-coffi-purple"
-                    >
-                      <button onClick={() => handleMenuOption(option.link)}>{option.name}</button>
-                    </li>
-                  ))
-                }
+                {menuOptions.map((option) => (
+                  <li
+                    key={option.name}
+                    className="font-normal text-xl cursor-pointer hover:text-coffi-purple"
+                  >
+                    <button onClick={() => handleMenuOption(option.link)}>
+                      {t(`utils.navigationLinks.${option.name.toLowerCase()}`)}
+                    </button>
+                  </li>
+                ))}
                 <hr />
                 <li>
                   <button
@@ -133,7 +159,7 @@ export const Header: React.FC = () => {
                     "
                     onClick={handleClickMenu}
                   >
-                    Close
+                    { t("actions.general.close") }
                   </button>
                 </li>
               </ul>

@@ -1,4 +1,4 @@
-export default function PrivacyPolicy() {
+export default function TermsOfService() {
   return (
     <article className="relative flex flex-col items-center justify-items-center w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
       <h1 className="font-bold text-4xl md:text-7xl mb-3">Terms Of Service</h1>

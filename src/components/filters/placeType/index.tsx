@@ -1,6 +1,7 @@
 import { SimpleButtonOutline } from "@/components/buttons";
 import { TooglePanel } from "@/components/tooglePanel";
 import { Tooltip } from "@/components/tooltip";
+import { useTranslations } from "next-intl";
 
 interface PlaceTypeFilterCardProps {
   filters: {
@@ -23,23 +24,25 @@ export const PlaceTypeFilterCard: React.FC<PlaceTypeFilterCardProps> = ({
   showNext,
   onNext,
 }) => {
+  const t = useTranslations();
   const isFilterSelected = (filter: string) => selectedFilters.includes(filter);
   return (
     <TooglePanel
-      title="Choose Your Type of Place"
-      description="Start by selecting the type of environment that suits your current need."
+      title={t("home.howItWorks.guide.chooseYourTypeOfPlace.title")}
+      description={t("home.howItWorks.guide.chooseYourTypeOfPlace.description")}
       isOpen={isOpen}
     >
       <article className="w-full flex flex-col items-start justify-start overflow-hidden">
         <Tooltip
-          title="How it works?"
-          text="From cozy cafes to quiet libraries, select an environment that aligns with today’s needs."
+          title={t("home.howItWorks.guide.howItWorks")}
+          text={t("home.howItWorks.guide.chooseYourTypeOfPlace.howItWorks")}
         />
         <section className="flex flex-row flex-nowrap items-center justify-start w-full overflow-x-auto mt-2">
           {filters.map((placeType) => (
             <article
               key={placeType.id}
               className={`
+                w-auto text-nowrap
                 px-6 py-1 mr-1
                 cursor-pointer border-[1px] border-solid
                 ${
@@ -53,14 +56,14 @@ export const PlaceTypeFilterCard: React.FC<PlaceTypeFilterCardProps> = ({
              `}
               onClick={() => onFilter(placeType.value)}
             >
-              <h3 className="font-light text-sm">{placeType.title}</h3>
+              <h3 className="font-light text-sm">{t(`home.howItWorks.guide.chooseYourTypeOfPlace.options.${placeType.title}`)}</h3>
             </article>
           ))}
         </section>
         
         <div className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${showNext ? "translate-y-0  max-h-screen opacity-100" : "-translate-y-3 max-h-0 opacity-0"}`}>
             <SimpleButtonOutline
-                text="Next"
+                text={t("actions.nav.next")}
                 action={onNext}
                 full
             />

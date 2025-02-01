@@ -1,6 +1,6 @@
 export default function ContactUs() {
   return (
-    <article className="relative flex flex-col items-center w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
+    <article className="relative flex flex-col items-center w-full max-w-[1200px]  mx-auto py-20 md:py-7 mb-0 md:mb-20 px-5 md:px-0">
       <h1 className="font-bold text-4xl md:text-7xl mb-6 text-center">
         Contact Us
       </h1>

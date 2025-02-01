@@ -23,11 +23,11 @@ export const TooglePanel: React.FC<TogglePanelProps> = ({
         <section className="w-full flex flex-row justify-between">
           <h3 className="font-bold text-xl md:text-2xl">{title}</h3>
           {tag ? specialTag ? (
-            <span className="flex items-center justify-center text-center h-[27px] px-4 bg-gradient-to-r from-coffi-blue/20 to-coffi-purple/20 text-coffi-purple text-xs rounded-full">
+            <span className="flex items-center justify-center text-center h-[27px] px-3 md:px-4 bg-gradient-to-r from-coffi-blue/20 to-coffi-purple/20 text-coffi-purple text-[12px] md:text-xs rounded-full text-nowrap">
               { tag }
             </span>
           ) : (
-            <span className="flex items-center justify-center text-center h-[27px] px-4 bg-coffi-black/5 text-coffi-black font-normal text-xs rounded-full">
+            <span className="flex items-center justify-center text-center h-[27px] px-3 md:px-4 bg-coffi-black/5 text-coffi-black font-normal text-[12px] md:text-xs rounded-full text-nowrap">
               { tag }
             </span>
           ) : null}

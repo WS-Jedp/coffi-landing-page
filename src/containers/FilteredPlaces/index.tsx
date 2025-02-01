@@ -157,7 +157,7 @@ export const FilteredPlaces: React.FC<FilteredPlacesProps> = ({
   );
 
   return (
-    <section className="relative w-full h-full flex flex-row items-center justify-start p-9">
+    <section className="relative w-full h-full flex flex-row items-center justify-start pl-0 md:pl-[150px] p-9">
       <TransitionGroup component={null}>
         {first5DummyPlaces.map((place, i) => {
           const calculatedTransform = `translate(-${i * 30}px, -${i * 18}px)`;
@@ -174,7 +174,7 @@ export const FilteredPlaces: React.FC<FilteredPlacesProps> = ({
                 ref={(ref) => {
                   refs.current[place.id] = ref; // Assign ref, but return nothing
                 }}
-                className={`absolute w-full md:w-1/2 lg:w-1/3`}
+                className={`absolute w-auto md:w-1/2 lg:w-1/3`}
                 style={{
                   transform: calculatedTransform,
                   zIndex: first5DummyPlaces.length - i, // Ensure correct stacking

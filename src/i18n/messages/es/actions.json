@@ -1,0 +1,26 @@
+{
+    "general": {
+        "findYourPlace": "Encuentra tu lugar",
+        "discoverMore": "Descubre más",
+        "discoverMoreAboutCoffi": "Descubre más sobre Coffi",
+        "knowMore": "Saber más",
+        "learnMore": "Aprende más",
+        "startDiscovering": "Comienza a descubrir",
+        "discoverTheStory": "Descubre la historia detrás de Coffi",
+        "resetFilters": "Restablecer filtros",
+        "close": "Cerrar"
+    },
+    "nav": {
+        "next": "Siguiente",
+        "back": "Atrás",
+        "skip": "Saltar",
+        "prev": "Ant",
+        "previous": "Anterior",
+        "finish": "Terminar",
+        "done": "Hecho"
+    },
+    "subscriptions": {
+        "startExploring": "Comienza a explorar",
+        "upgradeToNomad": "Actualiza al Plan de Nómada"
+    }
+}

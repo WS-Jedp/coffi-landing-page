@@ -6,28 +6,40 @@ import { PlaceTypeFilterCard } from "@/components/filters/placeType";
 import StepsThrough from "@/components/stepsThrough";
 import { useState } from "react";
 import { FilteredPlaces } from "../FilteredPlaces";
-import { COMMODITY_QUALITY, FOOD_COMMODITY_ENUM, MINDSETS, MOBILE_SIGNAL_COMMODITY_ENUM, NOISE_LEVEL_ENUM, PARKING_COMMODITY_ENUM, PEOPLE_AMOUNT_ENUM, PLACE_TYPES, WIFI_SPEED_COMMODITY_ENUM } from "@/models/places";
+import {
+  COMMODITY_QUALITY,
+  FOOD_COMMODITY_ENUM,
+  MINDSETS,
+  MOBILE_SIGNAL_COMMODITY_ENUM,
+  NOISE_LEVEL_ENUM,
+  PARKING_COMMODITY_ENUM,
+  PEOPLE_AMOUNT_ENUM,
+  PLACE_TYPES,
+  WIFI_SPEED_COMMODITY_ENUM,
+} from "@/models/places";
+import { useTranslations } from "next-intl";
 
 export interface PlaceFilter {
-  id: number
-  title: string
-  value: string
-  property?: string
+  id: number;
+  title: string;
+  value: string;
+  property?: string;
 }
 
 export const HowItWorks: React.FC = () => {
+  const t = useTranslations();
   const placeRulesAndAmmenities = [
     {
       id: 1,
       value: "petFriendly",
-      title: "Pet Friendly",
+      title: "petFriendly",
     },
     {
       id: 2,
       value: "publicWifi",
-      title: "Public Wifi",
+      title: "publicWifi",
     },
-  
+
     // {
     //   id: 4,
     //   value: "publicPlugs",
@@ -36,29 +48,29 @@ export const HowItWorks: React.FC = () => {
     {
       id: 5,
       value: "outdoorSeating",
-      title: "Outdoor Space",
+      title: "outdoorSpace",
     },
     {
       id: 3,
       value: WIFI_SPEED_COMMODITY_ENUM.FAST,
-      title: "High Speed Wifi",
+      title: "highWifiSpeed",
       property: "wifiSpeed",
     },
     {
       id: 6,
       value: FOOD_COMMODITY_ENUM.VEGAN,
-      title: "Vegan Options",
-      property: "food"
+      title: "veganOptions",
+      property: "food",
     },
     {
       id: 7,
       value: "alcoholAvailability",
-      title: "Alcohol Available",
+      title: "alcoholAvailability",
     },
     {
       id: 8,
       value: PARKING_COMMODITY_ENUM.IN_PLACE,
-      title: "Parking in place",
+      title: "parkingInPlace",
       property: "parking",
     },
     // {
@@ -75,150 +87,148 @@ export const HowItWorks: React.FC = () => {
     {
       id: 11,
       value: PARKING_COMMODITY_ENUM.NEARBY,
-      title: "Nearby Parking",
+      title: "nearbyParking",
       property: "parking",
     },
     {
       id: 12,
-      value: 'bakery',
-      title: 'Bakery Service',
+      value: "bakery",
+      title: "bakeryService",
     },
     {
       id: 13,
       value: COMMODITY_QUALITY.GOOD,
-      title: 'Good Cafe Service',
-      property: 'cafeQuality'
+      title: "goodCafeService",
+      property: "cafeQuality",
     },
     {
       id: 14,
-      value: 'eventSpave',
-      title: 'Space for Events',
+      value: "eventSpace",
+      title: "spaceForEvents",
     },
     {
       id: 15,
       value: MOBILE_SIGNAL_COMMODITY_ENUM.STRONG,
-      title: 'Strong Mobile Signal',
-      property: 'mobileSignal'
+      title: "strongMobileSignal",
+      property: "mobileSignal",
     },
     {
       id: 16,
       value: WIFI_SPEED_COMMODITY_ENUM.VERY_FAST,
-      title: "Very High Speed Wifi",
+      title: "veryHighWifiSpeed",
       property: "wifiSpeed",
     },
     {
       id: 17,
       value: "cafe",
-      title: "Cafe Service",
+      title: "cafeService",
     },
-    
   ];
   const placeTypeOptions = [
     {
       id: 1,
-      title: "Cafe",
+      title: "cafe",
       value: PLACE_TYPES.COFFEE,
     },
     {
       id: 2,
-      title: "Library",
+      title: "library",
       value: PLACE_TYPES.LIBRARY,
     },
     {
       id: 3,
-      title: "Park",
+      title: "park",
       value: PLACE_TYPES.PARK,
     },
     {
       id: 4,
-      title: "Coworking",
+      title: "coworking",
       value: PLACE_TYPES.COWORK_ZONE,
     },
     {
       id: 5,
-      title: "Rooftop",
+      title: "rooftop",
       value: PLACE_TYPES.ROOFTOP,
     },
   ];
   const communityRealTimeInsights = [
     {
       id: 1,
-      title: "Max 25 People",
+      title: "max25People",
       value: PEOPLE_AMOUNT_ENUM.MAX_PEOPLE_AMOUNT_25,
-      property: "peopleAmount"
+      property: "peopleAmount",
     },
     {
       id: 2,
-      title: "Max 10 People",
+      title: "max10People",
       value: PEOPLE_AMOUNT_ENUM.MAX_PEOPLE_AMOUNT_10,
-      property: "peopleAmount"
+      property: "peopleAmount",
     },
     {
       id: 3,
-      title: "30+ People",
+      title: "plus30People",
       value: PEOPLE_AMOUNT_ENUM.MIN_PEOPLE_AMOUNT_30,
-      property: "peopleAmount"
+      property: "peopleAmount",
     },
     {
       id: 4,
-      title: "Ideal for Work",
+      title: "idealForWork",
       value: MINDSETS.WORK,
-      property: 'idealFor'
+      property: "idealFor",
     },
     {
       id: 5,
-      title: "Ideal for Study",
+      title: "idealForStudy",
       value: MINDSETS.STUDY,
-      property: 'idealFor'
+      property: "idealFor",
     },
     {
       id: 6,
-      title: "Ideal for Meetings",
+      title: "idealForMeetings",
       value: MINDSETS.SOCIAL,
-      property: 'idealFor'
+      property: "idealFor",
     },
     {
       id: 7,
-      title: "Ideal for Dates",
+      title: "idealForDates",
       value: MINDSETS.ROMANTIC,
-      property: 'idealFor'
+      property: "idealFor",
     },
     {
       id: 9,
-      title: "Very Quiet Place",
+      title: "veryQuietPlace",
       value: NOISE_LEVEL_ENUM.VERY_QUIET,
-      property: 'noiseLevel'
+      property: "noiseLevel",
     },
     {
       id: 10,
-      title: "Quiet Place",
+      title: "quietPlace",
       value: NOISE_LEVEL_ENUM.QUIET,
-      property: 'noiseLevel'
+      property: "noiseLevel",
     },
     {
       id: 11,
-      title: "Moderate Noise",
+      title: "moderateNoise",
       value: NOISE_LEVEL_ENUM.MODERATE,
-      property: 'noiseLevel'
+      property: "noiseLevel",
     },
     {
       id: 12,
-      title: "Loud Place",
+      title: "loudPlace",
       value: NOISE_LEVEL_ENUM.LOUD,
-      property: 'noiseLevel'
+      property: "noiseLevel",
     },
-    
   ];
   const [selectedPlaceRulesAndAmmenities, setSelectedPlaceRulesAndAmmenities] =
     useState<PlaceFilter[]>([]);
   const [selectedPlaceTypes, setSelectedPlaceTypes] = useState<string[]>([]);
-  const [selectedPlaceInsights, setSelectedPlaceInsights] = useState<PlaceFilter[]>(
-    []
-  );
+  const [selectedPlaceInsights, setSelectedPlaceInsights] = useState<
+    PlaceFilter[]
+  >([]);
   const [currentStep, setCurrentStep] = useState<number>(1);
 
   const handleOnPlaceRuleAndAmmenity = (filter: PlaceFilter) => {
-    if (selectedPlaceRulesAndAmmenities.find(f => f.id === filter.id)) {
+    if (selectedPlaceRulesAndAmmenities.find((f) => f.id === filter.id)) {
       setSelectedPlaceRulesAndAmmenities(
         selectedPlaceRulesAndAmmenities.filter((type) => type.id !== filter.id)
       );
@@ -241,7 +251,7 @@ export const HowItWorks: React.FC = () => {
   };
 
   const handleOnPlaceInsight = (filter: PlaceFilter) => {
-    if (selectedPlaceInsights.find(f => f.id === filter.id)) {
+    if (selectedPlaceInsights.find((f) => f.id === filter.id)) {
       setSelectedPlaceInsights(
         selectedPlaceInsights.filter((type) => type.id !== filter.id)
       );
@@ -262,24 +272,25 @@ export const HowItWorks: React.FC = () => {
     setSelectedPlaceTypes([]);
     setSelectedPlaceInsights([]);
     setCurrentStep(1);
-  }
+  };
 
   return (
-    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12" id="features">
+    <article
+      className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12"
+      id="features"
+    >
       <h1 className="font-bold text-4xl md:text-7xl mx-auto">
-        The Path to your <br />
-        Perfect Spot
+        {t("home.howItWorks.thePathTo")} <br />
+        {t("home.howItWorks.perfectSpot")}
       </h1>
       <p className="text-lg font-light mt-2">
-        Experience the quick and ease way to locate your ideal spot
+        {t("home.howItWorks.description")}
       </p>
-      <p className="font-light text-md my-1">
-        Save time and get back to what matters—your Coffi.
-      </p>
+      <p className="font-light text-md my-1">{t("home.howItWorks.benefit")}</p>
 
       <section className="relative w-full h-auto justify-between flex flex-col md:flex-row-reverse mt-9">
-        <article className="flex flex-col items-center justify-start md:items-end w-full md:w-2/3">
-          <div className="relative flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
+        <article className="flex flex-col items-center justify-start md:items-start w-full md:w-2/3">
+          <div className="relative  w-full flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
             <div className="relative mr-2 mt-1 h-full">
               <StepsThrough step={{ id: 1 }} currentStep={currentStep} />
             </div>
@@ -321,7 +332,13 @@ export const HowItWorks: React.FC = () => {
             />
           </div>
 
-          <div className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${currentStep > 3 ? "translate-y-0  max-h-screen opacity-100" : "-translate-y-3 max-h-0 opacity-0"}`}>
+          <div
+            className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${
+              currentStep > 3
+                ? "translate-y-0  max-h-screen opacity-100"
+                : "-translate-y-3 max-h-0 opacity-0"
+            }`}
+          >
             <SimpleButtonOutline
               text="Reset Filters"
               action={resetFilters}
@@ -330,8 +347,12 @@ export const HowItWorks: React.FC = () => {
           </div>
         </article>
 
-        <article className="relative w-full  h-auto md:h-[420px]  mb-[180px] md:mb-0  mt-[240px] md:mt-[42px]">
-              <FilteredPlaces placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]} commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities} realTimeDataSelected={selectedPlaceInsights} />
+        <article className="relative w-full h-auto md:h-[420px] mb-[180px] md:mb-0 mt-[240px] md:mt-[42px]">
+          <FilteredPlaces
+            placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]}
+            commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities}
+            realTimeDataSelected={selectedPlaceInsights}
+          />
         </article>
       </section>
     </article>

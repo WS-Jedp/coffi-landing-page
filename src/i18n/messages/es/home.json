@@ -1,0 +1,155 @@
+{
+  "welcome": "¡Bienvenido a Coffi!",
+  "discoverPlacesInCity": "Descubre los mejores lugares en {city}",
+  "toElevate": "Y eleva tu",
+  "sessionsType": {
+    "work": "Trabajo",
+    "meetings": "Reuniones",
+    "coffee": "Café",
+    "study": "Estudio"
+  },
+  "sessions": "Sesiones",
+  "daily": "Diario",
+  "howToExplanaiton": "Navega, encuentra y prospera en los mejores lugares locales para ti, con información en tiempo real de otros nómadas digitales",
+  "howItWorks": {
+    "thePathTo": "El camino hacia tu",
+    "perfectSpot": "lugar perfecto",
+    "description": "Vive y experimenta de forma rápida y sencilla la forma de localizar tu lugar ideal",
+    "benefit": "Ahorra tiempo y vuelve a lo que importa— tu Café.",
+    "guide": {
+      "howItWorks": "¿Cómo funciona?",
+      "chooseYourTypeOfPlace": {
+        "title": "Elige el tipo de lugar",
+        "description": "Comienza seleccionando el tipo de entorno que se adapte a tu necesidad actual",
+        "howItWorks": "Ya sea un café, un espacio de coworking, una biblioteca o algo único, selecciona un tipo de entorno que se alinee con las necesidades actuales.",
+        "options": {
+          "cafe": "Café",
+          "coworking": "Espacio de coworking",
+          "library": "Biblioteca",
+          "park": "Parque",
+          "rooftop": "Azotea"
+        }
+      },
+      "setYourPreferences": {
+        "title": "Establece tus preferencias",
+        "description": "Personaliza tu búsqueda en función de reglas y comodidades específicas",
+        "howItWorks": "Filtra comodidades como Wi-Fi de alta velocidad, calidad de asientos y más para adaptarlas a tus necesidades.",
+        "options": {
+          "petFriendly": "Amigable con las mascotas",
+          "publicWifi": "Wi-Fi público",
+          "outdoorSpace": "Espacio al aire libre",
+          "highWifiSpeed": "Wi-Fi de alta velocidad",
+          "veganOptions": "Opciones veganas",
+          "alcoholAvailability": "Alcohol disponible",
+          "parkingInPlace": "Estacionamiento en el lugar",
+          "nearbyParking": "Estacionamiento cercano",
+          "bakeryService": "Servicio de panadería",
+          "cafeService": "Servicio de café",
+          "goodCafeService": "Buen café",
+          "spaceForEvents": "Espacio para eventos",
+          "strongMobileSignal": "Señal móvil fuerte",
+          "veryHighWifiSpeed": "Velocidad de Wi-Fi ultra rápida"
+        }
+      },
+      "communityInsights": {
+        "title": "Información de la comunidad",
+        "description": "Accede y filtra información en tiempo real brindada por la comunidad.",
+        "howItWorks": "Aprovecha el poder de nuestra comunidad con actualizaciones en tiempo real sobre niveles de multitud, ruido y mucho más.",
+        "options": {
+          "max25People": "Máximo 25 personas",
+          "max10People": "Máximo 10 personas",
+          "plus30People": "Más de 30 personas",
+          "idealForWork": "Ideal para trabajar",
+          "idealForMeetings": "Ideal para reuniones",
+          "idealForStudy": "Ideal para estudiar",
+          "idealForDates": "Ideal para citas",
+          "veryQuietPlace": "Lugar muy tranquilo",
+          "quietPlace": "Lugar tranquilo",
+          "moderateNoise": "Ruido moderado",
+          "loudPlace": "Lugar ruidoso"
+        }
+      }
+    }
+  },
+  "benefits": {
+    "enhanceYourJourney": "Mejora tu viaje con los",
+    "coffiBenefits": "Beneficios únicos de Coffi",
+    "matchYourFavoriteSpots": {
+      "title": "Encuentra tus lugares favoritos",
+      "description": "Ya sea que busques un rincón tranquilo para concentrarte profundamente o un espacio animado para despertar la creatividad, accede a una amplia gama de ubicaciones de calidad garantizada. Encuentra entornos diseñados para mejorar tu productividad como tu estilo de vida."
+    },
+    "realConnections": {
+      "title": "Conexiones reales, justo donde estás",
+      "description": "Coffi te ayuda a conectar con nómadas digitales con ideas afines en la ciudad donde te encuentres.",
+      "2ndDescription": "Únete a una comunidad global donde puedes conectar, compartir experiencias y crear relaciones que enriquecen tanto tu trabajo como tus viajes."
+    },
+    "poweredByCommunity": {
+      "title": "Impulsado por la comunidad,",
+      "subTitle": "Diseñado para ti",
+      "description": "Coffi prospera gracias a su vibrante comunidad de nómadas digitales, lo que hace posible obtener información en tiempo real de cada lugar.",
+      "2ndDescription": "Actualizando las condiciones de un lugar o descubriendo nuevos espacios, gana Coffi puntos, canjeables por recompensas como cupones.",
+      "3rdDescription": "Unete a Coffi Premium para conectar con la comunidad, ganar recompensas y nunca perderse de los mejores lugares para trabajar o relajarse."
+    }
+  },
+  "subscriptions": {
+    "choose": "Elige el plan",
+    "betterForYou": "Que se ajuste a tu viaje",
+    "description": "Ya sea que estés comenzando tu aventura o sumergiéndote en el estilo de vida nómada, Coffi tiene un plan para ti.",
+    "plans": {
+      "benefitsAndFeatures": "Beneficios y ventajas",
+      "explorer": {
+        "title": "Explorador",
+        "description": "Empieza tu viaje con lo básico, sin condiciones ni compromisos.",
+        "price": "Gratis",
+        "priceText": "¡Para siempre! solo necesitas una cuenta.",
+        "action": "Comienza a explorar",
+        "why": "Descubre lugares locales y comienza a explorar la comunidad de Coffi con acceso a todas las funciones básicas.",
+        "benefits": {
+          "officialSpotsAccess": "Acceso a todos los lugares oficiales",
+          "basicFilters": "Filtrar por tipo, reglas y comodidades",
+          "realTimeInsights": "Acceso a información en tiempo real de la comunidad",
+          "free": "Gratis para siempre con solo el registro",
+          "noCreditOrDebitCard": "No se requiere tarjeta de crédito o débito"
+        }
+      },
+      "nomad": {
+        "title": "Nómada",
+        "description": "Desbloquee la experiencia Coffi completa con información valiosa y recompensas.",
+        "price": "{price}/Mes",
+        "billendAnnually": "Facturado anualmente",
+        "yearly": "Anual",
+        "yearlyPrice": "O {price} facturado mensualmente",
+        "monthlyPrice": "O {price} facturado anualmente",
+        "action": "Actualiza al plan Nómada",
+        "why": "Vaya más allá de la exploración, con acceso exclusivo a lugares descubiertos por la comunidad,  de lugares por información en tiempo real y ganar Coffi puntos extras.",
+        "benefits": {
+          "explorerBenefits": "Todos los beneficios del plan Explorador",
+          "officialAndCommunitySpotsAccess": "Acceso a todos los lugares, tanto oficiales como descubiertos por la comunidad",
+          "exclusiveDiscounts": "Descuentos exclusivos y recompensas",
+          "2xCoffiPoints": "Gana 2x Coffi Puntos para recompensas y/o premios",
+          "realTimeFilter": "Filtrar lugares por información en tiempo real de la comunidad",
+          "earlyAccess": "Acceso anticipado a nuevas funciones"
+        }
+      },
+      "wanderlust": {
+        "title": "Espíritu Viajero",
+        "description": "Para el verdadero aventurero, listo para redefinir su viaje.",
+        "comingSoon": "¡Muy pronto!",
+        "working": "Trabajamos duro para mejorar lo más rápido posible.",
+        "action": "Saber más",
+        "why": "El plan definitivo para nómadas ambiciosos, que ofrece personalización avanzada y funciones para mejorar la experiencia Coffi."
+      }
+    }
+  },
+  "callToActionBanner": {
+    "title": "Tu próximo lugar favorito te está esperando",
+    "description": "Sumérgete en Coffi y descubre los mejores lugares de tu ciudad, perfectamente adaptados a tu estilo de vida. No esperes más, ¡comienza ahora!",
+    "action": "Empezar a Descubrir"
+  },
+  "purpose": {
+    "empoweringNomads": "Empoderando Nómadas Digitales,",
+    "oneAtATime": "Uno a la vez",
+    "description": "Somos más que una plataforma: es una misión. Nuestro objetivo es hacer que el estilo de vida del nómada digital sea más fácil, mejor y más conectada. Ya sea encontrando el lugar ideal, construyendo comunidad o inspirando a otros a prosperar en el camino, Coffi está aquí para acompañarte en cada paso de tu viaje.",
+    "action": "Descubre la historia detrás de Coffi"
+  }
+}

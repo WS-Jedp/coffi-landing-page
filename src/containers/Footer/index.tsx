@@ -1,41 +1,42 @@
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 export const Footer: React.FC = () => {
+  const t = useTranslations();
   const productNavOptions = [
     {
-      name: "About",
+      name: "about",
       link: "/#about",
     },
     {
-      name: "Features",
+      name: "features",
       link: "/#features",
     },
     {
-      name: "Pricing",
+      name: "pricing",
       link: "/#pricing",
     },
- 
   ];
 
   const helpNavOptions = [
     {
-      name: "Terms And Conditions",
+      name: "termsAndConditions",
       link: "/terms-of-service",
     },
     {
-      name: "Privacy Policy",
+      name: "privacyPolicy",
       link: "/privacy-policy",
     },
     {
-      name: "FAQs",
+      name: "faqs",
       link: "/faqs",
     },
     {
-      name: "Contact",
+      name: "contact",
       link: "/contact-us",
     },
-  ]
+  ];
 
   return (
     <footer className="w-full min-h-[330px] bg-gradient-to-tr from-coffi-blue to-coffi-purple text-coffi-white py-6 px-6 xl:px-0">
@@ -54,7 +55,37 @@ export const Footer: React.FC = () => {
 
         <nav className="flex flex-row items-start justify-between text-center md:text-start">
           <section className="mr-16">
-            <h3 className="font-bold text-2xl mb-1">Product</h3>
+            <h3 className="font-bold text-2xl mb-1">{t("utils.navigationLinks.product")}</h3>
+            <ul>
+              {productNavOptions.map((option) => (
+                <li
+                  key={option.name}
+                  className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
+                >
+                  <Link href={option.link}>
+                    {t(`utils.navigationLinks.${option.name}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="mr-16">
+            <h3 className="font-bold text-2xl mb-1">{t("utils.navigationLinks.help")}</h3>
+            <ul>
+              {helpNavOptions.map((option) => (
+                <li
+                  key={option.name}
+                  className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
+                >
+                  <Link href={option.link}>
+                    {t(`utils.navigationLinks.${option.name}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h3 className="font-bold text-2xl mb-1">{t("utils.navigationLinks.social")}</h3>
             <ul>
               {productNavOptions.map((option) => (
                 <li
@@ -62,32 +93,6 @@ export const Footer: React.FC = () => {
                   className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
                 >
                   <Link href={option.link}>{option.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="mr-16">
-            <h3 className="font-bold text-2xl mb-1">Help</h3>
-            <ul>
-              {helpNavOptions.map((option) => (
-                <li
-                  key={option.name}
-                  className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
-                >
-                  <a href={option.link}>{option.name}</a>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section>
-            <h3 className="font-bold text-2xl mb-1">Social</h3>
-            <ul>
-              {productNavOptions.map((option) => (
-                <li
-                  key={option.name}
-                  className="font-normal text-sm cursor-pointer hover:text-coffi-purple mb-1"
-                >
-                  <a href={option.link}>{option.name}</a>
                 </li>
               ))}
             </ul>

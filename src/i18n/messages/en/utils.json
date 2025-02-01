@@ -1,0 +1,23 @@
+{
+    "general": {
+        "or": "or"
+    },
+    "subscriptions": {
+        "forRegisteredUsers": "For registered users",
+        "forPremiumUsers": "For premium users"
+    },
+    "navigationLinks": {
+        "home": "Home",
+        "subscriptions": "Subscriptions",
+        "about": "About",
+        "contact": "Contact",
+        "pricing": "Pricing",
+        "features": "Features",
+        "faqs": "FAQs",
+        "termsAndConditions": "Terms and Conditions",
+        "privacyPolicy": "Privacy Policy",
+        "product": "Product",
+        "help": "Help",
+        "social": "Social"
+    }
+}

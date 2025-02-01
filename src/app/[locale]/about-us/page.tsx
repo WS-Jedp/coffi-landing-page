@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export default function PrivacyPolicy() {
+export default function AboutUs() {
   return (
     <article className="relative flex flex-col items-start justify-items-start w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
       <h2 className="font-bold text-4xl md:text-7xl mb-6 w-full md:w-3/4 ">
@@ -10,6 +11,13 @@ export default function PrivacyPolicy() {
         {/* Section One */}
         <article className="flex flex-col md:flex-row items-start justify-start text-start col-span-4 bg-gradient-to-r from-coffi-purple to-coffi-blue text-coffi-white rounded-2xl p-6 shadow-lg shadow-coffi-purple-200/70">
           <section className="flex flex-col items-start justify-start w-full">
+            <Image
+              alt="Eye icon"
+              src="/assets/icons/eye-icon.svg"
+              width={30}
+              height={30}
+              className="mb-3"
+            />
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
               Why we do it?
             </h2>
@@ -31,6 +39,13 @@ export default function PrivacyPolicy() {
         </article>
         {/* Section Two */}
         <article className="flex flex-col items-start justify-start text-start col-span-4 md:col-span-2 h-[300px] bg-gradient-to-tr from-coffi-blue/20 to-coffi-purple/20 text-coffi-purple rounded-2xl p-6 shadow-lg shadow-coffi-purple-200/50">
+          <Image
+            alt="Construction tools icon"
+            src="/assets/icons/construction-icon.svg"
+            width={30}
+            height={30}
+            className="mb-3"
+          />
           <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
             How we do it?
           </h2>
@@ -45,6 +60,13 @@ export default function PrivacyPolicy() {
         {/* Section Three */}
         <article className="flex flex-col items-start justify-between text-start col-span-4 md:col-span-2 bg-gradient-to-br from-coffi-blue/5 to-coffi-blue/40 text-coffi-blue rounded-2xl p-6 shadow-lg shadow-coffi-purple-200/50">
           <section>
+            <Image
+              alt="Coffi logo icon"
+              src="/assets/icons/coffi-logo-icon.svg"
+              width={30}
+              height={30}
+              className="mb-3"
+            />
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
               What we offer?
             </h2>
@@ -54,9 +76,17 @@ export default function PrivacyPolicy() {
             </p>
           </section>
 
-          <Link className="font-bold underline" href="/benefits">
-            Learn more
+          <Link className="font-bold underline flex flex-row flex-nowrap" href="https://coffi.com.co">
+            Learn more{" "}
+              <Image
+                alt="Link icon"
+                src="/assets/icons/link-icon.svg"
+                width={11}
+                height={11}
+                className="ml-1"
+              />
           </Link>
+
         </article>
       </section>
     </article>

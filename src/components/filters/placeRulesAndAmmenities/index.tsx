@@ -2,6 +2,7 @@ import { SimpleButtonOutline } from "@/components/buttons";
 import { TooglePanel } from "@/components/tooglePanel";
 import { Tooltip } from "@/components/tooltip";
 import { PlaceFilter } from "@/containers/HowItWorks";
+import { useTranslations } from "next-intl";
 
 interface PlaceRulesAndAmmenitiesFilterCardProps {
   filters: PlaceFilter[];
@@ -20,18 +21,20 @@ export const PlaceRulesAndAmmenitiesFilterCard: React.FC<PlaceRulesAndAmmenities
   showNext,
   onNext,
 }) => {
+  const t = useTranslations();
   const isFilterSelected = (filterID: number) => selectedFilters.find(f => f.id === filterID);
   return (
     <TooglePanel
-      title="Set Your Preferences"
-      description="Customize your search based on specific rules and accommodations."
+      title={t("home.howItWorks.guide.setYourPreferences.title")}
+      description={t("home.howItWorks.guide.setYourPreferences.description")}
       isOpen={isOpen}
-      tag="For registered users"
+      tag={t("utils.subscriptions.forRegisteredUsers")}
+
     >
       <article className="w-full flex flex-col items-start justify-start overflow-hidden">
         <Tooltip
-          title="How it works?"
-          text="Filter amenities like high-speed Wi-Fi, seating availability, and more to suit your preferences."
+          title={t("home.howItWorks.guide.howItWorks")}
+          text={t("home.howItWorks.guide.setYourPreferences.howItWorks")}
         />
         <section className="flex flex-row flex-wrap items-center justify-start w-full mt-2">
           {filters.map((placeRuleAndAmmenity) => (
@@ -52,7 +55,7 @@ export const PlaceRulesAndAmmenitiesFilterCard: React.FC<PlaceRulesAndAmmenities
              `}
               onClick={() => onFilter(placeRuleAndAmmenity)}
             >
-              <h3 className="font-light text-sm">{placeRuleAndAmmenity.title}</h3>
+              <h3 className="font-light text-sm">{t(`home.howItWorks.guide.setYourPreferences.options.${placeRuleAndAmmenity.title}`)}</h3>
             </article>
           ))}
         </section>

@@ -1,4 +1,5 @@
 import { Place } from "@/models/places";
+import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 interface PlaceCardProps {
@@ -6,31 +7,58 @@ interface PlaceCardProps {
 }
 
 export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
+  const t = useTranslations();
   const rulesAvailable = useMemo(() => {
-    const rulesToIgnore = ['openAt', 'closedAt']
+    const rulesToIgnore = ["openAt", "closedAt", "temperatureControl"];
     const rules: any[] = [];
-    Object.keys(place.rules).filter(rule => !rulesToIgnore.includes(rule)).forEach((rule) => {
-      if (place.rules[rule as keyof Place["rules"]]) {
-        if(Array.isArray(place.rules[rule as keyof Place["rules"]])) {
-        } else {
+    Object.keys(place.rules)
+      .filter((rule) => !rulesToIgnore.includes(rule))
+      .forEach((rule) => {
+        if (place.rules[rule as keyof Place["rules"]]) {
+          if (typeof place.rules[rule as keyof Place["rules"]] === "boolean") {
+            rules.push(rule);
+          } else if (Array.isArray(place.rules[rule as keyof Place["rules"]])) {
+            rules.push(
+              ...(place.rules[rule as keyof Place["rules"]] as string[])
+            );
+          } else {
             rules.push(place.rules[rule as keyof Place["rules"]]);
+          }
         }
-      }
-    });
+      });
     return rules;
   }, [place]);
   const commoditiesAvailables = useMemo(() => {
     if (!place.commodities) return [];
 
-    const commoditiesToIgnore = ['bakeryQuality', 'foodQuality', 'cafeQuality', 'temperatureControl', 'plugsAmount']
+    const commoditiesToIgnore = [
+      "bakeryQuality",
+      "foodQuality",
+      "food",
+      "cafeQuality",
+      "temperatureControl",
+      "plugsAmount",
+    ];
 
     const commodities: string[] = [];
-    Object.keys(place.commodities).filter(c => !commoditiesToIgnore.includes(c)).forEach((commodity) => {
-      if (!place.commodities) return;
-      if (place.commodities[commodity as keyof Place["commodities"]]) {
-        commodities.push(commodity);
-      }
-    });
+    Object.keys(place.commodities)
+      .filter((c) => !commoditiesToIgnore.includes(c))
+      .forEach((commodity) => {
+        if (!place.commodities) return;
+        if (place.commodities[commodity as keyof Place["commodities"]]) {
+          if (
+            typeof place.commodities[
+              commodity as keyof Place["commodities"]
+            ] === "boolean"
+          ) {
+            commodities.push(commodity);
+          } else {
+            commodities.push(
+              place.commodities[commodity as keyof Place["commodities"]]
+            );
+          }
+        }
+      });
     return commodities;
   }, [place]);
   return (
@@ -67,7 +95,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 rounded-full 
                     `}
           >
-            <span className="font-light text-xs">{tag}</span>
+            <span className="font-light text-xs">
+              {t(`places.themes.${tag}`)}
+            </span>
           </article>
         ))}
         {place.ambianceTags.map((tag, i) => (
@@ -86,7 +116,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 rounded-full 
                     `}
           >
-            <span className="font-light text-xs">{tag}</span>
+            <span className="font-light text-xs">
+              {t(`places.ambientTags.${tag}`)}
+            </span>
           </article>
         ))}
         {rulesAvailable.map((rule, i) => (
@@ -105,7 +137,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 rounded-full 
                     `}
           >
-            <span className="font-light text-xs">{rule}</span>
+            <span className="font-light text-xs">
+              {t(`places.rulesAndAccomodations.${rule}`)}
+            </span>
           </article>
         ))}
         {commoditiesAvailables.map((commodity, i) => (
@@ -124,7 +158,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 rounded-full 
                     `}
           >
-            <span className="font-light text-xs">{commodity}</span>
+            <span className="font-light text-xs">
+              {t(`places.rulesAndAccomodations.${commodity}`)}
+            </span>
           </article>
         ))}
         {place.languages.map((lang) => (
@@ -143,10 +179,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 rounded-full 
                     `}
           >
-            <span className="font-light text-xs">{lang}</span>
+            <span className="font-light text-xs">{t(`places.languages.${lang}`)}</span>
           </article>
         ))}
-        
       </section>
     </article>
   );

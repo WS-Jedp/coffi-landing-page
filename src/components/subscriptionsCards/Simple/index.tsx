@@ -8,6 +8,7 @@ interface SubscriptionSimpleCardProps {
     secondaryPriceText: string
     actionButton: string
     specialAction?: boolean
+    onAction?: () => void
 }
 
 
@@ -18,7 +19,8 @@ export const SubscriptionSimpleCard: React.FC<SubscriptionSimpleCardProps> = ({
     price,
     secondaryPriceText,
     actionButton,
-    specialAction = false
+    specialAction = false,
+    onAction
 }) => {
 
     return (
@@ -46,13 +48,13 @@ export const SubscriptionSimpleCard: React.FC<SubscriptionSimpleCardProps> = ({
         {
             specialAction ? (
                 <SimpleLightButton 
-                    action={() => {}}
+                    action={onAction ? onAction : () => {}}
                     text={actionButton}
                     full
                 />
             ) : (
                 <SimpleButtonOutline 
-                    action={() => {}}
+                    action={onAction ? onAction : () => {}}
                     text={actionButton}
                     full
                 />

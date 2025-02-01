@@ -1,190 +1,246 @@
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { SubscriptionSimpleCard } from "@/components/subscriptionsCards/Simple";
 import { SubscriptionSpecialCard } from "@/components/subscriptionsCards/specialCard";
 import Image from "next/image";
 
 export const Subscriptions: React.FC = () => {
+  const t = useTranslations();
+  const router = useRouter();
+  const currentLocale = useLocale();
+
   return (
-    <article className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14" id="pricing">
+    <article
+      className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14"
+      id="pricing"
+    >
       <h1 className="font-bold text-4xl md:text-7xl mx-auto">
-        Choose the Plan <br />
-        That Fits Your Journey
+        {t("home.subscriptions.choose")} <br />
+        {t("home.subscriptions.betterForYou")}
       </h1>
       <p className="w-full md:w-6/12 wtext-lg font-light mt-2">
-        Whether you're starting your adventure or diving deep into the nomadic
-        lifestyle, Coffi has a plan for you.
+        {t("home.subscriptions.description")}
       </p>
 
       <section className="relative w-full h-auto grid grid-cols-3 grid-rows-1 gap-4 md:gap-7 mt-16">
         <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1 ">
           <SubscriptionSimpleCard
-            title="Explorer"
-            description="Start your journey with the basics, no strings attached."
-            price="Free"
-            secondaryPriceText="Forever! you just need an account."
-            actionButton="Start Exploring"
+            title={t("home.subscriptions.plans.explorer.title")}
+            description={t("home.subscriptions.plans.explorer.description")}
+            price={t("home.subscriptions.plans.explorer.price")}
+            secondaryPriceText={t(
+              "home.subscriptions.plans.explorer.priceText"
+            )}
+            actionButton={t("home.subscriptions.plans.explorer.action")}
             specialAction
             full
           />
 
           <div className="h-auto md:h-[120px] mt-4">
             <p className="my-4 font-light text-md">
-              Embrace your Coffi adventure with access to all official spots and
-              basic filters, perfect for discovering the essentials of your city
+              {t("home.subscriptions.plans.explorer.why")}
             </p>
           </div>
 
-          <h3 className="text-lg font-bold mb-1">Benefits and Features</h3>
+          <h3 className="text-lg font-bold mb-1">
+            {t("home.subscriptions.plans.benefitsAndFeatures")}
+          </h3>
 
           <ul className="text-md font-light">
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Access all official spots</span>
+              <span>
+                {t(
+                  "home.subscriptions.plans.explorer.benefits.officialSpotsAccess"
+                )}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Filter by type, rules, and amenities</span>
+              <span>
+                {t("home.subscriptions.plans.explorer.benefits.basicFilters")}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Access to Real-time insights from the community</span>
+              <span>
+                {t(
+                  "home.subscriptions.plans.explorer.benefits.realTimeInsights"
+                )}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Free forever with registration</span>
+              <span>
+                {t("home.subscriptions.plans.explorer.benefits.free")}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>No credit or debit card required</span>
+              <span>
+                {t(
+                  "home.subscriptions.plans.explorer.benefits.noCreditOrDebitCard"
+                )}
+              </span>
             </li>
           </ul>
         </article>
         <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1">
           <SubscriptionSpecialCard
-            title="Nomad"
-            description="Unlock the full Coffi experience with insights and rewards."
-            yearlyPrice="$4,99/Mo"
-            monthlyPrice="$6,99/Mo"
-            secondaryYearlyPriceText="Or $6,99 billed monthly"
-            secondaryMonthlyPriceText="Or $4,99 billed anually"
-            actionButton="Upgrade to Nomad Plan"
+            title={t("home.subscriptions.plans.nomad.title")}
+            description={t("home.subscriptions.plans.nomad.description")}
+            yearlyPrice={t("home.subscriptions.plans.nomad.price", {
+              price: "$4,99",
+            })}
+            monthlyPrice={t("home.subscriptions.plans.nomad.price", {
+              price: "$6,99",
+            })}
+            secondaryYearlyPriceText={t(
+              "home.subscriptions.plans.nomad.yearlyPrice",
+              { price: "$6,99" }
+            )}
+            secondaryMonthlyPriceText={t(
+              "home.subscriptions.plans.nomad.monthlyPrice",
+              { price: "$4,99" }
+            )}
+            actionButton={t("home.subscriptions.plans.nomad.action")}
             full
           />
 
           <div className="h-auto md:h-[120px] mt-4">
             <p className="my-4 font-light text-md">
-              Go beyond exploration with access to community-discovered spots,
-              real-time insights, and Coffi Points.
+              {t("home.subscriptions.plans.nomad.why")}
             </p>
           </div>
 
-          <h3 className="text-lg font-bold mb-1">Benefits and Features</h3>
+          <h3 className="text-lg font-bold mb-1">
+            {t("home.subscriptions.plans.benefitsAndFeatures")}
+          </h3>
 
           <ul className="text-md font-light">
-          <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>All Explorer plan benefits</span>
+              <span>
+                {t("home.subscriptions.plans.nomad.benefits.explorerBenefits")}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Access all official and community-discovered spots</span>
+              <span>
+                {t(
+                  "home.subscriptions.plans.nomad.benefits.officialAndCommunitySpotsAccess"
+                )}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Get exclusive discounts with allies</span>
+              <span>
+                {t(
+                  "home.subscriptions.plans.nomad.benefits.exclusiveDiscounts"
+                )}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Earn 2x Coffi Points by updating spots</span>
+              <span>
+                {t("home.subscriptions.plans.nomad.benefits.2xCoffiPoints")}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Filter by real-time community insights</span>
+              <span>
+                {t("home.subscriptions.plans.nomad.benefits.realTimeFilter")}
+              </span>
             </li>
-            <li className="flex flex-row flex-nowrap mb-1">
+            <li className="flex flex-row items-start flex-nowrap mb-1">
               <Image
                 src="/assets/icons/list-icon.svg"
                 width={12}
                 height={12}
                 alt="List icon"
-                className="mr-2"
+                className="mr-2 mt-[7px]"
               />
-              <span>Early access to new features</span>
+              <span>
+                {t("home.subscriptions.plans.nomad.benefits.earlyAccess")}
+              </span>
             </li>
           </ul>
         </article>
         <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1">
           <SubscriptionSimpleCard
-            title="Wanderlust"
-            description="For the true adventurer, ready to redefine their journey."
-            price="Coming Soon!"
-            secondaryPriceText="We’re working hard to improve really fast."
-            actionButton="Know more"
+            title={t("home.subscriptions.plans.wanderlust.title")}
+            description={t("home.subscriptions.plans.wanderlust.description")}
+            price={t("home.subscriptions.plans.wanderlust.comingSoon")}
+            secondaryPriceText={t(
+              "home.subscriptions.plans.wanderlust.working"
+            )}
+            actionButton={t("home.subscriptions.plans.wanderlust.action")}
             full
+            onAction={() => router.push(`/${currentLocale}/wanderlust`)}
           />
           <div className="h-auto md:h-[120px] mt-4">
             <p className="my-4 font-light text-md">
-              The ultimate plan for ambitious nomads, offering advanced
-              personalization and features to elevate your Coffi experience.
+              {t("home.subscriptions.plans.wanderlust.why")}
             </p>
           </div>
         </article>

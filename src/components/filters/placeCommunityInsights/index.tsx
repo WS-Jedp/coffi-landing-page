@@ -2,6 +2,7 @@ import { SimpleButtonOutline } from "@/components/buttons";
 import { TooglePanel } from "@/components/tooglePanel";
 import { Tooltip } from "@/components/tooltip";
 import { PlaceFilter } from "@/containers/HowItWorks";
+import { useTranslations } from "next-intl";
 
 interface PlaceCommunityInsightsFilterCardProps {
   filters: {
@@ -24,19 +25,20 @@ export const PlaceCommunityInsightsFilterCard: React.FC<PlaceCommunityInsightsFi
   showNext,
   onNext,
 }) => {
+  const t = useTranslations();
   const isFilterSelected = (filterID: number) => selectedFilters.find(f => f.id === filterID);
   return (
     <TooglePanel
-      title="Community Insights"
-      description="Access to real-time insights from the community."
+      title={t("home.howItWorks.guide.communityInsights.title")}
+      description={t("home.howItWorks.guide.communityInsights.description")}
       isOpen={isOpen}
-      tag="For premium users"
+      tag={t("utils.subscriptions.forPremiumUsers")}
       specialTag
     >
       <article className="w-full flex flex-col items-start justify-start overflow-hidden">
         <Tooltip
-          title="How it works?"
-          text="Leverage the power of our community with real-time updates about crowd levels, noise, and current vibes."
+          title={t("home.howItWorks.guide.howItWorks")}
+          text={t("home.howItWorks.guide.communityInsights.howItWorks")}
         />
         <section className="flex flex-row flex-wrap items-center justify-start w-full mt-2">
           {filters.map((insight) => (
@@ -57,7 +59,7 @@ export const PlaceCommunityInsightsFilterCard: React.FC<PlaceCommunityInsightsFi
              `}
               onClick={() => onFilter(insight)}
             >
-              <h3 className="font-light text-sm">{insight.title}</h3>
+              <h3 className="font-light text-sm">{t(`home.howItWorks.guide.communityInsights.options.${insight.title}`)}</h3>
             </article>
           ))}
         </section>
