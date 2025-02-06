@@ -1,8 +1,10 @@
+import { useRedirectToCoffiApp } from "@/hooks/useRedirectToCoffi";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutUs() {
+  const { redirectToCoffi } = useRedirectToCoffiApp();
   const t = useTranslations();
   return (
     <article className="relative flex flex-col items-start justify-items-start w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
@@ -69,7 +71,8 @@ export default function AboutUs() {
 
           <Link
             className="font-bold underline flex flex-row flex-nowrap"
-            href="https://coffi.com.co"
+            href="https://qa.coffi.com.co"
+            target="_blank"
           >
             {t("aboutUs.what.action")}
             <Image

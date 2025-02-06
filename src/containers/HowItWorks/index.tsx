@@ -212,12 +212,6 @@ export const HowItWorks: React.FC = () => {
       value: NOISE_LEVEL_ENUM.MODERATE,
       property: "noiseLevel",
     },
-    {
-      id: 12,
-      title: "loudPlace",
-      value: NOISE_LEVEL_ENUM.LOUD,
-      property: "noiseLevel",
-    },
   ];
   const [selectedPlaceRulesAndAmmenities, setSelectedPlaceRulesAndAmmenities] =
     useState<PlaceFilter[]>([]);

@@ -1,8 +1,10 @@
 import { SimpleDarkButton } from "@/components/buttons";
+import { useRedirectToCoffiApp } from "@/hooks/useRedirectToCoffi";
 import { useTranslations } from "next-intl";
 
 export const CallToActionBanner: React.FC = () => {
   const t = useTranslations();
+  const { redirectToCoffi } = useRedirectToCoffiApp()
 
   return (
     <article className="w-full h-auto bg-coffi-blue/30 py-9 my-9 text-coffi-purple px-6 xl:px-0">
@@ -16,7 +18,7 @@ export const CallToActionBanner: React.FC = () => {
           </p>
           <SimpleDarkButton
             text={t("home.callToActionBanner.action")}
-            action={() => {}}
+            action={redirectToCoffi}
           />
         </article>
       </section>

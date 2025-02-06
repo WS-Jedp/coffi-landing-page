@@ -4,9 +4,10 @@ import { useMemo } from "react";
 
 interface PlaceCardProps {
   place: Place;
+  isSelected?: boolean;
 }
 
-export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
+export const PlaceCard: React.FC<PlaceCardProps> = ({ place, isSelected = false }) => {
   const t = useTranslations();
   const rulesAvailable = useMemo(() => {
     const rulesToIgnore = ["openAt", "closedAt", "temperatureControl"];
@@ -62,7 +63,14 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
     return commodities;
   }, [place]);
   return (
-    <article className="min-w-[300px] w-full max-w-[330px] md:min-w-[390px] md:w-full md:max-w-[420px] h-[390px] max-h-[390px] flex flex-col items-start justify-start text-start overflow-hidden p-4 rounded-lg  shadow-lg text-coffi-black bg-white">
+    <article className={`
+      flex flex-col items-start justify-start text-start overflow-hidden
+      p-4 rounded-lg 
+      min-w-[300px] w-full max-w-[330px] md:min-w-[390px] md:w-full md:max-w-[420px] h-[390px] max-h-[390px] 
+      text-coffi-black bg-white
+      transition-all duration-600 ease-in-out
+       ${isSelected ? "shadow-xl shadow-coffi-purple/20" : "shadow-lg shadow-coffi-black/10"}
+    `}>
       {/* image of the place */}
       <figure className="relative w-full h-[150px] overflow-hidden bg-coffi-black/10 rounded-md">
         <img src="/lol" alt="" className="w-full h-full object-cover" />

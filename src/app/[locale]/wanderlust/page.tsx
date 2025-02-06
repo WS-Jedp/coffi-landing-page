@@ -1,15 +1,15 @@
 "use client";
 
 import { SimpleButton } from "@/components/buttons";
+import { useRedirectToCoffiApp } from "@/hooks/useRedirectToCoffi";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function Wanderlust() {
   const t = useTranslations();
-  function handleOnJoinTheMovement() {
-    console.log("Join the movement!");
-  }
+  const { redirectToCoffi } = useRedirectToCoffiApp()
+  
   return (
     <article className="relative flex flex-col items-start md:items-center justify-items-center w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
       <h1 className="font-bold text-4xl md:text-7xl mb-3 text-start md:text-center">
@@ -167,7 +167,7 @@ export default function Wanderlust() {
           </p>
         </section>
 
-        <SimpleButton text={t("actions.subscriptions.startExploring")} action={handleOnJoinTheMovement} />
+        <SimpleButton text={t("actions.subscriptions.startExploring")} action={redirectToCoffi} />
       </article>
     </article>
   );

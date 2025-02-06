@@ -156,6 +156,11 @@ export const FilteredPlaces: React.FC<FilteredPlacesProps> = ({
     [filteredPlaces]
   );
 
+  const filteredPlacesCount = useMemo(
+    () => filteredPlaces.length,
+    [filteredPlaces]
+  );
+
   return (
     <section className="relative w-full h-full flex flex-row items-center justify-start pl-0 md:pl-[150px] p-9">
       <TransitionGroup component={null}>
@@ -181,7 +186,7 @@ export const FilteredPlaces: React.FC<FilteredPlacesProps> = ({
                 }}
                 data-animation-transform={calculatedTransform}
               >
-                <PlaceCard place={place} />
+                <PlaceCard place={place} isSelected={filteredPlacesCount === 1} />
               </div>
             </CSSTransition>
           );
