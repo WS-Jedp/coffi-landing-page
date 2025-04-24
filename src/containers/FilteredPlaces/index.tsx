@@ -21,7 +21,7 @@ export const FilteredPlaces: React.FC<FilteredPlacesProps> = ({
   commoditiesAndRulesSelected,
   realTimeDataSelected,
 }) => {
-  const [places, setPlaces] = useState(dummyPlaces);
+  const [places] = useState(dummyPlaces);
   const refs = useRef<Record<string, HTMLDivElement | null>>({});
   const prevCountRef = useRef<number>(0); // Track previous count for animation direction
   const [animationDirection, setAnimationDirection] = useState<'adding' | 'removing' | null>(null);

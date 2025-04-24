@@ -73,7 +73,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place, isSelected = false 
     `}>
       {/* image of the place */}
       <figure className="relative w-full h-[150px] overflow-hidden bg-coffi-black/10 rounded-md">
-        <img src="/lol" alt="" className="w-full h-full object-cover" />
+        {/* <img src="/lol" alt="" className="w-full h-full object-cover" /> */}
       </figure>
 
       {/* place name */}

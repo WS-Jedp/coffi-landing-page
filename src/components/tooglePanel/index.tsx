@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface TogglePanelProps {
   title: string;
   description: string;

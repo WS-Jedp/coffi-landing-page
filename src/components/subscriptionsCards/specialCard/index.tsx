@@ -1,7 +1,5 @@
 import {
-  SimpleButtonOutline,
   SimpleDarkButton,
-  SimpleLightButton,
 } from "@/components/buttons";
 import { ToggleSwitch } from "@/components/inputs/toggle";
 import { useTranslations } from "next-intl";
@@ -19,7 +17,7 @@ interface SubscriptionSpecialCardProps {
 }
 
 // Particle component for premium animation
-const Particle = ({ index }: { index: number }) => {
+const Particle = () => {
   // Create random values for natural movement
   const size = Math.random() * 4 + 2; // 2-6px
   const startPosition = Math.random() * 100; // 0-100%
@@ -124,7 +122,7 @@ export const SubscriptionSpecialCard: React.FC<
       {/* Particle container */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {particles.map((index) => (
-          <Particle key={index} index={index} />
+          <Particle key={index} />
         ))}
       </div>
 

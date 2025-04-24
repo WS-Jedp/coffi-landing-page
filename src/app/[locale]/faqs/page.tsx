@@ -19,7 +19,7 @@ export default function FAQPage() {
           <div>
             <h3 className="font-semibold text-lg">2. Is Coffi free to use?</h3>
             <p>
-              Yes, Coffi offers a free plan called "Explorer," which provides
+              Yes, Coffi offers a free plan called "Explorer", which provides
               access to official spots and basic features. For advanced features
               like real-time insights, additional filters, and exclusive spots,
               you can subscribe to our premium plans.

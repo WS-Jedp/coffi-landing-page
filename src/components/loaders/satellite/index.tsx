@@ -4,7 +4,7 @@ interface SatelliteLoader {
     text?: string
 }
 
-export const SatelliteLoader:React.FC<SatelliteLoader> = ({ color = 'white', size = 12, text }) => {
+export const SatelliteLoader:React.FC<SatelliteLoader> = ({ text }) => {
 
     return (
         <article className="relative flex flex-col items-center justify-center mx-auto my-auto">
