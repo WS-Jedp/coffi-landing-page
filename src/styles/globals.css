@@ -1,0 +1,54 @@
+@keyframes float-left {
+  0%, 100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-5deg);
+  }
+}
+
+@keyframes float-center {
+  0%, 100% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes float-right {
+  0%, 100% {
+    transform: translateY(0) rotate(6deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Add these animation utility classes */
+.animate-float-left {
+  animation: float-left 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-center {
+  animation: float-center 5s ease-in-out infinite;
+}
+
+.animate-float-right {
+  animation: float-right 7s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 4s ease-in-out infinite;
+}

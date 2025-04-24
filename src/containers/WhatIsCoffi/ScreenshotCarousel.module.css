@@ -1,0 +1,58 @@
+.carouselContainer {
+  display: flex;
+  gap: 1rem;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.carouselColumn {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animation for the first column - top to bottom */
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-50%));
+  }
+}
+
+/* Animation for the second column - bottom to top */
+@keyframes slideUp {
+  0% {
+    transform: translateY(calc(-50%));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slideDown {
+  animation: slideDown 25s linear infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+.slideUp {
+  animation: slideUp 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pause animation on hover for better UX */
+.slideDown:hover,
+.slideUp:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carouselContainer {
+    gap: 0.5rem;
+  }
+}

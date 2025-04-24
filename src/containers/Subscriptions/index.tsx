@@ -3,27 +3,91 @@ import { useLocale, useTranslations } from "next-intl";
 import { SubscriptionSimpleCard } from "@/components/subscriptionsCards/Simple";
 import { SubscriptionSpecialCard } from "@/components/subscriptionsCards/specialCard";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export const Subscriptions: React.FC = () => {
   const t = useTranslations();
   const router = useRouter();
   const currentLocale = useLocale();
 
+  // Set up intersection observer with threshold to trigger animations when component is 15% visible
+  const [ref, inView] = useInView({
+    threshold: 0.15,
+    triggerOnce: true,
+  });
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+        duration: 0.8,
+      },
+    },
+  };
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        duration: 0.8,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
-    <article
+    <motion.article
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
       className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14"
       id="pricing"
     >
-      <h1 className="font-bold text-4xl md:text-7xl mx-auto">
+      <motion.h1
+        variants={headerVariants}
+        className="font-bold text-4xl md:text-7xl mx-auto"
+      >
         {t("home.subscriptions.choose")} <br />
         {t("home.subscriptions.betterForYou")}
-      </h1>
-      <p className="w-full md:w-6/12 wtext-lg font-light mt-2">
+      </motion.h1>
+      <motion.p
+        variants={headerVariants}
+        className="w-full md:w-6/12 wtext-lg font-light mt-2"
+      >
         {t("home.subscriptions.description")}
-      </p>
+      </motion.p>
 
-      <section className="relative w-full h-auto grid grid-cols-3 grid-rows-1 gap-4 md:gap-7 mt-16">
-        <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1 ">
+      <motion.section
+        variants={containerVariants}
+        className="relative w-full h-auto grid grid-cols-3 grid-rows-1 gap-4 md:gap-7 mt-16"
+      >
+        <motion.article
+          variants={cardVariants}
+          className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1 "
+        >
           <SubscriptionSimpleCard
             title={t("home.subscriptions.plans.explorer.title")}
             description={t("home.subscriptions.plans.explorer.description")}
@@ -114,8 +178,11 @@ export const Subscriptions: React.FC = () => {
               </span>
             </li>
           </ul>
-        </article>
-        <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1">
+        </motion.article>
+        <motion.article
+          variants={cardVariants}
+          className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1"
+        >
           <SubscriptionSpecialCard
             title={t("home.subscriptions.plans.nomad.title")}
             description={t("home.subscriptions.plans.nomad.description")}
@@ -225,8 +292,11 @@ export const Subscriptions: React.FC = () => {
               </span>
             </li>
           </ul>
-        </article>
-        <article className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1">
+        </motion.article>
+        <motion.article
+          variants={cardVariants}
+          className="flex flex-col items-start justify-start text-start col-span-3 md:col-span-1"
+        >
           <SubscriptionSimpleCard
             title={t("home.subscriptions.plans.wanderlust.title")}
             description={t("home.subscriptions.plans.wanderlust.description")}
@@ -243,8 +313,8 @@ export const Subscriptions: React.FC = () => {
               {t("home.subscriptions.plans.wanderlust.why")}
             </p>
           </div>
-        </article>
-      </section>
-    </article>
+        </motion.article>
+      </motion.section>
+    </motion.article>
   );
 };

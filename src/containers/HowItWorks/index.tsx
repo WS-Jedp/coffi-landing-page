@@ -18,6 +18,7 @@ import {
   WIFI_SPEED_COMMODITY_ENUM,
 } from "@/models/places";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 export interface PlaceFilter {
   id: number;
@@ -25,6 +26,55 @@ export interface PlaceFilter {
   value: string;
   property?: string;
 }
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.2,
+      duration: 0.6,
+    },
+  },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const resultsVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
 
 export const HowItWorks: React.FC = () => {
   const t = useTranslations();
@@ -269,22 +319,40 @@ export const HowItWorks: React.FC = () => {
   };
 
   return (
-    <article
+    <motion.article
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
       className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12"
       id="features"
     >
-      <h1 className="font-bold text-4xl md:text-7xl mx-auto">
+      <motion.h1
+        variants={titleVariants}
+        className="font-bold text-4xl md:text-7xl mx-auto"
+      >
         {t("home.howItWorks.thePathTo")} <br />
         {t("home.howItWorks.perfectSpot")}
-      </h1>
-      <p className="text-lg font-light mt-2">
+      </motion.h1>
+      <motion.p variants={titleVariants} className="text-lg font-light mt-2">
         {t("home.howItWorks.description")}
-      </p>
-      <p className="font-light text-md my-1">{t("home.howItWorks.benefit")}</p>
+      </motion.p>
+      <motion.p variants={titleVariants} className="font-light text-md my-1">
+        {t("home.howItWorks.benefit")}
+      </motion.p>
 
-      <section className="relative w-full h-auto justify-between flex flex-col md:flex-row-reverse mt-9">
-        <article className="flex flex-col items-center justify-start md:items-start w-full md:w-2/3">
-          <div className="relative  w-full flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
+      <motion.section
+        variants={containerVariants}
+        className="relative w-full h-auto justify-between flex flex-col md:flex-row-reverse mt-9"
+      >
+        <motion.article
+          variants={containerVariants}
+          className="flex flex-col items-center justify-start md:items-start w-full md:w-2/3"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="relative w-full flex flex-row flex-nowrap items-start justify-start mt-1 mb-3"
+          >
             <div className="relative mr-2 mt-1 h-full">
               <StepsThrough step={{ id: 1 }} currentStep={currentStep} />
             </div>
@@ -296,8 +364,11 @@ export const HowItWorks: React.FC = () => {
               showNext={currentStep === 1 && selectedPlaceTypes.length > 0}
               onNext={handleNextStep}
             />
-          </div>
-          <div className="relative h-auto flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
+            className="relative h-auto flex flex-row flex-nowrap items-start justify-start mt-1 mb-3"
+          >
             <div className="relative mr-2 mt-1 h-full">
               <StepsThrough step={{ id: 2 }} currentStep={currentStep} />
             </div>
@@ -311,8 +382,11 @@ export const HowItWorks: React.FC = () => {
               }
               onNext={handleNextStep}
             />
-          </div>
-          <div className="relative h-auto flex flex-row flex-nowrap items-start justify-start mt-1 mb-3">
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
+            className="relative h-auto flex flex-row flex-nowrap items-start justify-start mt-1 mb-3"
+          >
             <div className="relative mr-2 mt-1 h-full">
               <StepsThrough step={{ id: 3 }} currentStep={currentStep} />
             </div>
@@ -324,9 +398,10 @@ export const HowItWorks: React.FC = () => {
               showNext={currentStep === 3 && selectedPlaceInsights.length > 0}
               onNext={handleNextStep}
             />
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={itemVariants}
             className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${
               currentStep > 3
                 ? "translate-y-0  max-h-screen opacity-100"
@@ -338,17 +413,20 @@ export const HowItWorks: React.FC = () => {
               action={resetFilters}
               full
             />
-          </div>
-        </article>
+          </motion.div>
+        </motion.article>
 
-        <article className="relative w-full h-auto md:h-[420px] mb-[180px] md:mb-0 mt-[240px] md:mt-[42px]">
+        <motion.article
+          variants={resultsVariants}
+          className="relative w-full h-auto md:h-[420px] mb-[180px] md:mb-0 mt-[240px] md:mt-[42px]"
+        >
           <FilteredPlaces
             placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]}
             commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities}
             realTimeDataSelected={selectedPlaceInsights}
           />
-        </article>
-      </section>
-    </article>
+        </motion.article>
+      </motion.section>
+    </motion.article>
   );
 };

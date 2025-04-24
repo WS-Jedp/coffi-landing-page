@@ -31,6 +31,30 @@ module.exports = {
           '"SF Pro"',
         ],
       },
+      animation: {
+        'float-left': 'float-left 6s ease-in-out infinite',
+        'float-center': 'float-center 5s ease-in-out infinite',
+        'float-right': 'float-right 7s ease-in-out infinite',
+        'subtle-pulse': 'subtle-pulse 4s ease-in-out infinite',
+      },
+      keyframes: {
+        'float-left': {
+          '0%, 100%': { transform: 'translateY(0) rotate(-6deg)' },
+          '50%': { transform: 'translateY(-8px) rotate(-5deg)' },
+        },
+        'float-center': {
+          '0%, 100%': { transform: 'translateY(4px)' },
+          '50%': { transform: 'translateY(-4px)' },
+        },
+        'float-right': {
+          '0%, 100%': { transform: 'translateY(0) rotate(6deg)' },
+          '50%': { transform: 'translateY(-8px) rotate(5deg)' },
+        },
+        'subtle-pulse': {
+          '0%, 100%': { opacity: '0' },
+          '50%': { opacity: '0.1' },
+        },
+      },
     },
   },
   plugins: [],

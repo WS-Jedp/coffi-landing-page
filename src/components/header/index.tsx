@@ -65,7 +65,7 @@ export const Header: React.FC = () => {
     <header className={`
       sticky top-0 left-0 w-full h-20 flex flex-row flex-nowrap items-center justify-between px-6 z-[999]
       transition-all duration-300 ease-in-out
-      ${isScrolled ? "drop-shadow-md bg-white/80 backdrop-blur-md" : "bg-transparent"}
+      ${isScrolled ? "drop-shadow-md bg-white/90 backdrop-blur-lg" : "bg-coffi-white"}
     `}>
       <div className="w-full max-w-[1200px] h-full flex items-center justify-between mx-auto">
         <article className="flex flex-row flex-nowrap items-center cursor-pointer text-coffi-black">
