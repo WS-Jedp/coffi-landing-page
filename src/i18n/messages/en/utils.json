@@ -19,5 +19,14 @@
         "product": "Product",
         "help": "Help",
         "social": "Social"
+    },
+    "copyright": {
+        "allRightsReserved": "All rights reserved"
+    },
+    "filterSystem": {
+        "found": {
+            "singular": "Found match",
+            "plural": "Found matches"
+        }
     }
 }

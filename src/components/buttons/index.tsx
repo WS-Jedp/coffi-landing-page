@@ -9,6 +9,7 @@ interface SimpleButtonProps {
   disabled?: boolean;
   loading?: boolean;
   full?: boolean;
+  shimmer?: boolean;
 }
 
 export const SimpleButton: React.FC<SimpleButtonProps> = ({
@@ -90,17 +91,38 @@ export const SimpleDarkButton: React.FC<SimpleButtonProps> = ({
   text,
   action,
   full = false,
+  shimmer = false,
 }) => {
   return (
     <button
       className={`
-          ${
-            !full ? "max-w-[300px" : "w-full"
-          } bg-coffi-purple text-coffi-white rounded-lg py-[6px] px-6 hover:bg-coffi-purple/90 transition-all duration-500 ease-in-out
+          ${!full ? "max-w-[300px" : "w-full"}
+          bg-coffi-purple text-coffi-white rounded-lg py-[6px] px-6 
+           transition-all duration-500 ease-in-out
+          ${shimmer ? 'relative overflow-hidden shadow-coffi-purple-300 hover:shadow-lg hover:bg-coffi-purple/60' : ' hover:bg-coffi-purple/90'}
         `}
       onClick={action}
     >
-      <span className="font-semibold text-md">{text}</span>
+      <span className="font-semibold text-md relative z-10">{text}</span>
+      {shimmer && (
+        <span className="absolute inset-0 w-full h-full">
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent shimmer-animation"></span>
+        </span>
+      )}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        
+        .shimmer-animation {
+          animation: shimmer 6s infinite;
+        }
+      `}</style>
     </button>
   );
 };

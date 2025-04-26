@@ -5,7 +5,6 @@ import { PlaceRulesAndAmmenitiesFilterCard } from "@/components/filters/placeRul
 import { PlaceTypeFilterCard } from "@/components/filters/placeType";
 import StepsThrough from "@/components/stepsThrough";
 import { useState } from "react";
-import { FilteredPlaces } from "../FilteredPlaces";
 import {
   COMMODITY_QUALITY,
   FOOD_COMMODITY_ENUM,
@@ -19,6 +18,7 @@ import {
 } from "@/models/places";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { FilteredPlacesZoneMap } from "../FilteredPlacesZoneMap";
 
 export interface PlaceFilter {
   id: number;
@@ -416,11 +416,21 @@ export const HowItWorks: React.FC = () => {
           </motion.div>
         </motion.article>
 
-        <motion.article
+        {/* <motion.article
           variants={resultsVariants}
-          className="relative w-full h-auto md:h-[420px] mb-[180px] md:mb-0 mt-[240px] md:mt-[42px]"
+          className="relative w-full h-auto md:h-[420px] mb-[180px] md:mb-0 mt-[240px] md:mt-[42px] flex justify-center"
         >
           <FilteredPlaces
+            placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]}
+            commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities}
+            realTimeDataSelected={selectedPlaceInsights}
+          />
+        </motion.article> */}
+        <motion.article
+          variants={resultsVariants}
+          className="relative w-full h-auto flex justify-center"
+        >
+          <FilteredPlacesZoneMap
             placeTypesSelected={selectedPlaceTypes as PLACE_TYPES[]}
             commoditiesAndRulesSelected={selectedPlaceRulesAndAmmenities}
             realTimeDataSelected={selectedPlaceInsights}

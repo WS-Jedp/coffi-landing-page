@@ -19,5 +19,14 @@
         "product": "Producto",
         "help": "Ayuda",
         "social": "Redes Sociales"
+    },
+    "copyright": {
+        "allRightsReserved": "Todos los derechos reservados"
+    },
+    "filterSystem": {
+        "found": {
+            "singular": "Lugar encontrado",
+            "plural": "Lugares encontrados"
+        }
     }
 }

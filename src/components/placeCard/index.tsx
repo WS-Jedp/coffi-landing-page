@@ -1,5 +1,6 @@
 import { Place } from "@/models/places";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { useMemo } from "react";
 
 interface PlaceCardProps {
@@ -66,13 +67,20 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place, isSelected = false 
     <article className={`
       flex flex-col items-start justify-start text-start overflow-hidden
       p-4 rounded-lg 
-      min-w-[300px] w-full max-w-[330px] md:min-w-[390px] md:w-full md:max-w-[420px] h-[390px] max-h-[390px] 
+      min-w-[300px] w-full max-w-[330px] md:min-w-[390px] md:w-full md:max-w-[420px] h-[270px] max-h-[270px] 
       text-coffi-black bg-white
       transition-all duration-600 ease-in-out
        ${isSelected ? "shadow-xl shadow-coffi-purple/20" : "shadow-lg shadow-coffi-black/10"}
     `}>
       {/* image of the place */}
       <figure className="relative w-full h-[150px] overflow-hidden bg-coffi-black/10 rounded-md">
+      <Image 
+        src={place.imageUrl}
+        width={420}
+        height={420}
+        alt={`Image from ${place.name}`}
+        className="object-cover"
+      />
         {/* <img src="/lol" alt="" className="w-full h-full object-cover" /> */}
       </figure>
 
@@ -86,7 +94,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place, isSelected = false 
       </section>
       <hr className="w-full border-coffi-black mt-3 mb-1" />
       {/* Rules and Accomodations */}
-      <section className="flex flex-row flex-wrap items-center justify-start w-full mt-2 h-[20%] overflow-y-auto">
+      {/* <section className="flex flex-row flex-wrap items-center justify-start w-full mt-2 h-[20%] overflow-y-auto">
         {place.themeTags.map((tag) => (
           <article
             key={tag}
@@ -190,7 +198,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({ place, isSelected = false 
             <span className="font-light text-xs">{t(`places.languages.${lang}`)}</span>
           </article>
         ))}
-      </section>
+      </section> */}
     </article>
   );
 };

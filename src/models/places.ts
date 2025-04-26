@@ -66,6 +66,7 @@ export enum NOISE_LEVEL_ENUM  {
 export interface Place {
   id: string;
   name: string;
+  imageUrl: string
   knownFor: MINDSETS;
   description?: string | null;
   languages: LANGUAGE_ENUM[];

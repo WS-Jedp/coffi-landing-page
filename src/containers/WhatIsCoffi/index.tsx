@@ -36,7 +36,7 @@ export const WhatIsCoffi: React.FC = () => {
     return () => setIsVisible(false); // Ensure state is reset when unmounting
   }, []);
 
-  // Text animation variants
+  // Text animation variants with improved easing
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,6 +44,8 @@ export const WhatIsCoffi: React.FC = () => {
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.2,
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
+        duration: 0.8,
       },
     },
     exit: {
@@ -52,6 +54,8 @@ export const WhatIsCoffi: React.FC = () => {
         staggerChildren: 0.05,
         staggerDirection: -1,
         when: "afterChildren",
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
+        duration: 0.6,
       },
     },
   };
@@ -62,16 +66,16 @@ export const WhatIsCoffi: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1.0], // Custom easing for smoother motion
+        duration: 1.0, // Increased for smoother motion
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve for smoother motion
       },
     },
     exit: {
       opacity: 0,
       y: 20,
       transition: {
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1.0],
+        duration: 0.5, // Slightly increased for smoother exit
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
       },
     },
   };
@@ -82,8 +86,8 @@ export const WhatIsCoffi: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.7, // Increased for smoother motion
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
         delay: 0.6,
       },
     },
@@ -91,37 +95,35 @@ export const WhatIsCoffi: React.FC = () => {
       opacity: 0,
       y: 20,
       transition: {
-        duration: 0.3,
-        ease: "easeIn",
+        duration: 0.4,
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
       },
     },
     hover: {
       scale: 1.05,
-      transition: { duration: 0.2 },
+      transition: { duration: 0.3, ease: "easeInOut" }, // Added ease-in-out for hover
     },
   };
 
-  // Shimmer effect variants
+  // Shimmer effect variants with smoother animation
   const shimmerVariants = {
     animate: {
       x: ["100%", "-100%"],
       transition: {
         repeat: Infinity,
         repeatType: "loop" as const,
-        duration: 6,
-        ease: "easeInOut",
+        duration: 8, // Increased duration for smoother effect
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom ease-in-out curve
       },
     },
   };
 
- 
-
   return (
     <article
+      id="features" // Add ID for smooth scrolling
       ref={containerRef}
       className="flex flex-col md:flex-row items-start md:items-center justify-between w-full min-h-full h-auto md:min-h-auto md:h-[90vh] mb-12 md:mb-auto pt-6 md:pt-0 px-6 xl:px-0 relative"
     >
-     
       <AnimatePresence mode="wait">
         {isVisible && (
           <motion.section
@@ -138,11 +140,11 @@ export const WhatIsCoffi: React.FC = () => {
               {t("home.discoverPlacesInCity", { city: "Medellín" })} <br />
               <motion.span
                 variants={itemVariants}
-                className="inline-flex items-center text-nowrap"
+                className="inline-flex items-center justify-center md:justify-start flex-wrap"
               >
                 {t("home.toElevate")}{" "}
-                {/* dynamic word with shimmer effect - fixed overflow */}
-                <span className="ml-3 relative inline-block text-coffi-purple overflow-hidden">
+                {/* dynamic word with shimmer effect - improved for mobile */}
+                <span className="ml-2 md:ml-3 relative inline-block text-coffi-purple overflow-hidden">
                   <span className="relative z-10 font-extrabold">
                     {t("home.sessionsType.work")}
                   </span>
@@ -151,7 +153,7 @@ export const WhatIsCoffi: React.FC = () => {
                     variants={shimmerVariants}
                     animate="animate"
                   />
-                </span>{" "}
+                </span>
               </motion.span>
               <br />
               <motion.span variants={itemVariants} className="inline-block">

@@ -27,9 +27,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sf: [
-          '"SF Pro"',
-        ],
+        sf: ['var(--font-sf-pro)', 'SF Pro', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float-left': 'float-left 6s ease-in-out infinite',

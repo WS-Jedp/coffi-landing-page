@@ -27,14 +27,12 @@ export default async function LocalLayout({
   const messages = await loadMessages(currentLocale);
 
   return (
-    <html lang={currentLocale}>
-      <body>
-        <NextIntlClientProvider locale={currentLocale} messages={messages}>
-          <Header />
-          <main className="w-full mx-auto">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <NextIntlClientProvider locale={currentLocale} messages={messages}>
+        <Header />
+        <main className="w-full mx-auto">{children}</main>
+        <Footer />
+      </NextIntlClientProvider>
+    </>
   );
 }

@@ -11,6 +11,21 @@ export const Benefits: React.FC = () => {
   const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [sectionHeight, setSectionHeight] = useState<string | number>("auto");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and when window resizes
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Set animation active when in view
   useEffect(() => {
@@ -52,90 +67,102 @@ export const Benefits: React.FC = () => {
     };
   }, []); // Run once on mount
 
+  const allPlaceCards = [
+    // Top row - spread across the width
+    {
+      name: "Coffee Club",
+      distance: "2.3",
+      depth: 0,
+      position: { x: "1%", y: 0 },
+    },
+    {
+      name: "Espresso Lane",
+      distance: "3.4",
+      depth: 2,
+      position: { x: "42%", y: 6 },
+    },
+    {
+      name: "Caffeine Corner",
+      distance: "1.9",
+      depth: 0,
+      position: { x: "76%", y: 3 },
+    },
+
+    // Middle row - offset from top row positions
+    {
+      name: "The Roastery",
+      distance: "5.3",
+      depth: 0,
+      position: { x: "30%", y: 54 },
+    },
+    {
+      name: "The Coffee Lab",
+      distance: "4.5",
+      depth: 1,
+      position: { x: "1%", y: 81 },
+    },
+
+    // Bottom row - balanced distribution
+    {
+      name: "Bitter Sweet",
+      distance: "2.1",
+      depth: 1,
+      position: { x: "69%", y: 66 },
+    },
+    {
+      name: "Nights And Coffe",
+      distance: "3.6",
+      depth: 2,
+      position: { x: "45%", y: 99 },
+    },
+  ];
+
   // Generate a reduced set of cards with optimal distribution
   const placeCards = useMemo(() => {
-    return [
-      // Top row - spread across the width
-      {
-        name: "Coffee Club",
-        distance: "2.3",
-        depth: 0,
-        position: { x: "1%", y: 0 },
-      },
-      {
-        name: "Espresso Lane",
-        distance: "3.4",
-        depth: 2,
-        position: { x: "42%", y: 6 },
-      },
-      {
-        name: "Caffeine Corner",
-        distance: "1.9",
-        depth: 0,
-        position: { x: "76%", y: 3 },
-      },
-
-      // Middle row - offset from top row positions
-      {
-        name: "The Roastery",
-        distance: "5.3",
-        depth: 0,
-        position: { x: "30%", y: 54 },
-      },
-      {
-        name: "The Coffee Lab",
-        distance: "4.5",
-        depth: 1,
-        position: { x: "1%", y: 81 },
-      },
-
-      // Bottom row - balanced distribution
-      {
-        name: "Bitter Sweet",
-        distance: "2.1",
-        depth: 1,
-        position: { x: "69%", y: 66 },
-      },
-      {
-        name: "Nights And Coffe",
-        distance: "3.6",
-        depth: 2,
-        position: { x: "45%", y: 99 },
-      },
-    ];
-  }, []);
+    if (isMobile) {
+      return [
+        { ...allPlaceCards[0], position: { x: "3%", y: "0%" } },
+        { ...allPlaceCards[1], position: { x: "-6%", y: "66%" } },
+        { ...allPlaceCards[2], position: { x: "30%", y: "42%" } },
+        { ...allPlaceCards[3], position: { x: "60%", y: "1%" } },
+        { ...allPlaceCards[4], position: { x: "60%", y: "66%" } },
+        // { ...allPlaceCards[6], position: { x: '12%', y: '36%' } },
+      ];
+    }
+    return allPlaceCards;
+  }, [isMobile]);
 
   // Create network profiles for Section Two with color groups and depth
-  const networkProfiles = useMemo(() => {
+  const allNetworkProfiles = useMemo(() => {
     return [
       // Group 1
       {
         name: "Alex",
-        position: { x: "10%", y: "15%" },
+        position: { x: "8%", y: "12%" },
         colorGroup: 1,
         depth: 0,
       },
       {
         name: "Emma",
-        position: { x: "45%", y: "12%" },
+        position: { x: "42%", y: "8%" },
         colorGroup: 1,
         depth: 1,
       },
       {
         name: "Miguel",
-        position: { x: "80%", y: "10%" },
+        position: { x: "85%", y: "15%" },
         colorGroup: 1,
         depth: 2,
       },
       {
         name: "Jamie",
-        position: { x: "20%", y: "75%" },
+        position: { x: "15%", y: "68%" },
         colorGroup: 1,
         depth: 0,
       },
       {
         name: "Noah",
-        position: { x: "88%", y: "85%" },
+        position: { x: "92%", y: "78%" },
         colorGroup: 1,
         depth: 1,
       },
@@ -143,31 +170,31 @@ export const Benefits: React.FC = () => {
       // Group 2
       {
         name: "Sophie",
-        position: { x: "35%", y: "35%" },
+        position: { x: "30%", y: "30%" },
         colorGroup: 2,
         depth: 0,
       },
       {
         name: "Ben",
-        position: { x: "72%", y: "48%" },
+        position: { x: "76%", y: "42%" },
         colorGroup: 2,
         depth: 1,
       },
       {
         name: "Ryan",
-        position: { x: "15%", y: "88%" },
+        position: { x: "12%", y: "90%" },
         colorGroup: 2,
         depth: 2,
       },
       {
         name: "Leah",
-        position: { x: "55%", y: "82%" },
+        position: { x: "58%", y: "88%" },
         colorGroup: 2,
         depth: 0,
       },
       {
         name: "Zoe",
-        position: { x: "85%", y: "62%" },
+        position: { x: "88%", y: "55%" },
         colorGroup: 2,
         depth: 1,
       },
@@ -175,31 +202,31 @@ export const Benefits: React.FC = () => {
       // Group 3
       {
         name: "Nora",
-        position: { x: "18%", y: "50%" },
+        position: { x: "22%", y: "48%" },
         colorGroup: 3,
         depth: 2,
       },
       {
         name: "David",
-        position: { x: "60%", y: "52%" },
+        position: { x: "65%", y: "62%" },
         colorGroup: 3,
         depth: 0,
       },
       {
         name: "Julia",
-        position: { x: "42%", y: "85%" },
+        position: { x: "38%", y: "78%" },
         colorGroup: 3,
         depth: 1,
       },
       {
         name: "Ethan",
-        position: { x: "70%", y: "25%" },
+        position: { x: "74%", y: "22%" },
         colorGroup: 3,
         depth: 2,
       },
       {
         name: "Mia",
-        position: { x: "90%", y: "90%" },
+        position: { x: "80%", y: "92%" },
         colorGroup: 3,
         depth: 0,
       },
@@ -207,24 +234,54 @@ export const Benefits: React.FC = () => {
       // Group 4 (yellow/orange tones)
       {
         name: "Leo",
-        position: { x: "30%", y: "22%" },
+        position: { x: "25%", y: "18%" },
         colorGroup: 4,
         depth: 1,
       },
       {
         name: "Ava",
-        position: { x: "62%", y: "32%" },
+        position: { x: "62%", y: "35%" },
         colorGroup: 4,
         depth: 2,
       },
       {
         name: "Max",
-        position: { x: "45%", y: "65%" },
+        position: { x: "48%", y: "55%" },
         colorGroup: 4,
         depth: 0,
       },
     ];
   }, []);
+
+  // Filter profiles for mobile display
+  const networkProfiles = useMemo(() => {
+    if (isMobile) {
+      // Mobile: Use only 8 profiles with adjusted positions for better spacing
+      return [
+        // Top left quadrant
+        { ...allNetworkProfiles[0], position: { x: "15%", y: "20%" } }, // Alex (Marketing)
+
+        // Top right quadrant
+        { ...allNetworkProfiles[5], position: { x: "85%", y: "20%" } }, // Sophie (Software Eng)
+
+        // Middle left
+        { ...allNetworkProfiles[10], position: { x: "15%", y: "50%" } }, // Nora (Design)
+
+        // Middle right
+        { ...allNetworkProfiles[16], position: { x: "85%", y: "50%" } }, // Leo (Finance)
+        { ...allNetworkProfiles[15], position: { x: "50%", y: "50%" } }, // Leo (Finance)
+
+        // Bottom left quadrant
+        { ...allNetworkProfiles[1], position: { x: "35%", y: "80%" } }, // Emma (Marketing)
+
+        // Bottom right quadrant
+        { ...allNetworkProfiles[12], position: { x: "65%", y: "80%" } }, // Julia (Design)
+
+        { ...allNetworkProfiles[8], position: { x: "42%", y: "15%" } },
+      ];
+    }
+    return allNetworkProfiles;
+  }, [allNetworkProfiles, isMobile]);
 
   // Define group color gradients
   const colorGroups: Record<
@@ -312,7 +369,7 @@ export const Benefits: React.FC = () => {
             }
           }}
         >
-          <section className="px-6 pt-6 pb-4 flex-grow">
+          <section className="px-6 pt-6 pb-4 md:flex-grow">
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
               {t("home.benefits.matchYourFavoriteSpots.title")}
             </h2>
@@ -401,7 +458,11 @@ export const Benefits: React.FC = () => {
           </section>
 
           {/* Dynamic Networking animations */}
-          <div className="relative w-full h-[72px]">
+          <div
+            className={`relative w-full ${
+              isMobile ? "h-[160px]" : "h-[120px]"
+            }`}
+          >
             {/* Network profile circles */}
             {shouldAnimate &&
               networkProfiles.map((profile, i) => {
@@ -409,6 +470,10 @@ export const Benefits: React.FC = () => {
 
                 // Create depth effect
                 const scale = 1 - profile.depth * 0.15; // Scale down for deeper profiles
+
+                const mobileScaleFactor = 1;
+                const finalScale = scale * mobileScaleFactor;
+
                 const blur = profile.depth * 0.6; // Slight blur for deeper profiles
                 const zIndex = 10 - profile.depth; // Higher z-index for closer profiles
 
@@ -417,32 +482,41 @@ export const Benefits: React.FC = () => {
                 const floatX = 2 + (i % 4) - profile.depth * 0.3;
                 const floatDuration = 5 + (i % 7) * 1.2 + profile.depth * 0.5; // Slower for deeper profiles
                 const delayAmount = (i * 0.15) % 3;
-                const size = 30 + Math.random() * 20; // Random sizes between 30-50px
+
+                // Adjust size based on device
+                const baseSize = 30;
+                const variationRange = 20;
+                const size = baseSize + Math.random() * variationRange;
 
                 // Get the appropriate gradient classes and glow effect based on colorGroup
                 const fromClass = colorGroups[profile.colorGroup].from;
                 const toClass = colorGroups[profile.colorGroup].to;
                 const glowEffect = colorGroups[profile.colorGroup].glow;
 
+                // Get group name based on colorGroup
+                const groupNames = [
+                  "",
+                  t("home.benefits.professions.marketing"),
+                  t("home.benefits.professions.softwareEngineering"),
+                  t("home.benefits.professions.design"),
+                  t("home.benefits.professions.finance"),
+                ];
+                const groupName = groupNames[profile.colorGroup];
+
                 return (
                   <motion.div
                     key={`profile-${i}`}
-                    className={`absolute bg-gradient-to-r ${fromClass} ${toClass} shadow-sm rounded-full flex items-center justify-center`}
+                    className="absolute"
                     style={{
-                      width: `${size * scale}px`,
-                      height: `${size * scale}px`,
                       left: profile.position.x,
                       top: profile.position.y,
                       transform: "translate(-50%, -50%)",
-                      filter: `blur(${blur}px)`,
                       zIndex,
-                      opacity: 0.95 - profile.depth * 0.15,
-                      boxShadow: glowEffect,
                     }}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{
                       scale: 1,
-                      opacity: 1 - profile.depth * 0.15,
+                      opacity: 1,
                       y: [0, floatY, 0],
                       x: [0, floatX, 0],
                     }}
@@ -467,12 +541,41 @@ export const Benefits: React.FC = () => {
                       },
                     }}
                   >
-                    <span
-                      className="text-sm font-medium text-white"
-                      style={{ transform: `scale(${1 / scale})` }}
+                    {/* Profile circle */}
+                    <div
+                      className={`bg-gradient-to-r ${fromClass} ${toClass} shadow-sm rounded-full flex items-center justify-center`}
+                      style={{
+                        width: `${size * finalScale}px`,
+                        height: `${size * finalScale}px`,
+                        filter: `blur(${blur}px)`,
+                        opacity: 0.95 - profile.depth * 0.15,
+                        boxShadow: glowEffect,
+                      }}
                     >
-                      {initial}
-                    </span>
+                      <span
+                        className="text-sm font-medium text-white"
+                        style={{ transform: `scale(${1 / finalScale})` }}
+                      >
+                        {initial}
+                      </span>
+                    </div>
+
+                    {/* Group label */}
+                    <div
+                      className="absolute bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-xs whitespace-nowrap"
+                      style={{
+                        top: `${(size * finalScale) / 1.5 + 4}px`,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        filter: `blur(${blur * 0.5}px)`,
+                        opacity: 0.9 - profile.depth * 0.2,
+                        boxShadow: `0 2px 4px rgba(0,0,0,0.1)`,
+                        color: `var(--color-${fromClass.split("-").pop()})`,
+                        fontSize: `${Math.max(8, 10 - profile.depth)}px`,
+                      }}
+                    >
+                      {groupName}
+                    </div>
                   </motion.div>
                 );
               })}
@@ -524,7 +627,7 @@ export const Benefits: React.FC = () => {
                 },
               }}
               className={`inline-block md:absolute right-48 bottom-[-120px] shadow-2xl shadow-coffi-purple/40
-                                          rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[340px] md:h-[440px] z-10
+                                          rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[300px] md:h-[440px] z-10
                                           animate-float-left bg-coffi-white/70 backdrop-blur-md`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />
@@ -559,7 +662,7 @@ export const Benefits: React.FC = () => {
                 },
               }}
               className={`inline-block md:absolute right-6 bottom-[-120px] shadow-2xl shadow-coffi-purple/40
-                                         rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[340px] md:h-[440px] z-20
+                                         rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[300px] md:h-[440px] z-20
                                          animate-float-right bg-coffi-white/70 backdrop-blur-md`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />

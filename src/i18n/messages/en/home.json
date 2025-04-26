@@ -91,6 +91,12 @@
             "description": "Coffi thrives on its vibrant community of digital nomads, making real-time insights possible.",
             "2ndDescription": "By updating conditions or discovering new spots, you earn Coffi Points—redeemable for rewards like coupons.",
             "3rdDescription": "Join Coffi Premium to connect with the community, earn rewards, and never miss out on the best places for work or relaxation."
+        },
+        "professions": {
+            "marketing": "Marketing",
+            "softwareEngineering": "Programming",
+            "design": "Design",
+            "finance": "Finance"
         }
     },
     "subscriptions": {

@@ -25,6 +25,7 @@ import {
     {
       id: "place-1",
       name: "Café del Cielo",
+      imageUrl: '/assets/images/places/coffi-place-1.jpeg',
       knownFor: MINDSETS.WORK,
       description:
         "A serene café with a breathtaking rooftop view of Medellín's skyline. Ideal for focused work sessions.",
@@ -88,6 +89,7 @@ import {
     {
       id: "place-2",
       name: "El Rincón Bohemio",
+      imageUrl: '/assets/images/places/coffi-place-2.jpeg',
       knownFor: MINDSETS.VIBE,
       description:
         "A cozy, bohemian-themed café with live music and an eclectic menu that attracts creatives and artists.",
@@ -151,6 +153,7 @@ import {
     },
     {
       id: "place-3",
+      imageUrl: '/assets/images/places/coffi-place-3.jpeg',
       name: "Latte Lounge",
       knownFor: MINDSETS.STUDY,
       description:
@@ -210,6 +213,7 @@ import {
     {
       id: "place-4",
       name: "El Paraíso del Espresso",
+      imageUrl: '/assets/images/places/coffi-place-4.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description:
         "A romantic spot surrounded by lush greenery and an exceptional menu of handcrafted espresso drinks.",
@@ -276,6 +280,7 @@ import {
     {
       id: "place-5",
       name: "Urban Grind",
+      imageUrl: '/assets/images/places/coffi-place-5.jpeg',
       knownFor: MINDSETS.COWORK,
       description:
         "A trendy coworking café with ultra-fast Wi-Fi, perfect for networking with fellow digital nomads.",
@@ -334,6 +339,7 @@ import {
     {
       id: "place-6",
       name: "Café Mirador",
+      imageUrl: '/assets/images/places/coffi-place-6.jpeg',
       knownFor: MINDSETS.VIBE,
       description:
         "Nestled on a hillside, this café offers spectacular city views and an open-air vibe.",
@@ -392,6 +398,7 @@ import {
     {
       id: "place-7",
       name: "Nomad's Nook",
+      imageUrl: '/assets/images/places/coffi-place-7.jpeg',
       knownFor: MINDSETS.COWORK,
       description:
         "Designed for nomads, this café provides collaborative spaces and excellent coffee.",
@@ -453,6 +460,7 @@ import {
     {
       id: "place-8",
       name: "The Green Bean",
+      imageUrl: '/assets/images/places/coffi-place-8.jpeg',
       knownFor: MINDSETS.WORK,
       description:
         "Eco-friendly café with organic coffee options and sustainable coworking spaces.",
@@ -514,6 +522,7 @@ import {
     {
       id: "place-9",
       name: "Java Junction",
+      imageUrl: '/assets/images/places/coffi-place-9.jpg',
       knownFor: MINDSETS.SOCIAL,
       description:
         "A bustling café with group seating, trivia nights, and excellent pastries.",
@@ -572,6 +581,7 @@ import {
     {
       id: "place-10",
       name: "Café Zen",
+      imageUrl: '/assets/images/places/coffi-place-9.jpg',
       knownFor: MINDSETS.STUDY,
       description:
         "Peaceful atmosphere with a minimalist design, ideal for unwinding with a cup of tea.",
@@ -630,6 +640,7 @@ import {
     {
       id: "place-11",
       name: "Skyline Haven",
+      imageUrl: '/assets/images/places/coffi-place-10.jpeg',
       knownFor: MINDSETS.SOCIAL,
       description: "A vibrant rooftop bar with stunning city views and an upbeat ambiance.",
       languages: [LANGUAGE_ENUM.ENGLISH, LANGUAGE_ENUM.SPANISH],
@@ -687,6 +698,7 @@ import {
     {
       id: "place-12",
       name: "Starlight Rooftop",
+      imageUrl: '/assets/images/places/coffi-place-11.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description: "An elegant rooftop with fairy lights, cozy seating, and a romantic vibe.",
       languages: [LANGUAGE_ENUM.SPANISH],
@@ -744,6 +756,7 @@ import {
     {
       id: "place-13",
       name: "Aurora's Horizon",
+      imageUrl: '/assets/images/places/coffi-place-12.jpeg',
       knownFor: MINDSETS.VIBE,
       description:
         "A rooftop with artistic decor, offering breathtaking sunsets and creative vibes.",
@@ -802,6 +815,7 @@ import {
     {
       id: "place-14",
       name: "Knowledge Nook",
+      imageUrl: '/assets/images/places/coffi-place-13.jpeg',
       knownFor: MINDSETS.STUDY,
       description: "A quiet library tucked away with ample natural lighting and cozy seating.",
       languages: [LANGUAGE_ENUM.SPANISH],
@@ -859,6 +873,7 @@ import {
     {
       id: "place-15",
       name: "Scholar's Retreat",
+      imageUrl: '/assets/images/places/coffi-place-14.jpeg',
       knownFor: MINDSETS.STUDY,
       description:
         "A modern library with digital resources and ergonomic study spaces for students and professionals.",
@@ -917,6 +932,7 @@ import {
     {
       id: "place-16",
       name: "Book Haven",
+      imageUrl: '/assets/images/places/coffi-place-15.jpeg',
       knownFor: MINDSETS.STUDY,
       description:
         "A timeless library with an extensive collection of books and peaceful surroundings.",
@@ -975,6 +991,7 @@ import {
     {
       id: "place-17",
       name: "The Coffee Atelier",
+      imageUrl: '/assets/images/places/coffi-place-16.jpeg',
       knownFor: MINDSETS.WORK,
       description:
         "A chic café combining art and productivity with a calming ambiance.",
@@ -1033,6 +1050,7 @@ import {
     {
       id: "place-18",
       name: "Rooftop Solace",
+      imageUrl: '/assets/images/places/coffi-place-17.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description:
         "An upscale rooftop offering sunset views with fine dining and live music.",
@@ -1091,6 +1109,7 @@ import {
     {
       id: "place-19",
       name: "Digital Den Library",
+      imageUrl: '/assets/images/places/coffi-place-18.jpeg',
       knownFor: MINDSETS.STUDY,
       description:
         "Modern library with interactive spaces for tech enthusiasts and professionals.",
@@ -1149,6 +1168,7 @@ import {
     {
       id: "place-20",
       name: "The Loft Cafe",
+      imageUrl: '/assets/images/places/coffi-place-19.jpeg',
       knownFor: MINDSETS.COWORK,
       description: "A cozy loft café with ergonomic seating and high-speed Wi-Fi.",
       languages: [LANGUAGE_ENUM.ENGLISH, LANGUAGE_ENUM.SPANISH],
@@ -1206,6 +1226,7 @@ import {
     {
       id: "place-21",
       name: "Skyline Serenity",
+      imageUrl: '/assets/images/places/coffi-place-20.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description: "A romantic rooftop with candlelit seating and stunning views.",
       languages: [LANGUAGE_ENUM.SPANISH, LANGUAGE_ENUM.ENGLISH],
@@ -1263,6 +1284,7 @@ import {
     {
       id: "place-22",
       name: "Study Sphere",
+      imageUrl: '/assets/images/places/coffi-place-21.jpeg',
       knownFor: MINDSETS.STUDY,
       description:
         "A modern library with ample seating and natural lighting for deep study sessions.",
@@ -1321,6 +1343,7 @@ import {
     {
       id: "place-23",
       name: "Rooftop Bliss",
+      imageUrl: '/assets/images/places/coffi-place-22.jpeg',
       knownFor: MINDSETS.VIBE,
       description:
         "An energetic rooftop space with live music and weekend dance events.",
@@ -1379,6 +1402,7 @@ import {
     {
       id: "place-24",
       name: "Panorama Vista",
+      imageUrl: '/assets/images/places/coffi-place-23.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description: "A rooftop café with candlelit dinners and breathtaking city views.",
       languages: [LANGUAGE_ENUM.SPANISH, LANGUAGE_ENUM.ENGLISH],
@@ -1436,6 +1460,7 @@ import {
     {
       id: "place-25",
       name: "Library Nest",
+      imageUrl: '/assets/images/places/coffi-place-24.jpeg',
       knownFor: MINDSETS.STUDY,
       description: "A serene library with private study rooms and lush indoor plants.",
       languages: [LANGUAGE_ENUM.ENGLISH, LANGUAGE_ENUM.SPANISH],
@@ -1493,6 +1518,7 @@ import {
     {
       id: "place-26",
       name: "Urban Hive",
+      imageUrl: '/assets/images/places/coffi-place-25.jpeg',
       knownFor: MINDSETS.COWORK,
       description:
         "A bustling coworking café with vibrant decor and a diverse community of professionals.",
@@ -1551,6 +1577,7 @@ import {
     {
       id: "place-27",
       name: "Open Sky Lounge",
+      imageUrl: '/assets/images/places/coffi-place-26.jpeg',
       knownFor: MINDSETS.SOCIAL,
       description: "An open-air rooftop lounge with live DJ events every weekend.",
       languages: [LANGUAGE_ENUM.ENGLISH],
@@ -1608,6 +1635,7 @@ import {
     {
       id: "place-28",
       name: "The Cozy Loft",
+      imageUrl: '/assets/images/places/coffi-place-1.jpeg',
       knownFor: MINDSETS.STUDY,
       description: "A small loft café with warm lighting and comfortable armchairs, perfect for long study sessions.",
       languages: [LANGUAGE_ENUM.SPANISH, LANGUAGE_ENUM.ENGLISH],
@@ -1665,6 +1693,7 @@ import {
     {
       id: "place-29",
       name: "The Industrial Corner",
+      imageUrl: '/assets/images/places/coffi-place-2.jpeg',
       knownFor: MINDSETS.WORK,
       description: "A rustic yet modern coworking café with industrial decor and great coffee options.",
       languages: [LANGUAGE_ENUM.SPANISH],
@@ -1722,6 +1751,7 @@ import {
     {
       id: "place-30",
       name: "Quiet Horizon",
+      imageUrl: '/assets/images/places/coffi-place-3.jpeg',
       knownFor: MINDSETS.STUDY,
       description: "A spacious library with individual desks, soundproof zones, and free workshops on weekends.",
       languages: [LANGUAGE_ENUM.ENGLISH],
@@ -1779,6 +1809,7 @@ import {
     {
       id: "place-31",
       name: "The Vibrant Loft",
+      imageUrl: '/assets/images/places/coffi-place-4.jpeg',
       knownFor: MINDSETS.VIBE,
       description: "A rooftop venue featuring live DJs, art installations, and creative cocktails.",
       languages: [LANGUAGE_ENUM.ENGLISH],
@@ -1836,6 +1867,7 @@ import {
     {
       id: "place-32",
       name: "The Hidden Garden",
+      imageUrl: '/assets/images/places/coffi-place-5.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description: "A serene outdoor café nestled in lush greenery, perfect for intimate conversations.",
       languages: [LANGUAGE_ENUM.SPANISH, LANGUAGE_ENUM.FRENCH],
@@ -1893,6 +1925,7 @@ import {
     {
       id: "place-33",
       name: "Digital Nomad Base",
+      imageUrl: '/assets/images/places/coffi-place-6.jpeg',
       knownFor: MINDSETS.COWORK,
       description: "A coworking space tailored for digital nomads, offering collaborative desks and private booths.",
       languages: [LANGUAGE_ENUM.ENGLISH],
@@ -1950,6 +1983,7 @@ import {
     {
       id: "place-34",
       name: "The Quiet Corner",
+      imageUrl: '/assets/images/places/coffi-place-7.jpeg',
       knownFor: MINDSETS.STUDY,
       description:
         "A serene library with private booths and a fantastic collection of academic resources.",
@@ -2008,6 +2042,7 @@ import {
     {
       id: "place-35",
       name: "Skyline Serenity",
+      imageUrl: '/assets/images/places/coffi-place-10.jpeg',
       knownFor: MINDSETS.ROMANTIC,
       description:
         "A rooftop haven offering candlelit dinners and breathtaking views of the city skyline.",
@@ -2066,6 +2101,7 @@ import {
     {
       id: "place-36",
       name: "TechNest",
+      imageUrl: '/assets/images/places/coffi-place-11.jpeg',
       knownFor: MINDSETS.COWORK,
       description:
         "A coworking space tailored for tech enthusiasts, offering high-speed internet and ergonomic desks.",

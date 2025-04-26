@@ -152,7 +152,7 @@ export const SubscriptionSpecialCard: React.FC<
       </p>
 
         <div className="z-20">
-          <SimpleDarkButton action={() => {}} text={actionButton} full />
+          <SimpleDarkButton shimmer action={() => {}} text={actionButton} full />
         </div>
     </article>
   );

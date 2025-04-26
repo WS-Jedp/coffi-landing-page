@@ -7,7 +7,7 @@ export const CallToActionBanner: React.FC = () => {
   const { redirectToCoffi } = useRedirectToCoffiApp()
 
   return (
-    <article className="w-full h-auto bg-coffi-blue/30 py-9 my-9 text-coffi-purple px-6 xl:px-0">
+    <article className="w-full h-auto bg-coffi-blue/30 py-9 mt-9 text-coffi-purple px-6 xl:px-0">
       <section className="w-full max-w-[1200px] mx-auto flex flex-row">
         <article className="relative flex flex-col items-start justify-center w-full md:w-5/12">
           <h3 className="text-2xl md:text-4xl font-extrabold">

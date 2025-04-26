@@ -91,7 +91,13 @@
       "description": "Coffi prospera gracias a su vibrante comunidad de nómadas digitales, lo que hace posible obtener información en tiempo real de cada lugar.",
       "2ndDescription": "Actualizando las condiciones de un lugar o descubriendo nuevos espacios, gana Coffi puntos, canjeables por recompensas como cupones.",
       "3rdDescription": "Unete a Coffi Premium para conectar con la comunidad, ganar recompensas y nunca perderse de los mejores lugares para trabajar o relajarse."
-    }
+    },
+    "professions": {
+      "marketing": "Mercadeo",
+      "softwareEngineering": "Programación",
+      "design": "Diseño",
+      "finance": "Finanzas"
+  }
   },
   "subscriptions": {
     "choose": "Elige el plan",
