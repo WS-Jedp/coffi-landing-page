@@ -17,16 +17,12 @@ interface PlaceCommunityInsightsFilterCardProps {
   onNext: () => void;
 }
 
-export const PlaceCommunityInsightsFilterCard: React.FC<PlaceCommunityInsightsFilterCardProps> = ({
-  filters,
-  selectedFilters,
-  onFilter,
-  isOpen,
-  showNext,
-  onNext,
-}) => {
+export const PlaceCommunityInsightsFilterCard: React.FC<
+  PlaceCommunityInsightsFilterCardProps
+> = ({ filters, selectedFilters, onFilter, isOpen, showNext, onNext }) => {
   const t = useTranslations();
-  const isFilterSelected = (filterID: number) => selectedFilters.find(f => f.id === filterID);
+  const isFilterSelected = (filterID: number) =>
+    selectedFilters.find((f) => f.id === filterID);
   return (
     <TooglePanel
       title={t("home.howItWorks.guide.communityInsights.title")}
@@ -59,17 +55,27 @@ export const PlaceCommunityInsightsFilterCard: React.FC<PlaceCommunityInsightsFi
              `}
               onClick={() => onFilter(insight)}
             >
-              <h3 className="font-light text-sm">{t(`home.howItWorks.guide.communityInsights.options.${insight.title}`)}</h3>
+              <h3 className="font-light text-sm">
+                {t(
+                  `home.howItWorks.guide.communityInsights.options.${insight.title}`
+                )}
+              </h3>
             </article>
           ))}
         </section>
-        
-        <div className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${showNext ? "translate-y-0  max-h-screen opacity-100" : "-translate-y-3 max-h-0 opacity-0"}`}>
-            <SimpleButtonOutline
-                text="Find Your Place"
-                action={onNext}
-                full
-            />
+
+        <div
+          className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${
+            showNext
+              ? "translate-y-0  max-h-screen opacity-100"
+              : "-translate-y-3 max-h-0 opacity-0"
+          }`}
+        >
+          <SimpleButtonOutline
+            text={t("actions.general.findYourPlace")}
+            action={onNext}
+            full
+          />
         </div>
       </article>
     </TooglePanel>

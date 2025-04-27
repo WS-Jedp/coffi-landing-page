@@ -96,7 +96,32 @@
             "marketing": "Marketing",
             "softwareEngineering": "Programming",
             "design": "Design",
-            "finance": "Finance"
+            "finance": "Finance",
+            "remoteWorker": "Remote Worker",
+            "earlyAdopter": "Early Adopter",
+            "digitalArtist": "Digital Artist",
+            "coffeeLover": "Coffee Lover",
+            "explorer": "Explorer",
+            "creator": "Creator",
+            "freelancer": "Freelancer",
+            "developer": "Developer",
+            "designer": "Designer",
+            "traveler": "Traveler",
+            "blogger": "Blogger",
+            "entrepreneur": "Entrepreneur",
+            "marketer": "Marketer",
+            "writer": "Writer",
+            "teacher": "Teacher",
+            "consultant": "Consultant",
+            "coder": "Coder",
+            "photographer": "Photographer",
+            "investor": "Investor",
+            "dreamer": "Dreamer",
+            "adventurer": "Adventurer",
+            "multilingual": "Multilingual",
+            "innovation": "Innovation",
+            "freedom": "Freedom",
+            "growth": "Growth"
         }
     },
     "subscriptions": {
@@ -125,6 +150,8 @@
                 "description": "Unlock the full Coffi experience with insights and rewards.",
                 "price": "{price}/Mo",
                 "billendAnnually": "Billed annualy",
+                "billedMonthly": "Billed monthly",
+                "savePercentYearly": "Save {percent}% monthly",
                 "yearly": "Yearly",
                 "yearlyPrice": "Or {price} billed monthly",
                 "monthlyPrice": "Or {price} billed annually",
@@ -137,6 +164,27 @@
                     "2xCoffiPoints": "Earn 2x Coffi Points for rewards",
                     "realTimeFilter": "Filter by real-time community insights",
                     "earlyAccess": "Early access to new features"
+                },
+                "benefitsDescriptions": {
+                    "explorerBenefits": "Everything you love from the Explorer Plan, now taken to the next level.",
+                    "officialAndCommunitySpotsAccess": "Access every spot—official locations and hidden gems discovered by the community.",
+                    "exclusiveDiscounts": "Enjoy special discounts and rewards crafted for true Coffi nomads.",
+                    "2xCoffiPoints": "Earn 2x Coffi Points to unlock prizes, perks, and unique experiences.",
+                    "realTimeFilter": "Find the perfect place by filtering spaces based on real-time vibes reported by the community.",
+                    "earlyAccess": "Be the first to experience new features before anyone else."
+                },
+                "checkout": {
+                    "getStarted": "Let's Coffi! You're just a few clicks away.",
+                    "description": "Unlock real-time vibes, exclusive perks, and your next perfect workspace. Your journey starts here.",
+                    "coffiEmailAccount": "Enter your Coffi account email",
+                    "validEmail": "Please enter a valid email to continue",
+                    "emailValidated": "Email found! Let's keep going 🚀",
+                    "continueToCheckout": "Continue to Checkout",
+                    "securePayment": "Secure payment with encryption — your information stays safe with us.",
+                    "invalidEmailFormat": "Please enter a valid email format",
+                    "checkingEmail": "Checking your email...",
+                    "emailNotFound": "We couldn’t find an account with that email",
+                    "processing": "Processing your request..."
                 }
             },
             "wanderlust": {

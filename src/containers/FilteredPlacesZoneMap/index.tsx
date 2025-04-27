@@ -54,6 +54,26 @@ export const FilteredPlacesZoneMap: React.FC<FilteredPlacesZoneMapProps> = ({
     setFilterChangeCount((prev) => prev + 1);
   }, [placeTypesSelected, commoditiesAndRulesSelected, realTimeDataSelected]);
 
+  // Function to get the emoji of the card according to place type
+  function getPlaceEmoji(placeType: PLACE_TYPES) {
+    switch (placeType) {
+      case PLACE_TYPES.COFFEE:
+        return "☕";
+      case PLACE_TYPES.RESTAURANT:
+        return "🍽️";
+      case PLACE_TYPES.ROOFTOP:
+        return "🍺";
+      case PLACE_TYPES.COWORK_ZONE:
+        return "💻";
+      case PLACE_TYPES.LIBRARY:
+        return "📚";
+      case PLACE_TYPES.PARK:
+        return "🌳";
+      default:
+        return "📍";
+    }
+  }
+
   // Filter places based on selected criteria
   const filteredPlaces = useMemo(() => {
     let currPlaces = [...places];
@@ -943,7 +963,7 @@ export const FilteredPlacesZoneMap: React.FC<FilteredPlacesZoneMapProps> = ({
                         : "text-gray-500"
                     }`}
                   >
-                    {place.type[0] === PLACE_TYPES.COFFEE ? "☕" : "🍽️"}
+                    {getPlaceEmoji(place.type[0])}
                   </span>
                 </motion.figure>
                 <div className="flex flex-col items-start overflow-hidden z-10">

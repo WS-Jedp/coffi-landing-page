@@ -15,6 +15,8 @@ export async function loadMessages(locale: string) {
     .default;
   const forPlaces = (await import(`../../i18n/messages/${locale}/forPlaces.json`))
     .default;
+    const subscriptions = (await import(`../../i18n/messages/${locale}/subscriptions.json`))
+    .default;
 
   return {
     home,
@@ -24,6 +26,7 @@ export async function loadMessages(locale: string) {
     wanderlust,
     contact,
     aboutUs,
-    forPlaces
+    forPlaces,
+    subscriptions
   };
 }

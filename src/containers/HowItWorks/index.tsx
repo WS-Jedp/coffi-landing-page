@@ -409,7 +409,7 @@ export const HowItWorks: React.FC = () => {
             }`}
           >
             <SimpleButtonOutline
-              text="Reset Filters"
+              text={t("actions.general.resetFilters")}
               action={resetFilters}
               full
             />

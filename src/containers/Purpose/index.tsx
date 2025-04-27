@@ -6,35 +6,36 @@ import { useState, useEffect } from "react";
 
 // Digital nomad characteristics or phrases
 const nomadTraits = [
-  "Remote worker", 
-  "Explorer",
-  "Creator",
-  "Freelancer",
-  "Developer",
-  "Designer",
-  "Traveler",
-  "Blogger",
-  "Entrepreneur",
-  "Digital artist",
-  "Marketer",
-  "Writer",
-  "Teacher",
-  "Consultant",
-  "Coder",
-  "Photographer",
-  "Investor",
-  "Dreamer",
-  "Adventurer",
-  "Coffee lover",
-  "Multilingual",
-  "Early adopter",
-  "Innovation",
-  "Freedom",
-  "Growth",
+  "remoteWorker",
+  "earlyAdopter",
+  "digitalArtist",
+  "coffeeLover",
+  "explorer",
+  "creator",
+  "freelancer",
+  "developer",
+  "designer",
+  "traveler",
+  "blogger",
+  "entrepreneur",
+  "marketer",
+  "writer",
+  "teacher",
+  "consultant",
+  "coder",
+  "photographer",
+  "investor",
+  "dreamer",
+  "adventurer",
+  "multilingual",
+  "innovation",
+  "freedom",
+  "growth"
 ];
 
 // Particle component for background animation with labels
 const Particle = () => {
+  const t = useTranslations()
   // Create random values for natural movement
   const size = Math.random() * 6 + 4; // 2-6px
   const horizontalPosition = Math.random() * 100; // 0-100%
@@ -86,7 +87,7 @@ const Particle = () => {
             maxWidth: '150px', // Limit maximum width
           }}
         >
-          {randomTrait}
+          {t(`home.benefits.professions.${randomTrait}`)}
         </div>
       )}
     </div>
@@ -225,7 +226,7 @@ export const Purpose: React.FC = () => {
       </div>
       
       <motion.article
-        className="flex flex-col items-center justify-center w-full h-[90vh] text-center mx-auto px-6 xl:px-0 z-10 relative z-10"
+        className="flex flex-col items-center justify-center w-full h-[90vh] text-center mx-auto px-6 xl:px-0 overflow-x-visible relative z-10"
         initial="hidden"
         whileInView="visible"
         exit="exit"

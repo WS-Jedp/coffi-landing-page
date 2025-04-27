@@ -1,0 +1,16 @@
+{
+    "nomad": {
+        "success": {
+            "title": "¡Bienvenido a la vida Nómada 🚀!",
+            "nomadPlanUnlocked": "¡Has desbloqueado oficialmente el Plan Nómada!",
+            "welcomeMessage": "Nos emociona tenerte aquí. Tu próxima aventura comienza ahora, estés donde estés.",
+            "whatsNext": "¿Qué sigue ahora?",
+            "nextSteps": {
+                "explore": "Descubre lugares con vibras en tiempo real y opiniones de la comunidad.",
+                "connect": "Conecta con una comunidad global de nómadas y creativos.",
+                "enjoy": "Disfruta espacios que se adaptan a tu estado de ánimo, tus metas y tus sueños."
+            },
+            "receiptEmail": "Pronto recibirás un correo de confirmación con tu recibo."
+        }
+    }
+}

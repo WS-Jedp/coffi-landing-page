@@ -1,8 +1,9 @@
-import {
-  SimpleDarkButton,
-} from "@/components/buttons";
+"use client";
+
+import { SimpleDarkButton } from "@/components/buttons";
 import { ToggleSwitch } from "@/components/inputs/toggle";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 interface SubscriptionSpecialCardProps {
@@ -37,11 +38,14 @@ const Particle = () => {
         height: `${size}px`,
         left: `${startPosition}%`,
         opacity: opacity,
-        backgroundColor: 'rgba(190, 149, 255, 0.8)', // Light coffi purple
-        boxShadow: '0 0 8px 2px rgba(190, 149, 255, 0.7)', // Enhanced purple glow
+        backgroundColor: "rgba(190, 149, 255, 0.8)", // Light coffi purple
+        boxShadow: "0 0 8px 2px rgba(190, 149, 255, 0.7)", // Enhanced purple glow
         animation: `float ${duration}s linear ${delay}s infinite, pulse ${pulseSpeed}s ease-in-out infinite alternate`,
-        borderRadius: starPoints === 4 ? '50%' : '0', // Circle or star shape
-        clipPath: starPoints === 5 ? 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' : 'none',
+        borderRadius: starPoints === 4 ? "50%" : "0", // Circle or star shape
+        clipPath:
+          starPoints === 5
+            ? "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)"
+            : "none",
         transform: `rotate(${Math.random() * 360}deg)`,
       }}
     />
@@ -60,9 +64,17 @@ export const SubscriptionSpecialCard: React.FC<
   secondaryMonthlyPriceText,
   actionButton,
 }) => {
+  const router = useRouter();
   const t = useTranslations();
   const [isYearly, setIsYearly] = useState<boolean>(true);
   const [particles, setParticles] = useState<number[]>([]);
+
+  // Get the current locale dynamically
+  const locale = useLocale();
+  
+  function goToSubscribeNomadPlan() {
+    router.push(`/${locale}/subscribe-nomad-plan`);
+  }
 
   // Initialize particles on component mount
   useEffect(() => {
@@ -133,6 +145,7 @@ export const SubscriptionSpecialCard: React.FC<
           label={t("home.subscriptions.plans.nomad.yearly")}
           isChecked={isYearly}
           onToggle={onToggle}
+          whiteText
         />
       </section>
       <p className="text-md font-light mb-1">{description}</p>
@@ -151,9 +164,14 @@ export const SubscriptionSpecialCard: React.FC<
         {isYearly ? secondaryYearlyPriceText : secondaryMonthlyPriceText}
       </p>
 
-        <div className="z-20">
-          <SimpleDarkButton shimmer action={() => {}} text={actionButton} full />
-        </div>
+      <div className="z-20">
+        <SimpleDarkButton
+          shimmer
+          action={goToSubscribeNomadPlan}
+          text={actionButton}
+          full
+        />
+      </div>
     </article>
   );
-}
+};

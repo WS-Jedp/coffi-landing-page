@@ -4,12 +4,13 @@ interface ToggleSwitchProps {
     label: string;
     onToggle?: () => void;
     isChecked?: boolean;
+    whiteText?: boolean
 }
 
-export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label, onToggle, isChecked }) => {
+export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ label, onToggle, isChecked, whiteText}) => {
   return (
     <div className="flex items-center space-x-1">
-      <span className="text-xs">
+      <span className={`text-xs ${whiteText ? 'text-coffi-white' : 'text-coffi-black'}`}>
         {label}
       </span>
       <button

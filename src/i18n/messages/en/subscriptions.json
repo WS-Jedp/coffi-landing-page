@@ -1,0 +1,16 @@
+{
+    "nomad": {
+        "success": {
+            "title": "Welcome to Nomad Life 🚀",
+            "nomadPlanUnlocked": "You've officially unlocked the Nomad Plan!",
+            "welcomeMessage": "We’re excited to have you here. Your next adventure starts now — wherever you are.",
+            "whatsNext": "Here’s what you can do next:",
+            "nextSteps": {
+                "explore": "Discover spots with real-time vibes and community insights.",
+                "connect": "Join a global community of remote workers and creatives.",
+                "enjoy": "Thrive in places that match your mood, goals, and dreams."
+            },
+            "receiptEmail": "You’ll receive a confirmation email with your receipt shortly."
+        }
+    }
+}

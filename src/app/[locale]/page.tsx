@@ -203,7 +203,7 @@ export default function Home() {
         <CallToActionBanner />
       </AnimatedSection>
 
-      <div className="w-full max-w-[1200px] mx-auto relative z-10">
+      <div className="w-full max-w-[1200px] mx-auto relative z-10 overflow-x-visible">
           <Purpose />
       </div>
     </section>

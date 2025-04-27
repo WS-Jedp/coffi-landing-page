@@ -62,7 +62,7 @@ export const PlaceRulesAndAmmenitiesFilterCard: React.FC<PlaceRulesAndAmmenities
         
         <div className={`mt-2 overflow-hidden transition-all duration-500 ease-in-out ${showNext ? "translate-y-0  max-h-screen opacity-100" : "-translate-y-3 max-h-0 opacity-0"}`}>
             <SimpleButtonOutline
-                text="Next"
+                text={t("actions.nav.next")}
                 action={onNext}
                 full
             />
