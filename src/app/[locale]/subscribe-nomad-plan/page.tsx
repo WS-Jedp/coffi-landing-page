@@ -1,27 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useState, useEffect, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { SimpleDarkButton } from "@/components/buttons";
 import { ToggleSwitch } from "@/components/inputs/toggle";
-import { ArrowRight, Check, Coffee, Globe, Users, Loader2 } from "lucide-react";
-
-// Dummy email validation service
-const validateEmail = async (email: string): Promise<boolean> => {
-  // Simulate API call with timeout
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Mock database of existing emails
-      const existingEmails = [
-        "test@example.com",
-        "user@coffi.com",
-        "demo@coffi.com",
-      ];
-      resolve(existingEmails.includes(email.toLowerCase()));
-    }, 1000);
-  });
-};
+import { Check, Coffee, Globe, Users, Loader2, AlertCircleIcon, CurrencyIcon, DollarSignIcon, CircleDollarSignIcon, AlertTriangleIcon, CheckCircle2 } from "lucide-react";
+import {
+  getWompiPaymentReference,
+  validateUserSubscription,
+} from "@/services/wompi";
+import Link from "next/link";
 
 // Particle component for premium animation
 const Particle = () => {
@@ -68,42 +57,42 @@ const Feature = ({
   description: string;
   index: number;
 }) => {
-// Define interfaces for variant animations
-interface VariantAnimationProps {
+  // Define interfaces for variant animations
+  interface VariantAnimationProps {
     opacity: number;
     y: number;
     scale: number;
-}
+  }
 
-interface VariantTransition {
+  interface VariantTransition {
     duration: number;
     ease: number[];
     delay: number;
-}
+  }
 
-interface VariantWithTransition extends VariantAnimationProps {
+  interface VariantWithTransition extends VariantAnimationProps {
     transition: VariantTransition;
-}
+  }
 
-interface FeatureVariants {
+  interface FeatureVariants {
     hidden: VariantAnimationProps;
     visible: (index: number) => VariantWithTransition;
     [key: string]: any; // Add index signature to make it compatible with Variants type
-}
+  }
 
-const featureItemVariants: FeatureVariants = {
+  const featureItemVariants: FeatureVariants = {
     hidden: { opacity: 0, y: 15, scale: 0.95 },
     visible: (index: number): VariantWithTransition => ({
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-            duration: 0.85,
-            ease: [0.21, 0.45, 0.15, 1], // Custom easing for elegant motion
-            delay: 0.1 * index, // Additional delay based on index for consecutive animation
-        },
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.85,
+        ease: [0.21, 0.45, 0.15, 1], // Custom easing for elegant motion
+        delay: 0.1 * index, // Additional delay based on index for consecutive animation
+      },
     }),
-};
+  };
   return (
     <motion.div
       className="flex items-start gap-3 mb-4"
@@ -121,12 +110,15 @@ const featureItemVariants: FeatureVariants = {
 
 export default function NomadPlanPage() {
   const t = useTranslations();
+  const locale = useLocale();
+  const formRef = useRef<HTMLFormElement>(null);
   const [isYearly, setIsYearly] = useState<boolean>(true);
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [particles, setParticles] = useState<number[]>([]);
   const [isEmailFormatValid, setIsEmailFormatValid] = useState<boolean>(false);
   const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
+  const [isSubscriptionValid, setIsSubscriptionValid] = useState<boolean>(false);
   const [isCheckingEmail, setIsCheckingEmail] = useState<boolean>(false);
   const [emailCheckTimeout, setEmailCheckTimeout] =
     useState<NodeJS.Timeout | null>(null);
@@ -190,51 +182,89 @@ export default function NomadPlanPage() {
       setIsEmailExisting(false);
     }
 
-    // If email format is valid, check if it exists after a delay
+    // If email format is valid, set a timeout before checking
     if (isValid && email.trim() !== "") {
       setIsCheckingEmail(true);
-      const timeoutId = setTimeout(async () => {
-        try {
-          const exists = await validateEmail(email);
-          setIsEmailExisting(exists);
-        } catch (error) {
-          console.error("Error validating email:", error);
-        } finally {
-          setIsCheckingEmail(false);
-        }
-      }, 600);
 
-      setEmailCheckTimeout(timeoutId);
+      // Create a new timeout - wait 1.5 seconds before checking
+      const newTimeout = setTimeout(() => {
+        validateUserSubscription({ email }).then((resp) => {
+          setIsEmailExisting(resp?.userExists || false);
+          setIsSubscriptionValid(resp?.isValid || false);
+          setIsCheckingEmail(false);
+        });
+      }, 1500);
+
+      // Save the timeout ID for cleanup
+      setEmailCheckTimeout(newTimeout);
     } else {
       setIsCheckingEmail(false);
     }
+
+    // Cleanup function
+    return () => {
+      if (emailCheckTimeout) {
+        clearTimeout(emailCheckTimeout);
+      }
+    };
   }, [email]);
 
   const onToggle = () => setIsYearly(!isYearly);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!isEmailFormatValid || !isEmailExisting) return;
 
     setIsLoading(true);
-    try {
-      // Here you would implement your actual Stripe checkout redirect
-      // For now, we'll just simulate a 1-second delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Then redirect to Stripe (mock)
-      alert(`Redirecting to payment with email: ${email}`);
-      // window.location.href = 'https://stripe.com/checkout/...'; // This would be your actual redirect
+    try {
+      const wompiKeys = await getWompiPaymentReference({
+        email,
+        isYearly: isYearly,
+        currency: "COP",
+      });
+
+      if (!wompiKeys) return;
+
+      const checkoutForm = document.createElement("form");
+      checkoutForm.method = "GET";
+      checkoutForm.action = process.env.NEXT_PUBLIC_WOMPI_CHECKOUT_URL || "";
+
+      const addHiddenField = (name: string, value: string) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        checkoutForm.appendChild(input);
+      };
+
+      // Required fields
+      addHiddenField("public-key", wompiKeys.wompiPublicKey);
+      addHiddenField("currency", "COP");
+      addHiddenField("amount-in-cents", wompiKeys.priceInCOP.toString());
+      addHiddenField("reference", wompiKeys.coffiDbReferenceId);
+      addHiddenField("signature:integrity", wompiKeys.wompiIntegrationSecret);
+
+      const redirectUrl =
+        window.location.origin +  `/${locale}/payment-status?email=${email}`;
+      addHiddenField("redirect-url", redirectUrl);
+
+      // Customer data
+      addHiddenField("customer-data:email", email);
+
+      document.body.appendChild(checkoutForm);
+      checkoutForm.submit();
     } catch (error) {
       console.error("Error initiating checkout", error);
-    } finally {
       setIsLoading(false);
     }
   };
 
   // Pricing details
-  const yearlyPrice = "$89.99";
-  const monthlyPrice = "$9.99";
+  const earlyAdopterYearlyPrice = "$69";
+  const yearlyPrice = "$99";
+  const monthlyPrice = "$12";
   const secondaryYearlyPriceText = t(
     "home.subscriptions.plans.nomad.billendAnnually"
   );
@@ -257,8 +287,7 @@ export default function NomadPlanPage() {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
-      opacity: 1,
-      y: 0,
+      opacity: 1, y: 0,
       transition: {
         duration: 0.9, // Longer duration for smoother feeling
         ease: [0.1, 0.5, 0.3, 1], // Smoother easing curve
@@ -327,14 +356,22 @@ export default function NomadPlanPage() {
               </motion.p>
 
               <motion.div className="mb-3" variants={itemVariants}>
+               
                 <motion.div
                   className="flex items-end"
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-coffi-white text-4xl font-bold mr-2">
+                  <span className={`text-coffi-white text-4xl font-bold ${isYearly ? 'line-through opacity-75' : 'mr-2'}`}>
                     {isYearly ? yearlyPrice : monthlyPrice}
                   </span>
+                  {
+                    isYearly && (
+                      <span className="text-coffi-white text-4xl font-bold mr-2">
+                        {earlyAdopterYearlyPrice}
+                      </span>
+                    ) 
+                  }
                   <span className="text-coffi-white/70 mb-1">
                     {isYearly
                       ? secondaryYearlyPriceText
@@ -343,16 +380,28 @@ export default function NomadPlanPage() {
                 </motion.div>
 
                 {isYearly && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-coffi-purple-400/20 text-white px-3 rounded-full text-sm inline-block"
-                  >
-                    {t("home.subscriptions.plans.nomad.savePercentYearly", {
-                      percent: "25",
-                    })}
-                  </motion.div>
+                  <>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="bg-coffi-purple-400/20 text-white px-3 rounded-full text-sm inline-block"
+                    >
+                      {t("home.subscriptions.plans.nomad.savePercentYearly", {
+                        percent: "52",
+                      })}
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="mt-2 bg-coffi-white/20 border border-coffi-white rounded-md p-2 text-sm text-coffi-white"
+                    >
+                      <div className="font-bold">{t('subscriptions.nomad.earlyAdopter.price')}</div>
+                      <div className="text-white/80 text-xs">{t('subscriptions.nomad.earlyAdopter.forLimitedTime')}</div>
+                    </motion.div>
+                    
+                  </>
                 )}
               </motion.div>
 
@@ -426,6 +475,7 @@ export default function NomadPlanPage() {
               </motion.p>
 
               <motion.form
+                ref={formRef}
                 className="flex flex-col space-y-3 flex-grow"
                 variants={itemVariants}
                 onSubmit={handleSubmit}
@@ -466,28 +516,45 @@ export default function NomadPlanPage() {
                         </div>
                       )}
 
-                      {isEmailFormatValid && isCheckingEmail && (
-                        <div className="flex items-center">
-                          <Loader2
-                            className="text-coffi-white/80 mr-2 animate-spin"
-                            size={18}
-                          />
-                          <span className="text-sm text-coffi-white/80">
-                            {t(
-                              "home.subscriptions.plans.nomad.checkout.checkingEmail"
-                            )}
-                          </span>
-                        </div>
-                      )}
+                      {
+                     isEmailFormatValid && isCheckingEmail && (
+                          <div className="flex items-center">
+                            <Loader2
+                              className="text-coffi-white/80 mr-2 animate-spin"
+                              size={18}
+                            />
+                            <span className="text-sm text-coffi-white/80">
+                              {t(
+                                "home.subscriptions.plans.nomad.checkout.checkingEmail"
+                              )}
+                            </span>
+                          </div>
+                        )
+                      }
 
                       {isEmailFormatValid &&
                         !isCheckingEmail &&
-                        isEmailExisting && (
+                        isEmailExisting && isSubscriptionValid ? (
                           <div className="flex items-center">
-                            <Check className="text-emerald-400 mr-2" size={18} />
+                            <Check
+                              className="text-emerald-400 mr-2"
+                              size={18}
+                            />
                             <span className="text-sm text-coffi-white/80">
                               {t(
                                 "home.subscriptions.plans.nomad.checkout.emailValidated"
+                              )}
+                            </span>
+                          </div>
+                        ) : isEmailExisting && !isSubscriptionValid && (
+                          <div className="flex items-center">
+                            <Check
+                              className="text-emerald-400 mr-2"
+                              size={18}
+                            />
+                            <span className="text-sm text-coffi-white/80">
+                              {t(
+                                "home.subscriptions.plans.nomad.checkout.emailWithValidSubscription"
                               )}
                             </span>
                           </div>
@@ -508,39 +575,55 @@ export default function NomadPlanPage() {
                   )}
                 </div>
 
+                {/* Payment Information Section */}
+                <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20">
+                  <h4 className="font-semibold text-white mb-2">{t('subscriptions.payments.title')}</h4>
+                  
+                  <div className="space-y-2 text-xs text-coffi-white/80">
+                    <p className="flex flex-row items-center">
+                      <AlertCircleIcon size={15} className="inline-flex mr-2" />
+                      {t('subscriptions.payments.process.throughExternal')} <Link href="https://wompi.com/es/co/" target="_blank" rel="noopener noreferrer" className="underline font-bold mx-1">Wompi</Link> {t('subscriptions.payments.process.paymentPlatform')}
+                    </p>
+                    
+                    <p className="flex flex-row  items-center">
+                      <CircleDollarSignIcon size={23} className="inline-flex mr-2" />
+                      {t('subscriptions.payments.process.chargesMayVary')}
+                    </p>
+                    
+                    <p className="flex items-center">
+                      <AlertTriangleIcon size={15} className="inline-flex mr-2" />
+                      {t('subscriptions.payments.process.coffiIsNotResponsible')}
+                    </p>
+                  </div>
+                </div>
+
                 <div className="mt-auto pt-4">
-                  <motion.div
-                    whileHover={{
-                      scale:
-                        isEmailFormatValid && isEmailExisting && !isLoading
-                          ? 1.02
-                          : 1,
-                    }}
-                    whileTap={{
-                      scale:
-                        isEmailFormatValid && isEmailExisting && !isLoading
-                          ? 0.98
-                          : 1,
-                    }}
-                  >
-                    <SimpleDarkButton
-                      shimmer
-                      action={() => {}}
-                      text={
-                        isLoading
-                          ? t(
-                              "home.subscriptions.plans.nomad.checkout.processing"
-                            )
-                          : t(
-                              "home.subscriptions.plans.nomad.checkout.continueToCheckout"
-                            )
+                  <SimpleDarkButton
+                    shimmer
+                    action={() => {
+                      if (formRef.current) {
+                        formRef.current.dispatchEvent(
+                          new Event("submit", {
+                            cancelable: true,
+                            bubbles: true,
+                          })
+                        );
                       }
-                      full
-                      disabled={
-                        !isEmailFormatValid || !isEmailExisting || isLoading
-                      }
-                    />
-                  </motion.div>
+                    }}
+                    text={
+                      isLoading
+                        ? t(
+                            "home.subscriptions.plans.nomad.checkout.processing"
+                          )
+                        : t(
+                            "home.subscriptions.plans.nomad.checkout.continueToCheckout"
+                          )
+                    }
+                    full
+                    disabled={
+                      (!isEmailFormatValid || !isEmailExisting || isLoading) || (isEmailFormatValid && isEmailExisting && !isSubscriptionValid)
+                    }
+                  />
 
                   <p className="text-xs text-center text-coffi-white/60 mt-4">
                     {t("home.subscriptions.plans.nomad.checkout.securePayment")}

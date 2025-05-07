@@ -154,7 +154,7 @@
         "savePercentYearly": "Ahorra el {percent}% mensualmente",
         "yearly": "Anual",
         "yearlyPrice": "O {price} facturado mensualmente",
-        "monthlyPrice": "O {price} facturado anualmente",
+        "monthlyPrice": "O {price} al mes facturado anualmente",
         "action": "Actualiza al plan Nómada",
         "why": "Vaya más allá de la exploración, con acceso exclusivo a lugares descubiertos por la comunidad,  de lugares por información en tiempo real y ganar Coffi puntos extras.",
         "benefits": {
@@ -179,6 +179,7 @@
           "coffiEmailAccount": "Ingresa el correo de tu cuenta Coffi",
           "validEmail": "Por favor ingresa un correo válido para continuar",
           "emailValidated": "¡Correo encontrado! Sigamos 🚀",
+          "emailWithValidSubscription": "Este correo ya tiene una suscripción válida",
           "continueToCheckout": "Continuar al pago",
           "securePayment": "Pago seguro con encriptación — tu información siempre estará protegida.",
           "invalidEmailFormat": "Por favor ingresa un correo válido",

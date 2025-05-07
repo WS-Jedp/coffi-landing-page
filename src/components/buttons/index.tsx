@@ -10,6 +10,7 @@ interface SimpleButtonProps {
   loading?: boolean;
   full?: boolean;
   shimmer?: boolean;
+  id?: string;
 }
 
 export const SimpleButton: React.FC<SimpleButtonProps> = ({
@@ -92,16 +93,20 @@ export const SimpleDarkButton: React.FC<SimpleButtonProps> = ({
   action,
   full = false,
   shimmer = false,
+  id,
+  disabled
 }) => {
   return (
     <button
+      id={id}
       className={`
           ${!full ? "max-w-[300px" : "w-full"}
           bg-coffi-purple text-coffi-white rounded-lg py-[6px] px-6 
            transition-all duration-500 ease-in-out
-          ${shimmer ? 'relative overflow-hidden shadow-coffi-purple-300 hover:shadow-lg hover:bg-coffi-purple/60' : ' hover:bg-coffi-purple/90'}
+          ${!disabled ? shimmer ? 'relative overflow-hidden shadow-coffi-purple-300 hover:shadow-lg hover:bg-coffi-purple/60' : ' hover:bg-coffi-purple/90' : 'relative cursor-not-allowed overflow-hidden opacity-60'}
         `}
-      onClick={action}
+      onClick={!disabled ? action : () => {}}
+      disabled={disabled}
     >
       <span className="font-semibold text-md relative z-10">{text}</span>
       {shimmer && (

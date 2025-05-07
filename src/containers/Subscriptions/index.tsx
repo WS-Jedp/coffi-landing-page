@@ -190,18 +190,18 @@ export const Subscriptions: React.FC = () => {
               title={t("home.subscriptions.plans.nomad.title")}
               description={t("home.subscriptions.plans.nomad.description")}
               yearlyPrice={t("home.subscriptions.plans.nomad.price", {
-                price: "$4,99",
+                price: "$5,75",
               })}
               monthlyPrice={t("home.subscriptions.plans.nomad.price", {
-                price: "$6,99",
+                price: "$12",
               })}
               secondaryYearlyPriceText={t(
                 "home.subscriptions.plans.nomad.yearlyPrice",
-                { price: "$6,99" }
+                { price: "$12" }
               )}
               secondaryMonthlyPriceText={t(
                 "home.subscriptions.plans.nomad.monthlyPrice",
-                { price: "$4,99" }
+                { price: "$5,75" }
               )}
               actionButton={t("home.subscriptions.plans.nomad.action")}
               full

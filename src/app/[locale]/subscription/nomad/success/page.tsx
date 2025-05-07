@@ -76,6 +76,7 @@ const CelebrationParticle = () => {
 export default function NomadPlanSuccessPage() {
   const t = useTranslations();
   const [particles, setParticles] = useState<number[]>([]);
+  const [userEmail, setUserEmail] = useState<string>(); // Placeholder for any additional state
   const { redirectToCoffi } = useRedirectToCoffiApp()
 
   // Initialize particles on component mount
@@ -132,6 +133,14 @@ export default function NomadPlanSuccessPage() {
       document.head.appendChild(styleSheet);
     }
   }, []);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const email = queryParams.get("email");
+    if (email) {
+      setUserEmail(email);
+    }
+  }, [])
 
   // Animation variants
   const containerVariants = {
@@ -225,6 +234,20 @@ export default function NomadPlanSuccessPage() {
               defaultValue: `Thanks for joining Coffi, ${username}! Your subscription to the Nomad Plan is now active. You now have full access to all premium features.`,
             })}
           </motion.p>
+          
+          {userEmail && (
+            <motion.p
+              variants={itemVariants}
+              className="text-coffi-white text-base mb-6"
+            >
+              <span>
+                {t("subscriptions.nomad.success.emailConfirmation", {
+                  defaultValue: "Subscription confirmed with:",
+                })}
+              </span>{" "}
+              <span className="text-coffi-white font-semibold">{userEmail}</span>
+            </motion.p>
+          )}
 
           <motion.div
             className="bg-coffi-white/10 backdrop-blur p-6 rounded-xl mb-8 max-w-lg w-full"

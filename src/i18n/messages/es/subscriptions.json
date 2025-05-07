@@ -5,12 +5,48 @@
             "nomadPlanUnlocked": "¡Has desbloqueado oficialmente el Plan Nómada!",
             "welcomeMessage": "Nos emociona tenerte aquí. Tu próxima aventura comienza ahora, estés donde estés.",
             "whatsNext": "¿Qué sigue ahora?",
+            "emailConfirmation": "Suscripción confirmada con:",
             "nextSteps": {
                 "explore": "Descubre lugares con vibras en tiempo real y opiniones de la comunidad.",
                 "connect": "Conecta con una comunidad global de nómadas y creativos.",
                 "enjoy": "Disfruta espacios que se adaptan a tu estado de ánimo, tus metas y tus sueños."
             },
             "receiptEmail": "Pronto recibirás un correo de confirmación con tu recibo."
+        },
+        "failed": {
+            "title": "¡Ups! Algo salió mal.",
+            "paymentError": "Parece que hubo un problema al procesar tu pago.",
+            "errorMessage": "No te preocupes, estamos aquí para ayudarte. Por favor, revisa tu correo electrónico para más detalles.",
+            "whatToDo": "¿Qué sigue ahora?",
+            "nextSteps": {
+                "checkCard": "Revisa los detalles de tu tarjeta y asegúrate de que sean correctos",
+                "verifyFunds": "Verifica que tengas fondos suficientes disponibles",
+                "tryAgain": "Intenta de nuevo o utiliza un método de pago diferente"
+            },
+            "contactSupport": "Contacta a nuestro soporte para resolver cualquier inconveniente.",
+            "actions": {
+                "tryAgain": "Intentar de nuevo"
+            }
+        },
+        "earlyAdopter": {
+            "price": "🎁 Precio para Pioneros",
+            "forLimitedTime": "¡Oferta por tiempo limitado para quienes confían en nuestro proyecto!"
+        }
+    },
+    "payments": {
+        "status": {
+            "processing": {
+                "title": "Processing Payment",
+                "description": "We're processing your payment. Please wait while we confirm your transaction...",
+                "note": "Esto puede tomar unos momentos. Por favor, no cierres esta ventana."
+            }
+        },
+        "title": "Información de Pago",
+        "process": {
+            "throughExternal": "El pago se procesará a través de",
+            "paymentPlatform": "plataforma de pago.",
+            "chargesMayVary": "Los cargos se procesarán en Pesos Colombianos (COP). El monto final puede variar ligeramente debido a las tasas de conversión de moneda.",
+            "coffiIsNotResponsible": "Coffi no se responsabiliza por fallos, errores o interrupciones de servicio en la plataforma de pago Wompi."
         }
     }
 }

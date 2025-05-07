@@ -1,0 +1,5 @@
+export enum PAYMENTS_ENUM {
+    YEARLY_PRICE_IN_COP = 46600000,
+    MONTHLY_PRICE_IN_COP = 5100000,
+  }
+  

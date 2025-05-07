@@ -154,7 +154,7 @@
                 "savePercentYearly": "Save {percent}% monthly",
                 "yearly": "Yearly",
                 "yearlyPrice": "Or {price} billed monthly",
-                "monthlyPrice": "Or {price} billed annually",
+                "monthlyPrice": "Or {price} monthly billed annually",
                 "action": "Upgrade to Nomad Plan",
                 "why": "Go beyond exploration with access to community-discovered spots, real-time insights, and Coffi Points.",
                 "benefits": {
@@ -184,6 +184,7 @@
                     "invalidEmailFormat": "Please enter a valid email format",
                     "checkingEmail": "Checking your email...",
                     "emailNotFound": "We couldn’t find an account with that email",
+                    "emailWithValidSubscription": "This email is already linked to a valid subscription",
                     "processing": "Processing your request..."
                 }
             },
