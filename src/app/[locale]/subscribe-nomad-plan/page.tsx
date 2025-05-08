@@ -246,6 +246,9 @@ export default function NomadPlanPage() {
       addHiddenField("reference", wompiKeys.coffiDbReferenceId);
       addHiddenField("signature:integrity", wompiKeys.wompiIntegrationSecret);
 
+      // Restrict payment methods to credit/debit cards only
+      addHiddenField("payment-methods", "CARD");
+
       const redirectUrl =
         window.location.origin +  `/${locale}/payment-status?email=${email}`;
       addHiddenField("redirect-url", redirectUrl);

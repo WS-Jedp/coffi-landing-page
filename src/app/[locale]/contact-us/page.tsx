@@ -18,10 +18,10 @@ export default function ContactUs() {
         <div className="text-md font-normal text-start space-y-4">
           <p>
             <a
-              href="mailto:help@coffi.com"
+              href="mailto:letscoffi@gmail.com"
               className="font-bold text-coffi-purple underline hover:text-coffi-purple/70 transition text-4xl md:text-6xl"
             >
-              help@coffi.com
+              letscoffi@gmail.com
             </a>
           </p>
           <p>{t("contact.howItWorks.description")}</p>
