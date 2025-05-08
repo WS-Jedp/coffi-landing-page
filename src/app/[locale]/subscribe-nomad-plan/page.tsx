@@ -580,18 +580,20 @@ export default function NomadPlanPage() {
                   <h4 className="font-semibold text-white mb-2">{t('subscriptions.payments.title')}</h4>
                   
                   <div className="space-y-2 text-xs text-coffi-white/80">
-                    <p className="flex flex-row items-center">
-                      <AlertCircleIcon size={15} className="inline-flex mr-2" />
-                      {t('subscriptions.payments.process.throughExternal')} <Link href="https://wompi.com/es/co/" target="_blank" rel="noopener noreferrer" className="underline font-bold mx-1">Wompi</Link> {t('subscriptions.payments.process.paymentPlatform')}
+                    <p className="flex items-center">
+                      <AlertCircleIcon size={18} className="inline-flex mr-2" />
+                      <span>
+                        {t('subscriptions.payments.process.throughExternal')} <Link href="https://wompi.com/es/co/" target="_blank" rel="noopener noreferrer" className="inline underline font-bold">Wompi</Link> {t('subscriptions.payments.process.paymentPlatform')}
+                      </span>
                     </p>
                     
                     <p className="flex flex-row  items-center">
-                      <CircleDollarSignIcon size={23} className="inline-flex mr-2" />
+                      <CircleDollarSignIcon size={27} className="inline-flex mr-2" />
                       {t('subscriptions.payments.process.chargesMayVary')}
                     </p>
                     
                     <p className="flex items-center">
-                      <AlertTriangleIcon size={15} className="inline-flex mr-2" />
+                      <AlertTriangleIcon size={21} className="inline-flex mr-2" />
                       {t('subscriptions.payments.process.coffiIsNotResponsible')}
                     </p>
                   </div>

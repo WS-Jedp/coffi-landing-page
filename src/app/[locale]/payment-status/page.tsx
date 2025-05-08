@@ -70,6 +70,11 @@ export default function PaymentStatus() {
       } else {
         router.push(`/${locale}/subscription/nomad/success?email=${data?.email}`);
       }
+    }).catch((error) => {
+      console.error("Error fetching payment status:", error);
+      const searchParams = new URLSearchParams(window.location.search);
+      const id = searchParams.get("id");
+      router.push(`/${locale}/subscription/nomad/failed?wompiId=${id}`);
     });
   }, []);
   // Initialize particles on component mount

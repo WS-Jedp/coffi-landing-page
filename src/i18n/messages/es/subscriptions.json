@@ -30,14 +30,14 @@
         },
         "earlyAdopter": {
             "price": "🎁 Precio para Pioneros",
-            "forLimitedTime": "¡Oferta por tiempo limitado para quienes confían en nuestro proyecto!"
+            "forLimitedTime": "Una oferta especial de lanzamiento para agradecer a nuestros pioneros — tu confianza impulsa esta aventura."
         }
     },
     "payments": {
         "status": {
             "processing": {
-                "title": "Processing Payment",
-                "description": "We're processing your payment. Please wait while we confirm your transaction...",
+                "title": "Procesando Pago",
+                "description": "Estamos procesando tu pago. Por favor, espera mientras confirmamos tu transacción...",
                 "note": "Esto puede tomar unos momentos. Por favor, no cierres esta ventana."
             }
         },
