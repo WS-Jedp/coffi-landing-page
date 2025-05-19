@@ -193,11 +193,11 @@ export const Subscriptions: React.FC = () => {
                 price: "$5,75",
               })}
               monthlyPrice={t("home.subscriptions.plans.nomad.price", {
-                price: "$12",
+                price: "$6.99",
               })}
               secondaryYearlyPriceText={t(
                 "home.subscriptions.plans.nomad.yearlyPrice",
-                { price: "$12" }
+                { price: "$6.99" }
               )}
               secondaryMonthlyPriceText={t(
                 "home.subscriptions.plans.nomad.monthlyPrice",
