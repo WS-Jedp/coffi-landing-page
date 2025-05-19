@@ -38,7 +38,7 @@ export default function LanguageSelector() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <ul className="absolute left-0 w-28 mt-2 drop-shadow-md bg-white/80 backdrop-blur-md border rounded-md shadow-md">
+        <ul className="absolute right-0 w-28 mt-2 drop-shadow-md bg-white/80 backdrop-blur-md border rounded-md shadow-md">
           {languages.map((lang) => (
             <li key={lang.code}>
               <button

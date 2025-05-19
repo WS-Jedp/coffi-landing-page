@@ -107,6 +107,15 @@ export default function NomadPlanFailedPage() {
     }
   }, []);
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const wompiTransactionId = queryParams.get("wompiId");
+    if(!wompiTransactionId) {
+
+    }
+  }, [])
+
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

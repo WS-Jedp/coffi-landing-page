@@ -60,15 +60,15 @@ export default function PaymentStatus() {
     const resp = await fetch(`${wompiTransactionAPIUrl}/transactions/${id}`);
     const data = await resp.json();
 
-    return { status: data.data.status, email };
+    return { status: data.data.status, email, coffiSubscriptionId: data.data.reference };
   };
 
   useEffect(() => {
     validateStatusPayment().then((data) => {
       if (!data || data.status !== "APPROVED") {
-        router.push(`/${locale}/subscription/nomad/failed?email=${data?.email}`);
+        router.push(`/${locale}/subscription/nomad/failed?email=${data?.email}&subscriptionId=${data?.coffiSubscriptionId}`);
       } else {
-        router.push(`/${locale}/subscription/nomad/success?email=${data?.email}`);
+        router.push(`/${locale}/subscription/nomad/success?email=${data?.email}&subscriptionId=${data?.coffiSubscriptionId}`);
       }
     }).catch((error) => {
       console.error("Error fetching payment status:", error);

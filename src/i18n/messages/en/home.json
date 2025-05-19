@@ -185,7 +185,8 @@
                     "checkingEmail": "Checking your email...",
                     "emailNotFound": "We couldn’t find an account with that email",
                     "emailWithValidSubscription": "This email is already linked to a valid subscription",
-                    "processing": "Processing your request..."
+                    "processing": "Processing your request...",
+                    "createAccount": "create an account first in order to subscribe"
                 }
             },
             "wanderlust": {

@@ -5,7 +5,19 @@ import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { SimpleDarkButton } from "@/components/buttons";
 import { ToggleSwitch } from "@/components/inputs/toggle";
-import { Check, Coffee, Globe, Users, Loader2, AlertCircleIcon, CurrencyIcon, DollarSignIcon, CircleDollarSignIcon, AlertTriangleIcon, CheckCircle2 } from "lucide-react";
+import {
+  Check,
+  Coffee,
+  Globe,
+  Users,
+  Loader2,
+  AlertCircleIcon,
+  CurrencyIcon,
+  DollarSignIcon,
+  CircleDollarSignIcon,
+  AlertTriangleIcon,
+  CheckCircle2,
+} from "lucide-react";
 import {
   getWompiPaymentReference,
   validateUserSubscription,
@@ -111,6 +123,7 @@ const Feature = ({
 export default function NomadPlanPage() {
   const t = useTranslations();
   const locale = useLocale();
+  const ccoffiUrl = process.env.NEXT_PUBLIC_COFFI_APP_URL;
   const formRef = useRef<HTMLFormElement>(null);
   const [isYearly, setIsYearly] = useState<boolean>(true);
   const [email, setEmail] = useState<string>("");
@@ -118,7 +131,8 @@ export default function NomadPlanPage() {
   const [particles, setParticles] = useState<number[]>([]);
   const [isEmailFormatValid, setIsEmailFormatValid] = useState<boolean>(false);
   const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
-  const [isSubscriptionValid, setIsSubscriptionValid] = useState<boolean>(false);
+  const [isSubscriptionValid, setIsSubscriptionValid] =
+    useState<boolean>(false);
   const [isCheckingEmail, setIsCheckingEmail] = useState<boolean>(false);
   const [emailCheckTimeout, setEmailCheckTimeout] =
     useState<NodeJS.Timeout | null>(null);
@@ -250,7 +264,7 @@ export default function NomadPlanPage() {
       addHiddenField("payment-methods", "CARD");
 
       const redirectUrl =
-        window.location.origin +  `/${locale}/payment-status?email=${email}`;
+        window.location.origin + `/${locale}/payment-status?email=${email}`;
       addHiddenField("redirect-url", redirectUrl);
 
       // Customer data
@@ -267,6 +281,7 @@ export default function NomadPlanPage() {
   // Pricing details
   const earlyAdopterYearlyPrice = "$69";
   const yearlyPrice = "$99";
+  const earlyAdopterMonthlyPrice = "$6.99";
   const monthlyPrice = "$12";
   const secondaryYearlyPriceText = t(
     "home.subscriptions.plans.nomad.billendAnnually"
@@ -290,7 +305,8 @@ export default function NomadPlanPage() {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
-      opacity: 1, y: 0,
+      opacity: 1,
+      y: 0,
       transition: {
         duration: 0.9, // Longer duration for smoother feeling
         ease: [0.1, 0.5, 0.3, 1], // Smoother easing curve
@@ -359,22 +375,21 @@ export default function NomadPlanPage() {
               </motion.p>
 
               <motion.div className="mb-3" variants={itemVariants}>
-               
                 <motion.div
                   className="flex items-end"
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className={`text-coffi-white text-4xl font-bold ${isYearly ? 'line-through opacity-75' : 'mr-2'}`}>
+                  <span
+                    className={`text-coffi-white text-4xl font-bold line-through opacity-75`}
+                  >
                     {isYearly ? yearlyPrice : monthlyPrice}
                   </span>
-                  {
-                    isYearly && (
-                      <span className="text-coffi-white text-4xl font-bold mr-2">
-                        {earlyAdopterYearlyPrice}
-                      </span>
-                    ) 
-                  }
+                  <span className="text-coffi-white text-4xl font-bold mr-2">
+                    {isYearly
+                      ? earlyAdopterYearlyPrice
+                      : earlyAdopterMonthlyPrice}
+                  </span>
                   <span className="text-coffi-white/70 mb-1">
                     {isYearly
                       ? secondaryYearlyPriceText
@@ -382,8 +397,7 @@ export default function NomadPlanPage() {
                   </span>
                 </motion.div>
 
-                {isYearly && (
-                  <>
+                  {isYearly && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -394,18 +408,20 @@ export default function NomadPlanPage() {
                         percent: "52",
                       })}
                     </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="mt-2 bg-coffi-white/20 border border-coffi-white rounded-md p-2 text-sm text-coffi-white"
-                    >
-                      <div className="font-bold">{t('subscriptions.nomad.earlyAdopter.price')}</div>
-                      <div className="text-white/80 text-xs">{t('subscriptions.nomad.earlyAdopter.forLimitedTime')}</div>
-                    </motion.div>
-                    
-                  </>
-                )}
+                  )}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="mt-2 bg-coffi-white/20 border border-coffi-white rounded-md p-2 text-sm text-coffi-white"
+                  >
+                    <div className="font-bold">
+                      {t("subscriptions.nomad.earlyAdopter.price")}
+                    </div>
+                    <div className="text-white/80 text-xs">
+                      {t("subscriptions.nomad.earlyAdopter.forLimitedTime")}
+                    </div>
+                  </motion.div>
               </motion.div>
 
               <motion.div className="mb-8" variants={itemVariants}>
@@ -519,37 +535,35 @@ export default function NomadPlanPage() {
                         </div>
                       )}
 
-                      {
-                     isEmailFormatValid && isCheckingEmail && (
-                          <div className="flex items-center">
-                            <Loader2
-                              className="text-coffi-white/80 mr-2 animate-spin"
-                              size={18}
-                            />
-                            <span className="text-sm text-coffi-white/80">
-                              {t(
-                                "home.subscriptions.plans.nomad.checkout.checkingEmail"
-                              )}
-                            </span>
-                          </div>
-                        )
-                      }
+                      {isEmailFormatValid && isCheckingEmail && (
+                        <div className="flex items-center">
+                          <Loader2
+                            className="text-coffi-white/80 mr-2 animate-spin"
+                            size={18}
+                          />
+                          <span className="text-sm text-coffi-white/80">
+                            {t(
+                              "home.subscriptions.plans.nomad.checkout.checkingEmail"
+                            )}
+                          </span>
+                        </div>
+                      )}
 
                       {isEmailFormatValid &&
-                        !isCheckingEmail &&
-                        isEmailExisting && isSubscriptionValid ? (
-                          <div className="flex items-center">
-                            <Check
-                              className="text-emerald-400 mr-2"
-                              size={18}
-                            />
-                            <span className="text-sm text-coffi-white/80">
-                              {t(
-                                "home.subscriptions.plans.nomad.checkout.emailValidated"
-                              )}
-                            </span>
-                          </div>
-                        ) : isEmailExisting && !isSubscriptionValid && (
+                      !isCheckingEmail &&
+                      isEmailExisting &&
+                      isSubscriptionValid ? (
+                        <div className="flex items-center">
+                          <Check className="text-emerald-400 mr-2" size={18} />
+                          <span className="text-sm text-coffi-white/80">
+                            {t(
+                              "home.subscriptions.plans.nomad.checkout.emailValidated"
+                            )}
+                          </span>
+                        </div>
+                      ) : (
+                        isEmailExisting &&
+                        !isSubscriptionValid && (
                           <div className="flex items-center">
                             <Check
                               className="text-emerald-400 mr-2"
@@ -561,17 +575,31 @@ export default function NomadPlanPage() {
                               )}
                             </span>
                           </div>
-                        )}
+                        )
+                      )}
 
                       {isEmailFormatValid &&
                         !isCheckingEmail &&
                         !isEmailExisting && (
                           <div className="flex items-center">
-                            <span className="text-sm text-amber-400">
+                            <p className="text-sm text-amber-400">
                               {t(
                                 "home.subscriptions.plans.nomad.checkout.emailNotFound"
                               )}
-                            </span>
+                              {", "}
+                              <Link
+                                href={
+                                  `${ccoffiUrl}?fromLanding=true&authRegister=${email}` ||
+                                  `https://app.coffi.com.co?fromLanding=true&authRegister=${email}`
+                                }
+                                target="_blank"
+                                className="inline font-medium underline"
+                              >
+                                {t(
+                                  "home.subscriptions.plans.nomad.checkout.createAccount"
+                                )}
+                              </Link>
+                            </p>
                           </div>
                         )}
                     </>
@@ -580,24 +608,43 @@ export default function NomadPlanPage() {
 
                 {/* Payment Information Section */}
                 <div className="mt-4 p-3 bg-white/10 rounded-lg border border-white/20">
-                  <h4 className="font-semibold text-white mb-2">{t('subscriptions.payments.title')}</h4>
-                  
+                  <h4 className="font-semibold text-white mb-2">
+                    {t("subscriptions.payments.title")}
+                  </h4>
+
                   <div className="space-y-2 text-xs text-coffi-white/80">
                     <p className="flex items-center">
                       <AlertCircleIcon size={18} className="inline-flex mr-2" />
                       <span>
-                        {t('subscriptions.payments.process.throughExternal')} <Link href="https://wompi.com/es/co/" target="_blank" rel="noopener noreferrer" className="inline underline font-bold">Wompi</Link> {t('subscriptions.payments.process.paymentPlatform')}
+                        {t("subscriptions.payments.process.throughExternal")}{" "}
+                        <Link
+                          href="https://wompi.com/es/co/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline underline font-bold"
+                        >
+                          Wompi
+                        </Link>{" "}
+                        {t("subscriptions.payments.process.paymentPlatform")}
                       </span>
                     </p>
-                    
+
                     <p className="flex flex-row  items-center">
-                      <CircleDollarSignIcon size={27} className="inline-flex mr-2" />
-                      {t('subscriptions.payments.process.chargesMayVary')}
+                      <CircleDollarSignIcon
+                        size={27}
+                        className="inline-flex mr-2"
+                      />
+                      {t("subscriptions.payments.process.chargesMayVary")}
                     </p>
-                    
+
                     <p className="flex items-center">
-                      <AlertTriangleIcon size={21} className="inline-flex mr-2" />
-                      {t('subscriptions.payments.process.coffiIsNotResponsible')}
+                      <AlertTriangleIcon
+                        size={21}
+                        className="inline-flex mr-2"
+                      />
+                      {t(
+                        "subscriptions.payments.process.coffiIsNotResponsible"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -626,7 +673,12 @@ export default function NomadPlanPage() {
                     }
                     full
                     disabled={
-                      (!isEmailFormatValid || !isEmailExisting || isLoading) || (isEmailFormatValid && isEmailExisting && !isSubscriptionValid)
+                      !isEmailFormatValid ||
+                      !isEmailExisting ||
+                      isLoading ||
+                      (isEmailFormatValid &&
+                        isEmailExisting &&
+                        !isSubscriptionValid)
                     }
                   />
 

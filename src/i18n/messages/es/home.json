@@ -185,7 +185,8 @@
           "invalidEmailFormat": "Por favor ingresa un correo válido",
           "checkingEmail": "Verificando tu correo...",
           "emailNotFound": "No encontramos una cuenta con ese correo",
-          "processing": "Procesando tu solicitud..."
+          "processing": "Procesando tu solicitud...",
+          "createAccount": "crea una cuenta antes de continuar"
         }
       },
       "wanderlust": {
