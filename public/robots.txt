@@ -1,0 +1,41 @@
+# Robots.txt for Coffi - Coworking Spaces Medellín
+# https://coffi.com.co
+
+User-agent: *
+Allow: /
+
+# Allow important pages
+Allow: /en/
+Allow: /es/
+Allow: /about-us
+Allow: /contact-us
+Allow: /for-places
+Allow: /faqs
+Allow: /privacy-policy
+Allow: /terms-of-service
+
+# Disallow admin or development paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://coffi.com.co/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2

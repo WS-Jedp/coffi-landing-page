@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mt-4">
             <Link
-              href="https://qa.coffi.com.co"
+              href="https://app.coffi.com.co"
               className="bg-white text-coffi-purple font-bold py-3 px-6 rounded-xl hover:bg-opacity-90 transition-all shadow-lg inline-flex items-center"
             >
               {t("actions.general.startDiscovering")}

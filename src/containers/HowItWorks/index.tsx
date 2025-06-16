@@ -327,13 +327,13 @@ export const HowItWorks: React.FC = () => {
       className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center mx-auto px-6 xl:px-0 mb-12"
       id="features"
     >
-      <motion.h1
+      <motion.h2
         variants={titleVariants}
         className="font-bold text-4xl md:text-7xl mx-auto"
       >
         {t("home.howItWorks.thePathTo")} <br />
         {t("home.howItWorks.perfectSpot")}
-      </motion.h1>
+      </motion.h2>
       <motion.p variants={titleVariants} className="text-lg font-light mt-2">
         {t("home.howItWorks.description")}
       </motion.p>

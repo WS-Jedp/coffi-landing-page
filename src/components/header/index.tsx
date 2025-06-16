@@ -184,19 +184,19 @@ export const Header: React.FC = () => {
         <article className="flex flex-row flex-nowrap items-center cursor-pointer text-coffi-black">
           <Image
             src="/assets/images/coffi-logo.svg"
-            alt="logo"
+            alt="Coffi logo - Coworking spaces and work cafés in Medellín, Colombia"
             width={45}
             height={45}
             className="mr-1"
           />
           <Link href="/" onClick={handleLinkClick}>
             <div className="flex flex-col items-start jusitfy-center h-full border-solid border-black">
-              <h1 className="block font-black text-xl md:text-2xl cursor-pointer my-0 py-0">
+              <span className="block font-black text-xl md:text-2xl cursor-pointer my-0 py-0">
                 Coffi
-              </h1>
-              <h2 className="font-light text-xs md:text-sm my-0 py-0 pl-[1px] mt-[-3px]">
+              </span>
+              <span className="font-light text-xs md:text-sm my-0 py-0 pl-[1px] mt-[-3px]">
                 Be where you thrive
-              </h2>
+              </span>
             </div>
           </Link>
         </article>

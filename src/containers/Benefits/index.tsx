@@ -343,14 +343,14 @@ export const Benefits: React.FC = () => {
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      <motion.h1
+      <motion.h2
         className="font-bold text-4xl md:text-7xl mb-6"
         variants={itemVariants}
       >
         {t("home.benefits.enhanceYourJourney")}{" "}
         <br className="hidden md:block" />
         {t("home.benefits.coffiBenefits")}
-      </motion.h1>
+      </motion.h2>
 
       <motion.section
         className="relative w-full h-auto grid grid-cols-4 grid-rows-2 gap-4 md:gap-4"

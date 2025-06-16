@@ -69,13 +69,13 @@ export const Subscriptions: React.FC = () => {
         animate={inView ? "visible" : "hidden"}
         className="flex flex-col items-center justify-start w-full min-h-screen h-auto text-center px-6 xl:px-0 mx-auto mb-14"
       >
-        <motion.h1
+        <motion.h2
           variants={headerVariants}
           className="font-bold text-4xl md:text-7xl mx-auto"
         >
           {t("home.subscriptions.choose")} <br />
           {t("home.subscriptions.betterForYou")}
-        </motion.h1>
+        </motion.h2>
         <motion.p
           variants={headerVariants}
           className="w-full md:w-6/12 wtext-lg font-light mt-2"

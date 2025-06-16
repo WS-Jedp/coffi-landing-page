@@ -233,13 +233,13 @@ export const Purpose: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <motion.h1 
+        <motion.h2 
           className="font-bold text-4xl md:text-7xl mx-auto mb-9"
           variants={itemVariants}
         >
           {t("home.purpose.empoweringNomads")} <br />
           {t("home.purpose.oneAtATime")}
-        </motion.h1>
+        </motion.h2>
         <motion.p 
           className="text-xl font-light mt-2 w-full md:w-8/12 mb-9"
           variants={itemVariants}

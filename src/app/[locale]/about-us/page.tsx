@@ -153,7 +153,7 @@ export default function AboutUs() {
           >
             <Link
               className="font-bold underline flex flex-row flex-nowrap"
-              href="https://qa.coffi.com.co"
+              href="https://app.coffi.com.co"
               target="_blank"
             >
               {t("aboutUs.what.action")}

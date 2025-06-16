@@ -133,7 +133,7 @@ export const WhatIsCoffi: React.FC = () => {
             exit="exit"
             variants={containerVariants}
           >
-            <motion.h1
+            <motion.h2
               className="font-bold text-4xl md:text-7xl text-center md:text-start text-gray-900 drop-shadow-sm"
               variants={itemVariants}
             >
@@ -159,7 +159,7 @@ export const WhatIsCoffi: React.FC = () => {
               <motion.span variants={itemVariants} className="inline-block">
                 {currentLocale === "en" ? t("home.sessions") : t("home.daily")}
               </motion.span>
-            </motion.h1>
+            </motion.h2>
 
             <motion.p
               className="text-lg font-light mt-3 mb-5 text-center md:text-start w-full md:w-[80%] text-gray-800"
