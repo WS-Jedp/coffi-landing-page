@@ -9,6 +9,13 @@ Allow: /en/
 Allow: /es/
 Allow: /about-us
 Allow: /contact-us
+Allow: /blog/
+Allow: /en/blog/
+Allow: /es/blog/
+Allow: /en/blog/best-cafes-and-workfriendly-spaces-in-medellin
+Allow: /es/blog/los-mejores-cafes-espacios-de-trabajo-amigables-en-medellin
+Allow: /en/blog/about-work-friendly-spaces
+Allow: /es/blog/sobre-espacios-de-trabajo-amigables
 Allow: /for-places
 Allow: /faqs
 Allow: /privacy-policy

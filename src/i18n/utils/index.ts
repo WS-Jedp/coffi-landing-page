@@ -15,7 +15,11 @@ export async function loadMessages(locale: string) {
     .default;
   const forPlaces = (await import(`../../i18n/messages/${locale}/forPlaces.json`))
     .default;
-    const subscriptions = (await import(`../../i18n/messages/${locale}/subscriptions.json`))
+  const subscriptions = (await import(`../../i18n/messages/${locale}/subscriptions.json`))
+    .default;
+  const blogWorkFriendlySpaces = (await import(`../../i18n/messages/${locale}/blogworkFriendlySpaces.json`))
+    .default;
+  const blogBestCafesAndWorkFriendlySpaces = (await import(`../../i18n/messages/${locale}/bestCafesAndWorkFriendlySpaces.json`))
     .default;
 
   return {
@@ -27,6 +31,8 @@ export async function loadMessages(locale: string) {
     contact,
     aboutUs,
     forPlaces,
-    subscriptions
+    subscriptions,
+    blogWorkFriendlySpaces,
+    blogBestCafesAndWorkFriendlySpaces
   };
 }

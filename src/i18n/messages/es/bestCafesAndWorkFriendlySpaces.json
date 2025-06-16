@@ -1,0 +1,119 @@
+{
+  "navigation": {
+    "back": "Volver"
+  },
+  "hero": {
+    "title": "Mejores Cafés y Espacios de Trabajo Amigables en Medellín (Guía 2025)",
+    "description": "Descubre los mejores cafés para trabajar, espacios de coworking y ambientes productivos en Medellín para nómadas digitales. Insights comunitarios reales, velocidades de wifi y reseñas de espacios."
+  },
+  "mainContent": {
+    "quote": "Ya sea que estés visitando por unos días o viviendo aquí a largo plazo, estos son los mejores espacios de trabajo amigables de la ciudad.",
+    "whatMakes": {
+      "sectionTitle": "Características Esenciales",
+      "title": "¿Qué Hace un Gran Espacio de Trabajo Amigable?",
+      "mainContent": "Como uno de los principales destinos de América Latina para trabajadores remotos y nómadas digitales, Medellín ofrece una mezcla vibrante de cafés, azoteas, espacios de coworking y lugares culturales, pero saber cuáles realmente funcionan para trabajar es otra historia.",
+      "features": {
+        "wifi": {
+          "title": "Wi-Fi Fuerte y Estable",
+          "description": "Una conexión a internet confiable es innegociable para cualquier sesión de trabajo productiva."
+        },
+        "comfort": {
+          "title": "Asientos Cómodos e Iluminación",
+          "description": "Asientos ergonómicos y buena iluminación te ayudan a mantenerte enfocado y cómodo por horas."
+        },
+        "ambiance": {
+          "title": "Ambiente Pacífico o Inspirador",
+          "description": "El ambiente adecuado puede hacer o deshacer tu productividad y flujo creativo."
+        }
+      },
+      "pullQuote": "Exactamente por eso construimos Coffi — para ayudarte a encontrar lugares que coincidan con tu propósito, estado de ánimo y flujo de trabajo."
+    },
+    "bestCafes": {
+      "sectionTitle": "Mejores Opciones",
+      "title": "Mejores Cafés Para Trabajar en Medellín",
+      "description": "Estos cafés cuidadosamente seleccionados ofrecen la mezcla perfecta de ambiente, comodidades y características amigables para la productividad.",
+      "cafes": {
+        "generalBar": {
+          "name": "General Bar Café",
+          "location": "Poblado",
+          "description": "Este café artístico y relajado ofrece asientos acogedores en el interior, buen café y un ambiente pacífico. Los enchufes están disponibles cerca de varias mesas, y la música suave facilita mantenerse enfocado. El Wi-Fi es estable, lo que lo convierte en una gran opción para trabajo profundo o sesiones creativas."
+        },
+        "milNueve": {
+          "name": "Mil Nueve 32",
+          "location": "Manila",
+          "description": "Una joya escondida en Manila con un ambiente íntimo y servicio fantástico. Espera una mezcla de asientos interiores y exteriores, Wi-Fi confiable y el nivel justo de bullicio de fondo. Genial para productividad matutina o lectura vespertina."
+        },
+        "cafeDragon": {
+          "name": "Café Dragón",
+          "location": "Poblado",
+          "description": "Perfectamente equilibrado entre relajado y energizante, Café Dragón es un favorito entre freelancers y creativos. El espacio abierto, el espresso fuerte y el buen internet lo convierten en un lugar constante de referencia."
+        }
+      }
+    },
+    "alternatives": {
+      "sectionTitle": "Más Allá de Cafés",
+      "title": "Espacios de Trabajo Alternativos Más Allá de los Cafés",
+      "spaces": {
+        "bukz": {
+          "name": "Bukz",
+          "location": "Las Lomas",
+          "description": "Parte biblioteca, parte centro cultural, Bukz es ideal para sesiones largas de concentración. Zonas silenciosas, excelentes asientos y una mezcla de vibras modernas e independientes. Además, organizan eventos comunitarios donde puedes hacer networking con otros profesionales."
+        },
+        "lookout": {
+          "name": "Monteluna",
+          "location": "Santa Elena",
+          "description": "Escapa de la ciudad y trabaja entre los árboles. Este refugio en la cima de la montaña ofrece vistas impresionantes, alrededores tranquilos y una señal sorprendentemente fuerte. Genial para escribir, concentración profunda o días de productividad impulsados por la naturaleza."
+        }
+      }
+    },
+    "coffiHelps": {
+      "sectionTitle": "Descubrimiento Inteligente",
+      "title": "Cómo Coffi Te Ayuda a Encontrar el Lugar Perfecto",
+      "mainContent": "A diferencia de las listas estáticas de blogs, Coffi es una plataforma dinámica impulsada por la comunidad, construida por y para trabajadores remotos.",
+      "features": {
+        "discover": "Descubre lugares por ambiente, no solo ubicación",
+        "liveUpdates": "Ve actualizaciones en vivo sobre ruido, nivel de multitud y Wi-Fi",
+        "filter": "Filtra por tu mentalidad: Trabajo, Estudio o Conectar",
+        "contribute": "Contribuye con sesiones y gana Puntos Coffi",
+        "save": "Guarda favoritos y planifica tu día ideal"
+      }
+    },
+    "faq": {
+      "sectionTitle": "Preguntas Frecuentes",
+      "title": "FAQ Nómadas Digitales - Espacios de Trabajo Medellín",
+      "questions": {
+        "bestCafe": {
+          "question": "¿Cuál es el mejor café para trabajar en El Poblado, Medellín?",
+          "answer": "General Bar Café y Café Dragón son las mejores opciones en El Poblado para nómadas digitales. Ambos ofrecen wifi confiable, asientos cómodos y un ambiente productivo perfecto para trabajo remoto."
+        },
+        "quietPlaces": {
+          "question": "¿Hay espacios de trabajo tranquilos en las montañas cerca de Medellín?",
+          "answer": "Sí — Monteluna en Santa Elena ofrece un espacio de trabajo pacífico rodeado de naturaleza, perfecto para trabajo de concentración profunda con vistas a la montaña y aire fresco."
+        },
+        "wifiSpeed": {
+          "question": "¿Qué tan rápido es el wifi en los cafés de Medellín?",
+          "answer": "La mayoría de cafés amigables para trabajar en El Poblado y Laureles ofrecen velocidades de 20-50 Mbps. Coffi muestra velocidades de wifi en tiempo real para que puedas elegir la mejor conexión para tus necesidades."
+        },
+        "coworking24": {
+          "question": "¿Hay espacios de coworking 24 horas en Medellín?",
+          "answer": "Aunque la mayoría de cafés cierran por la noche, algunos espacios de coworking en El Poblado y Laureles ofrecen horarios extendidos. Coffi te ayuda a encontrar espacios con horarios flexibles para noctámbulos y zonas horarias internacionales."
+        },
+        "bestNeighborhoods": {
+          "question": "¿Cuáles barrios son mejores para nómadas digitales en Medellín?",
+          "answer": "El Poblado, Laureles, Manila y Las Lomas ofrecen la mayor concentración de espacios de trabajo amigables con buen internet, seguridad y presencia de la comunidad nómada."
+        },
+        "realTime": {
+          "question": "¿Cómo proporciona Coffi datos de espacios de trabajo en tiempo real?",
+          "answer": "La comunidad de nómadas digitales de Coffi comparte actualizaciones en vivo sobre niveles de ruido, densidad de multitudes, calidad del wifi y disponibilidad de espacios, dándote información precisa antes de llegar."
+        }
+      },
+      "quote": "Deja de perder tiempo buscando el espacio de trabajo perfecto en Medellín - deja que la comunidad te guíe hacia la productividad."
+    },
+    "concluding": {
+      "title": ["Estar Donde", "Prosperas"],
+      "description": "Ya sea que estés profundamente involucrado en un proyecto, reuniéndote con clientes o simplemente escribiendo en un diario tomando café, hay un espacio para tu propósito — y Coffi es la forma más inteligente de descubrirlo.",
+      "buttonExplore": "Explorar Coffi",
+      "buttonFollow": "Síguenos"
+    }
+  }
+}

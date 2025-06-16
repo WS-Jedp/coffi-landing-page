@@ -1,0 +1,119 @@
+{
+  "navigation": {
+    "back": "Back"
+  },
+  "hero": {
+    "title": "Best Cafés & Work-Friendly Spaces in Medellín (2025 Guide)",
+    "description": "Discover the top work-friendly cafés, coworking spaces, and productive environments in Medellín for digital nomads. Real community insights, wifi speeds, and workspace reviews."
+  },
+  "mainContent": {
+    "quote": "Whether you're visiting for a few days or living here long-term, these are the best work-friendly spots in the city.",
+    "whatMakes": {
+      "sectionTitle": "Essential Features",
+      "title": "What Makes a Great Work-Friendly Spot?",
+      "mainContent": "As one of Latin America's top destinations for remote workers and digital nomads, Medellín offers a vibrant mix of cafés, rooftops, coworking spaces, and cultural spots — but knowing which ones actually work for work is another story.",
+      "features": {
+        "wifi": {
+          "title": "Strong, Stable Wi-Fi",
+          "description": "Reliable internet connection is non-negotiable for any productive work session."
+        },
+        "comfort": {
+          "title": "Comfortable Seating & Lighting",
+          "description": "Ergonomic seating and good lighting help you stay focused and comfortable for hours."
+        },
+        "ambiance": {
+          "title": "Peaceful or Inspiring Ambiance",
+          "description": "The right atmosphere can make or break your productivity and creative flow."
+        }
+      },
+      "pullQuote": "That's exactly why we built Coffi — to help you find places that match your purpose, mood, and workflow."
+    },
+    "bestCafes": {
+      "sectionTitle": "Top Picks",
+      "title": "Best Cafes to Work From in Medellín",
+      "description": "These carefully curated cafes offer the perfect blend of atmosphere, amenities, and productivity-friendly features.",
+      "cafes": {
+        "generalBar": {
+          "name": "General Bar Café",
+          "location": "Poblado",
+          "description": "This artsy, relaxed café offers cozy indoor seating, good coffee, and a peaceful vibe. Outlets are available near several tables, and the soft music makes it easy to stay focused. Wi-Fi is stable, making it a great pick for deep work or creative sessions."
+        },
+        "milNueve": {
+          "name": "Mil Nueve 32",
+          "location": "Manila",
+          "description": "A hidden gem in Manila with an intimate ambiance and fantastic service. Expect a mix of indoor and outdoor seating, reliable Wi-Fi, and just the right level of background buzz. Great for morning productivity or afternoon reading."
+        },
+        "cafeDragon": {
+          "name": "Café Dragón",
+          "location": "Poblado",
+          "description": "Perfectly balanced between chill and energizing, Café Dragón is a favorite among freelancers and creatives. The open space, strong espresso, and good internet make it a consistent go-to spot."
+        }
+      }
+    },
+    "alternatives": {
+      "sectionTitle": "Beyond Cafes",
+      "title": "Alternative Workspaces Beyond Cafés",
+      "spaces": {
+        "bukz": {
+          "name": "Bukz",
+          "location": "Las Lomas",
+          "description": "Part library, part cultural hub, Bukz is ideal for long focus sessions. Quiet zones, excellent seating, and a mix of modern and indie vibes. Plus, they host community events where you can network with fellow professionals."
+        },
+        "lookout": {
+          "name": "Monteluna",
+          "location": "Santa Elena",
+          "description": "Escape the city and work among the trees. This mountaintop hideaway offers breathtaking views, quiet surroundings, and a surprisingly strong signal. Great for writing, deep focus, or nature-fueled productivity days."
+        }
+      }
+    },
+    "coffiHelps": {
+      "sectionTitle": "Smart Discovery",
+      "title": "How Coffi Helps You Find the Perfect Place",
+      "mainContent": "Unlike static blog lists, Coffi is a dynamic, community-powered platform built by and for remote workers.",
+      "features": {
+        "discover": "Discover spots by vibe, not just location",
+        "liveUpdates": "See live updates on noise, crowd level, and Wi-Fi",
+        "filter": "Filter by your mindset: Work, Study, or Connect",
+        "contribute": "Contribute sessions and earn Coffi Points",
+        "save": "Save favorites and plan your ideal day"
+      }
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked Questions",
+      "title": "Digital Nomad FAQ - Medellín Workspaces",
+      "questions": {
+        "bestCafe": {
+          "question": "What's the best café for working in El Poblado, Medellín?",
+          "answer": "General Bar Café and Café Dragón are top choices in El Poblado for digital nomads. Both offer reliable wifi, comfortable seating, and a productive atmosphere perfect for remote work."
+        },
+        "quietPlaces": {
+          "question": "Are there quiet mountain workspaces near Medellín?",
+          "answer": "Yes — Monteluna in Santa Elena offers a peaceful workspace surrounded by nature, perfect for deep focus work with mountain views and fresh air."
+        },
+        "wifiSpeed": {
+          "question": "How fast is the wifi in Medellín cafés?",
+          "answer": "Most work-friendly cafés in El Poblado and Laureles offer 20-50 Mbps speeds. Coffi shows real-time wifi speeds so you can choose the best connection for your needs."
+        },
+        "coworking24": {
+          "question": "Are there 24-hour coworking spaces in Medellín?",
+          "answer": "While most cafés close at night, some coworking spaces in El Poblado and Laureles offer extended hours. Coffi helps you find spaces with flexible schedules for night owls and international time zones."
+        },
+        "bestNeighborhoods": {
+          "question": "Which neighborhoods are best for digital nomads in Medellín?",
+          "answer": "El Poblado, Laureles, Manila, and Las Lomas offer the highest concentration of work-friendly spaces with good internet, safety, and nomad community presence."
+        },
+        "realTime": {
+          "question": "How does Coffi provide real-time workspace data?",
+          "answer": "Coffi's community of digital nomads shares live updates on noise levels, crowd density, wifi quality, and workspace availability, giving you accurate information before you arrive."
+        }
+      },
+      "quote": "Stop wasting time searching for the perfect workspace in Medellín - let the community guide you to productivity."
+    },
+    "concluding": {
+      "title": ["Be Where You", "Thrive"],
+      "description": "Whether you're deep into a project, meeting clients, or just journaling over coffee, there's a space for your purpose — and Coffi is the smartest way to discover it.",
+      "buttonExplore": "Explore Coffi",
+      "buttonFollow": "Follow Us"
+    }
+  }
+}

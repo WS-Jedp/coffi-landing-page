@@ -1,0 +1,132 @@
+{
+  "navigation": {
+    "back": "Back"
+  },
+  "hero": {
+    "logoSubtitle": "Work-Friendly Spaces",
+    "title": "Work-Friendly Spaces",
+    "description": "In the age of remote work, finding the perfect place to stay productive can feel like a daily challenge. The future of work is decentralized, and so too must be the platforms that help us navigate it."
+  },
+  "mainContent": {
+    "quote": "Where can I work right now that matches my mindset and goals for the day?",
+    "definition": {
+      "sectionTitle": "Definition",
+      "title": "What Are Work-Friendly Spaces?",
+      "mainContent": "Work-friendly spaces are public or semi-public environments where people can work comfortably and efficiently — not just traditional coworking spaces, but cafés, libraries, rooftops, hotels, cultural centers, and even parks. What sets them apart is the experience they offer: designed with productivity and purpose in mind.",
+      "features": {
+        "wifi": {
+          "title": "Reliable Wi-Fi",
+          "description": "Fast and stable internet connection crucial for calls, uploads, and maintaining workflow."
+        },
+        "comfort": {
+          "title": "Comfort & Lighting",
+          "description": "Comfortable seating arrangements and natural light — a necessity for long work sessions."
+        },
+        "ambiance": {
+          "title": "Focused Ambiance",
+          "description": "Peaceful environments or focused atmosphere that inspires productivity and meaningful connections."
+        }
+      },
+      "pullQuote": "These spaces are designed (or discovered) with productivity and purpose in mind — and often, they're hiding in plain sight."
+    },
+    "decentralization": {
+      "sectionTitle": "Evolution",
+      "title": "The Shift Toward Decentralized Work Environments",
+      "description": "The 9-to-5 office isn't just outdated — it's dissolving. In its place is a global network of flexible, autonomous workers who operate on their own schedules, from wherever they feel most productive. In a decentralized work world, the environment adapts to the worker — not the other way around."
+    },
+    "traditional": {
+      "sectionTitle": "Traditional Limitations",
+      "title": "Why Remote Workers Are Moving Away from Traditional Coworking",
+      "issues": {
+        "cost": {
+          "title": "Cost Barriers",
+          "description": "Subscriptions and day passes often exceed local café budgets, making them inaccessible for many remote workers."
+        },
+        "ambiance": {
+          "title": "Lack of Ambiance",
+          "description": "Many locations lack the energy or atmosphere people seek, feeling too rigid or impersonal for creative work."
+        },
+        "location": {
+          "title": "Limited Distribution",
+          "description": "Often concentrated in a few neighborhoods, leaving other areas overlooked and underserved."
+        }
+      }
+    },
+    "ideal": {
+      "sectionTitle": "Standards",
+      "title": "Features of the Ideal Work-Friendly Space",
+      "introduction": "Not every café or coworking spot is built equally. The best work-friendly spaces share some core traits that aren't luxuries — they're baseline expectations in the new era of remote work:",
+      "features": {
+        "internet": "Fast and stable internet — crucial for calls, uploads, and flow",
+        "comfort": "Comfortable chairs and natural light — a necessity for long sessions",
+        "outlets": "Accessible outlets — no more fighting for power",
+        "noise": "Appropriate noise levels — from deep focus to social vibes"
+      }
+    },
+    "coffiVision": {
+      "sectionTitle": "Innovation",
+      "title": "Coworking 2.0: Coffi's Vision for the Future",
+      "mainContent": "Coffi is not just another directory of cafés or coworking spaces. It's a dynamic, community-powered platform built for people who need the right space at the right time. We call it Coworking 2.0 — a smarter, decentralized way of discovering and experiencing places based on your purpose, mood, and live context.",
+      "secondaryContent": "The result? A more intentional, empowered, and human way of working from anywhere."
+    },
+    "platformFeatures": {
+      "sectionTitle": "Platform Features",
+      "title": "How Coffi Works",
+      "subtitle": "A dynamic, community-powered platform for the modern remote worker",
+      "mainContent": "With Coffi, users can:",
+      "secondaryContent": "The platform empowers users to make informed decisions about where to work, study, or connect based on real-time community insights and personal preferences.",
+      "discover": {
+        "title": "Discover Spaces",
+        "description": "Find spaces near you to work, study, or connect with like-minded people."
+      },
+      "filter": {
+        "title": "Smart Filtering",
+        "description": "Filter places by Wi-Fi speed, ambiance, noise, crowd level, and more specific criteria."
+      },
+      "realTime": {
+        "title": "Real-Time Updates",
+        "description": "Get live updates from the community on current vibe, availability, and conditions."
+      },
+      "quote": "Be where you thrive. That's the new standard of work."
+    },
+    "whyDecentralization": {
+      "sectionTitle": "Impact",
+      "title": "Why Decentralization Matters for the Future of Work",
+      "benefits": {
+        "economic": {
+          "title": "Local Economic Impact",
+          "description": "Small cafés and alternative spaces benefit from increased foot traffic and community support."
+        },
+        "environmental": {
+          "title": "Environmental Benefits",
+          "description": "Reduced commuting and lower carbon footprint through distributed work patterns."
+        },
+        "satisfaction": {
+          "title": "Worker Satisfaction",
+          "description": "Higher worker satisfaction and autonomy through flexible, personalized work environments."
+        },
+        "talent": {
+          "title": "Global Talent Access",
+          "description": "Access to a global talent pool unconstrained by geographic limitations."
+        }
+      }
+    },
+    "futureWork": {
+      "sectionTitle": "Future Vision",
+      "title": "The Future of Remote Work",
+      "description": "The future of work is already here. It's not tied to an office or even a coworking chain — it's wherever you thrive. Whether you're looking to focus deeply, collaborate socially, or simply find the right energy to move forward with your goals, there's a space out there for you.",
+      "callout": "And Coffi is here to help you find it."
+    },
+    "concluding": {
+      "title": {
+        "0": "Join the",
+        "1": "Movement",
+        "2": "of",
+        "3": "Decentralized Work"
+      },
+      "description": "The future of work is decentralized, flexible, and human-centered. Discover work-friendly spaces that match your needs, contribute to a growing community, and be part of the transformation happening right now.",
+      "buttonExplore": "Explore Spaces",
+      "buttonFollow": "Follow Us"
+    }
+  }
+}

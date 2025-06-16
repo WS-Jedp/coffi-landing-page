@@ -17,6 +17,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/subscription',
     '/subscribe-nomad-plan',
     '/payment-status',
+    '/blog', // Blog index
+  ]
+  
+  // Blog posts for SEO
+  const blogPosts = [
+    {
+      en: '/blog/about-work-friendly-spaces',
+      es: '/blog/sobre-espacios-de-trabajo-amigables'
+    },
+    {
+      en: '/blog/best-cafes-and-workfriendly-spaces-in-medellin',
+      es: '/blog/los-mejores-cafes-espacios-de-trabajo-amigables-en-medellin'
+    }
   ]
   
   // Future SEO-friendly pages for better targeting
@@ -53,6 +66,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency = 'daily'
       }
       
+      // Blog pages get good priority for SEO
+      if (page === '/blog') {
+        priority = 0.8
+        changeFrequency = 'weekly'
+      }
+      
       // Higher priority for subscription-related pages (business critical)
       if (page === '/subscription' || page === '/subscribe-nomad-plan') {
         priority = 0.85
@@ -70,6 +89,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: currentDate,
         changeFrequency,
         priority,
+      })
+    })
+  })
+  
+  // Add blog posts with different URLs per language
+  blogPosts.forEach(post => {
+    locales.forEach(locale => {
+      const blogUrl = locale === 'en' ? post.en : post.es
+      const url = `${baseUrl}/${locale}${blogUrl}`
+      
+      sitemapEntries.push({
+        url,
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.7, // Good priority for blog content
       })
     })
   })
