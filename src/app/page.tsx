@@ -1,11 +1,27 @@
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-// This page serves the root URL without immediate redirect for better SEO
+// This page serves the root URL and redirects based on detected locale
+// But only when necessary for better UX, not for SEO
 export default async function RootPage() {
-  // This component will be rewritten by middleware to show /en content
-  // but the URL remains as / for SEO purposes
+  const headersList = await headers();
+  const detectedLocale = headersList.get('x-detected-locale') || 'en';
+  
+  // For non-English users who might benefit from Spanish content,
+  // we can optionally redirect them, but this should be minimal
+  // and only when we're confident they prefer Spanish
+  const userAgent = headersList.get('user-agent') || '';
+  const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
+  
+  // Never redirect bots - let them index the English content
+  if (isBot) {
+    // Let the middleware handle the rewrite to /en
+    return null;
+  }
+  
+  // For real users, you could optionally redirect to Spanish
+  // but for SEO purposes, it's better to serve content directly
   return null;
 }
 

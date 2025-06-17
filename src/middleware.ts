@@ -7,24 +7,32 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Handle root path specifically for SEO
+  // Handle root path specifically for SEO - always rewrite, never redirect
   if (pathname === '/') {
-    // Accept language detection for better UX
-    const acceptLanguage = request.headers.get('accept-language') || '';
-    const preferredLocale = acceptLanguage.toLowerCase().includes('es') ? 'es' : 'en';
+    // Check if user has a language preference cookie
+    const cookies = request.cookies;
+    const preferredLocaleCookie = cookies.get('NEXT_LOCALE')?.value;
     
-    // For default locale (en), serve content directly without redirect
-    if (preferredLocale === 'en') {
-      // Rewrite to /en internally but keep URL as /
-      const url = request.nextUrl.clone();
-      url.pathname = '/en';
-      return NextResponse.rewrite(url);
+    let preferredLocale = 'en'; // Default to English
+    
+    // If user has explicitly set a language preference, use that
+    if (preferredLocaleCookie && ['en', 'es'].includes(preferredLocaleCookie)) {
+      preferredLocale = preferredLocaleCookie;
     } else {
-      // For non-default locale, redirect to /es
-      const url = request.nextUrl.clone();
-      url.pathname = '/es';
-      return NextResponse.redirect(url);
+      // Otherwise, use browser language detection for better UX
+      const acceptLanguage = request.headers.get('accept-language') || '';
+      preferredLocale = acceptLanguage.toLowerCase().includes('es') ? 'es' : 'en';
     }
+    
+    // Always rewrite to the appropriate locale internally, keeping URL as /
+    const url = request.nextUrl.clone();
+    url.pathname = `/${preferredLocale}`;
+    
+    // Set a custom header to help the app know which locale was detected
+    const response = NextResponse.rewrite(url);
+    response.headers.set('x-detected-locale', preferredLocale);
+    
+    return response;
   }
   
   return intlMiddleware(request);

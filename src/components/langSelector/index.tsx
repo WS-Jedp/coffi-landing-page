@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
 const languages = [
@@ -12,14 +13,32 @@ export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-
-  // Get current locale from the URL
-  const currentLocale = pathname.split("/")[1] || "en";
+  const currentLocale = useLocale(); // Use next-intl's locale detection
 
   const changeLanguage = (newLocale: string) => {
-    // Update the URL with the new locale
-    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
-    router.push(newPath);
+    // Set a cookie to remember the user's language preference
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    
+    if (pathname === "/") {
+      // For root path, reload the page so middleware can pick up the new cookie
+      window.location.href = "/";
+    } else if (newLocale === 'en') {
+      // For English (default locale), navigate to root path or remove locale prefix
+      if (pathname.startsWith('/es')) {
+        const newPath = pathname.replace('/es', '') || '/';
+        router.push(newPath);
+      } else {
+        router.push('/');
+      }
+    } else if (newLocale === 'es') {
+      // For Spanish, ensure we have the /es prefix
+      if (pathname.startsWith('/en')) {
+        const newPath = pathname.replace('/en', '/es');
+        router.push(newPath);
+      } else if (!pathname.startsWith('/es')) {
+        router.push(`/es${pathname === '/' ? '' : pathname}`);
+      }
+    }
     setIsOpen(false);
   };
 
