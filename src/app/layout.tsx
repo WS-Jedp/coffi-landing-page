@@ -59,8 +59,29 @@ const sfPro = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Coffi - Be where you thrive",
-  description: "Next gen platform to be productive"
+  title: "Coffi - Coworking Spaces & Work-Friendly Cafés in Medellín, Colombia",
+  description: "Find perfect coworking spaces and work-friendly cafés in Medellín. Real-time insights for digital nomads and remote workers.",
+  metadataBase: new URL("https://coffi.com.co"),
+  
+  // Ensure root domain is properly indexed
+  alternates: {
+    canonical: "https://coffi.com.co",
+    languages: {
+      'en': 'https://coffi.com.co/en',
+      'es': 'https://coffi.com.co/es',
+      'x-default': 'https://coffi.com.co'
+    },
+  },
+  
+  // Robot directives for better indexing
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default async function RootLayout({

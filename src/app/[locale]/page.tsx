@@ -6,7 +6,6 @@ import { Purpose } from "@/containers/Purpose";
 import { Subscriptions } from "@/containers/Subscriptions";
 import { WhatIsCoffi } from "@/containers/WhatIsCoffi";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 // Custom component for animating sections
 const AnimatedSection: React.FC<{

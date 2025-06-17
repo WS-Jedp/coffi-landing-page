@@ -44,12 +44,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const sitemapEntries: MetadataRoute.Sitemap = []
   
-  // Add root page
+  // Add root page with proper alternates for SEO
   sitemapEntries.push({
     url: baseUrl,
     lastModified: currentDate,
     changeFrequency: 'daily',
     priority: 1.0,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en`,
+        es: `${baseUrl}/es`,
+        'x-default': baseUrl
+      }
+    }
   })
   
   // Add localized pages
