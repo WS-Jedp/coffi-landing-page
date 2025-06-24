@@ -29,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         '/*?*', // Query parameters
       ],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap/sitemap.xml`,
     host: baseUrl,
   }
 }
