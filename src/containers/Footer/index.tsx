@@ -20,6 +20,10 @@ export const Footer: React.FC = () => {
       name: "pricing",
       link: "/#pricing",
     },
+    {
+      name: "blog",
+      link: "/blog",
+    },
   ];
 
   const helpNavOptions = [

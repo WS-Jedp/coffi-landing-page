@@ -15,7 +15,7 @@ const blogPosts = [
       en: "Discover what makes a space truly work-friendly and how the concept has evolved beyond traditional coworking.",
       es: "Descubre qué hace que un espacio sea verdaderamente amigable para el trabajo y cómo el concepto ha evolucionado más allá del coworking tradicional."
     },
-    publishDate: "2024-12-16",
+    publishDate: "2025-06-20",
     readingTime: "8 min",
     category: {
       en: "Workspace Guide",
@@ -34,7 +34,7 @@ const blogPosts = [
       en: "Discover the best work-friendly cafes and spaces in Medellín for digital nomads. From cozy cafes in Poblado to mountain workspaces in Santa Elena.",
       es: "Descubre los mejores cafés y espacios de trabajo amigables en Medellín para nómadas digitales. Desde cafés acogedores en Poblado hasta espacios en las montañas de Santa Elena."
     },
-    publishDate: "2025-06-16",
+    publishDate: "2025-06-20",
     readingTime: "6 min",
     category: {
       en: "City Guide",

@@ -1,6 +1,6 @@
-import { MetadataRoute } from 'next'
+import { NextResponse } from 'next/server'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coffi.com.co'
   const currentDate = new Date().toISOString()
   
@@ -34,30 +34,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const locales = ['en', 'es']
   
-  const sitemapEntries: MetadataRoute.Sitemap = []
-  
-  // Add root page with proper alternates for SEO
-  sitemapEntries.push({
-    url: baseUrl,
-    lastModified: currentDate,
-    changeFrequency: 'daily',
-    priority: 1.0,
-    alternates: {
-      languages: {
-        en: `${baseUrl}/en`,
-        es: `${baseUrl}/es`,
-        'x-default': baseUrl
-      }
-    }
-  })
-  
-  // Add localized pages with proper alternates
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+`
+
+  // Add root page with alternates
+  sitemap += `  <url>
+    <loc>${baseUrl}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}"/>
+  </url>
+`
+
+  // Add localized pages
   corePages.forEach(page => {
     locales.forEach(locale => {
       const url = page === '' ? `${baseUrl}/${locale}` : `${baseUrl}/${locale}${page}`
       
       let priority = 0.8
-      let changeFrequency: 'daily' | 'weekly' | 'monthly' = 'weekly'
+      let changeFrequency = 'weekly'
       
       // Set higher priority for important pages
       if (page === '' || page === '/about-us' || page === '/for-places') {
@@ -83,46 +82,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency = 'monthly'
       }
 
-      // Add alternates for each page (except home page which is handled above)
-      const alternates = page !== '' ? {
-        languages: {
-          en: `${baseUrl}/en${page}`,
-          es: `${baseUrl}/es${page}`,
-        }
-      } : undefined
-      
-      sitemapEntries.push({
-        url,
-        lastModified: currentDate,
-        changeFrequency,
-        priority,
-        ...(alternates && { alternates })
-      })
+      sitemap += `  <url>
+    <loc>${url}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${changeFrequency}</changefreq>
+    <priority>${priority}</priority>`
+
+      // Add alternates for non-home pages
+      if (page !== '') {
+        sitemap += `
+    <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en${page}"/>
+    <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}/es${page}"/>`
+      }
+
+      sitemap += `
+  </url>
+`
     })
   })
   
-  // Add blog posts with different URLs per language and alternates
+  // Add blog posts
   blogPosts.forEach(post => {
     locales.forEach(locale => {
       const blogUrl = locale === 'en' ? post.en : post.es
       const url = `${baseUrl}/${locale}${blogUrl}`
       
-      const alternates = {
-        languages: {
-          en: `${baseUrl}/en${post.en}`,
-          es: `${baseUrl}/es${post.es}`,
-        }
-      }
-      
-      sitemapEntries.push({
-        url,
-        lastModified: currentDate,
-        changeFrequency: 'monthly',
-        priority: 0.7,
-        alternates
-      })
+      sitemap += `  <url>
+    <loc>${url}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en${post.en}"/>
+    <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}/es${post.es}"/>
+  </url>
+`
     })
   })
   
-  return sitemapEntries
+  sitemap += `</urlset>`
+
+  return new NextResponse(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600'
+    }
+  })
 }
