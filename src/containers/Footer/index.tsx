@@ -48,17 +48,12 @@ export const Footer: React.FC = () => {
   const socialNavOptions = [
     {
       name: "LinkedIn",
-      link: "https://linkedin.com/company/coffiapp",
+      link: "https://www.linkedin.com/company/coffi-be-where-you-thrive/",
       icon: "/assets/images/social/linkedin.svg",
     },
     {
-      name: "Twitter",
-      link: "https://twitter.com/coffiapp",
-      icon: "/assets/images/social/twitter.svg",
-    },
-    {
       name: "Instagram",
-      link: "https://instagram.com/coffiapp",
+      link: "https://www.instagram.com/letscoffi",
       icon: "/assets/images/social/instagram.svg",
     },
   ];
