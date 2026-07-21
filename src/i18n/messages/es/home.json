@@ -1,5 +1,43 @@
 {
   "welcome": "¡Bienvenido a Coffi!",
+  "hero": {
+    "title": "Encuentra el espacio ideal para crear",
+    "subtitle": "El lugar perfecto para lo que quieres crear, justo ahora.",
+    "purposeLabel": "¿Qué buscas hoy?",
+    "purposeOptions": {
+      "focus": "Enfoque",
+      "creativity": "Creatividad",
+      "collaboration": "Colaboración",
+      "connection": "Conexión",
+      "recharge": "Recargar"
+    },
+    "needsLabel": "¿Qué necesitas?",
+    "needsOptional": "(opcional)",
+    "needsOptions": {
+      "stableWifi": "WiFi estable",
+      "quiet": "Silencio",
+      "goodLight": "Buena luz",
+      "inspiring": "Ambiente inspirador",
+      "spacious": "Espacio amplio"
+    },
+    "placeTypeLabel": "¿Qué tipo de lugar?",
+    "placeTypeOptions": {
+      "cafe": "Café",
+      "library": "Librería",
+      "viewpoint": "Mirador",
+      "rooftop": "Azotea",
+      "coworking": "Coworking"
+    },
+    "select": "Selecciona",
+    "needsSelected": "{count} seleccionadas",
+    "cta": "Ver mis espacios ideales",
+    "community": {
+      "title": "Conecta con quienes están construyendo el futuro.",
+      "subtitle": "Porque las mejores conexiones no se buscan. Se encuentran en el lugar correcto.",
+      "liveCount": "{count} creadores están ahora mismo en {city}",
+      "cta": "Únete y empieza a crear"
+    }
+  },
   "discoverPlacesInCity": "Descubre los mejores lugares en {city}",
   "toElevate": "Y eleva tu",
   "sessionsType": {
