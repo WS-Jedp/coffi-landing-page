@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useState } from "react";
+import { Globe, ChevronDown } from "lucide-react";
 
 const languages = [
   { code: "en", label: "English" },
@@ -47,22 +48,34 @@ export default function LanguageSelector() {
       {/* Current Language Display */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center px-3 py-1 text-gray-700 bg-transparent shadow-sm border rounded-md  hover:bg-gray-200 transition"
+        aria-label="Change language"
+        className="flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 text-coffi-black hover:bg-coffi-purple-50 transition"
       >
-        <span className="font-medium text-xs uppercase">
-            {languages.find((lang) => lang.code === currentLocale)?.code}
+        <Globe size={16} strokeWidth={2} />
+        <span className="font-semibold text-xs uppercase">
+          {languages.find((lang) => lang.code === currentLocale)?.code}
         </span>
-        {/* <span className="ml-1 text-sm">▼</span> */}
+        <ChevronDown
+          size={14}
+          strokeWidth={2}
+          className={`transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <ul className="absolute right-0 w-28 mt-2 drop-shadow-md bg-white/80 backdrop-blur-md border rounded-md shadow-md">
+        <ul className="absolute right-0 w-32 mt-2 p-1 drop-shadow-md bg-white/90 backdrop-blur-md border border-white/60 rounded-xl shadow-lg shadow-coffi-purple/10">
           {languages.map((lang) => (
             <li key={lang.code}>
               <button
                 onClick={() => changeLanguage(lang.code)}
-                className="block w-full px-4 py-2 text-gray-700 hover:bg-gray-100 transition text-left"
+                className={`block w-full px-3 py-2 rounded-lg text-left text-sm transition hover:bg-coffi-purple-50 ${
+                  lang.code === currentLocale
+                    ? "text-coffi-purple font-semibold"
+                    : "text-coffi-black"
+                }`}
               >
                 {lang.label}
               </button>

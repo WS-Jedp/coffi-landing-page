@@ -195,7 +195,7 @@ export default function Home() {
           />
         </div>
 
-        <section className="w-full max-w-[1200px] mx-auto relative z-10">
+        <section className="w-full max-w-[1200px] mx-auto relative z-10 pt-24 md:pt-28">
           <WhatIsCoffi />
           <HowItWorks />
           <Benefits />
