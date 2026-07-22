@@ -33,7 +33,8 @@
         "cta": "See my ideal spaces",
         "community": {
             "title": "Connect with those building the future.",
-            "subtitle": "Because the best connections aren't searched for. They're found in the right place.",
+            "subtitle": "Because the best connections aren't searched for.",
+            "subtitleSecondary": "They're found in the right place.",
             "liveCount": "{count} creators are in {city} right now",
             "cta": "Join and start creating"
         }

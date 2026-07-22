@@ -33,7 +33,8 @@
     "cta": "Ver mis espacios ideales",
     "community": {
       "title": "Conecta con quienes están construyendo el futuro.",
-      "subtitle": "Porque las mejores conexiones no se buscan. Se encuentran en el lugar correcto.",
+      "subtitle": "Porque las mejores conexiones no se buscan.",
+      "subtitleSecondary": "Se encuentran en el lugar correcto.",
       "liveCount": "{count} creadores están ahora mismo en {city}",
       "cta": "Únete y empieza a crear"
     }

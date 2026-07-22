@@ -64,7 +64,10 @@ export const CommunityBanner: React.FC<CommunityBannerProps> = ({
             {t("home.hero.community.title")}
           </h3>
           <p className="mt-2 text-sm md:text-[15px] font-light text-white/80 leading-relaxed max-w-[540px] mx-auto md:mx-0">
-            {t("home.hero.community.subtitle")}
+            <span className="block">{t("home.hero.community.subtitle")}</span>
+            <span className="block">
+              {t("home.hero.community.subtitleSecondary")}
+            </span>
           </p>
         </div>
 
