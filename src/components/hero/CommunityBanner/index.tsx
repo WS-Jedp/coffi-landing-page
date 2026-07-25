@@ -2,6 +2,7 @@
 
 import { useRedirectToCoffiApp } from "@/hooks/useRedirectToCoffi";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { PhoneShowcase } from "./PhoneShowcase";
@@ -31,24 +32,28 @@ export const CommunityBanner: React.FC<CommunityBannerProps> = ({
 
   const statusAndCta = (
     <>
-      {/* Live count */}
-      <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-3.5 py-2 border border-white/20">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75 animate-ping" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+      {/* Live count — refined glass pill: soft inner highlight, a dot with
+          real glow instead of a flat fill, tighter tracking so it reads as
+          a live product stat rather than a plain label. */}
+      <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 py-2 pl-2.5 pr-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.14)] backdrop-blur-md">
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_2px_rgba(52,211,153,0.65)]" />
         </span>
-        <span className="text-xs md:text-sm font-medium text-white whitespace-nowrap">
+        <span className="whitespace-nowrap text-xs font-medium tracking-wide text-white/95 md:text-sm">
           {t("home.hero.community.liveCount", { count, city })}
         </span>
       </div>
 
-      {/* Secondary CTA — light on the vibrant band */}
+      {/* Secondary CTA — light on the vibrant band. A lifted shadow + arrow
+          micro-interaction on hover instead of a flat color swap. */}
       <button
         type="button"
         onClick={() => redirectToCoffi()}
-        className="whitespace-nowrap rounded-full bg-white text-coffi-purple font-semibold text-sm py-2.5 px-6 shadow-md shadow-coffi-purple/20 hover:bg-coffi-white transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-white py-2.5 pl-6 pr-5 font-semibold text-sm text-coffi-purple shadow-[0_10px_30px_-8px_rgba(20,10,60,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-8px_rgba(20,10,60,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 active:translate-y-0"
       >
         {t("home.hero.community.cta")}
+        <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
       </button>
     </>
   );

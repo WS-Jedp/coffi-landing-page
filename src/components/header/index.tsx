@@ -177,7 +177,7 @@ export const Header: React.FC = () => {
     <header className="fixed top-3 md:top-4 inset-x-0 z-[999] flex justify-center px-4 pointer-events-none">
       <nav
         className={`
-          pointer-events-auto relative isolate w-full max-w-[1120px]
+          pointer-events-auto relative isolate z-[1001] w-full max-w-[1120px]
           flex items-center justify-between
           rounded-2xl px-4 md:px-5 py-2.5
           transition-all duration-300 ease-in-out
@@ -188,6 +188,10 @@ export const Header: React.FC = () => {
           }
         `}
       >
+        {/* z-[1001] keeps this bar (and its hamburger/X button) rendered
+            above the full-screen mobile menu overlay below (z-[1000]) — the
+            SAME button toggles both open and close, so there's only ever
+            one X on screen instead of two unsynced ones. */}
         {/* Dynamic glass background — floating gradient + noise, only when scrolled */}
         <div
           aria-hidden
@@ -295,32 +299,40 @@ export const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile — hamburger */}
+        {/* Mobile — hamburger. Two bars (not three) morph into an X via
+            coordinated spring physics — each just rotates and slides to
+            center — instead of independent CSS transitions, plus a color
+            shift to coffi-purple while open to reinforce the active state.
+            No background chrome — just the bars themselves. */}
         <motion.button
-          className="flex md:hidden flex-col items-center justify-center p-2 focus:outline-none overflow-hidden"
-          aria-label="Toggle Navigation"
+          className="relative flex md:hidden h-10 w-10 items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-coffi-purple/40 rounded-full"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
           onClick={handleClickMenu}
-          whileTap={{
-            scale: 0.9,
-            transition: { duration: 0.2, ease: "easeInOut" },
-          }}
-          whileHover={{
-            scale: 1.05,
-            transition: { duration: 0.3, ease: "easeInOut" },
-          }}
+          whileTap={{ scale: 0.88 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 22 }}
         >
-          <div
-            className={`w-6 h-[3px] rounded-full bg-coffi-black my-[3px] transition-all duration-300 ease-in-out
-              ${isMenuOpen ? "transform rotate-45 translate-y-[9px]" : ""}`}
-          ></div>
-          <div
-            className={`w-6 h-[3px] rounded-full bg-coffi-black my-[3px] transition-all duration-300 ease-in-out
-              ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
-          ></div>
-          <div
-            className={`w-6 h-[3px] rounded-full bg-coffi-black my-[3px] transition-all duration-300 ease-in-out
-              ${isMenuOpen ? "transform -rotate-45 -translate-y-[9px]" : ""}`}
-          ></div>
+          <span className="relative flex h-4 w-5 items-center justify-center">
+            <motion.span
+              className="absolute top-1/2 h-[2px] w-5 -translate-y-1/2 rounded-full"
+              animate={{
+                rotate: isMenuOpen ? 45 : 0,
+                y: isMenuOpen ? 0 : -4,
+                backgroundColor: isMenuOpen ? "#533FFF" : "#312F3D",
+              }}
+              transition={{ type: "spring", stiffness: 350, damping: 24 }}
+            />
+            <motion.span
+              className="absolute top-1/2 h-[2px] w-5 -translate-y-1/2 rounded-full"
+              animate={{
+                rotate: isMenuOpen ? -45 : 0,
+                y: isMenuOpen ? 0 : 4,
+                backgroundColor: isMenuOpen ? "#533FFF" : "#312F3D",
+              }}
+              transition={{ type: "spring", stiffness: 350, damping: 24 }}
+            />
+          </span>
         </motion.button>
 
       </nav>
@@ -339,49 +351,14 @@ export const Header: React.FC = () => {
               exit="closed"
               variants={menuVariants}
             >
-              <article className="w-full flex flex-row justify-between items-center py-4 px-4 border-b border-gray-200">
-                <div className="flex flex-row items-center gap-1 text-coffi-black">
-                  <Image
-                    src="/assets/images/coffi-logo.svg"
-                    alt="Coffi logo"
-                    width={32}
-                    height={32}
-                  />
-                  <span className="font-black text-xl leading-none">Coffi</span>
-                </div>
-                <motion.button
-                  className="relative text-coffi-black p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md z-10"
-                  onClick={() => setIsMenuOpen(false)}
-                  aria-label="Close menu"
-                  whileTap={{
-                    scale: 0.9,
-                    transition: { duration: 0.2, ease: "easeInOut" },
-                  }}
-                  whileHover={{
-                    scale: 1.1,
-                    backgroundColor: "rgba(0,0,0,0.05)",
-                    transition: { duration: 0.3, ease: "easeInOut" },
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </motion.button>
-              </article>
+              {/* No local logo/close row here — the fixed nav bar (with its
+                  own logo and the hamburger-turned-X button) stays visible
+                  above this overlay via z-[1001], so it's the single control
+                  for both opening and closing. pt-24 below just clears that
+                  bar's height instead of a second, redundant header row. */}
 
               {/* Main menu content */}
-              <div className="flex flex-col items-start justify-start pt-16 pb-16 px-8 h-full">
+              <div className="flex flex-col items-start justify-start pt-24 pb-16 px-8 h-full">
                 <motion.h2
                   className="font-bold text-3xl mb-6 text-coffi-black"
                   variants={itemVariants}
