@@ -1,10 +1,12 @@
 "use client";
 import { Benefits } from "@/containers/Benefits";
 import { CallToActionBanner } from "@/containers/CallToActionBanner";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- se re-monta cuando la Parte 2 absorba su contenido
 import { HowItWorks } from "@/containers/HowItWorks";
 import { Purpose } from "@/containers/Purpose";
 import { Subscriptions } from "@/containers/Subscriptions";
 import { WhatIsCoffi } from "@/containers/WhatIsCoffi";
+import { MapIntro } from "@/features/map-intro";
 import { motion } from "framer-motion";
 
 // Custom component for animating sections
@@ -129,7 +131,10 @@ export default function Home() {
         Coffi - Find Perfect Coworking Spaces and Work-Friendly Cafés in Medellín, Colombia for Digital Nomads and Remote Workers
       </h1>
       
-      <section className="relative flex flex-col items-center justify-items-center w-full min-h-screen overflow-hidden">
+      {/* overflow-x-clip (no overflow-hidden): `clip` no crea un scroll container, asi que
+          `position: sticky` sigue funcionando adentro. Sigue recortando el full-bleed
+          `mx-[calc(50%-50vw)]` de WhatIsCoffi. */}
+      <section className="relative flex flex-col items-center justify-items-center w-full min-h-screen overflow-x-clip">
         {/* Enhanced Gradient Circle Background Elements - fixed positioning */}
         <div className="absolute inset-0 w-full h-full z-0">
           {/* Add a base background gradient for better visibility */}
@@ -197,7 +202,11 @@ export default function Home() {
 
         <section className="w-full max-w-[1200px] mx-auto relative z-10 pt-24 md:pt-28">
           <WhatIsCoffi />
-          <HowItWorks />
+          <MapIntro />
+          {/* Reemplazado por <MapIntro />. Se deja comentado, no borrado, hasta
+              que la Parte 2 de la experiencia de scroll absorba el contenido de
+              los 3 pasos del wizard. */}
+          {/* <HowItWorks /> */}
           <Benefits />
           <Subscriptions />
         </section>

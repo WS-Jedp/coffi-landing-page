@@ -1,0 +1,106 @@
+/*
+ * Leaflet styling for the map-intro stage.
+ *
+ * The tile filter is the mechanism that makes the hand-off from the rendered
+ * frames to the live map invisible. The render is a pale, warm, low-contrast
+ * illustration; Carto's tiles are neutral grey with far more contrast. Cross-
+ * dissolving between those two directly reads as a dissolve.
+ *
+ * So the tiles are washed down to match the illustration for the duration of
+ * the seam, then washed back to normal afterwards. `--tile-filter` is driven
+ * from MapStage; it lives on the tile pane alone so markers keep full contrast.
+ */
+@import "leaflet/dist/leaflet.css";
+
+.map-intro-leaflet {
+  --tile-filter: none;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+}
+
+.map-intro-leaflet .leaflet-tile-pane {
+  filter: var(--tile-filter);
+  transition: filter 700ms ease-out;
+}
+
+/* Labels fade in behind the seam rather than popping. */
+.map-intro-leaflet .leaflet-tile-pane .leaflet-layer {
+  transition: opacity 500ms ease-out;
+}
+
+/*
+ * Pins. Each carries its own --pin-delay so the set arrives as a wave without
+ * a timer per marker.
+ */
+.map-intro-pin-wrap {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.map-intro-pin {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  border: 2px solid #efeff9;
+  box-shadow: 0 2px 8px rgba(49, 47, 61, 0.35);
+  transform: scale(0);
+  animation: map-intro-pin-in 420ms cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+  animation-delay: var(--pin-delay, 0ms);
+}
+
+@keyframes map-intro-pin-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-intro-pin {
+    animation: none;
+    transform: scale(1);
+  }
+  .map-intro-leaflet .leaflet-tile-pane,
+  .map-intro-leaflet .leaflet-tile-pane .leaflet-layer {
+    transition: none;
+  }
+}
+
+/* The map is scenery: kill the affordances that imply it can be touched. */
+.map-intro-leaflet .leaflet-container {
+  background: transparent;
+  cursor: default;
+  outline: none;
+}
+
+.map-intro-leaflet .leaflet-marker-icon,
+.map-intro-leaflet .leaflet-marker-shadow {
+  cursor: default;
+}
+
+/*
+ * Attribution is a licensing requirement for OSM and CARTO, so it is restyled
+ * rather than removed. Kept quiet enough not to fight the composition.
+ */
+.map-intro-attribution {
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: rgba(49, 47, 61, 0.55);
+  background: rgba(239, 239, 249, 0.72);
+  backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.map-intro-attribution a {
+  color: rgba(49, 47, 61, 0.75);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

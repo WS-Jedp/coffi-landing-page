@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# frames fuente de la animacion map-intro (WebP lossless, ~54MB).
+# Solo se commitean los derivados optimizados en public/assets/animations/map-intro/.
+# Regenerar con: npm run encode:map-intro
+assets-src/

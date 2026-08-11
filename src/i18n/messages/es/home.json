@@ -39,6 +39,10 @@
       "cta": "Únete y empieza a crear"
     }
   },
+  "mapIntro": {
+    "title": "Ahora la ciudad es tu oficina.",
+    "description": "Sé parte de la revolución Coworking 2.0. La red que transforma tu ciudad en tu oficina real: descentralizada, humana y llena de creadores como tú."
+  },
   "discoverPlacesInCity": "Descubre los mejores lugares en {city}",
   "toElevate": "Y eleva tu",
   "sessionsType": {
