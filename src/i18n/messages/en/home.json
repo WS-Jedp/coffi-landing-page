@@ -41,7 +41,25 @@
   },
   "mapIntro": {
     "title": "Now the city is your office.",
-    "description": "Be part of the Coworking 2.0 revolution. The network that turns your city into your real office: decentralised, human, and full of creators like you."
+    "description": "Be part of the Coworking 2.0 revolution. The network that turns your city into your real office: decentralised, human, and full of creators like you.",
+    "spaces": {
+      "title": "Take the guesswork out",
+      "description": "Tell Coffi what you are after today and what you need. Coffi matches your intent against live data from every place."
+    },
+    "connect": {
+      "title": "Connect with the people creating nearby",
+      "description": "See in real time who is building the future alongside you. Join open circles or start spontaneous conversations. The city stops feeling lonely."
+    },
+    "points": {
+      "title": "Earn while you create",
+      "description": "Every check-in, review, update or discovery earns you Coffi Points. Redeem them for exclusive perks at your favourite spaces."
+    },
+    "circles": {
+      "title": "Incoming: Coffi Circles",
+      "description": "Community-driven micro-events inside the spaces. Create or join open circles based on interests, profession and moment.",
+      "cta": "Explore the city now",
+      "closing": "Your city. Your pace. Your community."
+    }
   },
   "discoverPlacesInCity": "Discover top places in {city}",
   "toElevate": "To Elevate your",

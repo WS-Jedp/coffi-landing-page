@@ -1,10 +1,39 @@
 import type { ChapterSpec, SceneStep } from "./types";
 
 /**
- * Scroll track composition. Part 2 appends `{ id: "places", vh: 280 }` here and
- * lengthens TRACK_CLASS to match; nothing else in the section needs to know.
+ * Scroll track composition.
+ *
+ * Every chapter after `intro` is ACTIVATION-based, not scrubbed: crossing into
+ * one flips a step index, which fires a camera flight, a pin swap and a copy
+ * change as time-based animations. Their `vh` therefore buys reading time and
+ * a comfortable activation boundary, not animation resolution.
+ *
+ * `intro` is the exception and is still a true scrub.
  */
-export const CHAPTERS: readonly ChapterSpec[] = [{ id: "intro", vh: 200 }] as const;
+export const CHAPTERS: readonly ChapterSpec[] = [
+  // The intro's 200 is load-bearing and must not change: the frame scrub's
+  // px-per-frame density and PIN_AT_PROGRESS are both derived from it.
+  { id: "intro", vh: 200 },
+  { id: "spaces", vh: 120 },
+  // The longest — it carries three sub-beats, one per creator card.
+  { id: "connect", vh: 180 },
+  { id: "points", vh: 120 },
+  // Extra tail so the CTA is readable before the stage unpins.
+  { id: "circles", vh: 160 },
+] as const;
+
+/** Total track height in svh. Keep TRACK_CLASS in step with it. */
+export const TRACK_VH = CHAPTERS.reduce((sum, c) => sum + c.vh, 0);
+
+/**
+ * The intro chapter's share of global progress.
+ *
+ * Needed because a few values are naturally measured against the WHOLE track
+ * (how much of the range is already behind us at rest, say) while every
+ * `RANGES.*` constant below is intro-local. Mixing the two silently shifts
+ * every boundary.
+ */
+export const INTRO_SHARE = CHAPTERS[0].vh / TRACK_VH;
 
 /**
  * Track height. Kept as Tailwind classes rather than an inline style so the
@@ -13,9 +42,9 @@ export const CHAPTERS: readonly ChapterSpec[] = [{ id: "intro", vh: 200 }] as co
  * `svh` (small viewport height), never `vh`: on iOS Safari the URL bar collapses
  * mid-scroll, and a `vh`-sized sticky stage would resize under the user's finger.
  *
- * The whole track height is the scroll range, because `useSceneProgress` opens
- * at `start end` rather than at the pin. So 200svh over 61 frames is ~29px of
- * scroll per frame on a 900px viewport — a trackpad flick advances 3-4 frames,
+ * The intro chapter's height is what sets the scrub density, because
+ * `useSceneProgress` opens at `start end` rather than at the pin. So the
+ * intro's 200svh over 61 frames is ~29px of scroll per frame on a 900px viewport — a trackpad flick advances 3-4 frames,
  * which is the floor for a scrub that does not strobe.
  *
  * The height also fixes when the stage pins, and that is the real constraint on
@@ -36,14 +65,17 @@ export const CHAPTERS: readonly ChapterSpec[] = [{ id: "intro", vh: 200 }] as co
  * breakpoint variants after motion variants, so a plain `motion-reduce:h-svh`
  * loses to `md:h-[320svh]` on any screen wide enough to matter.
  */
-export const TRACK_CLASS = "h-[200svh] motion-reduce:!h-svh";
+export const TRACK_CLASS = "h-[780svh] motion-reduce:!h-svh";
 
 /**
  * Progress at which the sticky stage catches, derived rather than measured:
- * the approach consumes one viewport of scroll out of the track's total, and
+ * the approach consumes one viewport of scroll out of the intro chapter, and
  * both are expressed in svh, so the ratio holds at every viewport height.
+ *
+ * INTRO-LOCAL, like everything in RANGES — it is measured against
+ * `chapter.intro`, not against the whole track.
  */
-export const PIN_AT_PROGRESS = 100 / 200;
+export const PIN_AT_PROGRESS = 100 / CHAPTERS[0].vh;
 
 /** Native size of the source render. Both rungs preserve this aspect ratio. */
 export const SOURCE_ASPECT = 1136 / 800;

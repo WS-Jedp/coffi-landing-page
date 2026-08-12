@@ -85,7 +85,11 @@ export function useLeafletMap(
 
       const base = L.tileLayer(TILE_URL_BASE, {
         attribution: TILE_ATTRIBUTION,
-        keepBuffer: 4,
+        // Leaflet's default. It was raised to 4 for the intro, where the map is
+        // static and a wide margin costs nothing; once the camera pans between
+        // sections that margin is retained grid, and the DOM was holding ~100
+        // tiles instead of ~40. Panning already fetches ahead of the viewport.
+        keepBuffer: 2,
         updateWhenIdle: false,
       });
 
@@ -99,7 +103,11 @@ export function useLeafletMap(
       // Labels ride in after the seam — see the two-stage reveal in MapStage.
       // Text materialising out of a blank wash is the loudest possible tell that
       // a cross-fade just happened, so they cannot be present during it.
-      const labels = L.tileLayer(TILE_URL_LABELS, { opacity: 0, keepBuffer: 4 });
+      const labels = L.tileLayer(TILE_URL_LABELS, {
+        opacity: 0,
+        keepBuffer: 2,
+        updateWhenIdle: false,
+      });
       labels.addTo(instance);
       labelsRef.current = labels;
 
@@ -129,12 +137,33 @@ export function useLeafletMap(
   }, [enabled, containerRef, readyTimeoutMs]);
 
   // Keep Leaflet's idea of its size in sync with the responsive card.
+  //
+  // Coalesced into one rAF on purpose. `invalidateSize` is not cheap — it runs
+  // _updateLevels, _resetGrid, _update and _pruneTiles — and a ResizeObserver
+  // will happily fire it once per frame through a resize.
+  //
+  // The sharper hazard is calling it mid-flight. With its default `pan: true`
+  // it does a `_rawPanBy`, which moves the map pane directly; but a `flyTo`
+  // drives the view through `_pixelOrigin` instead and never reconciles that
+  // pane offset. The map ends up permanently shifted sideways. So: stop any
+  // flight first, then re-anchor to the authoritative target afterwards.
   useEffect(() => {
     const el = containerRef.current;
     if (!map || !el) return;
-    const ro = new ResizeObserver(() => map.invalidateSize());
+
+    let frame = 0;
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        map.stop();
+        map.invalidateSize({ animate: false, pan: false });
+      });
+    });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      ro.disconnect();
+    };
   }, [map, containerRef]);
 
   return { map, L, tilesReady, labelsLayer: labelsRef.current };

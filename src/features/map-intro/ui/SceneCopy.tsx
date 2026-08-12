@@ -4,30 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion, useMotionValue, useTransform, type MotionValue } from "motion/react";
 import { GlassPanel } from "./GlassPanel";
 import { RANGES, SCENE_STEPS, type ProgressRange } from "../constants";
-
-/**
- * Typography borrowed from the hero, so the section reads as the same voice
- * continuing rather than a different page.
- *
- * `HeroSearchForm` uses `font-bold text-4xl md:text-6xl leading-[1.05]` on the
- * title and `text-lg font-light text-gray-700` on the subtitle. The weights,
- * leading and colours are copied exactly; only the top size steps down, because
- * the hero's headline spans a 720px centred column while this one has to live
- * in a ~540px panel beside the map, and text-6xl there wraps into a wall.
- *
- * `text-balance` on the title keeps the two lines close in length instead of
- * leaving one orphaned word — the hero gets the same effect from its max-width.
- */
-const TITLE_CLASS =
-  "text-balance font-bold leading-[1.05] text-coffi-black text-4xl lg:text-5xl";
-/**
- * Deliberately carries no font size. Appending `text-base` to a string that
- * already contains `text-lg` does not override it — Tailwind resolves conflicts
- * by the order the utilities appear in the generated stylesheet, not by the
- * order they appear in the className, and `text-lg` is emitted later. Each site
- * picks its own size instead.
- */
-const BODY_CLASS = "text-pretty font-light leading-relaxed text-gray-700";
+import { BODY_CLASS, TITLE_CLASS } from "./typography";
 
 /**
  * How far behind the title the description settles, in progress units, and how

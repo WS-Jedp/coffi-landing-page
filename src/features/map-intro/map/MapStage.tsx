@@ -8,9 +8,10 @@ import {
   type MotionValue,
 } from "motion/react";
 import { FRAME_RUNGS, RANGES, TILE_ATTRIBUTION, framePath } from "../constants";
+import type { CameraTarget } from "../types";
 import { computeZoomForCard } from "./computeZoomForCard";
 import { useLeafletMap } from "./useLeafletMap";
-import { useMapCamera } from "./useMapCamera";
+import { useSectionCamera } from "./useSectionCamera";
 import { attachPlaceMarkers } from "./markers";
 import { useCalibration } from "../dev/useCalibration";
 import "./leafletTheme.css";
@@ -34,7 +35,17 @@ const REVEAL_MS = 700;
 export const MapStage: React.FC<{
   progress: MotionValue<number>;
   fitScale: MotionValue<number>;
-}> = ({ progress, fitScale }) => {
+  /** 0 = intro. Past that, the section camera owns the view. */
+  activeStep: number;
+  /**
+   * The stage box's pixel size. The Leaflet container is pinned to THIS, not to
+   * the card that crops it — see useElementSize for why.
+   */
+  stageSize: { w: number; h: number };
+  /** Where the active section wants to look; null while the intro owns it. */
+  sectionCamera: CameraTarget | null;
+  reduced: boolean;
+}> = ({ progress, fitScale, activeStep, stageSize, sectionCamera, reduced }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const calibration = useCalibration();
 
@@ -76,16 +87,18 @@ export const MapStage: React.FC<{
   }, [fitScale, calibration]);
 
   const { map, L, tilesReady, labelsLayer } = useLeafletMap(mapRef, {
-    enabled: mounted,
+    // Also gated on having measured the stage: mounting Leaflet into a
+    // zero-sized container leaves it convinced the viewport is 0x0, and its
+    // `load` event never fires because there are no tiles to wait for.
+    enabled: mounted && stageSize.w > 0 && stageSize.h > 0,
     center: calibration.center,
     zoom,
   });
 
-  const camera = useMemo(
+  const introCamera = useMemo(
     () => ({ center: calibration.center, zoom, animate: false }),
     [zoom, calibration],
   );
-  useMapCamera(map, camera);
 
   /*
    * Stage two is driven by time, not by scroll, and that is deliberate. A
@@ -101,8 +114,23 @@ export const MapStage: React.FC<{
   });
   // Same reason as `mounted`: with a pinned progress the only signal that can
   // arrive late is tilesReady, so the seam has to be checked when it lands too.
+  //
+  // Scoped to the values it actually reads. It used to run on every render,
+  // which was harmless while this component re-rendered twice; once the section
+  // machine starts driving it, that would be every step change.
   useEffect(() => {
     if (!revealed && tilesReady && pastSeam(progress.get())) setRevealed(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- pastSeam is a pure
+    // local read of module constants; including it would re-run on every render.
+  }, [revealed, tilesReady, progress]);
+
+  // One writer for the whole life of the map. See useSectionCamera for why the
+  // intro's target has to stop being consulted the moment a section takes over.
+  useSectionCamera(map, {
+    introTarget: introCamera,
+    sectionTarget: activeStep > 0 ? sectionCamera : null,
+    handedOff: revealed,
+    reduced,
   });
 
   // Labels ride in with stage two. They are absent during the dissolve because
@@ -151,9 +179,27 @@ export const MapStage: React.FC<{
           revealed || calibration.overlay ? REST_FILTER : SEAM_FILTER,
       }}
     >
-      {/* Leaflet takes ownership of its container's children, so it gets an
-          element of its own rather than sharing one with React-rendered UI. */}
-      <div ref={mapRef} className="absolute inset-0 h-full w-full" />
+      {/*
+        Leaflet takes ownership of its container's children, so it gets an
+        element of its own rather than sharing one with React-rendered UI.
+
+        Fixed pixel size, centred rather than stretched to fit. This is the
+        mechanism the whole parallax rests on: the card around it changes shape
+        for every section, but this box does not, so Leaflet's viewport maths
+        never moves and `invalidateSize` never has to run. Centring it with
+        `left/top: 50%` + a −50% translate means the map's centre automatically
+        coincides with the centre of whatever window is cropping it, which is
+        why the pins stay centred in every layout without any offset maths.
+      */}
+      <div
+        ref={mapRef}
+        className="absolute left-1/2 top-1/2"
+        style={{
+          width: stageSize.w || "100%",
+          height: stageSize.h || "100%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
 
       {calibration.overlay && (
         <>
