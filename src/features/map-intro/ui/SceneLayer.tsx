@@ -19,9 +19,10 @@ import { SectionCopy } from "./SectionCopy";
  * COPY_DEPTH, per breakpoint.
  *
  * Each block is exactly as tall as its chapter, so the copy's arrival stays in
- * step with the map's shape change and with the camera. The intro's share is an
- * empty spacer — its copy belongs to the map composition and lives in the
- * sticky layer.
+ * step with the map's shape change and with the camera. The intro is one of
+ * them: its headline used to live inside the map card, migrating across it on
+ * its own scrubbed path, but folding it in here means it arrives the same way
+ * every other section does — and there is one less special case.
  *
  * Only the horizontal side is set per section. Vertical placement would be
  * meaningless here: a block's vertical alignment decides *when* the copy crosses
@@ -47,13 +48,10 @@ export const SceneLayer: React.FC = () => (
     // map. Depth is decided per block — see COPY_DEPTH.
     className="pointer-events-none absolute inset-x-0"
   >
-    {/* The intro owns this stretch; its copy is part of the map composition. */}
-    <div style={{ height: `${CHAPTERS[0].vh}svh` }} />
-
-    {SECTIONS.slice(1).map((section, i) => (
+    {SECTIONS.map((section, i) => (
       <div
         key={section.id}
-        style={{ height: `${CHAPTERS[i + 1].vh}svh` }}
+        style={{ height: `${CHAPTERS[i].vh}svh` }}
         className={`relative flex items-center px-4 md:px-6 ${COPY_DEPTH[section.id]}`}
       >
         {/* Same 1200px grid the map stage uses, so the copy lines up with the

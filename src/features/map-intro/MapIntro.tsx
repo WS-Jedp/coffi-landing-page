@@ -5,7 +5,6 @@ import { motion, useMotionValue, useTransform } from "motion/react";
 import {
   CARD_START_Y_PCT,
   CHAPTERS,
-  COPY_START_Y_PCT,
   INTRO_SHARE,
   RANGES,
   TRACK_CLASS,
@@ -17,7 +16,6 @@ import { useElementSize } from "./scroll/useElementSize";
 import { useStageLayout } from "./ui/useStageLayout";
 import { useFrameScrubber } from "./canvas/useFrameScrubber";
 import { MapCard } from "./ui/MapCard";
-import { SceneCopy } from "./ui/SceneCopy";
 import { MapStage } from "./map/MapStage";
 import { DotRail } from "./ui/DotRail";
 import { SceneLayer } from "./ui/SceneLayer";
@@ -93,22 +91,12 @@ export const MapIntro: React.FC = () => {
   const atRest = Math.min(0.4, useProgressAtRest(trackRef) / INTRO_SHARE);
   const enterRange: [number, number] = [atRest, RANGES.CARD_ENTER[1]];
 
-  // The entrance travel, owned here rather than inside MapCard because the copy
-  // needs a matching one. Both consumers sit in the same full-size box, so a
-  // percentage resolves against the same height for each.
-  //
-  // The copy travels a shorter distance than the card so that at rest it lands
-  // just below the folded map rather than on top of it — see COPY_START_Y_PCT.
+  // The card's entrance travel. It used to have a sibling for the intro copy,
+  // which has since moved out into the scrolling content column.
   const entranceY = useTransform(
     introProgress,
     enterRange,
     [`${CARD_START_Y_PCT}%`, "0%"],
-    { clamp: true },
-  );
-  const copyEntranceY = useTransform(
-    introProgress,
-    enterRange,
-    [`${COPY_START_Y_PCT}%`, "0%"],
     { clamp: true },
   );
 
@@ -174,18 +162,6 @@ export const MapIntro: React.FC = () => {
               className="pointer-events-none absolute inset-0 block h-full w-full"
             />
           </MapCard>
-          {/* The intro's copy hands the stage over rather than lingering: once a
-              section is active its title would be a second, contradictory
-              headline sitting on the same panel position. */}
-          <motion.div
-            style={{ y: copyEntranceY }}
-            animate={{ opacity: activeStep === 0 ? 1 : 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0"
-          >
-            <SceneCopy progress={introProgress} />
-          </motion.div>
-
           <DotRail
             count={SECTIONS.length - 1}
             activeStep={activeStep}

@@ -206,19 +206,6 @@ export const CARD_START_SCALE_RANGE: ProgressRange = [0.22, 0.5];
  */
 export const CARD_START_Y_PCT = -58;
 
-/**
- * The copy's own resting offset, in the same units.
- *
- * Shallower than the card's on purpose. Sharing the card's travel outright
- * would park the headline exactly on top of a 300px map and hide it; leaving
- * the copy centred in the stage instead would strand it far below the fold.
- *
- * The gap between the two is smaller than it looks, because the card box is
- * much taller than the map inside it: while the paper is folded it occupies
- * only the middle ~60% of the frame and the rest is transparency. Both values
- * are tuned against the visible paper, not the box.
- */
-export const COPY_START_Y_PCT = -39;
 
 /**
  * Calibration for the frame-120 -> Leaflet hand-off.

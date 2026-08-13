@@ -51,7 +51,7 @@ export const MAP_RECTS_MOBILE: Record<SectionId, Rect> = {
  * Over the full-width bands there is nothing to clear and the copy can breathe.
  */
 export const COPY_WIDTH: Record<SectionId, string> = {
-  intro: "max-w-[34rem]",
+  intro: "max-w-[44rem]",
   spaces: "max-w-[32rem]",
   connect: "max-w-[44rem]",
   points: "max-w-[32rem]",
@@ -76,7 +76,10 @@ export const COPY_WIDTH: Record<SectionId, string> = {
  * context, and its children could then never be compared with the map at all.
  */
 export const COPY_DEPTH: Record<SectionId, string> = {
-  intro: "z-0",
+  // The exception, on every breakpoint. During the intro the map fills the whole
+  // container, so there is no free space for the copy to occupy and "behind"
+  // would mean "invisible". It is the one section that has to be in front.
+  intro: "z-20",
   spaces: "z-0 md:z-20",
   connect: "z-0 md:z-20",
   points: "z-0 md:z-20",
