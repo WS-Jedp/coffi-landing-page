@@ -22,15 +22,41 @@
 export type CopyScale = "wide" | "column";
 
 /**
- * The antetitle stays ink, never gradient.
+ * The antetitle, as a chip.
  *
- * It is the block's contrast anchor: with a coloured headline and grey body,
- * something has to hold the darkest value or the whole block floats. It is also
- * the part that survives at small sizes, so it carries the weight instead of
- * the size.
+ * The styling is the house chip, taken from `filters/placeType` and
+ * `placeCard`: fully rounded, a soft blue->purple tint, purple text. What is
+ * added for this context is a white base under the tint. Those chips sit on
+ * solid page background; these sit over a live map, and a 20% tint alone lets
+ * streets run straight through the label.
+ *
+ * `bg-white/70` and `bg-gradient-to-r` coexist rather than conflict — the first
+ * sets `background-color`, the second `background-image`, so the tint composites
+ * over the white base. That is also why this stays plain Tailwind instead of
+ * needing `backdrop-blur`, which would cost a filter pass every frame on a page
+ * that is already scrubbing a canvas and panning a map.
+ *
+ * The wrapper is a separate block from the chip on purpose: the chip has to
+ * shrink-wrap its text, and the motion values need a predictable block box to
+ * carry the entrance travel and the margin.
  */
-export const EYEBROW_CLASS =
-  "mb-4 text-sm font-bold tracking-[-0.01em] text-coffi-black md:text-base";
+export const EYEBROW_WRAP_CLASS = "mb-5";
+
+export const EYEBROW_CHIP_CLASS = [
+  "inline-flex items-center gap-2 rounded-full",
+  "border border-coffi-purple/15",
+  "bg-white/70 bg-gradient-to-r from-coffi-blue/20 to-coffi-purple/20",
+  "px-3.5 py-1.5 md:px-4",
+  "text-sm font-semibold tracking-[-0.01em] text-coffi-purple md:text-[0.9375rem]",
+  "shadow-sm shadow-coffi-purple/10",
+].join(" ");
+
+/**
+ * Decorative, and an internal rhyme: the same purple mark the DotRail uses on
+ * the map's right edge, so the chip reads as part of this section's vocabulary.
+ */
+export const EYEBROW_DOT_CLASS =
+  "h-1.5 w-1.5 shrink-0 rounded-full coffi-gradient-blue-to-purple";
 
 /**
  * Headline sizes. Deliberately past the hero's `md:text-6xl` at the top end:

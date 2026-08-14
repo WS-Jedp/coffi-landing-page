@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import {
   BODY_CLASS,
   EMPHASIS_CLASS,
-  EYEBROW_CLASS,
+  EYEBROW_CHIP_CLASS,
+  EYEBROW_DOT_CLASS,
+  EYEBROW_WRAP_CLASS,
   TITLE_CLASS,
   TITLE_GRADIENT_CLASS,
   TITLE_GRADIENT_STYLE,
@@ -53,8 +55,11 @@ export const SectionCopy: React.FC<{ section: SectionSpec }> = ({ section }) => 
     // The scroll target is this element, not the chapter block that holds it.
     // See useCopyEntrance for why the short box is the right frame of reference.
     <div ref={ref} className={`map-intro-copy ${COPY_WIDTH[section.id]}`}>
-      <motion.p style={copy.eyebrow} className={EYEBROW_CLASS}>
-        {t(section.eyebrowKey)}
+      <motion.p style={copy.eyebrow} className={EYEBROW_WRAP_CLASS}>
+        <span className={EYEBROW_CHIP_CLASS}>
+          <span aria-hidden className={EYEBROW_DOT_CLASS} />
+          {t(section.eyebrowKey)}
+        </span>
       </motion.p>
 
       <motion.div style={{ ...copy.title, transformOrigin: "0% 100%" }}>

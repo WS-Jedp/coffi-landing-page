@@ -136,6 +136,12 @@ export const OPAQUE_AT_PROGRESS = 74 / 120;
  */
 export type ProgressRange = [number, number];
 
+/**
+ * Hoisted so CARD_CHROME below can be derived from its end rather than
+ * hand-tuned to sit near it. See the note there.
+ */
+const FIT_RANGE: ProgressRange = [0.52, 0.74];
+
 export const RANGES = {
   /** Source frames 1 -> 73: the paper unfolds. Descriptive; nothing reads it. */
   UNFOLD: [0.02, OPAQUE_AT_PROGRESS] as ProgressRange,
@@ -162,9 +168,28 @@ export const RANGES = {
    * just after the frames go opaque, so the card is never showing a letterboxed
    * "full" map with bands of surface above and below it.
    */
-  FIT: [0.52, 0.74] as ProgressRange,
-  /** Radius, ring, shadow, surface. Tracks the alpha boundary at 0.617. */
-  CARD_CHROME: [0.58, 0.72] as ProgressRange,
+  FIT: FIT_RANGE,
+  /**
+   * Radius, ring, shadow, surface — and it may not begin before FIT ENDS.
+   *
+   * The card is only allowed to exist once the frame it contains actually
+   * reaches its edges. Starting earlier puts a drop shadow and an opaque
+   * surface around an image that does not fill the box, so the surface shows
+   * through as bands down either side and the card reads as broken rather than
+   * as materialising. Measured at the old [0.58, 0.72]: at 0.62 the shadow was
+   * already at 28% with a 39px gap on each side, and at 0.70 it was at 86% with
+   * 6px still showing.
+   *
+   * `FIT_RANGE[1]` is not "about where the fit finishes", it is exactly where:
+   * `computeFrameFit` drives the scale with `smoothstep`, which reaches 1 at
+   * the end of its range, so `fitScale === coverScale` there — on both rungs
+   * and at every viewport, whatever the aspect ratio works out to. Deriving it
+   * means the two cannot drift apart when the fit is re-paced.
+   *
+   * Ends before CROSSFADE so the card is fully established before the canvas
+   * hands over to Leaflet.
+   */
+  CARD_CHROME: [FIT_RANGE[1], 0.86] as ProgressRange,
   /**
    * Copy migrates from centred to right-of-centre (desktop). Starts just after
    * the pin at 0.5 so the copy is not sliding sideways while the whole section

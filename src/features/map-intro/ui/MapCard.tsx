@@ -23,9 +23,14 @@ const clamp = (v: number, min: number, max: number) =>
  * *not* always on. For the first half of the sequence the frame being drawn is a
  * paper cutout on transparency, and a rounded card with a drop shadow around a
  * transparent rectangle reads as a broken image: a shadowed box with nothing in
- * it, next to the paper's own baked-in shadow. So the card materialises over
- * CARD_CHROME, which tracks the point where the frames stop having an alpha
- * channel and start covering the full rectangle.
+ * it, next to the paper's own baked-in shadow.
+ *
+ * So the card materialises over CARD_CHROME, which begins only once the frame
+ * has grown to cover the box completely. Opacity is not enough on its own —
+ * the frame goes opaque well before it reaches the edges, and in between a
+ * shadowed card would be showing its own surface as bands down either side.
+ * See the note on CARD_CHROME for why that boundary is derived from FIT rather
+ * than tuned to sit near it.
  */
 export const MapCard: React.FC<{
   progress: MotionValue<number>;
