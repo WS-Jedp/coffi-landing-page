@@ -40,23 +40,28 @@
     }
   },
   "mapIntro": {
+    "eyebrow": "Coworking 2.0.",
     "title": "Ahora la ciudad es tu oficina.",
-    "description": "Sé parte de la revolución Coworking 2.0. La red que transforma tu ciudad en tu oficina real: descentralizada, humana y llena de creadores como tú.",
+    "description": "Sé parte de la revolución Coworking 2.0. La red que transforma <b>tu ciudad en tu oficina real</b>: descentralizada, humana y llena de creadores como tú.",
     "spaces": {
+      "eyebrow": "Espacios.",
       "title": "Elimina la incertidumbre",
-      "description": "Dile a Coffi qué buscas hoy y qué necesitas. Coffi cruza tu intención con datos en tiempo real de cada lugar."
+      "description": "Dile a Coffi qué buscas hoy y qué necesitas. Coffi <b>cruza tu intención con datos en tiempo real</b> de cada lugar."
     },
     "connect": {
+      "eyebrow": "Comunidad.",
       "title": "Conecta con quienes crean cerca",
-      "description": "Mira en tiempo real quién está creando el futuro contigo. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria."
+      "description": "Mira en tiempo real <b>quién está creando el futuro contigo</b>. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria."
     },
     "points": {
+      "eyebrow": "Coffi Puntos.",
       "title": "Gana mientras creas",
-      "description": "Con cada check-in, reseña, actualización o descubrimiento obtén Coffi Puntos. Canjea beneficios exclusivos en tus espacios favoritos."
+      "description": "Con cada check-in, reseña, actualización o descubrimiento <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos."
     },
     "circles": {
+      "eyebrow": "Coffi Circles.",
       "title": "Incoming: Coffi Circles",
-      "description": "Micro-eventos impulsados por la comunidad dentro de los espacios. Crea o únete a círculos abiertos según intereses, profesión y momento.",
+      "description": "Micro-eventos impulsados por la comunidad dentro de los espacios. <b>Crea o únete a círculos abiertos</b> según intereses, profesión y momento.",
       "cta": "Explora la ciudad ahora",
       "closing": "Tu ciudad. Tu ritmo. Tu comunidad."
     }

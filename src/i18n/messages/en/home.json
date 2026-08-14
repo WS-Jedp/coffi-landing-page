@@ -40,23 +40,28 @@
     }
   },
   "mapIntro": {
+    "eyebrow": "Coworking 2.0.",
     "title": "Now the city is your office.",
-    "description": "Be part of the Coworking 2.0 revolution. The network that turns your city into your real office: decentralised, human, and full of creators like you.",
+    "description": "Be part of the Coworking 2.0 revolution. The network that turns <b>your city into your real office</b>: decentralised, human, and full of creators like you.",
     "spaces": {
+      "eyebrow": "Spaces.",
       "title": "Take the guesswork out",
-      "description": "Tell Coffi what you are after today and what you need. Coffi matches your intent against live data from every place."
+      "description": "Tell Coffi what you are after today and what you need. Coffi <b>matches your intent against live data</b> from every place."
     },
     "connect": {
+      "eyebrow": "Community.",
       "title": "Connect with the people creating nearby",
-      "description": "See in real time who is building the future alongside you. Join open circles or start spontaneous conversations. The city stops feeling lonely."
+      "description": "See in real time <b>who is building the future alongside you</b>. Join open circles or start spontaneous conversations. The city stops feeling lonely."
     },
     "points": {
+      "eyebrow": "Coffi Points.",
       "title": "Earn while you create",
-      "description": "Every check-in, review, update or discovery earns you Coffi Points. Redeem them for exclusive perks at your favourite spaces."
+      "description": "Every check-in, review, update or discovery <b>earns you Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces."
     },
     "circles": {
+      "eyebrow": "Coffi Circles.",
       "title": "Incoming: Coffi Circles",
-      "description": "Community-driven micro-events inside the spaces. Create or join open circles based on interests, profession and moment.",
+      "description": "Community-driven micro-events inside the spaces. <b>Create or join open circles</b> based on interests, profession and moment.",
       "cta": "Explore the city now",
       "closing": "Your city. Your pace. Your community."
     }

@@ -9,6 +9,8 @@ export type SectionSpec = {
   chapterId: SectionId;
   /** Where the map looks while this section is active. */
   camera: CameraTarget;
+  /** The short ink label above the headline. */
+  eyebrowKey: string;
   titleKey: string;
   descKey: string;
 };
@@ -49,6 +51,7 @@ export const SECTIONS: readonly SectionSpec[] = [
     chapterId: "intro",
     // Overridden by the intro's own calibration; present so indices line up.
     camera: { center: [6.25, -75.575], zoom: 15.7 },
+    eyebrowKey: "home.mapIntro.eyebrow",
     titleKey: "home.mapIntro.title",
     descKey: "home.mapIntro.description",
   },
@@ -56,6 +59,7 @@ export const SECTIONS: readonly SectionSpec[] = [
     id: "spaces",
     chapterId: "spaces",
     camera: { center: [6.2274, -75.5719], zoom: SECTION_ZOOM, animate: true }, // El Poblado
+    eyebrowKey: "home.mapIntro.spaces.eyebrow",
     titleKey: "home.mapIntro.spaces.title",
     descKey: "home.mapIntro.spaces.description",
   },
@@ -63,6 +67,7 @@ export const SECTIONS: readonly SectionSpec[] = [
     id: "connect",
     chapterId: "connect",
     camera: { center: [6.245, -75.59], zoom: SECTION_ZOOM, animate: true }, // La 70
+    eyebrowKey: "home.mapIntro.connect.eyebrow",
     titleKey: "home.mapIntro.connect.title",
     descKey: "home.mapIntro.connect.description",
   },
@@ -70,6 +75,7 @@ export const SECTIONS: readonly SectionSpec[] = [
     id: "points",
     chapterId: "points",
     camera: { center: [6.2288, -75.582], zoom: SECTION_ZOOM, animate: true }, // Belén
+    eyebrowKey: "home.mapIntro.points.eyebrow",
     titleKey: "home.mapIntro.points.title",
     descKey: "home.mapIntro.points.description",
   },
@@ -77,6 +83,7 @@ export const SECTIONS: readonly SectionSpec[] = [
     id: "circles",
     chapterId: "circles",
     camera: { center: [6.2274, -75.5719], zoom: SECTION_ZOOM, animate: true }, // Poblado
+    eyebrowKey: "home.mapIntro.circles.eyebrow",
     titleKey: "home.mapIntro.circles.title",
     descKey: "home.mapIntro.circles.description",
   },

@@ -1,4 +1,5 @@
 import { CHAPTERS, TRACK_VH } from "../constants";
+import type { CopyScale } from "../ui/typography";
 import type { SectionId } from "./sections";
 
 /** A box inside the stage, in percent of the stage box. */
@@ -43,19 +44,35 @@ export const MAP_RECTS_MOBILE: Record<SectionId, Rect> = {
  * is no room for a column beside the map, so everything centres.
  */
 /**
+ * Which typographic scale each section gets.
+ *
+ * Follows directly from MAP_RECTS above: `spaces` and `points` share their row
+ * with a 48%-wide map window, the other three sit over full-width bands with
+ * nothing beside them. See CopyScale in ui/typography.
+ */
+export const COPY_SCALE: Record<SectionId, CopyScale> = {
+  intro: "wide",
+  spaces: "column",
+  connect: "wide",
+  points: "column",
+  circles: "wide",
+};
+
+/**
  * How wide the copy is allowed to run, which depends on whether it shares the
  * row with the map.
  *
- * Beside a 48%-wide map there are only ~624px of grid left, so a block much
- * over 32rem leaves no gutter and the headline ends up touching the map's edge.
- * Over the full-width bands there is nothing to clear and the copy can breathe.
+ * Beside a 48%-wide map there are only ~624px of grid left at `lg`; 34rem
+ * (544px) leaves an 80px gutter so the headline never touches the map's edge.
+ * Over the full-width bands there is nothing to clear, and 52rem (832px) is
+ * what breaks the long headlines into two lines instead of three at 84px.
  */
 export const COPY_WIDTH: Record<SectionId, string> = {
-  intro: "max-w-[44rem]",
-  spaces: "max-w-[32rem]",
-  connect: "max-w-[44rem]",
-  points: "max-w-[32rem]",
-  circles: "max-w-[44rem]",
+  intro: "max-w-[52rem]",
+  spaces: "max-w-[34rem]",
+  connect: "max-w-[52rem]",
+  points: "max-w-[34rem]",
+  circles: "max-w-[52rem]",
 };
 
 /**

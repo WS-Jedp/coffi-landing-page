@@ -48,6 +48,18 @@ export const SceneLayer: React.FC = () => (
     // map. Depth is decided per block — see COPY_DEPTH.
     className="pointer-events-none absolute inset-x-0"
   >
+    {/*
+      The copy's entrance is driven by motion values, and on the server
+      `useScroll` has nothing to measure, so it renders at progress 0 — which is
+      `opacity: 0` inline on every block. With JS that is corrected on the first
+      layout effect and is invisible. Without it the section would be a column
+      of blank space, so the styles are undone outright. The text is in the
+      markup either way, which is what crawlers read.
+    */}
+    <noscript>
+      <style>{`.map-intro-copy > * { opacity: 1 !important; filter: none !important; transform: none !important; }
+.map-intro-copy h2 { background-position: 0% 50% !important; }`}</style>
+    </noscript>
     {SECTIONS.map((section, i) => (
       <div
         key={section.id}

@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTransform, type MotionValue } from "motion/react";
-import { MOBILE_BREAKPOINT } from "../constants";
+import { useIsMobile } from "./useIsMobile";
 import {
   LAYOUT_INDEX,
   LAYOUT_ORDER,
@@ -44,24 +43,14 @@ function useRectMotion(progress: MotionValue<number>, rects: Rect[]): RectMotion
  * so its geometry has to be a function of scroll position, not a spring fired
  * by a state change.
  *
- * The breakpoint is read in an effect, never during render. Branching layout on
- * a client-only media query during render produces a hydration mismatch, and
- * React does not patch mismatched attributes — it keeps the server's value and
- * warns, so the mobile layout would silently never apply.
+ * The breakpoint comes from `useIsMobile`, which reads it in an effect rather
+ * than during render — see the note there for why that is load-bearing.
  */
 export function useStageLayout(progress: MotionValue<number>): {
   map: RectMotion;
   isMobile: boolean;
 } {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const apply = () => setIsMobile(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
+  const isMobile = useIsMobile();
 
   const mapRects = LAYOUT_ORDER.map((id) => (isMobile ? MAP_RECTS_MOBILE : MAP_RECTS)[id]);
 
