@@ -40,7 +40,11 @@ export type CopyScale = "wide" | "column";
  * shrink-wrap its text, and the motion values need a predictable block box to
  * carry the entrance travel and the margin.
  */
-export const EYEBROW_WRAP_CLASS = "mb-5";
+// Tighter rhythm on phones. The type sizes are untouched — they are the point
+// of the section — but the gaps between blocks are pure air, and on a 667px
+// screen that air is the difference between a headline that clears the map and
+// one the map slices through.
+export const EYEBROW_WRAP_CLASS = "mb-3 md:mb-5";
 
 export const EYEBROW_CHIP_CLASS = [
   "inline-flex items-center gap-2 rounded-full",
@@ -59,20 +63,69 @@ export const EYEBROW_DOT_CLASS =
   "h-1.5 w-1.5 shrink-0 rounded-full coffi-gradient-blue-to-purple";
 
 /**
+ * Filter chips — the interactive relatives of the antetitle chip.
+ *
+ * Same pill geometry so the section reads as one family, but deliberately
+ * without the leading dot: the antetitle is a label and these are controls, and
+ * repeating its ornament would make the two look like the same kind of thing.
+ * The difference is carried by state instead — hover, focus ring, and a filled
+ * gradient when selected.
+ *
+ * `pointer-events-auto` is load-bearing. `SceneLayer` sets `pointer-events-none`
+ * on the whole copy column so the text never intercepts a scroll gesture over
+ * the map; these are the only elements that opt back in.
+ */
+const CHIP_BASE = [
+  "pointer-events-auto inline-flex items-center rounded-full",
+  "px-3.5 py-1.5 md:px-4",
+  "text-sm font-semibold tracking-[-0.01em] md:text-[0.9375rem]",
+  "transition-colors duration-200",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffi-purple/50 focus-visible:ring-offset-2",
+].join(" ");
+
+export const CHIP_IDLE_CLASS = [
+  CHIP_BASE,
+  "border border-coffi-purple/15",
+  "bg-white/70 bg-gradient-to-r from-coffi-blue/20 to-coffi-purple/20",
+  "text-coffi-black shadow-sm shadow-coffi-purple/10",
+  "hover:border-coffi-purple/30",
+].join(" ");
+
+export const CHIP_ACTIVE_CLASS = [
+  CHIP_BASE,
+  "border border-transparent",
+  "coffi-gradient-blue-to-purple text-white",
+  "shadow-md shadow-coffi-purple/30",
+].join(" ");
+
+/** The quiet line above a chip row. */
+export const CHIP_LABEL_CLASS =
+  "mb-2 md:mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-coffi-black/45";
+
+/**
  * Headline sizes. Deliberately past the hero's `md:text-6xl` at the top end:
  * the hero shares its screen with a search bar and a banner, while these are
  * alone over a pale map and have to carry the section on their own.
  *
  * The negative tracking is what stops large bold type reading as shouty — at
  * 84px the default letter spacing is visibly loose.
+ *
+ * The phone step is a fifth smaller than it was — 35px wide, 32px column — and
+ * that was bought rather than chosen. Circles carries a headline, two
+ * paragraphs, a CTA and a closing line; at the previous size that block ran
+ * 545px against 440px of readable screen, so the map cut through it. 35px is
+ * still larger than the hero's own headline on the same device.
+ *
+ * Leading opens slightly as the size drops: tight leading is what makes big type
+ * feel deliberate, and the same value on small type just makes lines collide.
  */
 const TITLE_BASE = "text-balance font-bold tracking-[-0.03em]";
 
 export const TITLE_CLASS: Record<CopyScale, string> = {
   // 44 / 60 / 72 / 84
-  wide: `${TITLE_BASE} leading-[0.98] text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.25rem]`,
+  wide: `${TITLE_BASE} leading-[1.02] text-[2.1875rem] sm:text-6xl md:text-7xl lg:text-[5.25rem]`,
   // 40 / 48 / 52 / 64
-  column: `${TITLE_BASE} leading-[1.0] text-[2.5rem] sm:text-5xl md:text-[3.25rem] lg:text-[4rem]`,
+  column: `${TITLE_BASE} leading-[1.05] text-[2rem] sm:text-5xl md:text-[3.25rem] lg:text-[4rem]`,
 };
 
 /**
@@ -118,10 +171,10 @@ export const TITLE_GRADIENT_STYLE = {
  */
 export const BODY_CLASS: Record<CopyScale, string> = {
   // 20 / 24 / 26
-  wide: "mt-8 text-pretty font-light leading-[1.45] text-gray-700 text-xl md:text-2xl lg:text-[1.625rem]",
+  wide: "mt-5 md:mt-8 text-pretty font-light leading-[1.45] text-gray-700 text-base md:text-2xl lg:text-[1.625rem]",
   // 20 / 22
   column:
-    "mt-7 text-pretty font-light leading-[1.45] text-gray-700 text-xl md:text-[1.375rem]",
+    "mt-5 md:mt-7 text-pretty font-light leading-[1.45] text-gray-700 text-base md:text-[1.375rem]",
 };
 
 /**

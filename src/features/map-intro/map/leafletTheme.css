@@ -30,22 +30,53 @@
 }
 
 /*
- * Pins. Each carries its own --pin-delay so the set arrives as a wave without
- * a timer per marker.
+ * Pins.
+ *
+ * All four species share one rule: everything they have to say is visible
+ * without touching them. Labels are permanent, not tooltips. On a phone there
+ * is no hover, so anything hidden behind one is simply unreachable — and the
+ * whole section is a phone-first scroll experience.
+ *
+ * Each carries its own --pin-delay so a set arrives as a wave with no timer per
+ * marker. Colours come inline from pinVocabulary: these elements are built as
+ * HTML strings, invisible to Tailwind's scanner, so a utility class here would
+ * be purged from the production build.
  */
 .map-intro-pin-wrap {
   background: transparent !important;
   border: 0 !important;
 }
 
-.map-intro-pin {
+/* Shared label plate. White, rounded, floating above its pin. */
+.map-intro-place-label,
+.map-intro-perk-label,
+.map-intro-creator-label,
+.map-intro-circle-label {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 14px -4px rgba(49, 47, 61, 0.35);
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.25;
+}
+
+/* Shared arrival. Grows from the pin's base so it reads as dropping onto the map. */
+.map-intro-place,
+.map-intro-perk,
+.map-intro-creator,
+.map-intro-circle {
+  position: relative;
   display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 9999px;
-  border: 2px solid #efeff9;
-  box-shadow: 0 2px 8px rgba(49, 47, 61, 0.35);
   transform: scale(0);
+  transform-origin: 50% 50%;
   animation: map-intro-pin-in 420ms cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
   animation-delay: var(--pin-delay, 0ms);
 }
@@ -61,10 +92,458 @@
   }
 }
 
+/* --- Places: the app's rounded card with the ambience icon. --- */
+.map-intro-place {
+  width: 40px;
+  height: 40px;
+}
+
+/* Compact sizes across the species. A phone band leaves an anchor area of only
+   about 200x110px, and every pixel of marker is taken out of it twice: once as
+   its own footprint and once as the gap it forces around itself. */
+.map-intro-compact.map-intro-place,
+.map-intro-compact .map-intro-place-card {
+  width: 32px;
+  height: 32px;
+  border-radius: 11px;
+}
+
+.map-intro-compact.map-intro-creator,
+.map-intro-compact .map-intro-creator-pin {
+  width: 28px;
+  height: 28px;
+}
+
+.map-intro-compact .map-intro-creator-dot {
+  width: 25px;
+  height: 25px;
+  font-size: 10.5px;
+}
+
+.map-intro-place-card {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 6px 16px -4px rgba(49, 47, 61, 0.45);
+  transition: transform 300ms ease;
+}
+
+.map-intro-place-name,
+.map-intro-perk-place,
+.map-intro-creator-name,
+.map-intro-circle-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #312f3d;
+}
+
+.map-intro-place-mood,
+.map-intro-creator-status,
+.map-intro-circle-meta {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.map-intro-circle-meta {
+  color: rgba(49, 47, 61, 0.55);
+}
+
+/*
+ * --- Perks: the Coffi gradient, lit. ---
+ *
+ * Every other pin on this map is a FLAT colour, because that is how the app
+ * paints venues. These are the brand gradient with a light sweep travelling
+ * across them, and the contrast is the whole point: a perk is not a venue, it
+ * is something the visitor is being let in on, so it has to read as a different
+ * kind of object before a single word is read.
+ *
+ * The shimmer is a transform on a pseudo-element inside an `overflow:hidden`
+ * box — compositor work only, no repaint. Doing it by animating the gradient's
+ * `background-position` instead would repaint a 52px box every frame, which is
+ * exactly the cost this section has been careful to avoid.
+ */
+.map-intro-perk {
+  width: 52px;
+  height: 52px;
+}
+
+.map-intro-perk-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  /* The landing's primary-CTA gradient, value for value, from the
+     `.coffi-gradient-blue-to-purple` utility in globals.css. Repeated here
+     rather than applied as that class because this element is built inside an
+     HTML string, where Tailwind's scanner cannot see it — and that utility
+     lives in `@layer utilities`, so it is tree-shaken like any other. */
+  background: linear-gradient(90deg, #6e91ff 9%, #533fff 99%);
+  border: 2px solid #fff;
+  color: #fff;
+  box-shadow:
+    0 10px 24px -8px rgba(83, 63, 255, 0.65),
+    0 0 0 4px rgba(83, 63, 255, 0.14);
+  transition: transform 300ms ease;
+}
+
+.map-intro-perk-card::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  width: 55%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-260%) rotate(18deg);
+  animation: map-intro-shimmer 3.6s ease-in-out infinite;
+  /* Offset per pin so four cards do not flash in unison, which would read as
+     one blinking element rather than as four separate rewards. */
+  animation-delay: var(--pin-delay, 0ms);
+}
+
+@keyframes map-intro-shimmer {
+  0% {
+    transform: translateX(-260%) rotate(18deg);
+  }
+  /* The sweep is quick and the wait is long: a light that crosses constantly
+     stops being an event. */
+  35%,
+  100% {
+    transform: translateX(320%) rotate(18deg);
+  }
+}
+
+/* Positioned against `.map-intro-perk`, the un-clipped wrapper — see the note
+   in perkPins.ts for why it cannot live inside the card. */
+.map-intro-perk-crown {
+  position: absolute;
+  z-index: 2;
+  /* Sits mostly ABOVE the card rather than on it: overlapping further down
+     crowds the venue's own icon, and the badge stops reading as a crown on top
+     of something and starts reading as a hole punched in it. */
+  top: -17px;
+  left: 50%;
+  margin-left: -13px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #fff;
+  color: #533fff;
+  box-shadow: 0 3px 9px rgba(83, 63, 255, 0.4);
+}
+
+.map-intro-perk-offer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #533fff;
+}
+
+.map-intro-perk-place {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(49, 47, 61, 0.7);
+}
+
+/* The line that says where the offer comes from. A discount alone could be
+   anyone's; this is what makes it Coffi's. */
+.map-intro-perk-only {
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 1px solid rgba(83, 63, 255, 0.22);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #6d66ff;
+}
+
+/* A faint brand tint on the plate, so a perk label is distinguishable from a
+   venue label before the words are read. */
+.map-intro-perk-label {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f3ff 100%);
+  border: 1px solid rgba(83, 63, 255, 0.18);
+  /* Perks need more clearance than the other species: their crown sticks up
+     17px above the card and would otherwise print straight through the bottom
+     line of the label. The extra room is folded into LABEL_H in perkPins.ts so
+     the sieve measures the same box it gets. */
+  bottom: calc(100% + 20px);
+}
+
+.map-intro-compact .map-intro-perk-label {
+  bottom: calc(100% + 16px);
+}
+
+/* Flipped: the label hangs below, so the crown is not in its way. */
+.map-intro-below .map-intro-perk-label {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+/* Compact: the card shrinks and the exclusivity line is dropped entirely — on a
+   phone band a third line of text costs a whole pin. */
+.map-intro-compact.map-intro-perk,
+.map-intro-compact .map-intro-perk-card {
+  width: 38px;
+  height: 38px;
+}
+
+.map-intro-compact .map-intro-perk-card {
+  border-radius: 15px;
+}
+
+.map-intro-compact .map-intro-perk-crown {
+  top: -14px;
+  margin-left: -11px;
+  width: 22px;
+  height: 22px;
+}
+
+/* --- Creators: a coloured dot whose colour says what they are open to. --- */
+.map-intro-creator {
+  width: 34px;
+  height: 34px;
+}
+
+.map-intro-creator-pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+}
+
+.map-intro-creator-dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 12px -2px rgba(49, 47, 61, 0.4);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.map-intro-creator-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  opacity: 0.3;
+  animation: map-intro-halo 2.4s ease-out infinite;
+  /* Offset per pin so a dozen halos do not pulse in lockstep, which reads as
+     one blinking object rather than as scattered people. */
+  animation-delay: var(--pin-delay, 0ms);
+}
+
+@keyframes map-intro-halo {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/*
+ * --- Circles: a huddle of people, with a seat left open. ---
+ *
+ * The faces are the creator dot from two sections earlier, shrunk and
+ * overlapped. Reusing that exact shape is deliberate: the people the visitor
+ * just watched scattered across La 70 turn up again here, running the circles.
+ *
+ * The dashed seat at the end is what is left of the old ring — an opening you
+ * can step into — now carrying a `+` so it reads as an invitation rather than
+ * as somebody missing.
+ */
+.map-intro-circle {
+  width: auto;
+  height: 24px;
+}
+
+.map-intro-circle-huddle {
+  display: flex;
+  align-items: center;
+}
+
+.map-intro-circle-face,
+.map-intro-circle-seat {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  /* Each disc overlaps the one before it, so the group reads as a huddle rather
+     than as a row of separate markers. */
+  margin-left: -8px;
+  box-shadow: 0 3px 9px -2px rgba(49, 47, 61, 0.45);
+}
+
+.map-intro-circle-face:first-child {
+  margin-left: 0;
+}
+
+.map-intro-circle-face {
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.map-intro-circle-seat {
+  border: 2px dashed #533fff;
+  background: rgba(255, 255, 255, 0.96);
+  color: #533fff;
+  font-size: 14px;
+  font-weight: 700;
+  /* The one element that keeps breathing: it is the call to action of the pin,
+     and a group of static discs beside it would read as a closed set. */
+  animation: map-intro-seat 2.8s ease-in-out infinite;
+  animation-delay: var(--pin-delay, 0ms);
+}
+
+@keyframes map-intro-seat {
+  0%,
+  100% {
+    box-shadow: 0 3px 9px -2px rgba(83, 63, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 3px 9px -2px rgba(83, 63, 255, 0.4),
+      0 0 0 5px rgba(83, 63, 255, 0.16);
+  }
+}
+
+.map-intro-circle-place {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: rgba(49, 47, 61, 0.5);
+}
+
+.map-intro-circle-people {
+  margin-top: 2px;
+  padding-top: 3px;
+  border-top: 1px solid rgba(83, 63, 255, 0.16);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #533fff;
+}
+
+.map-intro-compact .map-intro-circle {
+  height: 20px;
+}
+
+.map-intro-compact .map-intro-circle {
+  height: 17px;
+}
+
+/* Narrower than the other compact labels: see TITLE_CAP_COMPACT in circlePins
+   for why four characters and one point of type size are the difference between
+   one circle pin and two. */
+.map-intro-compact .map-intro-circle-title {
+  font-size: 9.5px;
+}
+
+.map-intro-compact .map-intro-circle-face,
+.map-intro-compact .map-intro-circle-seat {
+  width: 17px;
+  height: 17px;
+  margin-left: -5px;
+  font-size: 8.5px;
+  border-width: 1.5px;
+}
+
+.map-intro-compact .map-intro-circle-seat {
+  font-size: 12px;
+}
+
+/*
+ * Flipped placement, chosen by the sieve when there is no room above.
+ *
+ * Without it the label always reaches upward, which wastes half of a short
+ * window: on a phone band that meant a whole section could select no pins at
+ * all, because every candidate sat in the upper half.
+ */
+.map-intro-below .map-intro-place-label,
+.map-intro-below .map-intro-perk-label,
+.map-intro-below .map-intro-creator-label,
+.map-intro-below .map-intro-circle-label {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+/*
+ * Compact mode: applied when the CROPPING WINDOW is narrow, not when the device
+ * is. A phone shows a full-width band in some sections and a ~358px box in
+ * others, and only the second needs the type to give way.
+ */
+.map-intro-compact .map-intro-place-label,
+.map-intro-compact .map-intro-perk-label,
+.map-intro-compact .map-intro-creator-label,
+.map-intro-compact .map-intro-circle-label {
+  padding: 4px 7px;
+  border-radius: 8px;
+}
+
+.map-intro-compact .map-intro-place-name,
+.map-intro-compact .map-intro-perk-place,
+.map-intro-compact .map-intro-creator-name,
+.map-intro-compact .map-intro-circle-title,
+.map-intro-compact .map-intro-perk-offer {
+  font-size: 10.5px;
+}
+
+.map-intro-compact .map-intro-place-mood,
+.map-intro-compact .map-intro-creator-status,
+.map-intro-compact .map-intro-circle-meta {
+  font-size: 9.5px;
+}
+
+/* The app's hover lift, on every species. */
+.map-intro-leaflet .leaflet-interactive:hover .map-intro-place-card,
+.map-intro-leaflet .leaflet-interactive:hover .map-intro-perk-card,
+.map-intro-leaflet .leaflet-interactive:hover .map-intro-circle-ring {
+  transform: scale(1.12);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .map-intro-pin {
+  .map-intro-place,
+  .map-intro-perk,
+  .map-intro-creator,
+  .map-intro-circle {
     animation: none;
     transform: scale(1);
+  }
+  .map-intro-creator-halo,
+  .map-intro-circle-ring {
+    animation: none;
+  }
+  .map-intro-perk-card::after {
+    animation: none;
+    opacity: 0;
   }
   .map-intro-leaflet .leaflet-tile-pane,
   .map-intro-leaflet .leaflet-tile-pane .leaflet-layer {
@@ -82,6 +561,26 @@
 .map-intro-leaflet .leaflet-marker-icon,
 .map-intro-leaflet .leaflet-marker-shadow {
   cursor: default;
+}
+
+/*
+ * The one hole in the map's pointer transparency.
+ *
+ * The whole stage carries `pointer-events: none` so the map can never capture a
+ * scroll gesture — it is a background element inside a scroll-driven section,
+ * and a full-bleed surface that swallows touch is how these break on phones.
+ * `pointer-events` is one of the few properties a descendant can re-enable
+ * against an ancestor's `none`, which is what makes this surgical.
+ *
+ * Scoped to `.leaflet-interactive` on purpose, not to `.leaflet-marker-icon`:
+ * Leaflet adds that class only to markers created with `interactive: true`, so
+ * the decorative place pins stay transparent to the pointer and only the pins
+ * that actually carry information become hit targets. The map itself keeps
+ * `dragging`, `touchZoom` and `scrollWheelZoom` off, so nothing here can move it.
+ */
+.map-intro-leaflet .leaflet-interactive {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 /*

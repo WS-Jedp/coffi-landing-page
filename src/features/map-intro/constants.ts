@@ -11,19 +11,75 @@ import type { ChapterSpec, SceneStep } from "./types";
  * `intro` is the exception and is still a true scrub.
  */
 export const CHAPTERS: readonly ChapterSpec[] = [
-  // The intro's 200 is load-bearing and must not change: the frame scrub's
-  // px-per-frame density and PIN_AT_PROGRESS are both derived from it.
+  // The intro's 200 is load-bearing on this rung: the frame scrub's
+  // px-per-frame density is derived from it.
   { id: "intro", vh: 200 },
   { id: "spaces", vh: 120 },
-  // The longest — it carries three sub-beats, one per creator card.
   { id: "connect", vh: 180 },
   { id: "points", vh: 120 },
-  // Extra tail so the CTA is readable before the stage unpins.
-  { id: "circles", vh: 160 },
+  /*
+   * Trimmed from 160 to 75, in two passes and with the arithmetic that governs it.
+   *
+   * The tail existed so the CTA could be read before the stage unpinned, and it
+   * was far too generous: measured, 416px of scroll after the copy was fully
+   * clear of the header — nearly half a screen of the page holding still with
+   * nothing left to reveal. The section only has to OCCUPY the screen, not leave
+   * it, before the page resumes scrolling normally.
+   *
+   * Trimming Δ from this chapter only buys Δ/2 of tail: the track shortens by Δ,
+   * so the release comes Δ earlier, but the copy is centred in the block so it
+   * also becomes readable Δ/2 earlier. That ratio is why the first pass to 110
+   * only halved the problem.
+   */
+  { id: "circles", vh: 75 },
 ] as const;
 
-/** Total track height in svh. Keep TRACK_CLASS in step with it. */
-export const TRACK_VH = CHAPTERS.reduce((sum, c) => sum + c.vh, 0);
+/**
+ * The same five chapters, paced for a phone.
+ *
+ * NOT a uniform scale of the desktop set: the gap of dead scroll between two
+ * sections is `chapter height − copy height`, and on a phone the copy is only
+ * about 40% of a viewport tall while the chapters were sized for desktop copy.
+ * Measured before this split: 930 to 1074px of nothing between consecutive
+ * sections, more than a full screen of scrolling past blank page.
+ *
+ * Two of these numbers are the result of overshooting and being told so, and
+ * both corrections are worth keeping:
+ *
+ * The INTRO stays at 200, same as desktop. It was cut to 134 on the theory that
+ * the mobile rung's 41 frames need proportionally less scroll than desktop's 61
+ * to hold the same px-per-frame density. The arithmetic was right and the result
+ * was wrong: the unfold is the one part of this section that is *watched* rather
+ * than read, and taking a third of its scroll away made it hurry. Density is a
+ * floor, not a target — this rung simply gets a slower, more generous scrub.
+ *
+ * The SECTIONS came down from 120/180/120 to 70/75/60, which closed the gaps to
+ * ~300px and read as one block shoving the next off screen. They now sit around
+ * 95/105/85: roughly 500px between copies, half a screen, which is a pause
+ * rather than a void.
+ */
+export const CHAPTERS_MOBILE: readonly ChapterSpec[] = [
+  { id: "intro", vh: 200 },
+  { id: "spaces", vh: 95 },
+  { id: "connect", vh: 105 },
+  { id: "points", vh: 85 },
+  // No tail beyond what the copy needs: the section has to occupy the screen,
+  // not leave it, before the page resumes its normal scroll.
+  { id: "circles", vh: 85 },
+] as const;
+
+export const chaptersFor = (isMobile: boolean): readonly ChapterSpec[] =>
+  isMobile ? CHAPTERS_MOBILE : CHAPTERS;
+
+const total = (cs: readonly ChapterSpec[]) => cs.reduce((s, c) => s + c.vh, 0);
+
+/** Total track height in svh. TRACK_CLASS must stay in step — there is a test. */
+export const TRACK_VH = total(CHAPTERS);
+export const TRACK_VH_MOBILE = total(CHAPTERS_MOBILE);
+
+/** The intro chapter's share of the track, per rung. */
+export const introShareFor = (isMobile: boolean) =>
+  chaptersFor(isMobile)[0].vh / total(chaptersFor(isMobile));
 
 /**
  * The intro chapter's share of global progress.
@@ -65,7 +121,7 @@ export const INTRO_SHARE = CHAPTERS[0].vh / TRACK_VH;
  * breakpoint variants after motion variants, so a plain `motion-reduce:h-svh`
  * loses to `md:h-[320svh]` on any screen wide enough to matter.
  */
-export const TRACK_CLASS = "h-[780svh] motion-reduce:!h-svh";
+export const TRACK_CLASS = "h-[570svh] md:h-[695svh] motion-reduce:!h-svh";
 
 /**
  * Progress at which the sticky stage catches, derived rather than measured:

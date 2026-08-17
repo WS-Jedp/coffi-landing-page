@@ -60,6 +60,8 @@ const ENTER = {
   eyebrow: [0.08, 0.52] as [number, number],
   title: [0.12, 0.58] as [number, number],
   body: [0.18, 0.64] as [number, number],
+  /** Chips and the closing CTA — whatever sits below the paragraph. */
+  extras: [0.24, 0.7] as [number, number],
 };
 
 /**
@@ -136,6 +138,8 @@ export type CopyMotion = {
     filter: MotionValue<string>;
   };
   body: { y: MotionValue<number>; opacity: MotionValue<number> };
+  /** Chips and CTA, arriving last so the block still assembles top-down. */
+  extras: { y: MotionValue<number>; opacity: MotionValue<number> };
   /** The gradient's sweep across the headline. */
   backgroundPosition: MotionValue<string>;
 };
@@ -241,6 +245,11 @@ export function useCopyEntrance(
   const bodyY = travel(ENTER.body, DRIFT_PX.body);
   const bodyOpacity = combineOpacity(ENTER.body);
 
+  // Shares the body's drift amplitude: they sit in the same half of the block,
+  // and giving them a third speed would open a gap inside the paragraph group.
+  const extrasY = travel(ENTER.extras, DRIFT_PX.body);
+  const extrasOpacity = combineOpacity(ENTER.extras);
+
   /*
    * The gradient sweep, on raw progress so it lands exactly where the entrance
    * ends rather than trailing it.
@@ -263,6 +272,7 @@ export function useCopyEntrance(
       filter: titleFilter,
     },
     body: { y: bodyY, opacity: bodyOpacity },
+    extras: { y: extrasY, opacity: extrasOpacity },
     backgroundPosition,
   };
 }

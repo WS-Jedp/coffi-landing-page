@@ -36,6 +36,22 @@ const CASES = [
     containBoost: 1.2,
   },
   {
+    /*
+     * The tallest card that ships, and the reason this case exists.
+     *
+     * The stage used to be capped at 80svh on every breakpoint. Dropping that
+     * ceiling on phones — so a bottom map band can reach the floor instead of
+     * floating above it — makes the intro card 358x764 on a 390px device, an
+     * aspect of 0.47 against the 0.63 the case above covers. A taller card is
+     * exactly the shape that can crop the folded paper, because `contain`
+     * becomes width-bound and the 1.2 boost then has nothing to spare.
+     */
+    name: "phone portrait 358x764 (uncapped stage)",
+    canvas: { w: 640, h: Math.round((640 * 764) / 358) },
+    source: { w: 640, h: 451 },
+    containBoost: 1.2,
+  },
+  {
     name: "tablet 768x600",
     canvas: { w: 1136, h: Math.round((1136 * 600) / 768) },
     source: { w: 1136, h: 800 },

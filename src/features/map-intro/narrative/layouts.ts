@@ -1,4 +1,5 @@
-import { CHAPTERS, TRACK_VH } from "../constants";
+import { CHAPTERS, chaptersFor } from "../constants";
+import type { ChapterSpec } from "../types";
 import type { CopyScale } from "../ui/typography";
 import type { SectionId } from "./sections";
 
@@ -27,13 +28,34 @@ export const MAP_RECTS: Record<SectionId, Rect> = {
 /**
  * Mobile alternates top/bottom instead of left/right: a 48%-wide column is
  * unreadable at 390px, and the map would be a sliver.
+ *
+ * The heights are PER SECTION rather than one number, because the copy blocks
+ * are nowhere near the same size. Measured on a 390px phone: Points needs 278px
+ * of clear space, Connect 492, Circles 597. A single band height either buries
+ * the long ones or wastes the map on the short ones — with every section at 46%
+ * the Connect headline was being sliced by the map exactly while it was being
+ * read.
+ *
+ * So each section keeps as much map as its own text can spare. These pair with
+ * `items-start` on the sticky wrapper: centred, a shorter band frees nothing.
+ *
+ * They are a BALANCE, not a pure derivation from the copy. A first pass sized
+ * them from the text alone and pushed Circles to 28%, which left a 149px band
+ * that could only hold one pin — and "at least two circles visible" was the
+ * other half of the same request. Where the two pull against each other the
+ * pins win, because the copy on mobile is designed to pass behind the map
+ * anyway; being briefly overlapped is the effect, an empty map is a bug.
+ *
+ * The bottom two keep `y + h = 100` on purpose: the stage is no longer capped at
+ * 80svh on phones, so its floor is the screen's floor, and a band anchored there
+ * reaches the bottom edge instead of hovering above a dead strip.
  */
 export const MAP_RECTS_MOBILE: Record<SectionId, Rect> = {
   intro: { x: 0, y: 0, w: 100, h: 100 },
-  spaces: { x: 0, y: 0, w: 100, h: 46 },
-  connect: { x: 0, y: 0, w: 100, h: 46 },
-  points: { x: 0, y: 54, w: 100, h: 46 },
-  circles: { x: 0, y: 54, w: 100, h: 46 },
+  spaces: { x: 0, y: 0, w: 100, h: 34 },
+  connect: { x: 0, y: 0, w: 100, h: 30 },
+  points: { x: 0, y: 68, w: 100, h: 32 },
+  circles: { x: 0, y: 76, w: 100, h: 24 },
 };
 
 /**
@@ -55,7 +77,13 @@ export const COPY_SCALE: Record<SectionId, CopyScale> = {
   spaces: "column",
   connect: "wide",
   points: "column",
-  circles: "wide",
+  /*
+   * Column scale even though the map beneath it is a full-width band, because
+   * what shares the row here is the section's OWN second column — see the
+   * two-column branch in SectionCopy. An 84px headline in a half-width column
+   * wraps into a wall.
+   */
+  circles: "column",
 };
 
 /**
@@ -72,7 +100,7 @@ export const COPY_WIDTH: Record<SectionId, string> = {
   spaces: "max-w-[34rem]",
   connect: "max-w-[52rem]",
   points: "max-w-[34rem]",
-  circles: "max-w-[52rem]",
+  circles: "max-w-[52rem] md:max-w-[68rem]",
 };
 
 /**
@@ -103,6 +131,30 @@ export const COPY_DEPTH: Record<SectionId, string> = {
   circles: "z-0",
 };
 
+/**
+ * Extra room at the foot of a chapter block, which pushes its centred copy UP.
+ *
+ * Only the sections whose map is a bottom band need it. Their readable area is
+ * the half of the screen ABOVE the band, but the copy is centred on the
+ * viewport, so at the moment the section is naturally being read its lower third
+ * — the CTA and the closing line, in Circles — is still behind the map. The copy
+ * was reachable by scrolling further; it just was not there when you looked.
+ *
+ * The value is half the band's height, which is what re-centres the copy on the
+ * free zone rather than on the screen. Applied as PADDING and never as a
+ * transform: a transform on this block would create a stacking context and trap
+ * the z-index that COPY_DEPTH uses to decide whether the copy passes in front of
+ * the map or behind it.
+ */
+export const COPY_FOOT: Record<SectionId, string> = {
+  intro: "",
+  spaces: "",
+  connect: "",
+  // Bottom band on phones only; its copy is short enough to clear it anyway.
+  points: "",
+  circles: "pb-[18svh] md:pb-[34svh]",
+};
+
 export const COPY_ALIGN: Record<SectionId, string> = {
   intro: "justify-center",
   spaces: "justify-center md:justify-end",   // mapa a la izquierda
@@ -131,19 +183,22 @@ const MORPH_FRACTION = 0.35;
  * Derived from CHAPTERS rather than written down, so re-pacing the track stays
  * a one-line edit and cannot leave these behind.
  */
-export function layoutStops(): { stops: number[]; index: number[] } {
+export function layoutStops(
+  chapters: readonly ChapterSpec[] = CHAPTERS,
+): { stops: number[]; index: number[] } {
+  const trackVh = chapters.reduce((s, c) => s + c.vh, 0);
   const starts: number[] = [];
   let cursor = 0;
-  for (const chapter of CHAPTERS) {
-    starts.push(cursor / TRACK_VH);
+  for (const chapter of chapters) {
+    starts.push(cursor / trackVh);
     cursor += chapter.vh;
   }
 
   const stops: number[] = [0];
   const index: number[] = [0];
 
-  for (let i = 1; i < CHAPTERS.length; i++) {
-    const span = CHAPTERS[i].vh / TRACK_VH;
+  for (let i = 1; i < chapters.length; i++) {
+    const span = chapters[i].vh / trackVh;
     stops.push(starts[i]);
     index.push(i - 1);
     stops.push(starts[i] + MORPH_FRACTION * span);
@@ -151,11 +206,18 @@ export function layoutStops(): { stops: number[]; index: number[] } {
   }
 
   stops.push(1);
-  index.push(CHAPTERS.length - 1);
+  index.push(chapters.length - 1);
   return { stops, index };
 }
 
-export const { stops: LAYOUT_STOPS, index: LAYOUT_INDEX } = layoutStops();
+/**
+ * Per rung, because the chapters are paced differently on a phone — see
+ * CHAPTERS_MOBILE. Computed once per module rather than per render.
+ */
+export const LAYOUT = {
+  desktop: layoutStops(chaptersFor(false)),
+  mobile: layoutStops(chaptersFor(true)),
+} as const;
 
 /** Section ids in chapter order, so a layout index can be resolved to a rect. */
 export const LAYOUT_ORDER: SectionId[] = CHAPTERS.map((c) => c.id as SectionId);

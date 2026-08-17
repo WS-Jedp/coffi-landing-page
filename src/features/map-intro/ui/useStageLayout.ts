@@ -3,9 +3,8 @@
 import { useTransform, type MotionValue } from "motion/react";
 import { useIsMobile } from "./useIsMobile";
 import {
-  LAYOUT_INDEX,
+  LAYOUT,
   LAYOUT_ORDER,
-  LAYOUT_STOPS,
   MAP_RECTS,
   MAP_RECTS_MOBILE,
   type Rect,
@@ -19,13 +18,24 @@ export type RectMotion = {
 };
 
 /** Percent strings, because the rects are relative to the stage box. */
-function useRectMotion(progress: MotionValue<number>, rects: Rect[]): RectMotion {
-  const pick = (field: keyof Rect) => LAYOUT_INDEX.map((i) => rects[i][field]);
+function useRectMotion(
+  progress: MotionValue<number>,
+  rects: Rect[],
+  /*
+   * The stops differ per rung because the chapters are paced differently on a
+   * phone. `useTransform` recomputes when its ranges change, so flipping these
+   * after the breakpoint is read in an effect is safe — it re-derives during
+   * render and re-subscribes without a dependency array.
+   */
+  stops: { stops: number[]; index: number[] },
+): RectMotion {
+  const pick = (field: keyof Rect) =>
+    stops.index.map((i) => rects[i][field]);
 
-  const x = useTransform(progress, LAYOUT_STOPS, pick("x"));
-  const y = useTransform(progress, LAYOUT_STOPS, pick("y"));
-  const w = useTransform(progress, LAYOUT_STOPS, pick("w"));
-  const h = useTransform(progress, LAYOUT_STOPS, pick("h"));
+  const x = useTransform(progress, stops.stops, pick("x"));
+  const y = useTransform(progress, stops.stops, pick("y"));
+  const w = useTransform(progress, stops.stops, pick("w"));
+  const h = useTransform(progress, stops.stops, pick("h"));
 
   return {
     left: useTransform(x, (v) => `${v}%`),
@@ -54,5 +64,8 @@ export function useStageLayout(progress: MotionValue<number>): {
 
   const mapRects = LAYOUT_ORDER.map((id) => (isMobile ? MAP_RECTS_MOBILE : MAP_RECTS)[id]);
 
-  return { map: useRectMotion(progress, mapRects), isMobile };
+  return {
+    map: useRectMotion(progress, mapRects, isMobile ? LAYOUT.mobile : LAYOUT.desktop),
+    isMobile,
+  };
 }

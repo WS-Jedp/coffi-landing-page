@@ -46,24 +46,64 @@
     "spaces": {
       "eyebrow": "Espacios",
       "title": "Elimina la incertidumbre",
-      "description": "Dile a Coffi qué buscas hoy y qué necesitas. Coffi <b>cruza tu intención con datos en tiempo real</b> de cada lugar."
+      "description": "Dile a Coffi qué buscas hoy y qué necesitas. Coffi <b>cruza tu intención con datos en tiempo real</b> de cada lugar.",
+      "chipsLabel": "Elige tu intención",
+      "intents": {
+        "LOCKED_IN": "Enfoque",
+        "NETWORK_AND_CHILL": "Conexión y colaboración",
+        "WORK_AND_WELLNESS": "Relajarse",
+        "FUN": "Diversión"
+      }
     },
     "connect": {
       "eyebrow": "Comunidad",
       "title": "Conecta con quienes crean cerca",
-      "description": "Mira en tiempo real <b>quién está creando el futuro contigo</b>. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria."
+      "description": "Mira en tiempo real <b>quién está creando el futuro contigo</b>. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria.",
+      "chipsLabel": "Filtra por lo que hacen",
+      "roles": {
+        "design": "Diseño",
+        "code": "Programación",
+        "marketing": "Marketing",
+        "founder": "Emprendimiento"
+      },
+      "statuses": {
+        "collaborating": "buscando colaboración",
+        "focused": "en modo enfoque",
+        "creating": "creando"
+      },
+      "pin": "{name} ({role}) {status} — {distance} m"
     },
     "points": {
       "eyebrow": "Coffi Puntos",
       "title": "Gana mientras creas",
-      "description": "Con cada check-in, reseña, actualización o descubrimiento <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos."
+      "description": "Con cada check-in, reseña, actualización o descubrimiento <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos.",
+      "pin": "Oferta activa: {discount}% off con {points} puntos",
+      "pinShort": "{discount}% off · {points} pts",
+      "pinExclusive": "Solo con Coffi",
+      "pinTiny": "{discount}% off"
     },
     "circles": {
       "eyebrow": "Coffi Circles",
       "title": "Incoming: Coffi Circles",
       "description": "Micro-eventos impulsados por la comunidad dentro de los espacios. <b>Crea o únete a círculos abiertos</b> según intereses, profesión y momento.",
       "cta": "Explora la ciudad ahora",
-      "closing": "Tu ciudad. Tu ritmo. Tu comunidad."
+      "closing": "Tu ciudad. Tu ritmo. Tu comunidad.",
+      "description2": "Sesiones de brainstorming, charlas cortas, talleres y meetups espontáneos. La ciudad se convierte en tu red viva de creación.",
+      "events": {
+        "study": "Grupo de estudio",
+        "ux": "UX & Café",
+        "sketch": "Sketch & Chill",
+        "build": "Sesión de código",
+        "journal": "Journaling matutino"
+      },
+      "pinPeople": "{rest, plural, =0 {{names}} other {{names} y # más}}"
+    },
+    "ambience": {
+      "study": "Estudiar",
+      "work": "Trabajar",
+      "cowork": "Coworking",
+      "fun": "Divertirse",
+      "romantic": "Romántico"
     }
   },
   "discoverPlacesInCity": "Descubre los mejores lugares en {city}",

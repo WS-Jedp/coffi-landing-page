@@ -10,10 +10,15 @@ import {
 import { FRAME_RUNGS, RANGES, TILE_ATTRIBUTION, framePath } from "../constants";
 import type { CameraTarget } from "../types";
 import { computeZoomForCard } from "./computeZoomForCard";
+import { useTranslations } from "next-intl";
 import { useLeafletMap } from "./useLeafletMap";
 import { useSectionCamera } from "./useSectionCamera";
-import { attachPlaceMarkers } from "./markers";
+import { usePinLayers } from "./usePinLayers";
+import { ambienceLabelKey } from "./pinVocabulary";
 import { useCalibration } from "../dev/useCalibration";
+import { roleLabelKey, statusLabelKey } from "../narrative/creators";
+import type { CreatorRole } from "../narrative/creators";
+import type { IntentId } from "../narrative/intents";
 import "./leafletTheme.css";
 
 /**
@@ -44,10 +49,26 @@ export const MapStage: React.FC<{
   stageSize: { w: number; h: number };
   /** Where the active section wants to look; null while the intro owns it. */
   sectionCamera: CameraTarget | null;
+  /** Chip selections, used to decide which pins the layer holds. */
+  activeIntent: IntentId | null;
+  activeRole: CreatorRole | null;
+  /** Visible (uncropped) size of the map window, for the pin sieve. */
+  windowSize: { w: number; h: number };
   reduced: boolean;
-}> = ({ progress, fitScale, activeStep, stageSize, sectionCamera, reduced }) => {
+}> = ({
+  progress,
+  fitScale,
+  activeStep,
+  stageSize,
+  sectionCamera,
+  activeIntent,
+  activeRole,
+  windowSize,
+  reduced,
+}) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const calibration = useCalibration();
+  const t = useTranslations();
 
   // Latched: once the user has scrolled deep enough we mount Leaflet and keep
   // it forever. Unmounting on scroll-up would re-fetch every tile on the way
@@ -141,17 +162,70 @@ export const MapStage: React.FC<{
 
   // Pins arrive only after stage two, once the map reads as a map. Dropping
   // them during the dissolve would announce the swap.
+  const [pinsAllowed, setPinsAllowed] = useState(false);
   useEffect(() => {
-    if (!revealed || !map || !L) return;
-    let layer: ReturnType<typeof attachPlaceMarkers> | null = null;
-    const timer = setTimeout(() => {
-      layer = attachPlaceMarkers(L, map);
-    }, REVEAL_MS);
-    return () => {
-      clearTimeout(timer);
-      layer?.group.remove();
-    };
-  }, [revealed, map, L]);
+    if (!revealed) return;
+    const timer = setTimeout(() => setPinsAllowed(true), REVEAL_MS);
+    return () => clearTimeout(timer);
+  }, [revealed]);
+
+  /*
+   * Everything on the map, owned in one place.
+   *
+   * Label text is built here rather than inside the layer because this is where
+   * `useTranslations` lives — the pins are HTML strings handed to `L.divIcon`,
+   * so nothing downstream is a React component that could call a hook.
+   */
+  // Mirrors the threshold inside usePinLayers; the label text has to agree with
+  // the box the sieve measured, or the two disagree and pins overlap.
+  const compactPins = windowSize.w > 0 && windowSize.w < 420;
+
+  usePinLayers(L, map, {
+    activeStep,
+    intent: activeIntent,
+    role: activeRole,
+    camera: sectionCamera,
+    windowSize,
+    enabled: pinsAllowed,
+    moodLabel: (a) => t(ambienceLabelKey(a)),
+    creatorLabels: (c) => ({
+      role: t(roleLabelKey(c.role)),
+      status: t(statusLabelKey(c.status)),
+    }),
+    // The compact form, not the sentence. "Oferta activa: 20% off con 150
+    // puntos" was written for a tooltip; on a pin it is a 250px plate that
+    // crowds out its neighbours and forces the sieve to drop them.
+    /*
+     * Two lengths, because on a phone the offer line is what sets the label's
+     * WIDTH — not the venue name — and in a 358px band that width is the
+     * difference between four perk pins and three. The points cost is the part
+     * that gives way: the discount is the hook, and the paragraph beside the map
+     * already explains that points are how you get it.
+     */
+    perkLabel: (p) => ({
+      offer: t(
+        compactPins ? "home.mapIntro.points.pinTiny" : "home.mapIntro.points.pinShort",
+        { discount: p.discountPct, points: p.points },
+      ),
+      exclusive: t("home.mapIntro.points.pinExclusive"),
+    }),
+    /*
+     * The names line is built here so the plural is resolved by ICU rather than
+     * concatenated by hand: "Ana, Samuel y 2 más" has to collapse cleanly when
+     * the hosts already account for everyone going.
+     */
+    circleLabels: (c) => {
+      const shown = c.hosts.slice(0, 2);
+      return {
+        title: t(c.titleKey),
+        place: `@ ${c.placeName}`,
+        people: t("home.mapIntro.circles.pinPeople", {
+          names: shown.map((h) => h.name).join(", "),
+          rest: Math.max(0, c.going - shown.length),
+        }),
+      };
+    },
+  });
 
   // Stage one, scroll-bound. The counter-motion is what hides the geometric
   // mismatch: the canvas grows slightly as it leaves while the map settles and

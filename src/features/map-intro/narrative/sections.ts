@@ -1,4 +1,5 @@
-import { CHAPTERS, TRACK_VH } from "../constants";
+import { CHAPTERS, chaptersFor } from "../constants";
+import type { ChapterSpec } from "../types";
 import type { CameraTarget } from "../types";
 
 export type SectionId = "intro" | "spaces" | "connect" | "points" | "circles";
@@ -45,6 +46,29 @@ export type SectionSpec = {
  * place rather than jumping magnification for no narrative reason.
  */
 export const SECTION_ZOOM = 15.9;
+
+/**
+ * The same sections, further out on a phone.
+ *
+ * Not a stylistic preference — a measurement. The desktop window shows about
+ * 1408x1614m of city; the mobile band shows 873x626m, and once the pin boxes and
+ * the crop inset are subtracted the area where an anchor may legally land is
+ * roughly 550x340m. Two blocks. Sections were rendering ONE pin, and two of the
+ * role filters rendered none at all, not because the data is thin but because
+ * almost nothing falls inside two blocks.
+ *
+ * Pulling back to 15.2 covers ~2.6x the area in the same band, and the number of
+ * candidates on screen scales with area.
+ *
+ * This is a different tile level (15 rather than 16) and that is fine: the rule
+ * that matters is that no single MOVE crosses levels, and every section within a
+ * breakpoint still shares one zoom, so switching chips remains a pure pan. It is
+ * the same reason SECTION_ZOOM was a single value in the first place.
+ */
+export const SECTION_ZOOM_MOBILE = 15.2;
+
+export const sectionZoom = (isMobile: boolean) =>
+  isMobile ? SECTION_ZOOM_MOBILE : SECTION_ZOOM;
 export const SECTIONS: readonly SectionSpec[] = [
   {
     id: "intro",
@@ -74,7 +98,10 @@ export const SECTIONS: readonly SectionSpec[] = [
   {
     id: "points",
     chapterId: "points",
-    camera: { center: [6.2288, -75.582], zoom: SECTION_ZOOM, animate: true }, // Belén
+    // Re-aimed by scoring candidate centres against what actually survives the
+    // pin sieve, not against how many venues are nearby. The old centre had ten
+    // places within range and rendered three perks; this one renders seven.
+    camera: { center: [6.232, -75.574], zoom: SECTION_ZOOM, animate: true },
     eyebrowKey: "home.mapIntro.points.eyebrow",
     titleKey: "home.mapIntro.points.title",
     descKey: "home.mapIntro.points.description",
@@ -108,13 +135,14 @@ export const SECTIONS: readonly SectionSpec[] = [
 const ACTIVATE_FRACTION = 0.18;
 const HYSTERESIS_FRACTION = 0.08;
 
-function boundaries() {
+function boundaries(chapters: readonly ChapterSpec[] = CHAPTERS) {
+  const trackVh = chapters.reduce((s, c) => s + c.vh, 0);
   const activateAt: number[] = [];
   const hysteresis: number[] = [];
   let cursor = 0;
-  for (const chapter of CHAPTERS) {
-    const start = cursor / TRACK_VH;
-    const span = chapter.vh / TRACK_VH;
+  for (const chapter of chapters) {
+    const start = cursor / trackVh;
+    const span = chapter.vh / trackVh;
     cursor += chapter.vh;
     activateAt.push(start + ACTIVATE_FRACTION * span);
     hysteresis.push(HYSTERESIS_FRACTION * span);
@@ -125,5 +153,8 @@ function boundaries() {
   return { activateAt, hysteresis };
 }
 
-export const { activateAt: SECTION_ACTIVATE_AT, hysteresis: SECTION_HYSTERESIS } =
-  boundaries();
+/** Per rung: a phone paces its chapters differently, so the lines move with them. */
+export const BOUNDARIES = {
+  desktop: boundaries(chaptersFor(false)),
+  mobile: boundaries(chaptersFor(true)),
+} as const;

@@ -1,9 +1,10 @@
 "use client";
 
-import { CHAPTERS } from "../constants";
+import type { ChapterSpec } from "../types";
 import { SECTIONS } from "../narrative/sections";
-import { COPY_ALIGN, COPY_DEPTH } from "../narrative/layouts";
+import { COPY_ALIGN, COPY_DEPTH, COPY_FOOT } from "../narrative/layouts";
 import { SectionCopy } from "./SectionCopy";
+import type { SectionFilters } from "./useSectionFilters";
 
 /**
  * The narrative copy, as ordinary page content scrolling over the map.
@@ -28,7 +29,11 @@ import { SectionCopy } from "./SectionCopy";
  * meaningless here: a block's vertical alignment decides *when* the copy crosses
  * the viewport, not where it sits on screen, because it is always moving.
  */
-export const SceneLayer: React.FC = () => (
+export const SceneLayer: React.FC<{
+  filters: SectionFilters;
+  /** The active rung's pacing — a phone runs shorter chapters. */
+  chapters: readonly ChapterSpec[];
+}> = ({ filters, chapters }) => (
   /*
    * Lifted half a viewport, and the number is not a nudge — it is derived.
    *
@@ -63,15 +68,15 @@ export const SceneLayer: React.FC = () => (
     {SECTIONS.map((section, i) => (
       <div
         key={section.id}
-        style={{ height: `${CHAPTERS[i].vh}svh` }}
-        className={`relative flex items-center px-4 md:px-6 ${COPY_DEPTH[section.id]}`}
+        style={{ height: `${chapters[i].vh}svh` }}
+        className={`relative flex items-center px-4 md:px-6 ${COPY_DEPTH[section.id]} ${COPY_FOOT[section.id]}`}
       >
         {/* Same 1200px grid the map stage uses, so the copy lines up with the
             map's edges instead of running out to the viewport. */}
         <div
           className={`mx-auto flex w-full max-w-[1200px] ${COPY_ALIGN[section.id]}`}
         >
-          <SectionCopy section={section} />
+          <SectionCopy section={section} filters={filters} />
         </div>
       </div>
     ))}

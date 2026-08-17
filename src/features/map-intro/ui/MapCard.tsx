@@ -113,7 +113,12 @@ export const MapCard: React.FC<{
       // `absolute` + a percentage box, not `h-full w-full`: this element is the
       // window that crops the map, and it has to be able to sit anywhere in the
       // stage. `overflow-hidden` is what does the cropping.
-      className="absolute overflow-hidden border will-change-transform"
+      //
+      // `pointer-events-none` because the card is scenery: it must never be the
+      // thing that receives a click, or a tap meant for the page lands on a
+      // decorative rectangle. The pins inside it opt back in on their own —
+      // see the `.leaflet-interactive` rule in leafletTheme.css.
+      className="pointer-events-none absolute overflow-hidden border will-change-transform"
     >
       {children}
     </motion.div>

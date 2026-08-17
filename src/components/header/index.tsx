@@ -174,12 +174,12 @@ export const Header: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <header className="fixed top-3 md:top-4 inset-x-0 z-[999] flex justify-center px-4 pointer-events-none">
+    <header className="fixed top-2 md:top-4 inset-x-0 z-[999] flex justify-center px-4 pointer-events-none">
       <nav
         className={`
           pointer-events-auto relative isolate z-[1001] w-full max-w-[1120px]
           flex items-center justify-between
-          rounded-2xl px-4 md:px-5 py-2.5
+          rounded-2xl px-4 md:px-5 py-1.5 md:py-2.5
           transition-all duration-300 ease-in-out
           ${
             isScrolled
@@ -241,14 +241,18 @@ export const Header: React.FC = () => {
           onClick={handleLinkClick}
           className="flex flex-row flex-nowrap items-center gap-1 cursor-pointer text-coffi-black"
         >
+          {/* Smaller on phones: this bar sits over a scroll-driven map section
+              whose copy is fighting for every vertical pixel, and the logo is
+              what sets the bar's height. */}
           <Image
             src="/assets/images/coffi-logo.svg"
             alt="Coffi logo - Coworking spaces and work cafés in Medellín, Colombia"
             width={42}
             height={42}
+            className="h-[34px] w-[34px] md:h-[42px] md:w-[42px]"
           />
           <div className="flex flex-col items-start justify-center">
-            <span className="block font-black text-xl md:text-2xl leading-none -mt-1">
+            <span className="block font-black text-lg md:text-2xl leading-none -mt-0.5 md:-mt-1">
               Coffi
             </span>
             <span className="block font-normal text-xs leading-none text-coffi-black/50 md:-mt-0.5 pl-0.5">
