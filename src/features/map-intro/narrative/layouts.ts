@@ -155,6 +155,44 @@ export const COPY_FOOT: Record<SectionId, string> = {
   circles: "pb-[18svh] md:pb-[34svh]",
 };
 
+/**
+ * Space BEFORE a section's block — how late inside its own chapter the copy
+ * arrives. Only the closing section needs it, and only on desktop.
+ *
+ * Every block is centred in its chapter, so its copy reaches the middle of the
+ * screen at the chapter's MIDPOINT. For the four sections that are passed
+ * through that is exactly right. For the last one it is dead scroll: the track
+ * releases the sticky stage at the END of the chapter, so everything between
+ * "the copy has arrived" and "the page scrolls again" is the user scrolling
+ * against a composition that is already finished. Measured at 1440x900 that was
+ * 490px — the copy left through the top of the screen and the map sat alone for
+ * another third of a viewport before the page moved on.
+ *
+ * Shortening the chapter cannot fix it. The gap is `(chapter + COPY_FOOT) / 2`,
+ * because trimming the chapter moves the release AND the copy: every 2svh cut
+ * buys 1svh of tail, and closing 490px that way would leave the section a few
+ * svh long, with the map snapping between layouts.
+ *
+ * Pushing the block down its chapter moves only the copy. The release stays
+ * where it is, so the arrival slides forward to meet it.
+ *
+ * 40svh is bounded on both sides and the window between them is narrow. Too
+ * little and the copy still leaves under the header before the release; too much
+ * and it has not cleared the map band yet. The binding case is a 1024x768
+ * laptop, where the copy is 303px tall and the free strip between the header and
+ * the band is 344px: valid values there run 38–43svh, against 32–47 at 1440x900.
+ * 40 sits inside both.
+ *
+ * Mobile keeps its own pacing, which was tuned separately and signed off.
+ */
+export const COPY_DELAY: Record<SectionId, string> = {
+  intro: "",
+  spaces: "",
+  connect: "",
+  points: "",
+  circles: "md:mt-[40svh]",
+};
+
 export const COPY_ALIGN: Record<SectionId, string> = {
   intro: "justify-center",
   spaces: "justify-center md:justify-end",   // mapa a la izquierda

@@ -12,13 +12,19 @@ import type { IntentId } from "../narrative/intents";
  * accepts — that alignment was the reason for choosing them — so somebody who
  * clicked "Creativity" here lands in the app already filtered for it instead of
  * on a blank search.
+ *
+ * The button and the closing line used to be one block. They are separate
+ * because Circles splits into two columns on desktop and they end up on
+ * opposite sides of it — the button anchoring the headline, the line signing off
+ * the paragraphs. Their margins suit both positions: each one follows a
+ * paragraph on a phone and its column's own content on desktop.
  */
 export const SectionCta: React.FC<{ intent: IntentId | null }> = ({ intent }) => {
   const t = useTranslations();
   const { redirectToCoffiWithFilters } = useRedirectToCoffiApp();
 
   return (
-    <div className="mt-6 md:mt-9">
+    <div className="mt-6 md:mt-10">
       <button
         type="button"
         onClick={() => redirectToCoffiWithFilters({ purpose: intent })}
@@ -28,10 +34,17 @@ export const SectionCta: React.FC<{ intent: IntentId | null }> = ({ intent }) =>
       >
         {t("home.mapIntro.circles.cta")}
       </button>
-
-      <p className="mt-5 md:mt-7 text-[0.9375rem] font-semibold text-coffi-black md:text-xl">
-        {t("home.mapIntro.circles.closing")}
-      </p>
     </div>
+  );
+};
+
+/** The sign-off under the section — the last words of the whole track. */
+export const SectionClosing: React.FC = () => {
+  const t = useTranslations();
+
+  return (
+    <p className="mt-5 md:mt-7 text-[0.9375rem] font-semibold text-coffi-black md:text-xl">
+      {t("home.mapIntro.circles.closing")}
+    </p>
   );
 };

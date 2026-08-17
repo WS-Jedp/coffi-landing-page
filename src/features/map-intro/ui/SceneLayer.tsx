@@ -2,7 +2,12 @@
 
 import type { ChapterSpec } from "../types";
 import { SECTIONS } from "../narrative/sections";
-import { COPY_ALIGN, COPY_DEPTH, COPY_FOOT } from "../narrative/layouts";
+import {
+  COPY_ALIGN,
+  COPY_DELAY,
+  COPY_DEPTH,
+  COPY_FOOT,
+} from "../narrative/layouts";
 import { SectionCopy } from "./SectionCopy";
 import type { SectionFilters } from "./useSectionFilters";
 
@@ -69,7 +74,7 @@ export const SceneLayer: React.FC<{
       <div
         key={section.id}
         style={{ height: `${chapters[i].vh}svh` }}
-        className={`relative flex items-center px-4 md:px-6 ${COPY_DEPTH[section.id]} ${COPY_FOOT[section.id]}`}
+        className={`relative flex items-center px-4 md:px-6 ${COPY_DEPTH[section.id]} ${COPY_FOOT[section.id]} ${COPY_DELAY[section.id]}`}
       >
         {/* Same 1200px grid the map stage uses, so the copy lines up with the
             map's edges instead of running out to the viewport. */}
