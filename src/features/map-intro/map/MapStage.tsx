@@ -16,7 +16,11 @@ import { useSectionCamera } from "./useSectionCamera";
 import { usePinLayers } from "./usePinLayers";
 import { ambienceLabelKey } from "./pinVocabulary";
 import { useCalibration } from "../dev/useCalibration";
-import { roleLabelKey, statusLabelKey } from "../narrative/creators";
+import {
+  roleLabelKey,
+  statusLabelKey,
+  statusShortLabelKey,
+} from "../narrative/creators";
 import type { CreatorRole } from "../narrative/creators";
 import type { IntentId } from "../narrative/intents";
 import "./leafletTheme.css";
@@ -194,7 +198,12 @@ export const MapStage: React.FC<{
     moodLabel: (a) => t(ambienceLabelKey(a)),
     creatorLabels: (c) => ({
       role: t(roleLabelKey(c.role)),
-      status: t(statusLabelKey(c.status)),
+      // The short form on a phone. Same reasoning as the perk pin's two offer
+      // lengths: on a narrow band the text is what sets the plate's width, and
+      // the plate's width is what decides how many people are on screen at all.
+      status: t(
+        compactPins ? statusShortLabelKey(c.status) : statusLabelKey(c.status),
+      ),
     }),
     // The compact form, not the sentence. "Oferta activa: 20% off con 150
     // puntos" was written for a tooltip; on a pin it is a 250px plate that

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import type * as LeafletNS from "leaflet";
 import { createPlaceMarkers, placeBox } from "./markers";
-import { createCreatorMarkers, creatorBox } from "./creatorPins";
+import { createCreatorMarkers, creatorBox, creatorTitle } from "./creatorPins";
 import { createPerkMarkers, perkBox } from "./perkPins";
 import { createCircleMarkers, circleBox } from "./circlePins";
 import { selectLabelled } from "./selectLabelled";
@@ -198,7 +198,11 @@ export function usePinLayers(
         positionOf: (c) => c.position,
         boxOf: (c) =>
           creatorBox(
-            `${c.name} · ${labels.current.creatorLabels(c).role}`,
+            creatorTitle(
+              c.name,
+              labels.current.creatorLabels(c).role,
+              compact,
+            ),
             labels.current.creatorLabels(c).status,
             compact,
           ),

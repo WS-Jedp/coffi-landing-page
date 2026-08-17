@@ -25,13 +25,34 @@ const DOT = 34;
 const DOT_COMPACT = 28;
 const LABEL_H = 40;
 
-export const creatorBox = (
+/**
+ * On a phone the label carries the NAME ALONE, not "name · role".
+ *
+ * The plate's width is what decides how many people the band can hold, and the
+ * arithmetic was hopeless: on a 375px screen the connect band measures 343x176,
+ * which leaves 311x144 for anchors once the crop inset is taken out, and only
+ * 177x76 once a plate's own footprint is subtracted. Two plates side by side
+ * needed 268px of that 177. One pin was not a data problem — it was the only
+ * number that fit.
+ *
+ * The role was the second-widest line and it was never readable there anyway:
+ * truncation turned "Samuel · Programación" into "Samuel · Programa…". It is
+ * still on every desktop pin, still the thing the chips filter by, and the chip
+ * row above the map already names the role being shown.
+ */
+export const creatorTitle = (
   name: string,
+  role: string,
+  compact: boolean,
+): string => (compact ? name : `${name} · ${role}`);
+
+export const creatorBox = (
+  title: string,
   status: string,
   compact: boolean,
 ): PinBox =>
   labelBox(
-    [truncate(name, compact), status],
+    [truncate(title, compact), status],
     compact,
     square(compact ? DOT_COMPACT : DOT),
     LABEL_H,
@@ -54,7 +75,7 @@ function creatorHtml(
   return (
     `<span class="map-intro-creator${compact ? " map-intro-compact" : ""}${below ? " map-intro-below" : ""}" style="--pin-delay:${delayMs.toFixed(0)}ms">` +
     `<span class="map-intro-creator-label">` +
-    `<span class="map-intro-creator-name">${truncate(`${creator.name} · ${labels.role}`, compact)}</span>` +
+    `<span class="map-intro-creator-name">${truncate(creatorTitle(creator.name, labels.role, compact), compact)}</span>` +
     `<span class="map-intro-creator-status" style="color:${color}">${labels.status}</span>` +
     `</span>` +
     `<span class="map-intro-creator-pin">` +

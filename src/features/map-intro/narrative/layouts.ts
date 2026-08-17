@@ -53,7 +53,7 @@ export const MAP_RECTS: Record<SectionId, Rect> = {
 export const MAP_RECTS_MOBILE: Record<SectionId, Rect> = {
   intro: { x: 0, y: 0, w: 100, h: 100 },
   spaces: { x: 0, y: 0, w: 100, h: 34 },
-  connect: { x: 0, y: 0, w: 100, h: 30 },
+  connect: { x: 0, y: 0, w: 100, h: 37 },
   points: { x: 0, y: 68, w: 100, h: 32 },
   circles: { x: 0, y: 76, w: 100, h: 24 },
 };

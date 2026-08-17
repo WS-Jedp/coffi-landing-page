@@ -73,6 +73,11 @@
         "focused": "in focus mode",
         "creating": "creating"
       },
+      "statusesShort": {
+        "collaborating": "teaming up",
+        "focused": "focused",
+        "creating": "creating"
+      },
       "pin": "{name} ({role}) {status} — {distance} m"
     },
     "points": {

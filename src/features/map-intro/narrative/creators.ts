@@ -32,6 +32,17 @@ export const roleLabelKey = (r: CreatorRole) =>
 export const statusLabelKey = (s: CreatorStatus) =>
   `home.mapIntro.connect.statuses.${s}`;
 
+/**
+ * The same status in as few characters as it can be said in.
+ *
+ * Only for phones, and it buys pins rather than tidiness: "buscando
+ * colaboración" is the widest line on the plate at 21 characters, and the width
+ * of the plate is what decides how many people fit in a 343px band. Halving it
+ * is the difference between one pin and three.
+ */
+export const statusShortLabelKey = (s: CreatorStatus) =>
+  `home.mapIntro.connect.statusesShort.${s}`;
+
 type CreatorSeed = {
   id: string;
   name: string;
