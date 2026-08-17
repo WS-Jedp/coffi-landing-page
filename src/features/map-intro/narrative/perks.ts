@@ -15,10 +15,18 @@ import { distanceM, placesWithLocation } from "./intents";
  * ids. Ids would have to be re-picked by hand every time that camera moves, and
  * the failure is silent: the layer still renders, just off screen.
  */
+/**
+ * Which plan an offer belongs to. Places alternate between the two rather than
+ * carrying both, so the map reads as a catalogue where each venue has struck its
+ * own deal — which is what a real perks programme looks like.
+ */
+export type PerkPlan = "nomad" | "explorer";
+
 export type Perk = {
   place: Place;
   discountPct: number;
   points: number;
+  plan: PerkPlan;
 };
 
 const POINTS_CAMERA: CameraTarget = SECTIONS.find((s) => s.id === "points")!
@@ -39,13 +47,24 @@ const RADIUS_M = 900;
  * QA'd, and `Math.random()` during render is also a guaranteed hydration
  * mismatch — the same bug already living in the hero's particle field.
  */
-const OFFERS: readonly { discountPct: number; points: number }[] = [
-  { discountPct: 20, points: 150 },
-  { discountPct: 15, points: 100 },
-  { discountPct: 25, points: 220 },
-  { discountPct: 10, points: 80 },
-  { discountPct: 30, points: 300 },
-  { discountPct: 15, points: 120 },
+/**
+ * Alternating by plan, and the two columns do not overlap: every Nomad rate
+ * (20-30%) sits above every Explorer one (10-15%). That is the argument the
+ * section is making — both plans get real offers, the higher plan gets more —
+ * and it has to survive whichever four of these the sieve happens to seat.
+ * Interleaving them also means any run of consecutive places shows both.
+ */
+const OFFERS: readonly {
+  discountPct: number;
+  points: number;
+  plan: PerkPlan;
+}[] = [
+  { discountPct: 25, points: 220, plan: "nomad" },
+  { discountPct: 10, points: 80, plan: "explorer" },
+  { discountPct: 30, points: 300, plan: "nomad" },
+  { discountPct: 15, points: 100, plan: "explorer" },
+  { discountPct: 20, points: 150, plan: "nomad" },
+  { discountPct: 15, points: 120, plan: "explorer" },
 ];
 
 /**

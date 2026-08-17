@@ -55,6 +55,8 @@ export const MapStage: React.FC<{
   /** Visible (uncropped) size of the map window, for the pin sieve. */
   windowSize: { w: number; h: number };
   reduced: boolean;
+  /** How many pins landed, so the copy's chip row can say so. */
+  onPinCount?: (report: { step: number; count: number }) => void;
 }> = ({
   progress,
   fitScale,
@@ -65,6 +67,7 @@ export const MapStage: React.FC<{
   activeRole,
   windowSize,
   reduced,
+  onPinCount,
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const calibration = useCalibration();
@@ -187,6 +190,7 @@ export const MapStage: React.FC<{
     camera: sectionCamera,
     windowSize,
     enabled: pinsAllowed,
+    onCount: onPinCount,
     moodLabel: (a) => t(ambienceLabelKey(a)),
     creatorLabels: (c) => ({
       role: t(roleLabelKey(c.role)),
@@ -207,7 +211,9 @@ export const MapStage: React.FC<{
         compactPins ? "home.mapIntro.points.pinTiny" : "home.mapIntro.points.pinShort",
         { discount: p.discountPct, points: p.points },
       ),
-      exclusive: t("home.mapIntro.points.pinExclusive"),
+      // Whose offer it is. Keyed off the perk's own plan so the two alternate
+      // across the map rather than every pin making the same claim.
+      exclusive: t(`home.mapIntro.points.pinPlan.${p.plan}`),
     }),
     /*
      * The names line is built here so the plural is resolved by ICU rather than

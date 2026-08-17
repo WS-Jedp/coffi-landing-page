@@ -224,3 +224,54 @@ export function placesForIntent(intent: IntentId | null): Place[] {
         INTENT_RADIUS_M,
   );
 }
+
+/**
+ * The ambience an intent mostly SHOWS — and therefore the colour its chip wears.
+ *
+ * Derived rather than written down, because the honest answer is a property of
+ * the data: the chip promises a colour and the map has to deliver it, so the
+ * colour is whatever `ambienceOf` returns most often across the places the
+ * intent actually surfaces. Re-aim a camera or edit a fixture and the chips
+ * follow on their own.
+ *
+ * Measured on the current dataset: 3/6 `study` for LOCKED_IN, 2/3 `cowork` for
+ * NETWORK_AND_CHILL, 6/7 `study` for WORK_AND_WELLNESS, 5/6 `fun` for FUN.
+ *
+ * TWO INTENTS SHARE A COLOUR, and that is the decision rather than a defect.
+ * Focus and Unwind both come out `study` purple. The pin palette holds only four
+ * hues — `work` and `cowork` share one — so giving all four chips a distinct
+ * colour meant handing Unwind the pink of its second-place ambience, which
+ * appears in exactly one of its seven pins. A chip whose colour predicts the map
+ * six times out of seven is worth more than a tidy row; what separates those two
+ * chips is the icon.
+ *
+ * Ties break toward the earlier entry in ALLOWED_AMBIENCE, which is ordered by
+ * how central the ambience is to the intent — LOCKED_IN is 3-3 between `study`
+ * and `work`, and `study` is the one the chip should claim. Iterating that list
+ * instead of a tally is what makes the rule explicit, and it is complete: every
+ * place in the set has an allowed ambience by construction.
+ *
+ * Declared at the FOOT of this module on purpose. It runs at import time and
+ * reads `placesWithLocation` and `INTENT_CAMERAS` through `placesForIntent`;
+ * hoisted any higher it would evaluate before those consts are initialised and
+ * throw on the first import.
+ */
+function modalAmbience(intent: IntentId): Ambience {
+  const places = placesForIntent(intent);
+  let best = ALLOWED_AMBIENCE[intent][0];
+  let bestCount = -1;
+
+  for (const ambience of ALLOWED_AMBIENCE[intent]) {
+    const n = places.filter((p) => ambienceOf(p) === ambience).length;
+    if (n > bestCount) {
+      best = ambience;
+      bestCount = n;
+    }
+  }
+
+  return best;
+}
+
+export const INTENT_AMBIENCE: Record<IntentId, Ambience> = Object.fromEntries(
+  INTENT_IDS.map((id) => [id, modalAmbience(id)]),
+) as Record<IntentId, Ambience>;

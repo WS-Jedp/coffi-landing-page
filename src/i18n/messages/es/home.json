@@ -48,6 +48,7 @@
       "title": "Elimina la incertidumbre",
       "description": "Dile a Coffi qué buscas hoy y qué necesitas. Coffi <b>cruza tu intención con datos en tiempo real</b> de cada lugar.",
       "chipsLabel": "Elige tu intención",
+      "count": "{n, plural, =0 {nada por aquí} one {# espacio} other {# espacios}}",
       "intents": {
         "LOCKED_IN": "Enfoque",
         "NETWORK_AND_CHILL": "Conexión y colaboración",
@@ -60,6 +61,7 @@
       "title": "Conecta con quienes crean cerca",
       "description": "Mira en tiempo real <b>quién está creando el futuro contigo</b>. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria.",
       "chipsLabel": "Filtra por lo que hacen",
+      "count": "{n, plural, =0 {nadie por aquí} one {# persona} other {# personas}}",
       "roles": {
         "design": "Diseño",
         "code": "Programación",
@@ -79,7 +81,10 @@
       "description": "Con cada check-in, reseña, actualización o descubrimiento <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos.",
       "pin": "Oferta activa: {discount}% off con {points} puntos",
       "pinShort": "{discount}% off · {points} pts",
-      "pinExclusive": "Solo con Coffi",
+      "pinPlan": {
+        "nomad": "Solo para miembros Nomad",
+        "explorer": "Solo para miembros Explorer"
+      },
       "pinTiny": "{discount}% off"
     },
     "circles": {

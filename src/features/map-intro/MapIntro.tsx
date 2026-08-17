@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform } from "motion/react";
 import {
   CARD_START_Y_PCT,
@@ -83,6 +83,35 @@ export const MapIntro: React.FC = () => {
   });
 
   const filters = useSectionFilters();
+
+  /*
+   * How many pins the map is showing, lifted out of the map so the chip row can
+   * report it.
+   *
+   * Held here because this component already owns the other thing both sides
+   * need — `filters` goes down to the copy and to the stage — so the count
+   * travels a path that exists rather than adding one.
+   *
+   * The identity comparison is not a micro-optimisation. This setter is called
+   * from inside Leaflet's layer effect on every rebuild, and a rebuild happens
+   * on every chip press and every window resize step; returning the previous
+   * object when nothing moved is what keeps that from re-rendering the whole
+   * section for no reason.
+   */
+  const [pinCount, setPinCount] = useState<{
+    step: number;
+    count: number;
+  } | null>(null);
+
+  const handlePinCount = useCallback(
+    (report: { step: number; count: number }) =>
+      setPinCount((prev) =>
+        prev && prev.step === report.step && prev.count === report.count
+          ? prev
+          : report,
+      ),
+    [],
+  );
 
   const stageSize = useElementSize(stageRef);
   // The map window's box and the complementary text box, both scrubbed.
@@ -249,6 +278,7 @@ export const MapIntro: React.FC = () => {
               activeRole={filters.role}
               windowSize={windowSize}
               reduced={prefersReducedMotion}
+              onPinCount={handlePinCount}
             />
             <motion.canvas
               ref={canvasRef}
@@ -280,7 +310,7 @@ export const MapIntro: React.FC = () => {
         </motion.div>
       </div>
 
-      <SceneLayer filters={filters} chapters={chapters} />
+      <SceneLayer filters={filters} chapters={chapters} pinCount={pinCount} />
     </section>
   );
 };

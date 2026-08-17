@@ -15,6 +15,7 @@ import {
 } from "./typography";
 import { useCopyEntrance } from "./useCopyEntrance";
 import { FilterChips, type ChipOption } from "./FilterChips";
+import { INTENT_VISUAL, ROLE_VISUAL } from "./chipVocabulary";
 import { SectionClosing, SectionCta } from "./SectionCta";
 import { COPY_SCALE, COPY_WIDTH } from "../narrative/layouts";
 import { INTENT_IDS, intentLabelKey, type IntentId } from "../narrative/intents";
@@ -67,7 +68,9 @@ const ROLE_OPTIONS: readonly ChipOption[] = CREATOR_ROLES.map((id) => ({
 export const SectionCopy: React.FC<{
   section: SectionSpec;
   filters: SectionFilters;
-}> = ({ section, filters }) => {
+  /** Pins the map is showing for THIS section, or null when it is not ours. */
+  count: number | null;
+}> = ({ section, filters, count }) => {
   const t = useTranslations();
   const ref = useRef<HTMLDivElement | null>(null);
   const copy = useCopyEntrance(ref);
@@ -181,6 +184,9 @@ export const SectionCopy: React.FC<{
             options={INTENT_OPTIONS}
             selected={filters.intent}
             onSelect={(id) => filters.setIntent(id as IntentId | null)}
+            visuals={INTENT_VISUAL}
+            count={count}
+            countKey="home.mapIntro.spaces.count"
           />
         </motion.div>
       )}
@@ -192,6 +198,9 @@ export const SectionCopy: React.FC<{
             options={ROLE_OPTIONS}
             selected={filters.role}
             onSelect={(id) => filters.setRole(id as CreatorRole | null)}
+            visuals={ROLE_VISUAL}
+            count={count}
+            countKey="home.mapIntro.connect.count"
           />
         </motion.div>
       )}

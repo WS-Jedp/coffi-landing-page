@@ -260,16 +260,19 @@
   color: rgba(49, 47, 61, 0.7);
 }
 
-/* The line that says where the offer comes from. A discount alone could be
-   anyone's; this is what makes it Coffi's. */
+/* The line that says who the offer is for. A discount alone could be anyone's;
+   this is what makes it Coffi's, and names the plans that can take it.
+
+   Tracking is off and the case is the copy's own, unlike the fourteen-character
+   disclaimer this replaces: naming two plans is roughly twice the string, and
+   0.09em of uppercase spacing on it pushed the plate a third wider than the
+   offer line that is supposed to set its width. */
 .map-intro-perk-only {
   margin-top: 3px;
   padding-top: 3px;
   border-top: 1px solid rgba(83, 63, 255, 0.22);
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
   color: #6d66ff;
 }
 
@@ -295,7 +298,7 @@
   top: calc(100% + 6px);
 }
 
-/* Compact: the card shrinks and the exclusivity line is dropped entirely — on a
+/* Compact: the card shrinks and the members line is dropped entirely — on a
    phone band a third line of text costs a whole pin. */
 .map-intro-compact.map-intro-perk,
 .map-intro-compact .map-intro-perk-card {

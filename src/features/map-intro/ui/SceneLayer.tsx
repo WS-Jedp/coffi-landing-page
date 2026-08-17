@@ -38,7 +38,12 @@ export const SceneLayer: React.FC<{
   filters: SectionFilters;
   /** The active rung's pacing — a phone runs shorter chapters. */
   chapters: readonly ChapterSpec[];
-}> = ({ filters, chapters }) => (
+  /**
+   * The map's live pin count, tagged with the step it was measured on. Passed
+   * straight through: only the block whose index matches may display it.
+   */
+  pinCount: { step: number; count: number } | null;
+}> = ({ filters, chapters, pinCount }) => (
   /*
    * Lifted half a viewport, and the number is not a nudge — it is derived.
    *
@@ -81,7 +86,14 @@ export const SceneLayer: React.FC<{
         <div
           className={`mx-auto flex w-full max-w-[1200px] ${COPY_ALIGN[section.id]}`}
         >
-          <SectionCopy section={section} filters={filters} />
+          <SectionCopy
+            section={section}
+            filters={filters}
+            // Only this block's own count. `i` is the chapter index, which is
+            // what `activeStep` counts too, so the comparison is apples to
+            // apples.
+            count={pinCount && pinCount.step === i ? pinCount.count : null}
+          />
         </div>
       </div>
     ))}

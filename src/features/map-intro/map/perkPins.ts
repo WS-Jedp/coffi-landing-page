@@ -15,7 +15,14 @@ import { labelBox, square, truncate } from "./markers";
  * So the whole card changes register — deep ink with a gold rim and a gold
  * crown, the visual grammar of a members' card rather than a map marker. The
  * words carry it too: the offer is not enough on its own, because a discount
- * could come from anywhere. "Solo con Coffi" is what says where it comes from.
+ * could come from anywhere. The foot of the plate is what says where it comes
+ * from, and which plans it is for.
+ *
+ * ONE LINE, and it is a budget rather than a preference. The plate's width is
+ * set by its widest line and the offer line renders at 112px; a second tier row
+ * or a longer sentence pushes past that, and width is the scarce dimension here
+ * because the desktop window is a 48% column. Naming both plans without spending
+ * a figure on each is what fits.
  *
  * That line is dropped in compact mode. On a phone the section's window is a
  * 358x310 band and a third line of text costs a pin, which is the worse trade:
@@ -36,6 +43,22 @@ const CARD_COMPACT = 38;
 const LABEL_H = 62 + 14;
 const LABEL_H_COMPACT = 40 + 10;
 
+/**
+ * The members line renders at 9px against the offer line's 12px, so its
+ * characters are three quarters as wide — and `labelBox` measures every line
+ * with ONE per-character constant, calibrated for the offer line.
+ *
+ * Handing it the raw string therefore has the sieve believe the plate is far
+ * wider than the browser draws it: 201px estimated against 132px measured for
+ * "Miembros Nómada/Explorador". That is not a harmless safety margin — at
+ * 1280px it cost a fourth perk pin, in a section whose whole point is that there
+ * are exactly four.
+ *
+ * A proxy string rather than a new parameter on the shared helper, in the same
+ * idiom as the `xxx` that pads the offer line for its crown.
+ */
+const asMeasured = (text: string) => "x".repeat(Math.ceil((text.length * 9) / 12));
+
 export const perkBox = (
   offer: string,
   name: string,
@@ -46,7 +69,7 @@ export const perkBox = (
     // The crown glyph rides inside the offer line, so it is padded for.
     compact
       ? [`${offer}xxx`, truncate(name, compact)]
-      : [`${offer}xxx`, truncate(name, compact), exclusive],
+      : [`${offer}xxx`, truncate(name, compact), asMeasured(exclusive)],
     compact,
     square(compact ? CARD_COMPACT : CARD),
     compact ? LABEL_H_COMPACT : LABEL_H,

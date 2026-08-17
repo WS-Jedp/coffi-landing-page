@@ -63,44 +63,92 @@ export const EYEBROW_DOT_CLASS =
   "h-1.5 w-1.5 shrink-0 rounded-full coffi-gradient-blue-to-purple";
 
 /**
- * Filter chips — the interactive relatives of the antetitle chip.
+ * Filter chips, and the whole point here is that they are NO LONGER the
+ * antetitle's twin.
  *
- * Same pill geometry so the section reads as one family, but deliberately
- * without the leading dot: the antetitle is a label and these are controls, and
- * repeating its ornament would make the two look like the same kind of thing.
- * The difference is carried by state instead — hover, focus ring, and a filled
- * gradient when selected.
+ * They used to share everything with `EYEBROW_CHIP_CLASS` above — the same pill,
+ * the same `coffi-purple/15` border, the same translucent white under the same
+ * blue->purple tint, the same shadow, the same type. The only differences were
+ * the text colour and a hover border. That is why nobody could tell they were
+ * pressable: the eye had already learned that this exact object is a label, and
+ * it applied the lesson to the control.
+ *
+ * So the two diverge on the property that actually reads as affordance, which is
+ * ELEVATION rather than colour. The antetitle stays a flat translucent tint; the
+ * chip becomes an opaque white surface that lifts on hover and settles on press.
+ * A tinted disc carries the icon, which is what makes the row scannable.
+ *
+ * Colour is NOT here. Border, shadow and fill are painted inline from
+ * `chipVocabulary`, because a class name assembled from a hex at runtime
+ * survives `next dev` and is purged from the production stylesheet — the same
+ * trap already documented for the pins in `map/pinVocabulary.ts`.
  *
  * `pointer-events-auto` is load-bearing. `SceneLayer` sets `pointer-events-none`
  * on the whole copy column so the text never intercepts a scroll gesture over
  * the map; these are the only elements that opt back in.
  */
 const CHIP_BASE = [
-  "pointer-events-auto inline-flex items-center rounded-full",
-  "px-3.5 py-1.5 md:px-4",
+  "pointer-events-auto inline-flex items-center gap-2 rounded-full border",
+  // Tighter on the icon side than the text side, so the disc sits in the pill
+  // rather than floating in a gutter of its own.
+  "py-1 pl-1 pr-3.5 md:pr-4",
   "text-sm font-semibold tracking-[-0.01em] md:text-[0.9375rem]",
-  "transition-colors duration-200",
+  // Named properties rather than `transition-all`: the chip is in a block that
+  // is already being transformed every frame by the copy's entrance, and
+  // transitioning `transform` here would fight it.
+  "transition-[box-shadow,background-color,border-color,translate] duration-200",
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffi-purple/50 focus-visible:ring-offset-2",
 ].join(" ");
 
 export const CHIP_IDLE_CLASS = [
   CHIP_BASE,
-  "border border-coffi-purple/15",
-  "bg-white/70 bg-gradient-to-r from-coffi-blue/20 to-coffi-purple/20",
-  "text-coffi-black shadow-sm shadow-coffi-purple/10",
-  "hover:border-coffi-purple/30",
+  "bg-white text-coffi-black",
+  // The lift is the affordance. `translate-y` and not `transform`, so it cannot
+  // clash with the entrance animation's own transform on an ancestor.
+  "hover:-translate-y-px active:translate-y-0",
 ].join(" ");
 
-export const CHIP_ACTIVE_CLASS = [
-  CHIP_BASE,
-  "border border-transparent",
-  "coffi-gradient-blue-to-purple text-white",
-  "shadow-md shadow-coffi-purple/30",
-].join(" ");
+/**
+ * Selected: filled with the accent at full strength, carrying DARK text.
+ *
+ * Dark rather than white, and that is what keeps the fills on brand. To make
+ * white legible the colour has to be darkened until it clears 4.5:1, which turns
+ * the amber into brown and the cowork blue into navy — measured, and it read as
+ * dark as it sounds. Dark text on the brand colours themselves needs nothing
+ * dimmed to be readable.
+ *
+ * The label is the accent's own DEEP step, arriving inline like the fill — not a
+ * neutral. A black label reads as something dropped onto the chip; the chip's
+ * colour taken down to near-ink reads as part of it, and it measures better too.
+ * See AMBIENCE_DEEP in chipVocabulary for the numbers and for why white was not
+ * an option.
+ *
+ * No text colour here on purpose, then: it varies per accent, and a class would
+ * only be able to state one of them.
+ *
+ * Never the house gradient: that is reserved for primary actions, and this
+ * section already spends it on "Explore the city now".
+ */
+export const CHIP_ACTIVE_CLASS = CHIP_BASE;
+
+/** The tinted disc the icon sits in. */
+export const CHIP_ICON_CLASS =
+  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full md:h-7 md:w-7";
 
 /** The quiet line above a chip row. */
 export const CHIP_LABEL_CLASS =
-  "mb-2 md:mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-coffi-black/45";
+  "text-xs font-semibold uppercase tracking-[0.12em] text-coffi-black/45";
+
+/**
+ * The live result count, opposite the row's label.
+ *
+ * Sits on the label's line rather than under the chips because vertical space is
+ * the binding constraint on a phone: the copy in these two sections has to clear
+ * the map band, and there were 85px of slack before this. A row of its own would
+ * have spent a third of that on one short sentence.
+ */
+export const CHIP_COUNT_CLASS =
+  "inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-coffi-black/55";
 
 /**
  * Headline sizes. Deliberately past the hero's `md:text-6xl` at the top end:

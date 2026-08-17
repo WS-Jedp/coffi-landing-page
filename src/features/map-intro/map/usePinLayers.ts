@@ -62,6 +62,22 @@ export type PinLayerArgs = {
   creatorLabels: (c: Creator) => { role: string; status: string };
   perkLabel: (p: Perk) => { offer: string; exclusive: string };
   circleLabels: (c: Circle) => { title: string; place: string; people: string };
+  /**
+   * How many pins the layer just put on the map, reported with the step it
+   * belongs to.
+   *
+   * The step travels with the number because the copy that displays it is a
+   * sibling of the map, scrolling past at its own pace: at any moment the layer
+   * may hold a species the on-screen section did not ask for, and a bare count
+   * would let section 1 advertise section 2's creators. The consumer compares
+   * and shows nothing on a mismatch.
+   *
+   * This is the only honest place to count from. The chips filter by predicate
+   * but the SIEVE decides what survives — a label that would straddle the crop
+   * is dropped — so `placesForIntent(...).length` is a number the visitor never
+   * sees.
+   */
+  onCount?: (report: { step: number; count: number }) => void;
 };
 
 /**
@@ -92,15 +108,29 @@ export function usePinLayers(
     creatorLabels,
     perkLabel,
     circleLabels,
+    onCount,
   }: PinLayerArgs,
 ): void {
   const layerRef = useRef<LeafletNS.LayerGroup | null>(null);
 
   // Label builders close over `t`, so they are new identities on every render.
   // Read through a ref instead of as dependencies, or the layer would be torn
-  // down and rebuilt on every single render.
-  const labels = useRef({ moodLabel, creatorLabels, perkLabel, circleLabels });
-  labels.current = { moodLabel, creatorLabels, perkLabel, circleLabels };
+  // down and rebuilt on every single render. `onCount` joins them for the same
+  // reason: it must never be able to trigger a rebuild.
+  const labels = useRef({
+    moodLabel,
+    creatorLabels,
+    perkLabel,
+    circleLabels,
+    onCount,
+  });
+  labels.current = {
+    moodLabel,
+    creatorLabels,
+    perkLabel,
+    circleLabels,
+    onCount,
+  };
 
   const species = SPECIES_BY_STEP[activeStep] ?? "places";
   // Only the selector relevant to the current species may trigger a rebuild;
@@ -159,62 +189,50 @@ export function usePinLayers(
       for (const m of markers) m.addTo(group);
     };
 
+    // What the sieve actually kept, which is the only count worth reporting.
+    let placed = 0;
+
     if (species === "creators") {
-      add(
-        createCreatorMarkers(
-          L,
-          selectLabelled(creatorsForRole(role), {
-            ...sieve,
-            positionOf: (c) => c.position,
-            boxOf: (c) =>
-              creatorBox(
-                `${c.name} · ${labels.current.creatorLabels(c).role}`,
-                labels.current.creatorLabels(c).status,
-                compact,
-              ),
-          }),
-          labels.current.creatorLabels,
-          compact,
-        ),
-      );
+      const chosen = selectLabelled(creatorsForRole(role), {
+        ...sieve,
+        positionOf: (c) => c.position,
+        boxOf: (c) =>
+          creatorBox(
+            `${c.name} · ${labels.current.creatorLabels(c).role}`,
+            labels.current.creatorLabels(c).status,
+            compact,
+          ),
+      });
+      placed = chosen.length;
+      add(createCreatorMarkers(L, chosen, labels.current.creatorLabels, compact));
     } else if (species === "perks") {
-      add(
-        createPerkMarkers(
-          L,
-          selectLabelled(PERKS, {
-            ...sieve,
-            // Exactly four, scattered rather than clustered. A wall of discount
-            // pins stops reading as "exclusive" and starts reading as a sale.
-            spread: PERK_PINS,
-            positionOf: (p) => [
-              p.place.location.latitude,
-              p.place.location.longitude,
-            ],
-            boxOf: (p) => {
-              const l = labels.current.perkLabel(p);
-              return perkBox(l.offer, p.place.name, l.exclusive, compact);
-            },
-          }),
-          labels.current.perkLabel,
-          compact,
-        ),
-      );
+      const chosen = selectLabelled(PERKS, {
+        ...sieve,
+        // Exactly four, scattered rather than clustered. A wall of discount
+        // pins stops reading as "exclusive" and starts reading as a sale.
+        spread: PERK_PINS,
+        positionOf: (p) => [
+          p.place.location.latitude,
+          p.place.location.longitude,
+        ],
+        boxOf: (p) => {
+          const l = labels.current.perkLabel(p);
+          return perkBox(l.offer, p.place.name, l.exclusive, compact);
+        },
+      });
+      placed = chosen.length;
+      add(createPerkMarkers(L, chosen, labels.current.perkLabel, compact));
     } else if (species === "circles") {
-      add(
-        createCircleMarkers(
-          L,
-          selectLabelled(CIRCLES, {
-            ...sieve,
-            positionOf: (c) => c.position,
-            boxOf: (c) => {
-              const l = labels.current.circleLabels(c);
-              return circleBox(l.title, l.place, l.people, compact);
-            },
-          }),
-          labels.current.circleLabels,
-          compact,
-        ),
-      );
+      const chosen = selectLabelled(CIRCLES, {
+        ...sieve,
+        positionOf: (c) => c.position,
+        boxOf: (c) => {
+          const l = labels.current.circleLabels(c);
+          return circleBox(l.title, l.place, l.people, compact);
+        },
+      });
+      placed = chosen.length;
+      add(createCircleMarkers(L, chosen, labels.current.circleLabels, compact));
     } else {
       const chosen = selectLabelled(placesForIntent(intent), {
         ...sieve,
@@ -222,6 +240,7 @@ export function usePinLayers(
         boxOf: (p) =>
           placeBox(p.name, labels.current.moodLabel(ambienceOf(p)), compact),
       });
+      placed = chosen.length;
       createPlaceMarkers(
         L,
         chosen,
@@ -232,6 +251,18 @@ export function usePinLayers(
 
     group.addTo(map);
     layerRef.current = group;
+
+    /*
+     * Reported only from here, once a layer has actually been built.
+     *
+     * `activeStep` is read from the closure and is NOT a dependency, so if it
+     * ever changed without any dependency changing, this would not fire and the
+     * consumer would keep a report whose step no longer matches — which shows
+     * nothing rather than showing the wrong number. In practice every step
+     * boundary does change one: the species changes at three of them, and the
+     * intro-to-spaces crossing changes the camera.
+     */
+    labels.current.onCount?.({ step: activeStep, count: placed });
 
     return () => {
       group.remove();

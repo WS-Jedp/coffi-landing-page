@@ -48,6 +48,7 @@
       "title": "Take the guesswork out",
       "description": "Tell Coffi what you are after today and what you need. Coffi <b>matches your intent against live data</b> from every place.",
       "chipsLabel": "Pick your intent",
+      "count": "{n, plural, =0 {nothing here} one {# space} other {# spaces}}",
       "intents": {
         "LOCKED_IN": "Focus",
         "NETWORK_AND_CHILL": "Connect & collaborate",
@@ -60,6 +61,7 @@
       "title": "Connect with the people creating nearby",
       "description": "See in real time <b>who is building the future alongside you</b>. Join open circles or start spontaneous conversations. The city stops feeling lonely.",
       "chipsLabel": "Filter by what they do",
+      "count": "{n, plural, =0 {nobody nearby} one {# person} other {# people}}",
       "roles": {
         "design": "Design",
         "code": "Engineering",
@@ -79,7 +81,10 @@
       "description": "Every check-in, review, update or discovery <b>earns you Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces.",
       "pin": "Live offer: {discount}% off for {points} points",
       "pinShort": "{discount}% off · {points} pts",
-      "pinExclusive": "Coffi members only",
+      "pinPlan": {
+        "nomad": "Nomad members only",
+        "explorer": "Explorer members only"
+      },
       "pinTiny": "{discount}% off"
     },
     "circles": {
