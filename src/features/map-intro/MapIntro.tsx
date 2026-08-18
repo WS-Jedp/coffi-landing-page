@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform } from "motion/react";
 import {
   CARD_START_Y_PCT,
@@ -26,6 +26,36 @@ import { useActiveStep } from "./narrative/useActiveStep";
 import { INTENT_CAMERAS } from "./narrative/intents";
 import { ROLE_CAMERAS } from "./narrative/creators";
 import { BOUNDARIES, SECTIONS, sectionZoom } from "./narrative/sections";
+
+/**
+ * The stage's entrance.
+ *
+ * It rises rather than descends because it is content: its immediate neighbour
+ * on the page (components/hero/CommunityBanner) enters on exactly this `y` and
+ * this curve — the house curve, shared with the header and the hero.
+ *
+ * There is no `scale`, and that is a constraint rather than a preference.
+ * `useElementSize` measures this box with `getBoundingClientRect()`, and that
+ * measurement is what pins the Leaflet container and feeds
+ * `computeZoomForCard`. A translate leaves `width`/`height` untouched — and
+ * `ResizeObserver` does not fire on transforms either, so the mount-time
+ * measurement survives the travel without re-measuring. A `scale` would falsify
+ * both for the whole entrance, and the hand-off zoom would be derived from a
+ * box that never existed.
+ */
+const EASE_HOUSE = [0.43, 0.13, 0.23, 0.96] as const;
+const STAGE_ENTER_Y = 24;
+
+/**
+ * How long the page's opening takes to settle, in ms.
+ *
+ * It is where the header and the hero finish together (~1.15s — the hero's
+ * search bar starts at 0.34s and runs 0.8s; see components/hero/HeroSearchForm
+ * and components/header). Nothing enforces the agreement between the three:
+ * they are hand-matched clocks, so re-pacing any one of them means revisiting
+ * the others.
+ */
+const OPENING_SETTLES_MS = 1150;
 
 /**
  * The scroll-driven map section.
@@ -172,6 +202,26 @@ export const MapIntro: React.FC = () => {
     enabled: near,
   });
 
+  /*
+   * The floor under the entrance.
+   *
+   * `firstPaint` is a network fact, not a composition one, so on its own it
+   * lets the map rise at any moment — including halfway through the hero's
+   * own entrance, which is what makes the opening read as three unrelated
+   * things starting at once. Waiting for the later of the two makes it the
+   * fourth beat of that opening, and it can never delay the map beyond what
+   * the frames already cost: on a slow connection `firstPaint` lands after
+   * this and stays the binding gate.
+   *
+   * The clock starts at mount, which is the same commit the hero mounts in —
+   * that shared start is the only thing keeping the two in step.
+   */
+  const [openingSettled, setOpeningSettled] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setOpeningSettled(true), OPENING_SETTLES_MS);
+    return () => clearTimeout(id);
+  }, []);
+
   // The entrance starts wherever the section already sits at rest, not at zero,
   // so the map's resting size is exactly what CARD_START_WIDTH_PX asks for on
   // every viewport height. See useProgressAtRest.
@@ -199,6 +249,18 @@ export const MapIntro: React.FC = () => {
   const canvasScale = useTransform(introProgress, RANGES.CROSSFADE, [1, 1.04], {
     clamp: true,
   });
+
+  /* Reduced motion keeps the fade and drops the travel: this section already
+     expresses "no animation" as a settled end state rather than as nothing
+     happening, and a hard pop-in would be louder than the fade it replaces. */
+  const stageVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : STAGE_ENTER_Y },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: EASE_HOUSE },
+    },
+  };
 
   // The reduced-motion collapse to a single screen lives in TRACK_CLASS as a
   // `motion-reduce:` variant, not as a branch here — see the note there.
@@ -231,12 +293,23 @@ export const MapIntro: React.FC = () => {
       */}
       <div className="pointer-events-none sticky top-0 z-10 flex h-svh w-full items-start justify-center px-4 pb-6 pt-14 md:items-center md:px-6 md:pt-20">
         {/* No scroll-driven fade in: the folded map is meant to be sitting
-            under the hero banner before the user scrolls at all. The only gate
-            is `firstPaint`, because an unpainted canvas is a blank rectangle,
-            not a map. */}
+            under the hero banner before the user scrolls at all. Its entrance
+            is therefore gated on time rather than on scroll — on `firstPaint`,
+            because an unpainted canvas is a blank rectangle and not a map, and
+            on OPENING_SETTLES_MS so it lands after the header and the hero
+            instead of cutting across them.
+
+            The fade used to be `opacity: firstPaint ? 1 : 0` over a CSS
+            `transition-opacity duration-500`, which is why it read as flat: no
+            travel, and a linear-ish curve belonging to no other motion on the
+            page. The CSS transition had to go with it — Framer writes opacity
+            per frame here, and `transition-opacity` would interpolate those
+            writes 500ms behind the value it was already given. */}
         <motion.div
           ref={stageRef}
-          style={{ opacity: firstPaint ? 1 : 0 }}
+          variants={stageVariants}
+          initial="hidden"
+          animate={firstPaint && openingSettled ? "visible" : "hidden"}
           /*
             Transparent to the pointer, and this is a fix rather than a detail.
             The stage box always spans the full 1200x80svh even when the map
@@ -260,7 +333,7 @@ export const MapIntro: React.FC = () => {
             sticky wrapper already gives it puts the band on the floor and hands
             the difference to the text.
           */
-          className="pointer-events-none relative h-full w-full max-w-[1200px] transition-opacity duration-500 md:max-h-[80svh]"
+          className="pointer-events-none relative h-full w-full max-w-[1200px] md:max-h-[80svh]"
         >
           <MapCard
             progress={introProgress}
