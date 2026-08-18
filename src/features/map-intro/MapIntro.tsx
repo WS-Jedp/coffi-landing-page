@@ -17,6 +17,7 @@ import { useStageLayout } from "./ui/useStageLayout";
 import { useIsMobile } from "./ui/useIsMobile";
 import { MAP_RECTS, MAP_RECTS_MOBILE } from "./narrative/layouts";
 import { useFrameScrubber } from "./canvas/useFrameScrubber";
+import { useDebugBadge } from "./dev/useDebugBadge";
 import { MapCard } from "./ui/MapCard";
 import { MapStage } from "./map/MapStage";
 import { DotRail } from "./ui/DotRail";
@@ -113,6 +114,9 @@ export const MapIntro: React.FC = () => {
   });
 
   const filters = useSectionFilters();
+
+  // Off unless `?mapdebug=1` says otherwise — see useDebugBadge.
+  const showStepBadge = useDebugBadge();
 
   /*
    * How many pins the map is showing, lifted out of the map so the chip row can
@@ -372,7 +376,14 @@ export const MapIntro: React.FC = () => {
             introProgress={introProgress}
           />
 
-          {process.env.NODE_ENV === "development" && (
+          {/* NODE_ENV here as well as inside the hook, and the two guards are
+              not the same guard. This one folds to `false` at build time, so
+              the minifier drops the markup from the production bundle outright
+              — which is what the plain NODE_ENV check used to buy before the
+              flag existed, and would have been quietly given up by moving the
+              condition into a hook. The hook's own guard is the one that stops
+              the query string from reviving the badge on the live site. */}
+          {process.env.NODE_ENV === "development" && showStepBadge && (
             <div
               data-testid="map-intro-step"
               className="pointer-events-none absolute left-3 top-3 z-[520] rounded-lg bg-coffi-black/80 px-2 py-1 font-mono text-[11px] text-coffi-white"
