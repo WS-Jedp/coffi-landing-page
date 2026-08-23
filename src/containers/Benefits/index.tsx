@@ -2,6 +2,25 @@ import { useTranslations } from "next-intl";
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
+import {
+  AMBIENCE_ICON,
+  type Ambience,
+} from "@/features/map-intro/map/pinVocabulary";
+import { ConnectionsOrbit } from "./ConnectionsOrbit";
+
+/**
+ * Tope de altura de las dos tarjetas superiores en desktop.
+ *
+ * Es un objetivo de diseño, no una medida del contenido: sin él la tarjeta
+ * manda sobre la sección, y con la banda orbital a proporción 2:1 se iba a
+ * 811px y empujaba todo lo de abajo fuera de pantalla.
+ *
+ * Se cumple de 1024 en adelante, que es donde se pidió: ahí el texto ocupa
+ * 268px y la banda se queda con los 212 restantes. Entre 768 y 1023 la tarjeta
+ * es más estrecha, el párrafo envuelve hasta 392px y 480 dejaría de caber — ver
+ * el `Math.max` de abajo, que es lo que evita que el tope corte texto.
+ */
+const CARD_H = 480;
 
 export const Benefits: React.FC = () => {
   const t = useTranslations();
@@ -50,7 +69,20 @@ export const Benefits: React.FC = () => {
 
             // Set both sections to the height of the taller one
             const maxHeight = Math.max(sectionOneHeight, sectionTwoHeight);
-            setSectionHeight(maxHeight);
+            // En desktop, 480 es el OBJETIVO, no un recorte.
+            //
+            // `Math.min` contra el alto natural era lo obvio y cortaba texto:
+            // medido a 768px de viewport, el párrafo de esta tarjeta envuelve
+            // hasta 392px y el de la vecina hasta 448, así que ninguna de las
+            // dos cabe en 480 y la diferencia se comía palabras contra el
+            // `overflow-hidden`. Con `max`, las tarjetas valen 480 en cuanto el
+            // contenido lo permite — de 1024 para arriba, que es donde se pidió
+            // el tope — y crecen sólo cuando la alternativa sería cortar.
+            setSectionHeight(
+              window.innerWidth >= 768
+                ? Math.max(maxHeight, CARD_H)
+                : maxHeight,
+            );
           }
         }, 0);
       }
@@ -67,22 +99,32 @@ export const Benefits: React.FC = () => {
     };
   }, []); // Run once on mount
 
+  /*
+    Cada tarjeta declara para qué es buena el lugar, que es lo que decide su
+    icono. Es un dato inventado, como el nombre y la distancia que ya llevaban:
+    la landing no tiene lugares reales que consultar aquí. Lo que NO se inventa
+    es el icono — sale del mismo vocabulario que pinta los pines del mapa, para
+    que el visitante no tenga que reaprender el símbolo al abrir el producto.
+  */
   const allPlaceCards = [
     // Top row - spread across the width
     {
       name: "Coffee Club",
+      ambience: "work" as Ambience,
       distance: "2.3",
       depth: 0,
       position: { x: "1%", y: 0 },
     },
     {
       name: "Espresso Lane",
+      ambience: "study" as Ambience,
       distance: "3.4",
       depth: 2,
       position: { x: "42%", y: 6 },
     },
     {
       name: "Caffeine Corner",
+      ambience: "cowork" as Ambience,
       distance: "1.9",
       depth: 0,
       position: { x: "76%", y: 3 },
@@ -91,12 +133,14 @@ export const Benefits: React.FC = () => {
     // Middle row - offset from top row positions
     {
       name: "The Roastery",
+      ambience: "fun" as Ambience,
       distance: "5.3",
       depth: 0,
       position: { x: "30%", y: 54 },
     },
     {
       name: "The Coffee Lab",
+      ambience: "study" as Ambience,
       distance: "4.5",
       depth: 1,
       position: { x: "1%", y: 81 },
@@ -105,12 +149,14 @@ export const Benefits: React.FC = () => {
     // Bottom row - balanced distribution
     {
       name: "Bitter Sweet",
+      ambience: "romantic" as Ambience,
       distance: "2.1",
       depth: 1,
       position: { x: "69%", y: 66 },
     },
     {
       name: "Nights And Coffe",
+      ambience: "fun" as Ambience,
       distance: "3.6",
       depth: 2,
       position: { x: "45%", y: 99 },
@@ -131,186 +177,6 @@ export const Benefits: React.FC = () => {
     }
     return allPlaceCards;
   }, [isMobile]);
-
-  // Create network profiles for Section Two with color groups and depth
-  const allNetworkProfiles = useMemo(() => {
-    return [
-      // Group 1
-      {
-        name: "Alex",
-        position: { x: "8%", y: "12%" },
-        colorGroup: 1,
-        depth: 0,
-      },
-      {
-        name: "Emma",
-        position: { x: "42%", y: "8%" },
-        colorGroup: 1,
-        depth: 1,
-      },
-      {
-        name: "Miguel",
-        position: { x: "85%", y: "15%" },
-        colorGroup: 1,
-        depth: 2,
-      },
-      {
-        name: "Jamie",
-        position: { x: "15%", y: "68%" },
-        colorGroup: 1,
-        depth: 0,
-      },
-      {
-        name: "Noah",
-        position: { x: "92%", y: "78%" },
-        colorGroup: 1,
-        depth: 1,
-      },
-
-      // Group 2
-      {
-        name: "Sophie",
-        position: { x: "30%", y: "30%" },
-        colorGroup: 2,
-        depth: 0,
-      },
-      {
-        name: "Ben",
-        position: { x: "76%", y: "42%" },
-        colorGroup: 2,
-        depth: 1,
-      },
-      {
-        name: "Ryan",
-        position: { x: "12%", y: "90%" },
-        colorGroup: 2,
-        depth: 2,
-      },
-      {
-        name: "Leah",
-        position: { x: "58%", y: "88%" },
-        colorGroup: 2,
-        depth: 0,
-      },
-      {
-        name: "Zoe",
-        position: { x: "88%", y: "55%" },
-        colorGroup: 2,
-        depth: 1,
-      },
-
-      // Group 3
-      {
-        name: "Nora",
-        position: { x: "22%", y: "48%" },
-        colorGroup: 3,
-        depth: 2,
-      },
-      {
-        name: "David",
-        position: { x: "65%", y: "62%" },
-        colorGroup: 3,
-        depth: 0,
-      },
-      {
-        name: "Julia",
-        position: { x: "38%", y: "78%" },
-        colorGroup: 3,
-        depth: 1,
-      },
-      {
-        name: "Ethan",
-        position: { x: "74%", y: "22%" },
-        colorGroup: 3,
-        depth: 2,
-      },
-      {
-        name: "Mia",
-        position: { x: "80%", y: "92%" },
-        colorGroup: 3,
-        depth: 0,
-      },
-
-      // Group 4 (yellow/orange tones)
-      {
-        name: "Leo",
-        position: { x: "25%", y: "18%" },
-        colorGroup: 4,
-        depth: 1,
-      },
-      {
-        name: "Ava",
-        position: { x: "62%", y: "35%" },
-        colorGroup: 4,
-        depth: 2,
-      },
-      {
-        name: "Max",
-        position: { x: "48%", y: "55%" },
-        colorGroup: 4,
-        depth: 0,
-      },
-    ];
-  }, []);
-
-  // Filter profiles for mobile display
-  const networkProfiles = useMemo(() => {
-    if (isMobile) {
-      // Mobile: Use only 8 profiles with adjusted positions for better spacing
-      return [
-        // Top left quadrant
-        { ...allNetworkProfiles[0], position: { x: "15%", y: "20%" } }, // Alex (Marketing)
-
-        // Top right quadrant
-        { ...allNetworkProfiles[5], position: { x: "85%", y: "20%" } }, // Sophie (Software Eng)
-
-        // Middle left
-        { ...allNetworkProfiles[10], position: { x: "15%", y: "50%" } }, // Nora (Design)
-
-        // Middle right
-        { ...allNetworkProfiles[16], position: { x: "85%", y: "50%" } }, // Leo (Finance)
-        { ...allNetworkProfiles[15], position: { x: "50%", y: "50%" } }, // Leo (Finance)
-
-        // Bottom left quadrant
-        { ...allNetworkProfiles[1], position: { x: "35%", y: "80%" } }, // Emma (Marketing)
-
-        // Bottom right quadrant
-        { ...allNetworkProfiles[12], position: { x: "65%", y: "80%" } }, // Julia (Design)
-
-        { ...allNetworkProfiles[8], position: { x: "42%", y: "15%" } },
-      ];
-    }
-    return allNetworkProfiles;
-  }, [allNetworkProfiles, isMobile]);
-
-  // Define group color gradients
-  const colorGroups: Record<
-    number,
-    { from: string; to: string; glow: string }
-  > = useMemo(() => {
-    return {
-      1: {
-        from: "from-coffi-purple-300",
-        to: "to-coffi-purple-400",
-        glow: "0 0 12px rgba(101, 2, 221, 0.9)",
-      },
-      2: {
-        from: "from-coffi-blue-400",
-        to: "to-coffi-purple-300",
-        glow: "0 0 12px rgba(37, 99, 235, 0.9)",
-      },
-      3: {
-        from: "from-emerald-500",
-        to: "to-emerald-600",
-        glow: "0 0 12px rgba(34, 197, 94, 0.9)",
-      },
-      4: {
-        from: "from-amber-400",
-        to: "to-orange-500",
-        glow: "0 0 12px rgba(245, 158, 11, 0.9)",
-      },
-    };
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -422,8 +288,17 @@ export const Benefits: React.FC = () => {
                       delay: delayAmount,
                     }}
                   >
-                    <figure className="bg-coffi-purple/20 rounded-lg w-9 h-9 flex items-center justify-center">
-                      <span className="text-sm text-coffi-purple">☕</span>
+                    <figure className="bg-coffi-purple/20 rounded-lg w-9 h-9 flex items-center justify-center shrink-0 text-coffi-purple">
+                      {/*
+                        El disco se queda en el morado de la casa aunque el mapa
+                        coloree estos pines por ambiente: aquí distingue el
+                        icono, que es el mismo criterio que siguen las burbujas
+                        de la tarjeta de al lado.
+                      */}
+                      {(() => {
+                        const Icon = AMBIENCE_ICON[card.ambience];
+                        return <Icon size={18} aria-hidden />;
+                      })()}
                     </figure>
                     <div className="flex flex-col overflow-hidden">
                       <h3 className="text-sm font-medium truncate">
@@ -441,7 +316,7 @@ export const Benefits: React.FC = () => {
 
         {/* Section Two */}
         <motion.article
-          className="flex flex-col items-start justify-start text-start col-span-4 md:col-span-2 bg-coffi-purple/20 text-coffi-purple rounded-md overflow-hidden"
+          className="flex flex-col items-start justify-between text-start col-span-4 md:col-span-2 bg-coffi-purple/20 text-coffi-purple rounded-md overflow-hidden"
           style={{ height: sectionHeight }}
           variants={itemVariants}
           ref={sectionTwoRef}
@@ -457,128 +332,35 @@ export const Benefits: React.FC = () => {
             </p>
           </section>
 
-          {/* Dynamic Networking animations */}
-          <div
-            className={`relative w-full ${
-              isMobile ? "h-[160px]" : "h-[120px]"
-            }`}
-          >
-            {/* Network profile circles */}
-            {shouldAnimate &&
-              networkProfiles.map((profile, i) => {
-                const initial = profile.name[0];
+          {/*
+            Sistema orbital alrededor de "tú aquí".
 
-                // Create depth effect
-                const scale = 1 - profile.depth * 0.15; // Scale down for deeper profiles
+            `flex-1` y no una proporción fija. Hubo una versión con
+            `aspect-[2/1]` — la mitad del ancho de alto, que es lo que una media
+            cúpula necesita para llenar la tarjeta a lo ancho — y el problema no
+            era la cúpula sino lo que arrastraba: a 592px de ancho pedía 296 solo
+            de banda, la tarjeta se iba a 811px y estiraba la sección entera.
 
-                const mobileScaleFactor = 1;
-                const finalScale = scale * mobileScaleFactor;
+            Mandando la altura (ver CARD_H), la banda se queda con lo que sobre
+            tras el texto y el sistema se adapta: `ConnectionsOrbit` mide su caja
+            y saca el radio de ahí, así que una traducción más larga encoge las
+            órbitas en vez de reventar la tarjeta.
 
-                const blur = profile.depth * 0.6; // Slight blur for deeper profiles
-                const zIndex = 10 - profile.depth; // Higher z-index for closer profiles
+            El `min-h` sólo manda en móvil — en desktop `flex-1` reparte más
+            que eso. Son 190 y no un número redondo porque es la altura mínima
+            con la que caben tres personas con su etiqueta fija en un teléfono
+            de 375px; ver SEAT_LAYOUT_LABELLED.
 
-                // Create varied animation parameters
-                const floatY = 3 + (i % 5) - profile.depth * 0.5; // Less movement for deeper profiles
-                const floatX = 2 + (i % 4) - profile.depth * 0.3;
-                const floatDuration = 5 + (i % 7) * 1.2 + profile.depth * 0.5; // Slower for deeper profiles
-                const delayAmount = (i * 0.15) % 3;
-
-                // Adjust size based on device
-                const baseSize = 30;
-                const variationRange = 20;
-                const size = baseSize + Math.random() * variationRange;
-
-                // Get the appropriate gradient classes and glow effect based on colorGroup
-                const fromClass = colorGroups[profile.colorGroup].from;
-                const toClass = colorGroups[profile.colorGroup].to;
-                const glowEffect = colorGroups[profile.colorGroup].glow;
-
-                // Get group name based on colorGroup
-                const groupNames = [
-                  "",
-                  t("home.benefits.professions.marketing"),
-                  t("home.benefits.professions.softwareEngineering"),
-                  t("home.benefits.professions.design"),
-                  t("home.benefits.professions.finance"),
-                ];
-                const groupName = groupNames[profile.colorGroup];
-
-                return (
-                  <motion.div
-                    key={`profile-${i}`}
-                    className="absolute"
-                    style={{
-                      left: profile.position.x,
-                      top: profile.position.y,
-                      transform: "translate(-50%, -50%)",
-                      zIndex,
-                    }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{
-                      scale: 1,
-                      opacity: 1,
-                      y: [0, floatY, 0],
-                      x: [0, floatX, 0],
-                    }}
-                    transition={{
-                      // Initial appearance
-                      duration: 0.5,
-                      delay: 0.3 + i * 0.1,
-                      // Floating effect
-                      y: {
-                        duration: floatDuration,
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                        delay: delayAmount,
-                      },
-                      x: {
-                        duration: floatDuration * 1.2,
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                        delay: delayAmount + 0.5,
-                      },
-                    }}
-                  >
-                    {/* Profile circle */}
-                    <div
-                      className={`bg-gradient-to-r ${fromClass} ${toClass} shadow-sm rounded-full flex items-center justify-center`}
-                      style={{
-                        width: `${size * finalScale}px`,
-                        height: `${size * finalScale}px`,
-                        filter: `blur(${blur}px)`,
-                        opacity: 0.95 - profile.depth * 0.15,
-                        boxShadow: glowEffect,
-                      }}
-                    >
-                      <span
-                        className="text-sm font-medium text-white"
-                        style={{ transform: `scale(${1 / finalScale})` }}
-                      >
-                        {initial}
-                      </span>
-                    </div>
-
-                    {/* Group label */}
-                    <div
-                      className="absolute bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-full text-xs whitespace-nowrap"
-                      style={{
-                        top: `${(size * finalScale) / 1.5 + 4}px`,
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        filter: `blur(${blur * 0.5}px)`,
-                        opacity: 0.9 - profile.depth * 0.2,
-                        boxShadow: `0 2px 4px rgba(0,0,0,0.1)`,
-                        color: `var(--color-${fromClass.split("-").pop()})`,
-                        fontSize: `${Math.max(8, 10 - profile.depth)}px`,
-                      }}
-                    >
-                      {groupName}
-                    </div>
-                  </motion.div>
-                );
-              })}
+            El `overflow-hidden` es de aquí y no heredado. De cada órbita sólo se
+            dibuja la mitad de arriba, pero el círculo ENTERO existe en el DOM y
+            asoma por debajo de la banda; sin recortarlo aquí, esos cientos de
+            píxeles invisibles entraban en el `scrollHeight` que mide el efecto
+            de altura igual. En desktop daba igual porque la altura es fija, pero
+            en móvil, que sí usa la medida, habría inflado la tarjeta con el alto
+            de unos anillos que nadie ve.
+          */}
+          <div className="relative w-full flex-1 min-h-[190px] overflow-hidden">
+            <ConnectionsOrbit isMobile={isMobile} active={shouldAnimate} />
           </div>
         </motion.article>
 

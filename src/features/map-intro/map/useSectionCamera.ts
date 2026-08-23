@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import type * as LeafletNS from "leaflet";
 import type { CameraTarget } from "../types";
+import { stopOnTeardown } from "./stopOnTeardown";
 
 export const FLY_SETTLE_MS = 140;
 export const FLY_MS = 1250;
@@ -116,11 +117,10 @@ export function useSectionCamera(
   }, [map, handedOff, sectionTarget, reduced]);
 
   // A flight left mid-air when the section unmounts would keep writing to a map
-  // nobody is looking at.
+  // nobody is looking at. Skipped when the map itself is what went away — see
+  // stopOnTeardown for why asking a destroyed map to stop is fatal.
   useEffect(() => {
     if (!map) return;
-    return () => {
-      map.stop();
-    };
+    return stopOnTeardown(map);
   }, [map]);
 }

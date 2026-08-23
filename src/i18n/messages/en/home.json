@@ -199,7 +199,10 @@
     "realConnections": {
       "title": "Real Connections, Right Where You Are",
       "description": "Coffi helps you connect with like-minded digital nomads in the city you're staying in.",
-      "2ndDescription": "Join a global tribe where you can network, exchange insights, and build relationships that enhance both your work and travels."
+      "2ndDescription": "Join a global tribe where you can network, exchange insights, and build relationships that enhance both your work and travels.",
+      "orbitAria": "People creating near you",
+      "youAreHere": "You, here",
+      "you": "You"
     },
     "poweredByCommunity": {
       "title": "Powered by Community,",

@@ -1,3 +1,7 @@
+import type { IconType } from "react-icons";
+import { BsHearts } from "react-icons/bs";
+import { IoGlassesOutline } from "react-icons/io5";
+import { MdCelebration, MdSchool } from "react-icons/md";
 import { MINDSETS, type Place } from "@/models/places";
 
 /**
@@ -97,6 +101,30 @@ const ICONS: Record<IconKey, IconSpec> = {
     viewBox: "0 0 16 16",
     d: "M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015m6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343M7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358",
   },
+};
+
+/**
+ * Los mismos cuatro iconos, como componentes de React.
+ *
+ * Existe en paralelo a `ICONS` porque los dos consumidores no pueden compartir
+ * representación: los pines del mapa son cadenas HTML para `L.divIcon`, y de
+ * ahí que ICONS guarde el `path` en crudo; una tarjeta de React no puede pintar
+ * eso sin `dangerouslySetInnerHTML`.
+ *
+ * Vive PEGADO a `ICONS` a propósito, y no en otro fichero, porque son dos
+ * copias de la misma decisión: si alguien cambia el icono de un ambiente en uno
+ * y no en el otro, el mapa y las tarjetas empiezan a contar cosas distintas del
+ * mismo lugar. Juntos, el descuido se ve al editar.
+ *
+ * Los nombres son los que los comentarios de `ICONS` ya citaban como origen de
+ * cada `path`, así que la pareja no es una elección nueva.
+ */
+export const AMBIENCE_ICON: Record<Ambience, IconType> = {
+  study: MdSchool,
+  work: IoGlassesOutline,
+  cowork: IoGlassesOutline,
+  fun: MdCelebration,
+  romantic: BsHearts,
 };
 
 export function iconSvg(ambience: Ambience, size = 21): string {
