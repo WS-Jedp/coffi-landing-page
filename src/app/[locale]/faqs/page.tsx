@@ -1,6 +1,6 @@
 export default function FAQPage() {
   return (
-    <article className="relative flex flex-col items-center w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
+    <article className="relative flex flex-col items-center w-full max-w-[1120px] min-h-screen mx-auto px-5 pt-24 md:pt-28 pb-16 md:pb-24">
       <h1 className="font-bold text-4xl md:text-7xl mb-6 text-center">FAQs</h1>
       <section className="w-full">
         <h2 className="font-bold text-2xl md:text-3xl mb-4">

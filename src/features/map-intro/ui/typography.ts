@@ -56,8 +56,8 @@ export const EYEBROW_CHIP_CLASS = [
 ].join(" ");
 
 /**
- * Decorative, and an internal rhyme: the same purple mark the DotRail uses on
- * the map's right edge, so the chip reads as part of this section's vocabulary.
+ * Decorative, and an internal rhyme: the same purple the ProgressRail fills
+ * with, so the chip reads as part of this section's vocabulary.
  */
 export const EYEBROW_DOT_CLASS =
   "h-1.5 w-1.5 shrink-0 rounded-full coffi-gradient-blue-to-purple";

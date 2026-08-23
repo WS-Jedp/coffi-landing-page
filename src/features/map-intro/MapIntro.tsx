@@ -20,7 +20,7 @@ import { useFrameScrubber } from "./canvas/useFrameScrubber";
 import { useDebugBadge } from "./dev/useDebugBadge";
 import { MapCard } from "./ui/MapCard";
 import { MapStage } from "./map/MapStage";
-import { DotRail } from "./ui/DotRail";
+import { ProgressRail } from "./ui/ProgressRail";
 import { SceneLayer } from "./ui/SceneLayer";
 import { useSectionFilters } from "./ui/useSectionFilters";
 import { useActiveStep } from "./narrative/useActiveStep";
@@ -370,9 +370,9 @@ export const MapIntro: React.FC = () => {
               className="pointer-events-none absolute inset-0 block h-full w-full"
             />
           </MapCard>
-          <DotRail
-            count={SECTIONS.length - 1}
-            activeStep={activeStep}
+          <ProgressRail
+            activateAt={bounds.activateAt}
+            global={global}
             introProgress={introProgress}
           />
 

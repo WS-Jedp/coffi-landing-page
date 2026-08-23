@@ -286,7 +286,7 @@ export const Benefits: React.FC = () => {
 
   return (
     <motion.article
-      className="relative flex flex-col items-end justify-start w-full h-min-screen h-auto text-end px-6 xl:px-0 mx-auto mt-20"
+      className="relative flex flex-col items-end justify-start w-full h-min-screen h-auto text-end px-6 xl:px-0 mx-auto mt-9"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-15% 0px" }}

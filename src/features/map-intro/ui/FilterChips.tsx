@@ -82,11 +82,12 @@ export const FilterChips: React.FC<{
         Both on one line, both anchored LEFT — not pushed to opposite ends.
 
         `justify-between` was the obvious arrangement and it put the count under
-        the DotRail: the rail is pinned to the right edge of the same 1200px grid
-        the copy uses, so anything flush right eventually crosses it. Measured, a
-        20x16px overlap on a phone, and on desktop section 1's count spans the
-        rail's column and would have collided on the way past. Keeping the pair
-        left means the collision cannot happen at any scroll position or width.
+        the ProgressRail: the rail is pinned to the right edge of the same 1200px
+        grid the copy uses, so anything flush right eventually crosses it.
+        Measured, a 20x16px overlap on a phone, and on desktop section 1's count
+        spans the rail's column and would have collided on the way past. Keeping
+        the pair left means the collision cannot happen at any scroll position or
+        width.
 
         `flex-wrap` so a long locale drops the count to its own line instead of
         overflowing — 16px is a cheap worst case next to a broken row.

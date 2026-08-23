@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 export default function ContactUs() {
   const t = useTranslations();
   return (
-    <article className="relative flex flex-col items-center w-full max-w-[1200px]  mx-auto py-20 md:py-7 mb-0 md:mb-20 px-5 md:px-0">
+    <article className="relative flex flex-col items-center w-full max-w-[1120px] min-h-screen mx-auto px-5 pt-24 md:pt-28 pb-16 md:pb-24">
       <h1 className="font-bold text-4xl md:text-7xl mb-6 text-center">
         {t("contact.contactUs")}
       </h1>

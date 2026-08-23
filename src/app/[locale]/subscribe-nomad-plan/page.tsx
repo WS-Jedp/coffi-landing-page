@@ -327,7 +327,7 @@ export default function NomadPlanPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-coffi-blue/80 to-coffi-purple/80 backdrop-blur-lg py-10 px-4 md:py-20">
+    <main className="min-h-screen bg-gradient-to-br from-coffi-blue/80 to-coffi-purple/80 backdrop-blur-lg px-4 pt-24 md:pt-28 pb-16 md:pb-24">
       {/* Particle container */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {particles.map((index) => (

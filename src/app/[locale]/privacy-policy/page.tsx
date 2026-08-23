@@ -1,6 +1,6 @@
 export default function PrivacyPolicy() {
   return (
-    <article className="relative flex flex-col items-center justify-items-center w-full max-w-[1200px] min-h-screen mx-auto py-6 px-5 md:px-0">
+    <article className="relative flex flex-col items-center w-full max-w-[1120px] min-h-screen mx-auto px-5 pt-24 md:pt-28 pb-16 md:pb-24">
       <h1 className="font-bold text-4xl md:text-7xl mb-3">Privacy Policy</h1>
       <p className="text-lg font-light mt-1 mb-3 text-center w-full max-w-[500px]">
         We've tried to make this privacy policy as simple and digestible as

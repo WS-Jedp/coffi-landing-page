@@ -1,5 +1,5 @@
-import { CHAPTERS, chaptersFor } from "../constants";
-import type { ChapterSpec } from "../types";
+import { chaptersFor } from "../constants";
+import { boundaries } from "./boundaries";
 import type { CameraTarget } from "../types";
 
 export type SectionId = "intro" | "spaces" | "connect" | "points" | "circles";
@@ -115,43 +115,6 @@ export const SECTIONS: readonly SectionSpec[] = [
     descKey: "home.mapIntro.circles.description",
   },
 ] as const;
-
-/**
- * Where each section takes over, and how far back you must scroll to give it up.
- *
- * Both are derived from CHAPTERS rather than written down, so re-pacing the
- * track is a one-line edit that cannot leave these behind.
- *
- * A section activates a fifth of the way into its chapter, not at its very
- * start: the boundary should land where the previous section has finished
- * reading, not the instant its scroll allowance runs out.
- *
- * The hysteresis is not there for fast flicks — those are monotonic and resolve
- * fine. It is for *resting on a boundary*: iOS momentum settles with sub-pixel
- * oscillation and a trackpad's rubber-band overshoots and comes back, either of
- * which crosses the line several times. Without a dead band that becomes a
- * flip storm, and each flip cancels a camera flight and swaps a pin layer.
- */
-const ACTIVATE_FRACTION = 0.18;
-const HYSTERESIS_FRACTION = 0.08;
-
-function boundaries(chapters: readonly ChapterSpec[] = CHAPTERS) {
-  const trackVh = chapters.reduce((s, c) => s + c.vh, 0);
-  const activateAt: number[] = [];
-  const hysteresis: number[] = [];
-  let cursor = 0;
-  for (const chapter of chapters) {
-    const start = cursor / trackVh;
-    const span = chapter.vh / trackVh;
-    cursor += chapter.vh;
-    activateAt.push(start + ACTIVATE_FRACTION * span);
-    hysteresis.push(HYSTERESIS_FRACTION * span);
-  }
-  // The intro owns everything before the first real boundary.
-  activateAt[0] = 0;
-  hysteresis[0] = 0;
-  return { activateAt, hysteresis };
-}
 
 /** Per rung: a phone paces its chapters differently, so the lines move with them. */
 export const BOUNDARIES = {
