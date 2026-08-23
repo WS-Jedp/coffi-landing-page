@@ -5,28 +5,29 @@
     "subtitle": "The perfect place for whatever you want to create, right now.",
     "purposeLabel": "What are you looking for today?",
     "purposeOptions": {
-      "focus": "Focus",
-      "creativity": "Creativity",
-      "collaboration": "Collaboration",
-      "connection": "Connection",
-      "recharge": "Recharge"
+      "LOCKED_IN": "Deep focus",
+      "MEETINGS_DAY": "Meetings day",
+      "BUILD_MODE": "Build mode",
+      "NETWORK_AND_CHILL": "Network & chill",
+      "WORK_AND_WELLNESS": "Work & wellness",
+      "WEEKEND_WORK_AND_VIEWS": "Weekend & views"
     },
     "needsLabel": "What do you need?",
     "needsOptional": "(optional)",
     "needsOptions": {
-      "stableWifi": "Stable Wi-Fi",
+      "fastWifi": "Fast Wi-Fi",
+      "plugs": "Power outlets",
       "quiet": "Quiet",
-      "goodLight": "Good light",
-      "inspiring": "Inspiring vibe",
-      "spacious": "Spacious"
+      "outdoor": "Outdoor seating",
+      "petFriendly": "Pet-friendly"
     },
     "placeTypeLabel": "What kind of place?",
     "placeTypeOptions": {
-      "cafe": "Café",
-      "library": "Library",
-      "viewpoint": "Viewpoint",
-      "rooftop": "Rooftop",
-      "coworking": "Coworking"
+      "COFFEE": "Café",
+      "LIBRARY": "Library",
+      "LOOKOUT": "Viewpoint",
+      "ROOFTOP": "Rooftop",
+      "COWORK_ZONE": "Coworking"
     },
     "select": "Select",
     "needsSelected": "{count} selected",

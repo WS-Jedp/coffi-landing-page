@@ -5,28 +5,29 @@
     "subtitle": "El lugar perfecto para lo que quieres crear, justo ahora.",
     "purposeLabel": "¿Qué buscas hoy?",
     "purposeOptions": {
-      "focus": "Enfoque",
-      "creativity": "Creatividad",
-      "collaboration": "Colaboración",
-      "connection": "Conexión",
-      "recharge": "Recargar"
+      "LOCKED_IN": "Concentración total",
+      "MEETINGS_DAY": "Día de reuniones",
+      "BUILD_MODE": "Modo construcción",
+      "NETWORK_AND_CHILL": "Conectar y relajar",
+      "WORK_AND_WELLNESS": "Trabajo y bienestar",
+      "WEEKEND_WORK_AND_VIEWS": "Finde con vista"
     },
     "needsLabel": "¿Qué necesitas?",
     "needsOptional": "(opcional)",
     "needsOptions": {
-      "stableWifi": "WiFi estable",
+      "fastWifi": "WiFi rápido",
+      "plugs": "Enchufes",
       "quiet": "Silencio",
-      "goodLight": "Buena luz",
-      "inspiring": "Ambiente inspirador",
-      "spacious": "Espacio amplio"
+      "outdoor": "Terraza",
+      "petFriendly": "Pet-friendly"
     },
     "placeTypeLabel": "¿Qué tipo de lugar?",
     "placeTypeOptions": {
-      "cafe": "Café",
-      "library": "Librería",
-      "viewpoint": "Mirador",
-      "rooftop": "Azotea",
-      "coworking": "Coworking"
+      "COFFEE": "Café",
+      "LIBRARY": "Librería",
+      "LOOKOUT": "Mirador",
+      "ROOFTOP": "Azotea",
+      "COWORK_ZONE": "Coworking"
     },
     "select": "Selecciona",
     "needsSelected": "{count} seleccionadas",

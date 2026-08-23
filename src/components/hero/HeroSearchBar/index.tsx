@@ -1,6 +1,14 @@
 "use client";
 
 import { useRedirectToCoffiApp } from "@/hooks/useRedirectToCoffi";
+import {
+  NEED_OPTIONS,
+  PLACE_TYPE_OPTIONS,
+  PURPOSE_OPTIONS,
+  type NeedId,
+  type PlaceTypeId,
+  type PurposeId,
+} from "@/models/coffiFilters";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -15,12 +23,18 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 type SegmentId = "purpose" | "needs" | "placeType";
 
+/**
+ * The options come from the filter contract rather than being listed here, so
+ * one list is both the i18n key and the value the app receives. Keeping two
+ * lists in step by hand is what let the Hero drift into a vocabulary the app
+ * could not act on.
+ */
 const SEGMENTS: {
   id: SegmentId;
   icon: React.ElementType;
   labelKey: string;
   optionKey: string;
-  options: string[];
+  options: readonly string[];
   multi: boolean;
 }[] = [
   {
@@ -28,7 +42,7 @@ const SEGMENTS: {
     icon: Sparkles,
     labelKey: "home.hero.purposeLabel",
     optionKey: "home.hero.purposeOptions",
-    options: ["focus", "creativity", "collaboration", "connection", "recharge"],
+    options: PURPOSE_OPTIONS,
     multi: false,
   },
   {
@@ -36,7 +50,7 @@ const SEGMENTS: {
     icon: Sliders,
     labelKey: "home.hero.needsLabel",
     optionKey: "home.hero.needsOptions",
-    options: ["stableWifi", "quiet", "goodLight", "inspiring", "spacious"],
+    options: NEED_OPTIONS,
     multi: true,
   },
   {
@@ -44,7 +58,7 @@ const SEGMENTS: {
     icon: MapPin,
     labelKey: "home.hero.placeTypeLabel",
     optionKey: "home.hero.placeTypeOptions",
-    options: ["cafe", "library", "viewpoint", "rooftop", "coworking"],
+    options: PLACE_TYPE_OPTIONS,
     multi: false,
   },
 ];
@@ -53,9 +67,9 @@ export const HeroSearchBar: React.FC = () => {
   const t = useTranslations();
   const { redirectToCoffiWithFilters } = useRedirectToCoffiApp();
 
-  const [purpose, setPurpose] = useState<string | null>(null);
-  const [placeType, setPlaceType] = useState<string | null>(null);
-  const [needs, setNeeds] = useState<string[]>([]);
+  const [purpose, setPurpose] = useState<PurposeId | null>(null);
+  const [placeType, setPlaceType] = useState<PlaceTypeId | null>(null);
+  const [needs, setNeeds] = useState<NeedId[]>([]);
   const [openSegment, setOpenSegment] = useState<SegmentId | null>(null);
 
   const barRef = useRef<HTMLDivElement>(null);
@@ -87,18 +101,25 @@ export const HeroSearchBar: React.FC = () => {
       ? purpose === value
       : id === "placeType"
       ? placeType === value
-      : needs.includes(value);
+      : needs.includes(value as NeedId);
 
+  // The dropdown renders every segment through one loop, so an option arrives
+  // here as a bare string. These casts are where it becomes its segment's id
+  // again — safe because the strings came from the very constants that define
+  // those types.
   const selectOption = (id: SegmentId, value: string) => {
     if (id === "purpose") {
-      setPurpose((prev) => (prev === value ? null : value));
+      const next = value as PurposeId;
+      setPurpose((prev) => (prev === next ? null : next));
       setOpenSegment(null);
     } else if (id === "placeType") {
-      setPlaceType((prev) => (prev === value ? null : value));
+      const next = value as PlaceTypeId;
+      setPlaceType((prev) => (prev === next ? null : next));
       setOpenSegment(null);
     } else {
+      const next = value as NeedId;
       setNeeds((prev) =>
-        prev.includes(value) ? prev.filter((n) => n !== value) : [...prev, value]
+        prev.includes(next) ? prev.filter((n) => n !== next) : [...prev, next]
       );
     }
   };
