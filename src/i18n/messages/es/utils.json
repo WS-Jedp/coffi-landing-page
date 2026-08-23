@@ -1,33 +1,35 @@
 {
-    "general": {
-        "or": "ó"
-    },
-    "subscriptions": {
-        "forRegisteredUsers": "Para usuarios registrados",
-        "forPremiumUsers": "Para usuarios premium"
-    },
-    "navigationLinks": {
-        "home": "Inicio",
-        "subscriptions": "Suscripciones",
-        "about": "Acerca de",
-        "contact": "Contacto",
-        "pricing": "Precios",
-        "features": "Características",
-        "faqs": "Preguntas Frecuentes",
-        "termsAndConditions": "Términos y Condiciones",
-        "privacyPolicy": "Política de Privacidad",
-        "product": "Producto",
-        "blog": "Blog",
-        "help": "Ayuda",
-        "social": "Redes Sociales"
-    },
-    "copyright": {
-        "allRightsReserved": "Todos los derechos reservados"
-    },
-    "filterSystem": {
-        "found": {
-            "singular": "Lugar encontrado",
-            "plural": "Lugares encontrados"
-        }
+  "general": {
+    "or": "ó"
+  },
+  "subscriptions": {
+    "forRegisteredUsers": "Para usuarios registrados",
+    "forPremiumUsers": "Para usuarios premium"
+  },
+  "navigationLinks": {
+    "home": "Inicio",
+    "subscriptions": "Suscripciones",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "features": "Características",
+    "faqs": "Preguntas Frecuentes",
+    "termsAndConditions": "Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad",
+    "product": "Producto",
+    "blog": "Blog",
+    "help": "Ayuda",
+    "social": "Redes Sociales",
+    "legal": "Legal"
+  },
+  "copyright": {
+    "allRightsReserved": "Todos los derechos reservados",
+    "mission": "Coffi ayuda a nómadas digitales a encontrar espacios donde dan ganas de quedarse."
+  },
+  "filterSystem": {
+    "found": {
+      "singular": "Lugar encontrado",
+      "plural": "Lugares encontrados"
     }
+  }
 }

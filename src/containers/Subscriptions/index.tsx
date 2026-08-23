@@ -3,57 +3,74 @@ import { useLocale, useTranslations } from "next-intl";
 import { SubscriptionSimpleCard } from "@/components/subscriptionsCards/Simple";
 import { SubscriptionSpecialCard } from "@/components/subscriptionsCards/specialCard";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
+
+/**
+ * La curva de la casa, la misma que usa la sección de beneficios: sale rápido y
+ * frena largo.
+ */
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export const Subscriptions: React.FC = () => {
   const t = useTranslations();
   const router = useRouter();
   const currentLocale = useLocale();
 
-  // Set up intersection observer with threshold to trigger animations when component is 15% visible
+  const reduced = useReducedMotion() ?? false;
+
+  // 0.10 y no 0.15: el artículo mide `min-h-screen`, así que el umbral se
+  // cuenta sobre más de una pantalla completa y cada punto porcentual retrasa
+  // el disparo. Aquí la sección arranca en cuanto asoma.
   const [ref, inView] = useInView({
-    threshold: 0.15,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
-  // Animation variants
+  /**
+   * Por qué esta sección llegaba tarde, y qué cambió.
+   *
+   * El culpable no era el escalonado sino `when: "beforeChildren"` junto a un
+   * `duration: 0.8` en el contenedor: el artículo tenía que TERMINAR su propio
+   * fundido de 0.8s antes de que ningún hijo empezara. Y como el mismo objeto
+   * colgaba también de la rejilla, ese peaje se pagaba dos veces. Sumado a un
+   * escalonado de 0.3 y a muelles muy blandos (rigidez 50), la tercera tarjeta
+   * no terminaba de asentarse hasta pasados unos tres segundos.
+   *
+   * Ahora el contenedor no bloquea a nadie, el escalonado baja a 0.08 y los
+   * muelles se cambian por interpolaciones cortas con la curva de la casa: la
+   * sección entera queda montada en algo menos de un segundo.
+   */
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.3,
-        duration: 0.8,
-      },
+      transition: { staggerChildren: 0.08, delayChildren: 0.04 },
+    },
+  };
+
+  /** La rejilla sólo reparte entre las tres tarjetas; no vuelve a retrasar. */
+  const gridVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.09 },
     },
   };
 
   const headerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: reduced ? 0 : 28 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        duration: 0.8,
-      },
+      transition: { duration: reduced ? 0.3 : 0.45, ease: EASE },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: reduced ? 0 : 24 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        duration: 0.6,
-      },
+      transition: { duration: reduced ? 0.3 : 0.5, ease: EASE },
     },
   };
 
@@ -84,7 +101,7 @@ export const Subscriptions: React.FC = () => {
         </motion.p>
 
         <motion.section
-          variants={containerVariants}
+          variants={gridVariants}
           className="relative w-full h-auto grid grid-cols-3 grid-rows-1 gap-4 md:gap-7 mt-16"
         >
           <motion.article

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { motion, useInView } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import {
@@ -22,12 +22,26 @@ import { ConnectionsOrbit } from "./ConnectionsOrbit";
  */
 const CARD_H = 480;
 
+/**
+ * La curva de la casa: la misma que ya usan los artículos del blog y el resto
+ * de entradas de la landing. Sale rápido y frena largo, que es lo que hace que
+ * un bloque parezca ATERRIZAR en vez de deslizarse hasta pararse.
+ */
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export const Benefits: React.FC = () => {
   const t = useTranslations();
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion() ?? false;
   const sectionOneRef = useRef<HTMLDivElement>(null);
   const sectionTwoRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
+  /**
+   * Si el contenido de las tarjetas ya puede poblarse.
+   *
+   * Lo dispara el `onViewportEnter` del artículo, el MISMO evento que revela
+   * las tarjetas. Antes venía de un `useInView` propio sobre la tarjeta uno con
+   * otro margen, así que los lugares podían empezar a caer antes de que su
+   * tarjeta hubiera llegado — dos relojes para una sola entrada.
+   */
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [sectionHeight, setSectionHeight] = useState<string | number>("auto");
   const [isMobile, setIsMobile] = useState(false);
@@ -45,13 +59,6 @@ export const Benefits: React.FC = () => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  // Set animation active when in view
-  useEffect(() => {
-    if (isInView) {
-      setShouldAnimate(true);
-    }
-  }, [isInView]);
 
   // Equal height effect for sections
   useEffect(() => {
@@ -178,40 +185,117 @@ export const Benefits: React.FC = () => {
     return allPlaceCards;
   }, [isMobile]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  /**
+   * La entrada de la sección, en dos tiempos.
+   *
+   * Primero ATERRIZAN las superficies — el titular y las tres tarjetas — y sólo
+   * después se PUEBLA lo que vive dentro de ellas: los lugares que flotan, la
+   * gente que orbita, los teléfonos. Es la promesa del copy contada con
+   * movimiento: la tarjeta no llega llena, se llena a la vista. Antes las dos
+   * cosas ocurrían a la vez y la sección aparecía ya terminada, que es justo lo
+   * que la sección no dice.
+   *
+   * El escalonado es corto a propósito. La versión anterior colgaba el MISMO
+   * objeto del artículo y de la rejilla, así que los dos `delayChildren` de 0.2
+   * se sumaban a dos `staggerChildren` de 0.3 y la tercera tarjeta no arrancaba
+   * hasta 1.3s: para entonces, quien venía bajando ya la tenía a media pantalla
+   * y se perdía la entrada entera. Aquí la rejilla sólo REPARTE, no vuelve a
+   * retrasar, y el montaje completo cabe en medio segundo.
+   */
+  const v = useMemo(() => {
+    // Con `prefers-reduced-motion` desaparece el recorrido, no la secuencia: el
+    // orden en que llegan las cosas es información — primero el continente,
+    // luego el contenido — y eso se conserva aunque sólo quede la opacidad.
+    const rise = reduced ? 0 : 28;
+    const settle = reduced ? 1 : 0.985;
+    const dur = reduced ? 0.3 : 0.55;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+    return {
+      /** El artículo sólo dirige el orden; no anima nada propio. */
+      section: {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.1, delayChildren: 0.04 } },
       },
-    },
-  };
+      /** La rejilla reparte entre sus tres tarjetas y nada más. */
+      grid: {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.09 } },
+      },
+      title: {
+        hidden: { opacity: 0, y: reduced ? 0 : 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: reduced ? 0.3 : 0.5, ease: EASE },
+        },
+      },
+      /**
+       * La escala arranca en 0.985 y no más abajo. Con las tarjetas superiores
+       * a altura fija (ver CARD_H) una escala perceptible haría respirar al
+       * sistema orbital de al lado, que mide su propia caja para sacar el radio.
+       * A este valor el gesto se nota como peso al aterrizar y no como zoom.
+       */
+      card: {
+        hidden: { opacity: 0, y: rise, scale: settle },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: dur, ease: EASE },
+        },
+      },
+      /**
+       * Los teléfonos entran desde fuera y se enderezan hasta 0.
+       *
+       * Hasta 0 y no hasta su inclinación final: el reposo lo pone el
+       * `animate-float-*` de CSS, que vive en el div de dentro. Estaban los dos
+       * en el MISMO elemento peleándose por `transform`, y como una animación
+       * CSS gana al estilo en línea, el `rotate` de aquí no llegaba a verse
+       * nunca — la entrada quedaba en un fundido. Al separarlos, las dos
+       * rotaciones se componen: el teléfono entra pasado de vuelta y se posa en
+       * los -6°/+6° de la flotación.
+       */
+      phoneLeft: {
+        hidden: { opacity: 0, x: reduced ? 0 : -48, rotate: reduced ? 0 : -10 },
+        visible: {
+          opacity: 1,
+          x: 0,
+          rotate: 0,
+          transition: {
+            duration: reduced ? 0.3 : 0.65,
+            delay: reduced ? 0 : 0.2,
+            ease: EASE,
+          },
+        },
+      },
+      phoneRight: {
+        hidden: { opacity: 0, x: reduced ? 0 : 48, rotate: reduced ? 0 : 10 },
+        visible: {
+          opacity: 1,
+          x: 0,
+          rotate: 0,
+          transition: {
+            duration: reduced ? 0.3 : 0.65,
+            delay: reduced ? 0 : 0.32,
+            ease: EASE,
+          },
+        },
+      },
+    };
+  }, [reduced]);
 
   return (
     <motion.article
-      className="relative flex flex-col items-end justify-start w-full h-min-screen h-auto text-end px-6 xl:px-0 mx-auto mb-20"
+      className="relative flex flex-col items-end justify-start w-full h-min-screen h-auto text-end px-6 xl:px-0 mx-auto mt-20"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={containerVariants}
+      viewport={{ once: true, margin: "-15% 0px" }}
+      onViewportEnter={() => setShouldAnimate(true)}
+      variants={v.section}
     >
       <motion.h2
         className="font-bold text-4xl md:text-7xl mb-6"
-        variants={itemVariants}
+        variants={v.title}
       >
         {t("home.benefits.enhanceYourJourney")}{" "}
         <br className="hidden md:block" />
@@ -220,20 +304,14 @@ export const Benefits: React.FC = () => {
 
       <motion.section
         className="relative w-full h-auto grid grid-cols-4 grid-rows-2 gap-4 md:gap-4"
-        variants={containerVariants}
+        variants={v.grid}
       >
         {/* Section One */}
         <motion.article
           className="flex flex-col items-start justify-start text-start col-span-4 md:col-span-2 bg-coffi-blue/20 text-coffi-purple rounded-md overflow-hidden"
           style={{ height: sectionHeight }}
-          variants={itemVariants}
-          ref={(el) => {
-            // Assign to both refs
-            if (el) {
-              sectionRef.current = el as HTMLDivElement;
-              sectionOneRef.current = el as HTMLDivElement;
-            }
-          }}
+          variants={v.card}
+          ref={sectionOneRef}
         >
           <section className="px-6 pt-6 pb-4 md:flex-grow">
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
@@ -244,7 +322,25 @@ export const Benefits: React.FC = () => {
             </p>
           </section>
 
-          {/* Floating cards with subtle animations */}
+          {/*
+            Los lugares se POSAN, escalonados y por profundidad.
+
+            Antes aparecían de golpe: `shouldAnimate` los montaba ya flotando,
+            sin entrada. Al lado, en la tarjeta vecina, la gente del sistema
+            orbital sí llega escalonada (escala 0→1, 0.12s entre una y otra), y
+            la diferencia se veía — una tarjeta se poblaba y la otra ya estaba
+            poblada. Esto le da al mapa el mismo idioma que su vecina.
+
+            El orden del escalonado NO es el del array: se ordena por
+            profundidad, así que primero aterrizan los lugares nítidos del
+            frente y los borrosos del fondo llegan detrás. Es lo que convierte
+            siete tarjetas en un espacio con capas en vez de en una lista.
+
+            Dos divs y no uno, que es la parte que hay que respetar: la
+            ENTRADA vive fuera y la flotación infinita dentro. Las dos escriben
+            `transform`, y en un solo elemento los fotogramas del bucle
+            machacan la entrada en cuanto arrancan.
+          */}
           <div className="w-full relative flex-shrink-0 h-[160px]">
             {shouldAnimate &&
               placeCards.map((card, i) => {
@@ -252,6 +348,7 @@ export const Benefits: React.FC = () => {
                 const scale = 1 - card.depth * 0.08; // Slightly reduced depth effect
                 const blur = card.depth * 1; // Slightly reduced blur
                 const zIndex = 10 - card.depth;
+                const opacity = 0.95 - card.depth * 0.1; // Slight opacity variation by depth
 
                 // Create more subtle animation parameters with varied timing
                 const floatY = 2 + (i % 4); // Reduced range (2-5px)
@@ -260,54 +357,96 @@ export const Benefits: React.FC = () => {
                   i % 3 === 0 ? 0.6 : i % 3 === 1 ? -0.6 : 0.3; // Three rotation patterns
                 const delayAmount = (i * 0.3) % 3; // Shorter staggered delays for smoother overall effect
 
+                // 0.32 es el hueco: la tarjeta que los contiene sale a 0.14 y
+                // tarda 0.55 en asentarse, así que los lugares empiezan a caer
+                // con ella todavía en movimiento. Esperar a que pare dejaba un
+                // silencio a mitad de la secuencia.
+                const enterDelay = 0.32 + card.depth * 0.12 + (i % 3) * 0.05;
+
                 return (
                   <motion.div
                     key={`floating-card-${i}`}
-                    className="pointer-events-none bg-white/90 backdrop-blur-sm rounded-xl w-[170px] h-14 flex flex-row items-center justify-start p-2 gap-2 absolute"
+                    className="pointer-events-none absolute"
                     style={{
                       filter: `blur(${blur}px)`,
                       zIndex,
-                      transform: `translateX(-50%)`, // This centers the card on its position point
                       left: card.position.x,
                       top: card.position.y,
-                      scale,
                       transformOrigin: "center center",
-                      opacity: 0.95 - card.depth * 0.1, // Slight opacity variation by depth
                     }}
-                    animate={{
-                      y: [0, floatY, 0],
-                      rotate: [0, rotateAmount, 0],
-                      scale: [scale, scale * 1.01, scale],
+                    // Sin centrado: `left` es el BORDE IZQUIERDO, no el centro.
+                    //
+                    // Aquí había un `transform: translateX(-50%)` en `style` con
+                    // el comentario "centra la tarjeta en su punto", y era
+                    // mentira: motion COMPONE `style.transform` a partir de sus
+                    // propios valores (`y`, `rotate`, `scale`), así que
+                    // machacaba ese string en cuanto arrancaba la flotación. El
+                    // centrado nunca llegó a existir y las posiciones de
+                    // `allPlaceCards` están ajustadas a ojo contra lo que se ve
+                    // de verdad. Pasarlo a `x: "-50%"` lo hace funcionar por fin
+                    // — y por eso mismo corre las siete tarjetas 85px a la
+                    // izquierda, media tarjeta, hasta salirse del recuadro. Si
+                    // algún día se quiere centrado real hay que re-ajustar las
+                    // doce posiciones (siete de escritorio, cinco de móvil), no
+                    // reactivar esta línea.
+                    initial={{
+                      opacity: 0,
+                      y: reduced ? 0 : 14,
+                      scale: reduced ? scale : scale * 0.9,
                     }}
+                    animate={{ opacity, y: 0, scale }}
                     transition={{
-                      duration: floatDuration,
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                      ease: "easeInOut",
-                      times: [0, 0.5, 1],
-                      delay: delayAmount,
+                      duration: reduced ? 0.3 : 0.5,
+                      delay: reduced ? 0 : enterDelay,
+                      ease: EASE,
                     }}
                   >
-                    <figure className="bg-coffi-purple/20 rounded-lg w-9 h-9 flex items-center justify-center shrink-0 text-coffi-purple">
-                      {/*
-                        El disco se queda en el morado de la casa aunque el mapa
-                        coloree estos pines por ambiente: aquí distingue el
-                        icono, que es el mismo criterio que siguen las burbujas
-                        de la tarjeta de al lado.
-                      */}
-                      {(() => {
-                        const Icon = AMBIENCE_ICON[card.ambience];
-                        return <Icon size={18} aria-hidden />;
-                      })()}
-                    </figure>
-                    <div className="flex flex-col overflow-hidden">
-                      <h3 className="text-sm font-medium truncate">
-                        {card.name}
-                      </h3>
-                      <span className="text-xs text-gray-500">
-                        {card.distance}km
-                      </span>
-                    </div>
+                    <motion.div
+                      className="bg-white/90 backdrop-blur-sm rounded-xl w-[170px] h-14 flex flex-row items-center justify-start p-2 gap-2"
+                      style={{ transformOrigin: "center center" }}
+                      // La escala del bucle es relativa (1 → 1.01): la de
+                      // profundidad ya la lleva el envoltorio de fuera.
+                      animate={
+                        reduced
+                          ? undefined
+                          : {
+                              y: [0, floatY, 0],
+                              rotate: [0, rotateAmount, 0],
+                              scale: [1, 1.01, 1],
+                            }
+                      }
+                      transition={{
+                        duration: floatDuration,
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        ease: "easeInOut",
+                        times: [0, 0.5, 1],
+                        // El bucle arranca después de la entrada; si no, el
+                        // lugar empieza a respirar antes de haber llegado.
+                        delay: enterDelay + 0.5 + delayAmount,
+                      }}
+                    >
+                      <figure className="bg-coffi-purple/20 rounded-lg w-9 h-9 flex items-center justify-center shrink-0 text-coffi-purple">
+                        {/*
+                          El disco se queda en el morado de la casa aunque el mapa
+                          coloree estos pines por ambiente: aquí distingue el
+                          icono, que es el mismo criterio que siguen las burbujas
+                          de la tarjeta de al lado.
+                        */}
+                        {(() => {
+                          const Icon = AMBIENCE_ICON[card.ambience];
+                          return <Icon size={18} aria-hidden />;
+                        })()}
+                      </figure>
+                      <div className="flex flex-col overflow-hidden">
+                        <h3 className="text-sm font-medium truncate">
+                          {card.name}
+                        </h3>
+                        <span className="text-xs text-gray-500">
+                          {card.distance}km
+                        </span>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 );
               })}
@@ -318,7 +457,7 @@ export const Benefits: React.FC = () => {
         <motion.article
           className="flex flex-col items-start justify-between text-start col-span-4 md:col-span-2 bg-coffi-purple/20 text-coffi-purple rounded-md overflow-hidden"
           style={{ height: sectionHeight }}
-          variants={itemVariants}
+          variants={v.card}
           ref={sectionTwoRef}
         >
           <section className="px-6 pt-6 pb-4">
@@ -366,7 +505,7 @@ export const Benefits: React.FC = () => {
 
         <motion.article
           className="flex flex-col md:flex-row items-center justify-start text-start col-span-4 bg-gradient-to-r from-coffi-purple/30 to-coffi-blue/30 text-coffi-purple rounded-md p-6 overflow-hidden"
-          variants={itemVariants}
+          variants={v.card}
         >
           <section className="flex flex-col items-start justify-start w-full md:w-1/2 mb-8 md:mb-0 z-[99]">
             <h2 className="font-extrabold text-3xl md:text-4xl mb-2">
@@ -386,75 +525,61 @@ export const Benefits: React.FC = () => {
           </section>
 
           <section className="relative flex items-center justify-end md:justify-end w-full h-full md:w-1/2">
-            {/* Mobile screenshot - positioned at bottom */}
+            {/*
+              Los teléfonos entran CUANDO ENTRA LA SECCIÓN, no al cargar la
+              página.
+
+              Llevaban `initial`/`animate` literales, que se ejecutan al montar:
+              esta sección vive muy por debajo del pliegue, así que la entrada se
+              gastaba en un sitio donde nadie la veía y para cuando alguien
+              bajaba hasta aquí los teléfonos ya estaban puestos. Con `variants`
+              heredan el estado de la tarjeta que los contiene y llegan con
+              ella. Los `exit` que había no hacían nada — no hay
+              `AnimatePresence` que los active — y se han quitado.
+
+              El envoltorio posiciona y anima la entrada; el div de dentro se
+              queda con el aspecto y con `animate-float-*`. Separados porque
+              ambos escriben `transform` y la animación CSS gana al estilo en
+              línea: juntos, la entrada no se veía.
+            */}
             <motion.div
-              initial={{ opacity: 0, x: -50, rotate: -15 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                rotate: -12,
-                transition: {
-                  duration: 0.8,
-                  delay: 0.3,
-                  ease: "easeOut",
-                },
-              }}
-              exit={{
-                opacity: 0,
-                x: -50,
-                rotate: -15,
-                transition: {
-                  duration: 0.5,
-                  ease: "easeIn",
-                },
-              }}
-              className={`inline-block md:absolute right-48 bottom-[-120px] shadow-2xl shadow-coffi-purple/40
-                                          rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[300px] md:h-[440px] z-10
-                                          animate-float-left bg-coffi-white/70 backdrop-blur-md`}
+              variants={v.phoneLeft}
+              className="inline-block md:absolute right-48 bottom-[-120px] w-[210px] h-[300px] md:h-[440px] z-10"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />
-              <Image
-                alt="Coffi app screenshot - home"
-                src="/assets/images/screenshots/mobile/mobile-place-detail-premium-en.jpeg"
-                width={210}
-                height={350}
-                className="object-cover rounded-lg"
-              />
+              <div
+                className={`relative h-full w-full shadow-2xl shadow-coffi-purple/40
+                                          rounded-2xl border-2 p-2 border-white/80 overflow-hidden
+                                          animate-float-left bg-coffi-white/70 backdrop-blur-md`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />
+                <Image
+                  alt="Coffi app screenshot - home"
+                  src="/assets/images/screenshots/mobile/mobile-place-detail-premium-en.jpeg"
+                  width={210}
+                  height={350}
+                  className="object-cover rounded-lg"
+                />
+              </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50, rotate: 12 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                rotate: 6,
-                transition: {
-                  duration: 0.8,
-                  delay: 0.5,
-                  ease: "easeOut",
-                },
-              }}
-              exit={{
-                opacity: 0,
-                x: 50,
-                rotate: 12,
-                transition: {
-                  duration: 0.5,
-                  ease: "easeIn",
-                },
-              }}
-              className={`inline-block md:absolute right-6 bottom-[-120px] shadow-2xl shadow-coffi-purple/40
-                                         rounded-2xl border-2 p-2 border-white/80 overflow-hidden w-[210px] h-[300px] md:h-[440px] z-20
-                                         animate-float-right bg-coffi-white/70 backdrop-blur-md`}
+              variants={v.phoneRight}
+              className="inline-block md:absolute right-6 bottom-[-120px] w-[210px] h-[300px] md:h-[440px] z-20"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />
-              <Image
-                alt="Coffi app screenshot - map"
-                src="/assets/images/screenshots/mobile/mobile-home-search-en.jpeg"
-                width={210}
-                height={350}
-                className="object-cover rounded-lg"
-              />
+              <div
+                className={`relative h-full w-full shadow-2xl shadow-coffi-purple/40
+                                         rounded-2xl border-2 p-2 border-white/80 overflow-hidden
+                                         animate-float-right bg-coffi-white/70 backdrop-blur-md`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 pointer-events-none" />
+                <Image
+                  alt="Coffi app screenshot - map"
+                  src="/assets/images/screenshots/mobile/mobile-home-search-en.jpeg"
+                  width={210}
+                  height={350}
+                  className="object-cover rounded-lg"
+                />
+              </div>
             </motion.div>
           </section>
         </motion.article>

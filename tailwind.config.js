@@ -17,6 +17,14 @@ module.exports = {
           '300': '#C2D3FF',
           '400': '#94B3FF',
         },
+        // La rampa iba de 50 a 400 y luego saltaba al DEFAULT: toda la escala
+        // vivía por ENCIMA del morado de marca y no había nada por debajo. El
+        // 900 es ese extremo que faltaba — conserva el tono exacto de la marca
+        // (246°) y baja luminosidad soltando algo de saturación, que es lo que
+        // evita que un morado oscuro vire a berenjena.
+        //
+        // Sólo lo usa la sombra del botón del footer: un morado de la familia
+        // proyecta mejor sobre morado que un negro, que ahí se ve sucio.
         'coffi-purple': {
           DEFAULT: "#533FFF",
           '50': "#E9E9FF",
@@ -24,6 +32,7 @@ module.exports = {
           '200': "#BBBBFF",
           '300': "#9494FF",
           '400': "#6D66FF",
+          '900': "#1B1458",
         },
       },
       fontFamily: {
