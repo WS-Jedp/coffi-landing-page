@@ -44,3 +44,4 @@ next-env.d.ts
 # Solo se commitean los derivados optimizados en public/assets/animations/map-intro/.
 # Regenerar con: npm run encode:map-intro
 assets-src/
+!.env.example

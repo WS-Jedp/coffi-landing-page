@@ -310,10 +310,37 @@ export const FRAME_CENTER: [number, number] = [6.25, -75.575];
 /** Metres covered by the full 800px height of the source frame at frame 120. */
 export const FRAME_SPAN_M = 11_000;
 
-export const TILE_URL_BASE =
-  "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png";
-export const TILE_URL_LABELS =
-  "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png";
+/**
+ * CARTO now authenticates its basemaps. An unkeyed request still answers 200 —
+ * with a tile that reads "API KEY REQUIRED" across it, which Leaflet cannot tell
+ * apart from real cartography. The seam dissolves the frame scrub into the map,
+ * so a watermark lands in the most conspicuous frame of the section.
+ *
+ * The keyed service also dropped the `{s}` subdomain rotation and moved the
+ * styles under `/rastertiles/`. The parameter is `key`, not `api_key`.
+ *
+ * A free key covers 5M tiles a month: https://carto.com/basemaps/apikey/
+ */
+const TILE_KEY = process.env.NEXT_PUBLIC_MAP_TILE_KEY;
+
+if (!TILE_KEY && typeof window !== "undefined") {
+  console.warn(
+    "[map-intro] NEXT_PUBLIC_MAP_TILE_KEY is missing — CARTO will serve watermarked tiles. Get a free key at https://carto.com/basemaps/apikey/",
+  );
+}
+
+/**
+ * Keyless is kept as the degraded path rather than swapping to another provider.
+ * The two-stage reveal needs a basemap with no labels baked in and a matching
+ * labels-only overlay, and no other free provider ships that pair — falling back
+ * elsewhere would leave the section structurally broken instead of just ugly.
+ */
+const cartoTiles = (style: string): string =>
+  `https://basemaps.cartocdn.com/rastertiles/${style}/{z}/{x}/{y}{r}.png` +
+  (TILE_KEY ? `?key=${TILE_KEY}` : "");
+
+export const TILE_URL_BASE = cartoTiles("light_nolabels");
+export const TILE_URL_LABELS = cartoTiles("light_only_labels");
 export const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
