@@ -60,7 +60,7 @@
     "connect": {
       "eyebrow": "Community",
       "title": "Connect with the people creating nearby",
-      "description": "See in real time <b>who is building the future alongside you</b>. Join open circles or start spontaneous conversations. The city stops feeling lonely.",
+      "description": "See in real time <b>who is creating near you</b>. Check in to meet the room and, with Nomad, find where your people are before you head out.",
       "chipsLabel": "Filter by what they do",
       "count": "{n, plural, =0 {nobody nearby} one {# person} other {# people}}",
       "roles": {
@@ -84,12 +84,12 @@
     "points": {
       "eyebrow": "Coffi Points",
       "title": "Earn while you create",
-      "description": "Every check-in, review, update or discovery <b>earns you Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces.",
+      "description": "Every check-in, review, report or photo <b>earns you Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces.",
       "pin": "Live offer: {discount}% off for {points} points",
       "pinShort": "{discount}% off · {points} pts",
       "pinPlan": {
         "nomad": "Nomad members only",
-        "explorer": "Explorer members only"
+        "explorer": "Open to every plan"
       },
       "pinTiny": "{discount}% off"
     },
@@ -209,8 +209,8 @@
       "title": "Powered by Community,",
       "subTitle": "Designed for You",
       "description": "Coffi thrives on its vibrant community of digital nomads, making real-time insights possible.",
-      "2ndDescription": "By updating conditions or discovering new spots, you earn Coffi Points—redeemable for rewards like coupons.",
-      "3rdDescription": "Join Coffi Premium to connect with the community, earn rewards, and never miss out on the best places for work or relaxation."
+      "2ndDescription": "By updating conditions, checking in or leaving a review, you earn Coffi Points—redeemable for rewards like coupons.",
+      "3rdDescription": "Join the Nomad plan to find your people across the city, earn double rewards, and never miss out on the best places for work or relaxation."
     },
     "professions": {
       "marketing": "Marketing",
@@ -256,18 +256,19 @@
         "price": "Free",
         "priceText": "Forever! you just need an account.",
         "action": "Start Exploring",
-        "why": "Embrace your Coffi adventure with access to all official spots and basic filters, perfect for discovering the essentials of your city",
+        "why": "Find places to work, see how they're doing in real time, and earn Coffi Points from your first check-in.",
         "benefits": {
-          "officialSpotsAccess": "Access to all official spots",
-          "basicFilters": "Filter by type, rules, and amenities",
-          "realTimeInsights": "Access to Real-time insights from the community",
-          "free": "Free forever with registration",
-          "noCreditOrDebitCard": "No credit or debit card required"
+          "allSpots": "Official and community-discovered spots",
+          "filters": "Filters by type, amenities, and real-time vibe",
+          "liveStatus": "Live space status: how busy it is and what people came to do",
+          "sessions": "Sessions: check in with your intent and see who's in the room",
+          "coffiPoints": "Earn Coffi Points and redeem them for rewards at spaces",
+          "freeForever": "Free forever, no card needed"
         }
       },
       "nomad": {
         "title": "Nomad",
-        "description": "Unlock the full Coffi experience with insights and rewards.",
+        "description": "Find your people before you head out, and earn double Coffi Points.",
         "price": "{price} COP/mo",
         "yearlyTotal": "{price} COP/yr",
         "billendAnnually": "Billed annually",
@@ -277,26 +278,23 @@
         "yearlyPrice": "Billed annually · works out to {price} COP a month",
         "monthlyPrice": "Or {price} COP a year and save {percent}%",
         "action": "Upgrade to Nomad Plan",
-        "why": "Go beyond exploration with access to community-discovered spots, real-time insights, and Coffi Points.",
+        "why": "Explorer tells you you're not alone. Nomad tells you where your people are right now: who's at each space in the city, so you can choose before you go.",
         "benefits": {
           "explorerBenefits": "All Explorer Plan benefits",
-          "officialAndCommunitySpotsAccess": "Access all official and community-discovered spots",
-          "exclusiveDiscounts": "Exclusive discounts and rewards",
-          "2xCoffiPoints": "Earn 2x Coffi Points for rewards",
-          "realTimeFilter": "Filter by real-time community insights",
-          "earlyAccess": "Early access to new features"
+          "cityPresence": "See who's at each space in the city before you go",
+          "presenceFilter": "Filter spaces by who's there: purpose and profession",
+          "visibleInCity": "Make yourself visible in the city so your people can find you",
+          "2xCoffiPoints": "Earn double Coffi Points (except profile and referrals)",
+          "exclusivePerks": "Nomad-only rewards at spaces"
         },
         "benefitsDescriptions": {
-          "explorerBenefits": "Everything you love from the Explorer Plan, now taken to the next level.",
-          "officialAndCommunitySpotsAccess": "Access every spot—official locations and hidden gems discovered by the community.",
-          "exclusiveDiscounts": "Enjoy special discounts and rewards crafted for true Coffi nomads.",
-          "2xCoffiPoints": "Earn 2x Coffi Points to unlock prizes, perks, and unique experiences.",
-          "realTimeFilter": "Find the perfect place by filtering spaces based on real-time vibes reported by the community.",
-          "earlyAccess": "Be the first to experience new features before anyone else."
+          "cityPresence": "From the map and each space's card, see who chose to be visible in the city, what they came to do, and what they work on.",
+          "2xCoffiPoints": "Check-ins, reports, photos, and reviews earn you double. Completing your profile and referrals earn the same on every plan.",
+          "exclusivePerks": "Spaces create rewards just for Nomad members, on top of the ones open to everyone."
         },
         "checkout": {
           "getStarted": "Let's Coffi! You're just a few clicks away.",
-          "description": "Unlock real-time vibes, exclusive perks, and your next perfect workspace. Your journey starts here.",
+          "description": "See who's in the city before you head out, earn double Coffi Points, and unlock exclusive rewards.",
           "coffiEmailAccount": "Enter your Coffi account email",
           "validEmail": "Please enter a valid email to continue",
           "emailValidated": "Email found! Let's keep going 🚀",

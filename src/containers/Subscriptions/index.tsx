@@ -11,6 +11,7 @@ import {
   monthlyEquivalent,
   savePercent,
 } from "@/data/pricing";
+import { EXPLORER_BENEFITS, NOMAD_BENEFITS } from "@/data/planBenefits";
 
 const NOMAD = PRICING_COP.nomad.earlyAdopter;
 
@@ -19,6 +20,23 @@ const NOMAD = PRICING_COP.nomad.earlyAdopter;
  * frena largo.
  */
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const BenefitList: React.FC<{ items: string[] }> = ({ items }) => (
+  <ul className="text-md font-light">
+    {items.map((item) => (
+      <li key={item} className="flex flex-row items-start flex-nowrap mb-1">
+        <Image
+          src="/assets/icons/list-icon.svg"
+          width={12}
+          height={12}
+          alt="List icon"
+          className="mr-2 mt-[7px]"
+        />
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+);
 
 export const Subscriptions: React.FC = () => {
   const t = useTranslations();
@@ -138,74 +156,11 @@ export const Subscriptions: React.FC = () => {
               {t("home.subscriptions.plans.benefitsAndFeatures")}
             </h3>
 
-            <ul className="text-md font-light">
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t(
-                    "home.subscriptions.plans.explorer.benefits.officialSpotsAccess"
-                  )}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.explorer.benefits.basicFilters")}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t(
-                    "home.subscriptions.plans.explorer.benefits.realTimeInsights"
-                  )}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.explorer.benefits.free")}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t(
-                    "home.subscriptions.plans.explorer.benefits.noCreditOrDebitCard"
-                  )}
-                </span>
-              </li>
-            </ul>
+            <BenefitList
+              items={EXPLORER_BENEFITS.map((key) =>
+                t(`home.subscriptions.plans.explorer.benefits.${key}`)
+              )}
+            />
           </motion.article>
           <motion.article
             variants={cardVariants}
@@ -245,84 +200,11 @@ export const Subscriptions: React.FC = () => {
               {t("home.subscriptions.plans.benefitsAndFeatures")}
             </h3>
 
-            <ul className="text-md font-light">
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.nomad.benefits.explorerBenefits")}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t(
-                    "home.subscriptions.plans.nomad.benefits.officialAndCommunitySpotsAccess"
-                  )}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t(
-                    "home.subscriptions.plans.nomad.benefits.exclusiveDiscounts"
-                  )}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.nomad.benefits.2xCoffiPoints")}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.nomad.benefits.realTimeFilter")}
-                </span>
-              </li>
-              <li className="flex flex-row items-start flex-nowrap mb-1">
-                <Image
-                  src="/assets/icons/list-icon.svg"
-                  width={12}
-                  height={12}
-                  alt="List icon"
-                  className="mr-2 mt-[7px]"
-                />
-                <span>
-                  {t("home.subscriptions.plans.nomad.benefits.earlyAccess")}
-                </span>
-              </li>
-            </ul>
+            <BenefitList
+              items={NOMAD_BENEFITS.map((key) =>
+                t(`home.subscriptions.plans.nomad.benefits.${key}`)
+              )}
+            />
           </motion.article>
           <motion.article
             variants={cardVariants}

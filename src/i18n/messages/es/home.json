@@ -60,7 +60,7 @@
     "connect": {
       "eyebrow": "Comunidad",
       "title": "Conecta con quienes crean cerca",
-      "description": "Mira en tiempo real <b>quién está creando el futuro contigo</b>. Únete a círculos abiertos o inicia conversaciones espontáneas. La ciudad deja de sentirse solitaria.",
+      "description": "Mira en tiempo real <b>quién está creando cerca de ti</b>. Haz check-in para conocer la sala y, con Nómada, descubre dónde está tu gente antes de salir.",
       "chipsLabel": "Filtra por lo que hacen",
       "count": "{n, plural, =0 {nadie por aquí} one {# persona} other {# personas}}",
       "roles": {
@@ -84,12 +84,12 @@
     "points": {
       "eyebrow": "Coffi Puntos",
       "title": "Gana mientras creas",
-      "description": "Con cada check-in, reseña, actualización o descubrimiento <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos.",
+      "description": "Con cada check-in, reseña, reporte o foto <b>obtén Coffi Puntos</b>. Canjea beneficios exclusivos en tus espacios favoritos.",
       "pin": "Oferta activa: {discount}% off con {points} puntos",
       "pinShort": "{discount}% off · {points} pts",
       "pinPlan": {
         "nomad": "Solo para miembros Nomad",
-        "explorer": "Solo para miembros Explorer"
+        "explorer": "Para todos los planes"
       },
       "pinTiny": "{discount}% off"
     },
@@ -209,8 +209,8 @@
       "title": "Impulsado por la comunidad,",
       "subTitle": "Diseñado para ti",
       "description": "Coffi prospera gracias a su vibrante comunidad de nómadas digitales, lo que hace posible obtener información en tiempo real de cada lugar.",
-      "2ndDescription": "Actualizando las condiciones de un lugar o descubriendo nuevos espacios, gana Coffi puntos, canjeables por recompensas como cupones.",
-      "3rdDescription": "Unete a Coffi Premium para conectar con la comunidad, ganar recompensas y nunca perderse de los mejores lugares para trabajar o relajarse."
+      "2ndDescription": "Actualizando las condiciones de un lugar, haciendo check-in o dejando una reseña, gana Coffi puntos, canjeables por recompensas como cupones.",
+      "3rdDescription": "Únete al plan Nómada para encontrar a tu gente en la ciudad, ganar el doble de recompensas y nunca perderte de los mejores lugares para trabajar o relajarte."
     },
     "professions": {
       "marketing": "Mercadeo",
@@ -256,18 +256,19 @@
         "price": "Gratis",
         "priceText": "¡Para siempre! solo necesitas una cuenta.",
         "action": "Comienza a explorar",
-        "why": "Descubre lugares locales y comienza a explorar la comunidad de Coffi con acceso a todas las funciones básicas.",
+        "why": "Descubre espacios para trabajar, mira cómo están en tiempo real y gana Coffi Points desde el primer check-in.",
         "benefits": {
-          "officialSpotsAccess": "Acceso a todos los lugares oficiales",
-          "basicFilters": "Filtrar por tipo, reglas y comodidades",
-          "realTimeInsights": "Acceso a información en tiempo real de la comunidad",
-          "free": "Gratis para siempre con solo el registro",
-          "noCreditOrDebitCard": "No se requiere tarjeta de crédito o débito"
+          "allSpots": "Lugares oficiales y descubiertos por la comunidad",
+          "filters": "Filtros por tipo, comodidades y ambiente en tiempo real",
+          "liveStatus": "Estado del espacio en tiempo real: cuánta gente hay y a qué vino",
+          "sessions": "Sesiones: haz check-in con tu intención y mira quién está en la sala",
+          "coffiPoints": "Gana Coffi Points y canjéalos por recompensas en los espacios",
+          "freeForever": "Gratis para siempre, sin tarjeta"
         }
       },
       "nomad": {
         "title": "Nómada",
-        "description": "Desbloquee la experiencia Coffi completa con información valiosa y recompensas.",
+        "description": "Encuentra a tu gente antes de salir y gana el doble de Coffi Points.",
         "price": "{price} COP/mes",
         "yearlyTotal": "{price} COP/año",
         "billendAnnually": "Facturado anualmente",
@@ -277,26 +278,23 @@
         "yearlyPrice": "Facturado anualmente · equivale a {price} COP al mes",
         "monthlyPrice": "O {price} COP al año y ahorras el {percent}%",
         "action": "Actualiza al plan Nómada",
-        "why": "Vaya más allá de la exploración, con acceso exclusivo a lugares descubiertos por la comunidad,  de lugares por información en tiempo real y ganar Coffi puntos extras.",
+        "why": "Explorador te dice que no estás solo. Nómada te dice dónde está tu gente ahora: quién está en cada espacio de la ciudad, para que elijas antes de salir.",
         "benefits": {
           "explorerBenefits": "Todos los beneficios del plan Explorador",
-          "officialAndCommunitySpotsAccess": "Acceso a todos los lugares, tanto oficiales como descubiertos por la comunidad",
-          "exclusiveDiscounts": "Descuentos exclusivos y recompensas",
-          "2xCoffiPoints": "Gana 2x Coffi Puntos para recompensas y/o premios",
-          "realTimeFilter": "Filtrar lugares por información en tiempo real de la comunidad",
-          "earlyAccess": "Acceso anticipado a nuevas funciones"
+          "cityPresence": "Mira quién está en cada espacio de la ciudad antes de ir",
+          "presenceFilter": "Filtra espacios por quién está ahí: propósito y profesión",
+          "visibleInCity": "Hazte visible en la ciudad para que tu gente te encuentre",
+          "2xCoffiPoints": "Gana el doble de Coffi Points (salvo perfil y referidos)",
+          "exclusivePerks": "Recompensas exclusivas para Nómada en los espacios"
         },
         "benefitsDescriptions": {
-          "explorerBenefits": "Todo lo que ya amas del plan Explorador, pero llevado al siguiente nivel.",
-          "officialAndCommunitySpotsAccess": "Explora todos los espacios, tanto los oficiales como los tesoros escondidos descubiertos por la comunidad.",
-          "exclusiveDiscounts": "Disfruta descuentos especiales y recompensas pensadas solo para verdaderos nómadas Coffi.",
-          "2xCoffiPoints": "Gana el doble de Coffi Puntos para desbloquear premios, beneficios y experiencias únicas.",
-          "realTimeFilter": "Encuentra el lugar perfecto filtrando por el ambiente real que la comunidad reporta en tiempo real.",
-          "earlyAccess": "Sé de los primeros en probar nuestras nuevas funciones antes que nadie."
+          "cityPresence": "Desde el mapa y la card de cada espacio, mira quién eligió mostrarse en la ciudad, a qué vino y en qué trabaja.",
+          "2xCoffiPoints": "Check-ins, reportes, fotos y reseñas te dan el doble. Completar el perfil y los referidos suman lo mismo en todos los planes.",
+          "exclusivePerks": "Los espacios crean recompensas solo para miembros Nómada, además de las que están abiertas a todos."
         },
         "checkout": {
           "getStarted": "¡Vamos a Coffi! Estás a solo unos clics de comenzar.",
-          "description": "Desbloquea ambientes en tiempo real, beneficios exclusivos y encuentra tu próximo espacio ideal. Tu viaje empieza aquí.",
+          "description": "Mira quién está en la ciudad antes de salir, gana el doble de Coffi Points y accede a recompensas exclusivas.",
           "coffiEmailAccount": "Ingresa el correo de tu cuenta Coffi",
           "validEmail": "Por favor ingresa un correo válido para continuar",
           "emailValidated": "¡Correo encontrado! Sigamos 🚀",

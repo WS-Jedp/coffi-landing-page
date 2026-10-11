@@ -231,7 +231,7 @@ export default function NomadPlanSuccessPage() {
             className="text-coffi-white/90 text-lg max-w-2xl mb-8"
           >
             {t("subscriptions.nomad.success.welcomeMessage", {
-              defaultValue: `Thanks for joining Coffi, ${username}! Your subscription to the Nomad Plan is now active. You now have full access to all premium features.`,
+              defaultValue: `Thanks for joining Coffi, ${username}! Your subscription to the Nomad Plan is now active. You can now see who's at each space in the city and earn double Coffi Points.`,
             })}
           </motion.p>
           
@@ -264,13 +264,15 @@ export default function NomadPlanSuccessPage() {
               {[
                 t("subscriptions.nomad.success.nextSteps.explore", {
                   defaultValue:
-                    "Explore exclusive Coffi spots around the world",
+                    "On your next check-in, turn on “Visible in the city” so your people can find you.",
                 }),
                 t("subscriptions.nomad.success.nextSteps.connect", {
-                  defaultValue: "Connect with other nomads and professionals",
+                  defaultValue:
+                    "Filter the map by the purpose and profession of the people at each space.",
                 }),
                 t("subscriptions.nomad.success.nextSteps.enjoy", {
-                  defaultValue: "Enjoy special discounts at partner locations",
+                  defaultValue:
+                    "Earn double Coffi Points and redeem them for exclusive rewards.",
                 }),
               ].map((step, index) => (
                 <motion.li

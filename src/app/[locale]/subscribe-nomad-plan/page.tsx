@@ -8,7 +8,7 @@ import { ToggleSwitch } from "@/components/inputs/toggle";
 import {
   Check,
   Coffee,
-  Globe,
+  Sparkles,
   Users,
   Loader2,
   AlertCircleIcon,
@@ -24,6 +24,16 @@ import {
 } from "@/services/wompi";
 import Link from "next/link";
 import { PRICING_COP, formatCOP, savePercent } from "@/data/pricing";
+import {
+  NOMAD_CHECKOUT_BENEFITS,
+  type NomadCheckoutBenefit,
+} from "@/data/planBenefits";
+
+const CHECKOUT_BENEFIT_ICONS: Record<NomadCheckoutBenefit, React.ReactNode> = {
+  cityPresence: <Users className="text-coffi-white" size={20} />,
+  "2xCoffiPoints": <Sparkles className="text-coffi-white" size={20} />,
+  exclusivePerks: <Coffee className="text-coffi-white" size={20} />,
+};
 
 // Particle component for premium animation
 const Particle = () => {
@@ -436,38 +446,17 @@ export default function NomadPlanPage() {
                   initial="hidden"
                   animate="visible"
                 >
-                  <Feature
-                    icon={<Globe className="text-coffi-white" size={20} />}
-                    title={t(
-                      "home.subscriptions.plans.nomad.benefits.officialAndCommunitySpotsAccess"
-                    )}
-                    description={t(
-                      "home.subscriptions.plans.nomad.benefitsDescriptions.officialAndCommunitySpotsAccess"
-                    )}
-                    index={0}
-                  />
-
-                  <Feature
-                    icon={<Users className="text-coffi-white" size={20} />}
-                    title={t(
-                      "home.subscriptions.plans.nomad.benefits.realTimeFilter"
-                    )}
-                    description={t(
-                      "home.subscriptions.plans.nomad.benefitsDescriptions.realTimeFilter"
-                    )}
-                    index={1}
-                  />
-
-                  <Feature
-                    icon={<Coffee className="text-coffi-white" size={20} />}
-                    title={t(
-                      "home.subscriptions.plans.nomad.benefits.exclusiveDiscounts"
-                    )}
-                    description={t(
-                      "home.subscriptions.plans.nomad.benefitsDescriptions.exclusiveDiscounts"
-                    )}
-                    index={2}
-                  />
+                  {NOMAD_CHECKOUT_BENEFITS.map((key, index) => (
+                    <Feature
+                      key={key}
+                      icon={CHECKOUT_BENEFIT_ICONS[key]}
+                      title={t(`home.subscriptions.plans.nomad.benefits.${key}`)}
+                      description={t(
+                        `home.subscriptions.plans.nomad.benefitsDescriptions.${key}`
+                      )}
+                      index={index}
+                    />
+                  ))}
                 </motion.div>
               </motion.div>
             </motion.div>

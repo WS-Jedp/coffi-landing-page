@@ -19,10 +19,11 @@ export default function FAQPage() {
           <div>
             <h3 className="font-semibold text-lg">2. Is Coffi free to use?</h3>
             <p>
-              Yes, Coffi offers a free plan called "Explorer", which provides
-              access to official spots and basic features. For advanced features
-              like real-time insights, additional filters, and exclusive spots,
-              you can subscribe to our premium plans.
+              Yes, Coffi offers a free plan called &quot;Explorer&quot;, which includes
+              every spot, real-time filters, live space status, sessions and
+              Coffi Points. To see who&apos;s at each space in the city before
+              you go and earn double Coffi Points, you can subscribe to the
+              Nomad plan.
             </p>
           </div>
         </div>
@@ -83,13 +84,17 @@ export default function FAQPage() {
               <p>Coffi offers three subscription plans:</p>
               <ul className="list-disc ml-5 mt-2">
                 <li>
-                  <strong>Explorer (Free):</strong> Access to official spots and
-                  basic filters.
+                  <strong>Explorer (Free):</strong> Official and
+                  community-discovered spots, filters by type, amenities and
+                  real-time vibe, live space status, sessions with check-in,
+                  and Coffi Points you can redeem for rewards.
                 </li>
                 <li>
-                  <strong>Nomad (Premium):</strong> Access to
-                  community-discovered spots, real-time insights, and premium
-                  features.
+                  <strong>Nomad (Paid):</strong> Everything in Explorer, plus
+                  seeing who&apos;s at each space in the city before you go,
+                  filtering spaces by who&apos;s there, being visible in the
+                  city, double Coffi Points (except profile and referrals), and
+                  Nomad-only rewards.
                 </li>
                 <li>
                   <strong>Wanderlust (Coming Soon):</strong> Advanced features
