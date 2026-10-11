@@ -5,6 +5,25 @@ import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 // Blog posts data - this could be moved to a separate file or CMS
 const blogPosts = [
   {
+    slug: "the-right-cafe-for-today",
+    slugEs: "el-cafe-correcto-para-hoy",
+    title: {
+      en: "The perfect café doesn’t exist. The right café for today does",
+      es: "El café perfecto no existe. Existe el café correcto para hoy"
+    },
+    excerpt: {
+      en: "In Medellín, “best cafés for remote work” lists fall short. Conditions change by the hour. Here’s how to find the space that actually works for you today.",
+      es: "En Medellín las listas de “mejores cafés para trabajar” se quedan cortas. El ambiente cambia cada hora. Cómo encontrar el espacio que realmente te sirve hoy."
+    },
+    publishDate: "2026-10-10",
+    readingTime: "5 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     slug: "about-work-friendly-spaces",
     slugEs: "sobre-espacios-de-trabajo-amigables",
     title: {
