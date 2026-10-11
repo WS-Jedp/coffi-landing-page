@@ -268,13 +268,14 @@
       "nomad": {
         "title": "Nómada",
         "description": "Desbloquee la experiencia Coffi completa con información valiosa y recompensas.",
-        "price": "{price}/Mes",
+        "price": "{price} COP/mes",
+        "yearlyTotal": "{price} COP/año",
         "billendAnnually": "Facturado anualmente",
         "billedMonthly": "Facturado mensualmente",
-        "savePercentYearly": "Ahorra el {percent}% mensualmente",
+        "savePercentYearly": "Ahorra el {percent}% con el plan anual",
         "yearly": "Anual",
-        "yearlyPrice": "O {price} facturado mensualmente",
-        "monthlyPrice": "O {price} al mes facturado anualmente",
+        "yearlyPrice": "Facturado anualmente · equivale a {price} COP al mes",
+        "monthlyPrice": "O {price} COP al año y ahorras el {percent}%",
         "action": "Actualiza al plan Nómada",
         "why": "Vaya más allá de la exploración, con acceso exclusivo a lugares descubiertos por la comunidad,  de lugares por información en tiempo real y ganar Coffi puntos extras.",
         "benefits": {

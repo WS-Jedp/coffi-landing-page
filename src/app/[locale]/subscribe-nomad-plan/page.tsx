@@ -23,6 +23,7 @@ import {
   validateUserSubscription,
 } from "@/services/wompi";
 import Link from "next/link";
+import { PRICING_COP, formatCOP, savePercent } from "@/data/pricing";
 
 // Particle component for premium animation
 const Particle = () => {
@@ -279,10 +280,11 @@ export default function NomadPlanPage() {
   };
 
   // Pricing details
-  const earlyAdopterYearlyPrice = "$69";
-  const yearlyPrice = "$99";
-  const earlyAdopterMonthlyPrice = "$6.99";
-  const monthlyPrice = "$12";
+  const { earlyAdopter, regular } = PRICING_COP.nomad;
+  const earlyAdopterYearlyPrice = `${formatCOP(earlyAdopter.yearly)} COP`;
+  const yearlyPrice = formatCOP(regular.yearly);
+  const earlyAdopterMonthlyPrice = `${formatCOP(earlyAdopter.monthly)} COP`;
+  const monthlyPrice = formatCOP(regular.monthly);
   const secondaryYearlyPriceText = t(
     "home.subscriptions.plans.nomad.billendAnnually"
   );
@@ -376,16 +378,16 @@ export default function NomadPlanPage() {
 
               <motion.div className="mb-3" variants={itemVariants}>
                 <motion.div
-                  className="flex items-end"
+                  className="flex flex-wrap items-baseline gap-x-2"
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   <span
-                    className={`text-coffi-white text-4xl font-bold line-through opacity-75`}
+                    className={`text-coffi-white text-2xl font-bold line-through opacity-60`}
                   >
                     {isYearly ? yearlyPrice : monthlyPrice}
                   </span>
-                  <span className="text-coffi-white text-4xl font-bold mr-2">
+                  <span className="text-coffi-white text-3xl md:text-4xl font-bold">
                     {isYearly
                       ? earlyAdopterYearlyPrice
                       : earlyAdopterMonthlyPrice}
@@ -405,7 +407,7 @@ export default function NomadPlanPage() {
                       className="bg-coffi-purple-400/20 text-white px-3 rounded-full text-sm inline-block"
                     >
                       {t("home.subscriptions.plans.nomad.savePercentYearly", {
-                        percent: "52",
+                        percent: savePercent(earlyAdopter),
                       })}
                     </motion.div>
                   )}

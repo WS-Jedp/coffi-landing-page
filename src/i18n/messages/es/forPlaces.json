@@ -7,16 +7,16 @@
         "about": "Con planes de suscripción flexibles, negocios de todos los tamaños—desde pequeñas cafeterías locales hasta grandes cadenas de coworking—pueden acceder a estadísticas en tiempo real, lanzar promociones y ofrecer beneficios exclusivos a sus clientes más fieles.",
         "benefitsAndFeatures": "Beneficios y ventajas",
         "basicLayer": {
-            "title": "Plan Básico",
-            "about": "Comienza con lo esencial y descubre la plataforma.",
+            "title": "Tribe",
+            "about": "Empieza gratis con lo esencial y conoce la plataforma.",
             "benefits": {
                 "basicAnalytics": "Análisis básico del spot",
                 "promotionPlatform": "Publica promociones en la plataforma Coffi"
             }
         },
         "localBusiness": {
-            "title": "Plan Negocio Local",
-            "about": "Para negocios locales que buscan ampliar su audiencia.",
+            "title": "Hub",
+            "about": "Para espacios que quieren crecer su comunidad y fidelizar a sus visitantes.",
             "benefits": {
                 "fidelitySystem": "Acceso completo al Sistema de Fidelización",
                 "detailedAnalytics": "Análisis detallado de visitantes",
@@ -25,13 +25,24 @@
             }
         },
         "enterprise": {
-            "title": "Plan Empresarial",
-            "about": "Para negocios que buscan escalar y conectar con una audiencia más amplia.",
+            "title": "Orbital",
+            "about": "Para marcas con varias sedes: incluye hasta {count} sedes.",
             "benefits": {
                 "multiplePlaces": "Gestiona múltiples ubicaciones",
                 "strategicPartnerships": "Alianzas estratégicas",
                 "advancedVisitorAnalytics": "Análisis avanzado de visitantes"
             }
+        },
+        "pricing": {
+            "free": "Gratis",
+            "freeForever": "Para siempre, sin tarjeta.",
+            "earlyAdopter": "🎁 Precio para pioneros",
+            "perMonthUnit": "COP/mes + IVA",
+            "perYear": "o {price} COP al año",
+            "save": "ahorra {percent}%",
+            "regularPrice": "Precio regular:",
+            "extraSite": "Sede extra: {monthly} COP/mes o {yearly} COP/año.",
+            "footnote": "Precios en pesos colombianos (COP), antes de IVA. El precio para pioneros es por tiempo limitado; el precio tachado es la tarifa regular."
         }
     },
     "helpingPlacesGrow": {

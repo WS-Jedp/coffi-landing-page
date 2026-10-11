@@ -150,16 +150,11 @@ export const SubscriptionSpecialCard: React.FC<
       </section>
       <p className="text-md font-light mb-1">{description}</p>
 
-      <section className="flex flex-row flex-nowrap items-end justify-start">
-        <strong className="font-bold text-xl md:text-2xl mr-1">
-          {isYearly ? yearlyPrice : monthlyPrice}
-        </strong>
-        {isYearly && (
-          <p className="text-xs font-bold mb-1">
-            {t("home.subscriptions.plans.nomad.billendAnnually")}
-          </p>
-        )}
-      </section>
+      {/* One price line and one secondary line in both modes, so toggling
+          never changes the card's height. */}
+      <strong className="block whitespace-nowrap font-bold text-xl md:text-2xl">
+        {isYearly ? yearlyPrice : monthlyPrice}
+      </strong>
       <p className="font-light text-xs mb-3">
         {isYearly ? secondaryYearlyPriceText : secondaryMonthlyPriceText}
       </p>

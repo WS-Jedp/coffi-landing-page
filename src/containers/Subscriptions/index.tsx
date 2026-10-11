@@ -5,6 +5,14 @@ import { SubscriptionSpecialCard } from "@/components/subscriptionsCards/special
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { useInView } from "react-intersection-observer";
+import {
+  PRICING_COP,
+  formatCOP,
+  monthlyEquivalent,
+  savePercent,
+} from "@/data/pricing";
+
+const NOMAD = PRICING_COP.nomad.earlyAdopter;
 
 /**
  * La curva de la casa, la misma que usa la sección de beneficios: sale rápido y
@@ -206,19 +214,22 @@ export const Subscriptions: React.FC = () => {
             <SubscriptionSpecialCard
               title={t("home.subscriptions.plans.nomad.title")}
               description={t("home.subscriptions.plans.nomad.description")}
-              yearlyPrice={t("home.subscriptions.plans.nomad.price", {
-                price: "$5,75",
+              yearlyPrice={t("home.subscriptions.plans.nomad.yearlyTotal", {
+                price: formatCOP(NOMAD.yearly),
               })}
               monthlyPrice={t("home.subscriptions.plans.nomad.price", {
-                price: "$6.99",
+                price: formatCOP(NOMAD.monthly),
               })}
               secondaryYearlyPriceText={t(
                 "home.subscriptions.plans.nomad.yearlyPrice",
-                { price: "$6.99" }
+                { price: formatCOP(monthlyEquivalent(NOMAD.yearly)) }
               )}
               secondaryMonthlyPriceText={t(
                 "home.subscriptions.plans.nomad.monthlyPrice",
-                { price: "$5,75" }
+                {
+                  price: formatCOP(NOMAD.yearly),
+                  percent: savePercent(NOMAD),
+                }
               )}
               actionButton={t("home.subscriptions.plans.nomad.action")}
               full

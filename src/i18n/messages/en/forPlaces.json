@@ -7,16 +7,16 @@
         "about": "With flexible subscription plans, businesses of all sizes—from small local cafés to large co-working chains—can access real-time stats, launch promotions, and offer exclusive perks to their loyal customers.",
         "benefitsAndFeatures": "Benefits & Features",
         "basicLayer": {
-            "title": "Basic Layer",
-            "about": "Get started with the essentials, get to know the platform.",
+            "title": "Tribe",
+            "about": "Start free with the essentials and get to know the platform.",
             "benefits": {
                 "basicAnalytics": "Basic spot analytics",
                 "promotionPlatform": "List promotions on the Coffi Platform"
             }
         },
         "localBusiness": {
-            "title": "Local Business Plan",
-            "about": "For local businesses looking to grow their audience.",
+            "title": "Hub",
+            "about": "For spaces that want to grow their community and keep visitors coming back.",
             "benefits": {
                 "fidelitySystem": "Full access to the Fidelity System",
                 "detailedAnalytics": "Detailed visitor analytics",
@@ -25,13 +25,24 @@
             }
         },
         "enterprise": {
-            "title": "Enterprise Plan",
-            "about": "For businesses looking to scale and connect with a wider audience.",
+            "title": "Orbital",
+            "about": "For brands with several locations: includes up to {count} locations.",
             "benefits": {
                 "multiplePlaces": "Manage multiple locations",
                 "strategicPartnerships": "Strategic partnerships",
                 "advancedVisitorAnalytics": "Advanced visitor analytics"
             }
+        },
+        "pricing": {
+            "free": "Free",
+            "freeForever": "Forever, no card needed.",
+            "earlyAdopter": "🎁 Early adopter price",
+            "perMonthUnit": "COP/mo + VAT",
+            "perYear": "or {price} COP a year",
+            "save": "save {percent}%",
+            "regularPrice": "Regular price:",
+            "extraSite": "Extra location: {monthly} COP/mo or {yearly} COP/yr.",
+            "footnote": "Prices in Colombian pesos (COP), before VAT (IVA). The early adopter price is for a limited time; the struck-through price is the regular rate."
         }
     },
     "helpingPlacesGrow": {

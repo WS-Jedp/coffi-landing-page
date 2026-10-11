@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { PRICING_COP } from '@/data/pricing'
 
 export default function StructuredData() {
   const organizationSchema = {
@@ -78,11 +79,20 @@ export default function StructuredData() {
     "operatingSystem": "Web, iOS, Android",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Productivity",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Explorer",
+        "price": "0",
+        "priceCurrency": "COP"
+      },
+      {
+        "@type": "Offer",
+        "name": "Nomad",
+        "price": String(PRICING_COP.nomad.earlyAdopter.monthly),
+        "priceCurrency": "COP"
+      }
+    ],
     "featureList": [
       "Real-time workspace insights",
       "Community-driven reviews",
@@ -120,7 +130,7 @@ export default function StructuredData() {
     "openingHours": "Mo-Su 00:00-23:59",
     "priceRange": "Free",
     "paymentAccepted": "Credit Card, Debit Card",
-    "currenciesAccepted": "COP, USD"
+    "currenciesAccepted": "COP"
   }
 
   const breadcrumbSchema = {

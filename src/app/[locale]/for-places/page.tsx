@@ -3,6 +3,50 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import {
+  ORBITAL_INCLUDED_SITES,
+  PRICING_COP,
+  type PlanPrice,
+  formatCOP,
+  savePercent,
+} from "@/data/pricing";
+
+type Translate = ReturnType<typeof useTranslations>;
+
+const PRICING_KEY = "forPlaces.placesSubscriptions.pricing";
+
+/** Early adopter price, with the regular one struck through beside it. */
+function PaidPlanPrice({ price, t }: { price: PlanPrice; t: Translate }) {
+  const { earlyAdopter, regular } = price;
+  return (
+    <div className="mb-5">
+      <p className="text-xs font-semibold text-coffi-purple mb-1">
+        {t(`${PRICING_KEY}.earlyAdopter`)}
+      </p>
+      <p className="flex flex-wrap items-baseline gap-x-2">
+        <span className="font-extrabold text-3xl">
+          {formatCOP(earlyAdopter.monthly)}
+        </span>
+        <span className="text-sm font-light">
+          {t(`${PRICING_KEY}.perMonthUnit`)}
+        </span>
+        <s className="text-sm text-gray-500">
+          <span className="sr-only">{t(`${PRICING_KEY}.regularPrice`)} </span>
+          {formatCOP(regular.monthly)}
+        </s>
+      </p>
+      <p className="text-sm font-light mt-1">
+        {t(`${PRICING_KEY}.perYear`, { price: formatCOP(earlyAdopter.yearly) })}{" "}
+        <s className="text-gray-500">
+          <span className="sr-only">{t(`${PRICING_KEY}.regularPrice`)} </span>
+          {formatCOP(regular.yearly)}
+        </s>
+        {" · "}
+        {t(`${PRICING_KEY}.save`, { percent: savePercent(earlyAdopter) })}
+      </p>
+    </div>
+  );
+}
 
 export default function CoffiAdminDashboard() {
   const t = useTranslations();
@@ -105,6 +149,14 @@ export default function CoffiAdminDashboard() {
             </section>
             
             <section className="px-6 py-4">
+              <div className="mb-5">
+                <p className="font-extrabold text-3xl">
+                  {t(`${PRICING_KEY}.free`)}
+                </p>
+                <p className="text-sm font-light mt-1">
+                  {t(`${PRICING_KEY}.freeForever`)}
+                </p>
+              </div>
               <strong className="font-semibold text-lg">
                 {t("forPlaces.placesSubscriptions.benefitsAndFeatures")}
               </strong>
@@ -153,6 +205,7 @@ export default function CoffiAdminDashboard() {
             </section>
 
             <section className="px-6 py-4">
+              <PaidPlanPrice price={PRICING_COP.hub} t={t} />
               <strong className="font-semibold text-lg">
                 {t("forPlaces.placesSubscriptions.benefitsAndFeatures")}
               </strong>
@@ -216,11 +269,25 @@ export default function CoffiAdminDashboard() {
                 {t("forPlaces.placesSubscriptions.enterprise.title")}
               </h2>
               <p className="text-md font-light mt-2">
-                {t("forPlaces.placesSubscriptions.enterprise.about")}
+                {t("forPlaces.placesSubscriptions.enterprise.about", {
+                  count: ORBITAL_INCLUDED_SITES,
+                })}
               </p>
             </section>
 
             <section className="px-6 py-4">
+              <PaidPlanPrice price={PRICING_COP.orbital} t={t} />
+              <p className="text-sm font-light -mt-3 mb-5">
+                {t(`${PRICING_KEY}.extraSite`, {
+                  monthly: formatCOP(PRICING_COP.orbitalExtraSite.earlyAdopter.monthly),
+                  yearly: formatCOP(PRICING_COP.orbitalExtraSite.earlyAdopter.yearly),
+                })}{" "}
+                <s className="text-gray-500">
+                  <span className="sr-only">{t(`${PRICING_KEY}.regularPrice`)} </span>
+                  {formatCOP(PRICING_COP.orbitalExtraSite.regular.monthly)} /{" "}
+                  {formatCOP(PRICING_COP.orbitalExtraSite.regular.yearly)}
+                </s>
+              </p>
               <strong className="font-semibold text-lg">
                 {t("forPlaces.placesSubscriptions.benefitsAndFeatures")}
               </strong>
@@ -263,6 +330,12 @@ export default function CoffiAdminDashboard() {
             </section>
           </motion.article>
         </motion.div>
+        <motion.p
+          variants={slideUp}
+          className="text-sm font-light text-gray-600 text-center mt-8 max-w-[800px] mx-auto"
+        >
+          {t(`${PRICING_KEY}.footnote`)}
+        </motion.p>
       </motion.section>
 
       {/* Closing Section */}

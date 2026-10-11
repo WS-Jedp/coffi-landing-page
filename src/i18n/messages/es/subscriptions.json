@@ -45,7 +45,7 @@
         "process": {
             "throughExternal": "El pago se procesará a través de",
             "paymentPlatform": "plataforma de pago.",
-            "chargesMayVary": "Los cargos se procesarán en Pesos Colombianos (COP). El monto final puede variar ligeramente debido a las tasas de conversión de moneda.",
+            "chargesMayVary": "Los cargos se procesan en pesos colombianos (COP), por el mismo valor que ves en esta página.",
             "coffiIsNotResponsible": "Coffi no se responsabiliza por fallos, errores o interrupciones de servicio en la plataforma de pago Wompi."
         }
     }
