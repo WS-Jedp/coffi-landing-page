@@ -92,7 +92,7 @@ export default function StructuredData() {
       "Digital nomad community"
     ],
     "screenshot": [
-      "https://coffi.com.co/assets/images/screenshots/desktop/coffi-landing-screenshot-1.jpeg",
+      "https://coffi.com.co/assets/images/screenshots/desktop/coffi-landing-og-1.jpg",
       "https://coffi.com.co/assets/images/screenshots/mobile/mobile-home-search-en.jpeg"
     ]
   }

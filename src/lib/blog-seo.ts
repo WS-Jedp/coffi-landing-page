@@ -95,7 +95,7 @@ export function generateBlogMetadata(
           alt: currentTitle,
         },
         {
-          url: "/assets/images/screenshots/desktop/coffi-landing-screenshot-1.jpeg",
+          url: "/assets/images/screenshots/desktop/coffi-landing-og-1.jpg",
           width: 1200,
           height: 630,
           alt: "Coffi - Coworking spaces platform in Medellín",

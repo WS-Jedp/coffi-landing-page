@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Instagram, ArrowLeft } from "lucide-react";
@@ -61,17 +60,8 @@ export default function WorkFriendlySpacesPage() {
         ref={sectionRef}
         className="relative w-full flex flex-col justify-start bg-coffi-white min-h-screen"
       >
-      {/* Navigation */}
-      <Link
-        href={`/${locale}/blog`}
-        className="absolute top-8 left-28 z-50 flex items-center gap-2 text-coffi-purple px-3 py-1 hover:bg-white/80 rounded-full transition-all duration-300 backdrop-blur-sm"
-      >
-        <ArrowLeft size={16} />
-        <span className="font-medium">{t("navigation.back")}</span>
-      </Link>
-
       {/* Hero Section */}
-      <header className="w-full h-[90vh] flex flex-col items-center justify-center relative overflow-hidden">
+      <header className="w-full min-h-[90vh] pt-28 pb-16 flex flex-col items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/60 to-white"
@@ -98,27 +88,6 @@ export default function WorkFriendlySpacesPage() {
         </div>
 
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-row flex-nowrap items-center justify-start mb-6"
-          >
-            <Image
-              src="/assets/images/coffi-logo.png"
-              alt="Coffi Logo"
-              width={51}
-              height={51}
-              className="object-cover"
-              priority
-            />
-            <div className="flex flex-col items-start justify-center ml-2">
-              <h2 className="font-black text-3xl">Coffi</h2>
-              <h3 className="font-extralight text-sm mt-[-2px]">
-                Be Where You Thrive
-              </h3>
-            </div>
-          </motion.article>
 
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -146,6 +115,24 @@ export default function WorkFriendlySpacesPage() {
           >
             {t("hero.description")}
           </motion.p>
+
+          {/* Volver al blog: eyebrow entre filetes, el mismo lenguaje que las secciones del post */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-14 flex w-full max-w-md items-center gap-5"
+          >
+            <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-transparent to-coffi-purple/30" />
+            <Link
+              href={`/${locale}/blog`}
+              className="group flex shrink-0 items-center gap-2 text-sm uppercase tracking-widest text-coffi-purple/60 transition-colors duration-300 hover:text-coffi-purple"
+            >
+              <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
+              {t("navigation.back")}
+            </Link>
+            <span aria-hidden className="h-px flex-1 bg-gradient-to-l from-transparent to-coffi-purple/30" />
+          </motion.div>
         </div>
       </header>
 
