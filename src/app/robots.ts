@@ -1,35 +1,17 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/seo/routes'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coffi.com.co'
-
   return {
     rules: {
       userAgent: '*',
-      allow: [
-        '/',
-        '/en/',
-        '/es/',
-        '/about-us',
-        '/contact-us',
-        '/for-places',
-        '/faqs',
-        '/privacy-policy',
-        '/terms-of-service',
-        '/wanderlust',
-        '/subscription',
-        '/subscribe-nomad-plan',
-        '/blog',
-      ],
+      allow: '/',
       disallow: [
         '/api/',
-        '/_next/',
         '/payment-status', // Private user pages
-        '/*.json$',
-        '/*?*', // Query parameters
+        '/es/payment-status',
       ],
     },
-    sitemap: `${baseUrl}/sitemap/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

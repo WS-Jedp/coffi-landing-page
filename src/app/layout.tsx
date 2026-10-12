@@ -63,16 +63,6 @@ export const metadata: Metadata = {
   description: "Find perfect coworking spaces and work-friendly cafés in Medellín. Real-time insights for digital nomads and remote workers.",
   metadataBase: new URL("https://coffi.com.co"),
   
-  // Keep canonical in root layout as single source of truth
-  alternates: {
-    canonical: "https://coffi.com.co/",
-    languages: {
-      'x-default': 'https://coffi.com.co/',
-      'en': 'https://coffi.com.co/',
-      'es': 'https://coffi.com.co/es',
-    },
-  },
-  
   // Robot directives for better indexing
   robots: {
     index: true,

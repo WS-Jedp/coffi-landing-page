@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import { generateBlogMetadata } from "@/lib/blog-seo";
+import { blogPostPath, getBlogPost } from "@/lib/seo/routes";
 
 export async function generateMetadata({ params }: { 
   params: Promise<{ locale: string }> 
@@ -83,17 +85,24 @@ export async function generateMetadata({ params }: {
       name: "Equipo Coffi",
       url: "https://coffi.com.co/about-us"
     },
-    image: "/assets/images/blog/mejores-cafes-medellin-hero.jpg",
     tags: ["cafés", "coworking", "nómada digital", "Medellín", "productividad"]
   };
 
   return generateBlogMetadata(blogData, locale);
 }
 
-export default function BlogPostLayout({
+// This slug belongs to the Spanish version; the other language is served from its own slug.
+export default async function BlogPostLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  if (locale === "en") {
+    permanentRedirect(blogPostPath(getBlogPost("best-cafes-and-workfriendly-spaces-in-medellin"), "en"));
+  }
+
   return <>{children}</>;
 }

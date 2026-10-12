@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import { generateBlogMetadata } from "@/lib/blog-seo";
+import { blogPostPath, getBlogPost } from "@/lib/seo/routes";
 
 export async function generateMetadata({ params }: { 
   params: Promise<{ locale: string }> 
@@ -65,10 +67,18 @@ export async function generateMetadata({ params }: {
   return generateBlogMetadata(blogData, locale);
 }
 
-export default function BlogPostLayout({
+// This slug belongs to the English version; the other language is served from its own slug.
+export default async function BlogPostLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  if (locale === "es") {
+    permanentRedirect(blogPostPath(getBlogPost("about-work-friendly-spaces"), "es"));
+  }
+
   return <>{children}</>;
 }

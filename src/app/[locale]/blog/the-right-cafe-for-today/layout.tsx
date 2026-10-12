@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { cafePostMetadata, CafePostJsonLd } from "../_cafe-correcto-para-hoy/seo";
 import { cafePostPath } from "../_cafe-correcto-para-hoy/content";
 
@@ -22,7 +22,7 @@ export default async function BlogPostLayout({
 }) {
   const { locale } = await params;
   if (locale === "es") {
-    redirect(cafePostPath("es"));
+    permanentRedirect(cafePostPath("es"));
   }
 
   return (

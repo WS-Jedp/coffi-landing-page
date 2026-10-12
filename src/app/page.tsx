@@ -30,16 +30,6 @@ export const metadata: Metadata = {
   title: "Coffi – Coworking Spaces & Work-Friendly Cafés in Medellín, Colombia | Be Where You Thrive",
   description: "Find the perfect coworking space, work-friendly café, or productivity hub in Medellín, Colombia. Real-time insights from digital nomads. Join Colombia's thriving remote work community with Coffi.",
   
-  // Canonical URL points to root
-  alternates: {
-    canonical: "https://coffi.com.co",
-    languages: {
-      'en': 'https://coffi.com.co/en',
-      'es': 'https://coffi.com.co/es',
-      'x-default': 'https://coffi.com.co'
-    },
-  },
-  
   // Open Graph for root
   openGraph: {
     title: "Coffi – Find Perfect Coworking Spaces & Work Cafés in Medellín, Colombia",

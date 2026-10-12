@@ -1,4 +1,5 @@
 import type { BlogPostData } from "@/lib/blog-seo";
+import { SITE_URL, getBlogPost } from "@/lib/seo/routes";
 
 // Shared data for the EN/ES pair:
 // /blog/remote-work-and-loneliness  <->  /es/blog/trabajo-remoto-y-soledad
@@ -6,12 +7,9 @@ import type { BlogPostData } from "@/lib/blog-seo";
 
 export type SoledadLang = "en" | "es";
 
-export const SOLEDAD_SLUGS: Record<SoledadLang, string> = {
-  en: "remote-work-and-loneliness",
-  es: "trabajo-remoto-y-soledad",
-};
+export const SOLEDAD_SLUGS: Record<SoledadLang, string> = getBlogPost("remote-work-and-loneliness").slugs;
 
-export const SOLEDAD_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coffi.com.co";
+export const SOLEDAD_BASE_URL = SITE_URL;
 
 // next-intl uses localePrefix "as-needed": English is served without /en.
 export function soledadLocalePrefix(lang: SoledadLang) {
@@ -74,8 +72,8 @@ const shared = {
       "Coffi",
     ],
   },
-  publishDate: "2026-10-12",
-  lastModified: "2026-10-12",
+  publishDate: getBlogPost("remote-work-and-loneliness").publishDate,
+  lastModified: getBlogPost("remote-work-and-loneliness").lastModified,
   category: "Workspace Guide",
   author: { name: "Coffi Team", url: "https://coffi.com.co/about-us" },
   image: `${SOLEDAD_BASE_URL}${IMG_DIR}/cafe-city-view-og.jpg`,

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Link as LocaleLink } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Instagram, ArrowLeft } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -124,13 +125,13 @@ export default function WorkFriendlySpacesPage() {
             className="mt-14 flex w-full max-w-md items-center gap-5"
           >
             <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-transparent to-coffi-purple/30" />
-            <Link
-              href={`/${locale}/blog`}
+            <LocaleLink
+              href="/blog"
               className="group flex shrink-0 items-center gap-2 text-sm uppercase tracking-widest text-coffi-purple/60 transition-colors duration-300 hover:text-coffi-purple"
             >
               <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
               {t("navigation.back")}
-            </Link>
+            </LocaleLink>
             <span aria-hidden className="h-px flex-1 bg-gradient-to-l from-transparent to-coffi-purple/30" />
           </motion.div>
         </div>
