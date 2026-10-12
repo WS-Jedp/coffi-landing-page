@@ -5,6 +5,25 @@ import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 // Blog posts data - this could be moved to a separate file or CMS
 const blogPosts = [
   {
+    slug: "remote-work-and-loneliness",
+    slugEs: "trabajo-remoto-y-soledad",
+    title: {
+      en: "Remote work gave you freedom. Science says it also left you more alone.",
+      es: "Remote work te dio libertad. La ciencia dice que también te dejó más solo."
+    },
+    excerpt: {
+      en: "Science study of over 588,000 people: remote work increases time alone and distress, especially if you live alone. Freedom doesn’t have to cost you connection.",
+      es: "Science, más de 588.000 personas: el trabajo remoto aumenta tiempo solo y malestar, sobre todo si vives solo. La libertad no tiene por qué costarte la conexión."
+    },
+    publishDate: "2026-10-12",
+    readingTime: "4 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     slug: "the-right-cafe-for-today",
     slugEs: "el-cafe-correcto-para-hoy",
     title: {
