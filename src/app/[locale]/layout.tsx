@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { Header } from "@/components/header";
 import { Footer } from "@/containers/Footer";
 import { loadMessages } from "@/i18n/utils";
+import { routing } from "@/i18n/routing";
 import StructuredData from "@/components/StructuredData";
 import HreflangLinks from "@/components/HreflangLinks";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -214,10 +216,11 @@ export default async function LocalLayout({
 }>) {
   const { locale } = await params;
 
-  // Fallback to `en` if locale is missing or unsupported
-  const supportedLocales = ["en", "es"];
-  const currentLocale =
-    locale && supportedLocales.includes(locale) ? locale : "en";
+  // Unknown locales (e.g. /sitemap-index.xml landing on this segment) are a 404, not the home page
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+  }
+  const currentLocale = locale;
 
   const messages = await loadMessages(currentLocale);
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { soledadMetadata, SoledadJsonLd } from "../_trabajo-remoto-y-soledad/seo";
 import { soledadPath } from "../_trabajo-remoto-y-soledad/content";
 
@@ -22,7 +22,7 @@ export default async function BlogPostLayout({
 }) {
   const { locale } = await params;
   if (locale === "en") {
-    redirect(soledadPath("en"));
+    permanentRedirect(soledadPath("en"));
   }
 
   return (

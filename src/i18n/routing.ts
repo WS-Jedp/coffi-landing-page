@@ -9,7 +9,11 @@ export const routing = defineRouting({
   defaultLocale: 'en',
   
   // Use 'as-needed' to avoid adding /en prefix for default locale
-  localePrefix: 'as-needed'
+  localePrefix: 'as-needed',
+
+  // hreflang comes from the page metadata (real slugs per language). The generated
+  // `Link` header would repeat it with wrong URLs for posts whose slug differs per language.
+  alternateLinks: false
 });
  
 // Lightweight wrappers around Next.js' navigation APIs

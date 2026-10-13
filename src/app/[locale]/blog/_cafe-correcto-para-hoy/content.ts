@@ -1,4 +1,5 @@
 import type { BlogPostData } from "@/lib/blog-seo";
+import { SITE_URL, getBlogPost } from "@/lib/seo/routes";
 
 // Shared data for the EN/ES pair:
 // /en/blog/the-right-cafe-for-today  <->  /es/blog/el-cafe-correcto-para-hoy
@@ -6,13 +7,9 @@ import type { BlogPostData } from "@/lib/blog-seo";
 
 export type CafePostLang = "en" | "es";
 
-export const CAFE_POST_SLUGS: Record<CafePostLang, string> = {
-  en: "the-right-cafe-for-today",
-  es: "el-cafe-correcto-para-hoy",
-};
+export const CAFE_POST_SLUGS: Record<CafePostLang, string> = getBlogPost("the-right-cafe-for-today").slugs;
 
-export const CAFE_POST_BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://coffi.com.co";
+export const CAFE_POST_BASE_URL = SITE_URL;
 
 // The site uses next-intl `localePrefix: "as-needed"`: English (default locale) is served
 // without a prefix (/blog/...) and /en/... answers with a redirect. Point canonical,
@@ -71,14 +68,15 @@ const shared = {
       "Coffi",
     ],
   },
-  publishDate: "2026-10-10",
-  lastModified: "2026-10-10",
+  publishDate: getBlogPost("the-right-cafe-for-today").publishDate,
+  lastModified: getBlogPost("the-right-cafe-for-today").lastModified,
   category: "Workspace Guide",
   author: {
     name: "Coffi Team",
     url: "https://coffi.com.co/about-us",
   },
-  image: `${CAFE_POST_BASE_URL}/assets/images/screenshots/desktop/coffi-landing-screenshot-1.jpeg`,
+  // The post has no cover image of its own; this is the site-wide OG image (exists in public/).
+  image: `${CAFE_POST_BASE_URL}/assets/images/screenshots/desktop/coffi-landing-og-1.jpg`,
 };
 
 export const CAFE_POST_READING_TIME = "5 min";

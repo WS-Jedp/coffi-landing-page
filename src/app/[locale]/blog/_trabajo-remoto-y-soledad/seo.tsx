@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { generateBlogMetadata, generateBlogStructuredData } from "@/lib/blog-seo";
+import { getBlogPost, postAlternates } from "@/lib/seo/routes";
 import {
   SOLEDAD_BASE_URL,
   SOLEDAD_META_TITLE,
@@ -22,14 +23,7 @@ export function soledadMetadata(lang: SoledadLang): Metadata {
     // Short <title> (< 60 chars) instead of the generic "| Coffi Blog - Coworking Medellín" suffix.
     title: { absolute: title },
     // EN and ES live under different slugs, so hreflang must point at each real URL.
-    alternates: {
-      canonical: url,
-      languages: {
-        en: soledadUrl("en"),
-        es: soledadUrl("es"),
-        "x-default": soledadUrl("en"),
-      },
-    },
+    alternates: postAlternates(getBlogPost("remote-work-and-loneliness"), lang),
     openGraph: {
       ...base.openGraph,
       url,

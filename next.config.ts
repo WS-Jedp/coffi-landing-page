@@ -70,6 +70,12 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // The sitemap used to be a static file at this path
+      {
+        source: "/sitemap/sitemap.xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
       // Redirect old paths to new localized paths
       {
         source: "/about",

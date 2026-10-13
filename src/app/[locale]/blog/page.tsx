@@ -1,87 +1,7 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { BLOG_POSTS } from "@/lib/seo/routes";
 import { useLocale } from "next-intl";
 import { ArrowRight, Calendar, Clock, User } from "lucide-react";
-
-// Blog posts data - this could be moved to a separate file or CMS
-const blogPosts = [
-  {
-    slug: "remote-work-and-loneliness",
-    slugEs: "trabajo-remoto-y-soledad",
-    title: {
-      en: "Remote work gave you freedom. Science says it also left you more alone.",
-      es: "Remote work te dio libertad. La ciencia dice que también te dejó más solo."
-    },
-    excerpt: {
-      en: "Science study of over 588,000 people: remote work increases time alone and distress, especially if you live alone. Freedom doesn’t have to cost you connection.",
-      es: "Science, más de 588.000 personas: el trabajo remoto aumenta tiempo solo y malestar, sobre todo si vives solo. La libertad no tiene por qué costarte la conexión."
-    },
-    publishDate: "2026-10-12",
-    readingTime: "4 min",
-    category: {
-      en: "Workspace Guide",
-      es: "Guía de Espacios"
-    },
-    featured: false
-  },
-  {
-    slug: "the-right-cafe-for-today",
-    slugEs: "el-cafe-correcto-para-hoy",
-    title: {
-      en: "The perfect café doesn’t exist. The right café for today does",
-      es: "El café perfecto no existe. Existe el café correcto para hoy"
-    },
-    excerpt: {
-      en: "In Medellín, “best cafés for remote work” lists fall short. Conditions change by the hour. Here’s how to find the space that actually works for you today.",
-      es: "En Medellín las listas de “mejores cafés para trabajar” se quedan cortas. El ambiente cambia cada hora. Cómo encontrar el espacio que realmente te sirve hoy."
-    },
-    publishDate: "2026-10-10",
-    readingTime: "5 min",
-    category: {
-      en: "Workspace Guide",
-      es: "Guía de Espacios"
-    },
-    featured: false
-  },
-  {
-    slug: "about-work-friendly-spaces",
-    slugEs: "sobre-espacios-de-trabajo-amigables",
-    title: {
-      en: "Understanding Work-Friendly Spaces: The Future of Productive Environments",
-      es: "Entendiendo los Espacios de Trabajo Amigables: El Futuro de los Ambientes Productivos"
-    },
-    excerpt: {
-      en: "Discover what makes a space truly work-friendly and how the concept has evolved beyond traditional coworking.",
-      es: "Descubre qué hace que un espacio sea verdaderamente amigable para el trabajo y cómo el concepto ha evolucionado más allá del coworking tradicional."
-    },
-    publishDate: "2025-06-20",
-    readingTime: "8 min",
-    category: {
-      en: "Workspace Guide",
-      es: "Guía de Espacios"
-    },
-    featured: true
-  },
-  {
-    slug: "best-cafes-and-workfriendly-spaces-in-medellin",
-    slugEs: "los-mejores-cafes-espacios-de-trabajo-amigables-en-medellin",
-    title: {
-      en: "Best Cafes and Work-Friendly Spaces in Medellín (2025 Digital Nomad Guide)",
-      es: "Los Mejores Cafés y Espacios de Trabajo Amigables en Medellín (Guía 2025)"
-    },
-    excerpt: {
-      en: "Discover the best work-friendly cafes and spaces in Medellín for digital nomads. From cozy cafes in Poblado to mountain workspaces in Santa Elena.",
-      es: "Descubre los mejores cafés y espacios de trabajo amigables en Medellín para nómadas digitales. Desde cafés acogedores en Poblado hasta espacios en las montañas de Santa Elena."
-    },
-    publishDate: "2025-06-20",
-    readingTime: "6 min",
-    category: {
-      en: "City Guide",
-      es: "Guía de Ciudad"
-    },
-    featured: false
-  },
-  // Add more blog posts here as you create them
-];
 
 export default function BlogPage() {
   const locale = useLocale();
@@ -110,15 +30,15 @@ export default function BlogPage() {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => {
-              const postSlug = isSpanish ? post.slugEs : post.slug;
+            {BLOG_POSTS.map((post) => {
+              const postSlug = isSpanish ? post.slugs.es : post.slugs.en;
               const postTitle = isSpanish ? post.title.es : post.title.en;
               const postExcerpt = isSpanish ? post.excerpt.es : post.excerpt.en;
               const postCategory = isSpanish ? post.category.es : post.category.en;
 
               return (
                 <article 
-                  key={post.slug}
+                  key={post.id}
                   className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 ${
                     post.featured ? 'md:col-span-2 lg:col-span-2' : ''
                   }`}
@@ -160,7 +80,7 @@ export default function BlogPage() {
                     </p>
 
                     <Link
-                      href={`/${locale}/blog/${postSlug}`}
+                      href={`/blog/${postSlug}`}
                       className="inline-flex items-center gap-2 text-coffi-purple font-medium hover:text-coffi-blue transition-colors group"
                     >
                       {isSpanish ? "Leer más" : "Read more"}
@@ -173,7 +93,7 @@ export default function BlogPage() {
           </div>
 
           {/* Empty State when no posts */}
-          {blogPosts.length === 0 && (
+          {BLOG_POSTS.length === 0 && (
             <div className="text-center py-24">
               <h3 className="text-2xl font-medium text-j-deep-black mb-4">
                 {isSpanish ? "Próximamente..." : "Coming Soon..."}
@@ -205,7 +125,7 @@ export default function BlogPage() {
             }
           </p>
           <Link
-            href={`/${locale}`}
+            href="/"
             className="inline-flex items-center gap-2 bg-white text-coffi-purple px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors"
           >
             {isSpanish ? "Explorar Espacios" : "Explore Spaces"}

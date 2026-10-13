@@ -1,4 +1,27 @@
 import type { Metadata } from "next";
+import {
+  SITE_URL,
+  absoluteUrl,
+  blogPostUrl,
+  findBlogPostBySlug,
+  pageAlternates,
+  postAlternates,
+  toSiteLocale,
+} from "@/lib/seo/routes";
+
+// Exists in public/. Used wherever a post does not ship its own cover.
+export const DEFAULT_BLOG_IMAGE = "/assets/images/screenshots/desktop/coffi-landing-og-1.jpg";
+
+function postUrl(blogData: BlogPostData, locale: string) {
+  const post = findBlogPostBySlug(blogData.slug);
+  const siteLocale = toSiteLocale(locale);
+  return post ? blogPostUrl(post, siteLocale) : absoluteUrl(siteLocale, `/blog/${blogData.slug}`);
+}
+
+// The registry owns the real last-modified date of every post.
+function lastModifiedOf(blogData: BlogPostData) {
+  return findBlogPostBySlug(blogData.slug)?.lastModified ?? blogData.lastModified;
+}
 
 export interface BlogPostData {
   slug: string;
@@ -36,15 +59,17 @@ export function generateBlogMetadata(
   const currentKeywords = isSpanish ? blogData.keywords.es : blogData.keywords.en;
   
   // Enhanced title with brand and SEO optimization
-  const seoTitle = `${currentTitle} | Coffi Blog - Coworking Medellín`;
+  const seoTitle = `${currentTitle} | Coffi`;
   
   // Get base URL and current page URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coffi.com.co';
-  const currentUrl = `${baseUrl}/${locale}/blog/${blogData.slug}`;
+  const baseUrl = SITE_URL;
+  const siteLocale = toSiteLocale(locale);
+  const post = findBlogPostBySlug(blogData.slug);
+  const currentUrl = postUrl(blogData, locale);
+  const lastModified = lastModifiedOf(blogData);
   
   // Default blog image or specific post image
-  const defaultImage = "/assets/images/blog/work-friendly-spaces-hero.jpg";
-  const ogImage = blogData.image || defaultImage;
+  const ogImage = blogData.image || DEFAULT_BLOG_IMAGE;
   
   // Comprehensive keywords combining blog-specific and general brand keywords
   const enhancedKeywords = [
@@ -71,13 +96,9 @@ export function generateBlogMetadata(
     
     // URLs and canonicals
     metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: currentUrl,
-      languages: {
-        'en': `${baseUrl}/en/blog/${blogData.slug}`,
-        'es': `${baseUrl}/es/blog/${blogData.slug}`,
-      },
-    },
+    alternates: post
+      ? postAlternates(post, siteLocale)
+      : { canonical: currentUrl },
     
     // Enhanced Open Graph for social sharing
     openGraph: {
@@ -94,15 +115,19 @@ export function generateBlogMetadata(
           height: 630,
           alt: currentTitle,
         },
-        {
-          url: "/assets/images/screenshots/desktop/coffi-landing-og-1.jpg",
-          width: 1200,
-          height: 630,
-          alt: "Coffi - Coworking spaces platform in Medellín",
-        }
+        ...(ogImage === DEFAULT_BLOG_IMAGE
+          ? []
+          : [
+              {
+                url: DEFAULT_BLOG_IMAGE,
+                width: 1200,
+                height: 630,
+                alt: "Coffi - Coworking spaces platform in Medellín",
+              },
+            ]),
       ],
       publishedTime: blogData.publishDate,
-      modifiedTime: blogData.lastModified,
+      modifiedTime: lastModified,
       section: blogData.category,
       tags: blogData.tags || currentKeywords.slice(0, 5),
       authors: [blogData.author.name],
@@ -122,7 +147,7 @@ export function generateBlogMetadata(
     other: {
       // Article metadata
       "article:published_time": blogData.publishDate,
-      "article:modified_time": blogData.lastModified,
+      "article:modified_time": lastModified,
       "article:author": blogData.author.name,
       "article:section": blogData.category,
       "article:tag": currentKeywords.slice(0, 5).join(", "),
@@ -169,20 +194,14 @@ export function generateBlogListMetadata(locale: string): Metadata {
     ? "Descubre guías completas sobre espacios de trabajo, coworking y cafés para trabajar en Medellín. Tips para nómadas digitales, reseñas de espacios y consejos de productividad."
     : "Discover comprehensive guides about workspaces, coworking, and work-friendly cafés in Medellín. Digital nomad tips, space reviews, and productivity advice.";
   
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coffi.com.co';
-  const currentUrl = `${baseUrl}/${locale}/blog`;
+  const baseUrl = SITE_URL;
+  const currentUrl = absoluteUrl(toSiteLocale(locale), "/blog");
   
   return {
     title,
     description,
     metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: currentUrl,
-      languages: {
-        'en': `${baseUrl}/en/blog`,
-        'es': `${baseUrl}/es/blog`,
-      },
-    },
+    alternates: pageAlternates(toSiteLocale(locale), "/blog"),
     openGraph: {
       title,
       description,
@@ -191,7 +210,7 @@ export function generateBlogListMetadata(locale: string): Metadata {
       type: "website",
       images: [
         {
-          url: "/assets/images/blog/blog-hero.jpg",
+          url: DEFAULT_BLOG_IMAGE,
           width: 1200,
           height: 630,
           alt: "Coffi Blog - Workspace guides for Medellín",
@@ -202,7 +221,7 @@ export function generateBlogListMetadata(locale: string): Metadata {
       card: "summary_large_image",
       title,
       description,
-      images: ["/assets/images/blog/blog-hero.jpg"],
+      images: [DEFAULT_BLOG_IMAGE],
     },
   };
 }
@@ -212,15 +231,16 @@ export function generateBlogStructuredData(blogData: BlogPostData, locale: strin
   const isSpanish = locale === 'es';
   const currentTitle = isSpanish ? blogData.title.es : blogData.title.en;
   const currentDescription = isSpanish ? blogData.description.es : blogData.description.en;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coffi.com.co';
-  const currentUrl = `${baseUrl}/${locale}/blog/${blogData.slug}`;
+  const baseUrl = SITE_URL;
+  const currentUrl = postUrl(blogData, locale);
+  const image = blogData.image || DEFAULT_BLOG_IMAGE;
   
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": currentTitle,
     "description": currentDescription,
-    "image": blogData.image || "/assets/images/blog/work-friendly-spaces-hero.jpg",
+    "image": image.startsWith("http") ? image : `${baseUrl}${image}`,
     "author": {
       "@type": "Organization",
       "name": blogData.author.name,
@@ -235,7 +255,7 @@ export function generateBlogStructuredData(blogData: BlogPostData, locale: strin
       }
     },
     "datePublished": blogData.publishDate,
-    "dateModified": blogData.lastModified,
+    "dateModified": lastModifiedOf(blogData),
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": currentUrl
@@ -244,7 +264,7 @@ export function generateBlogStructuredData(blogData: BlogPostData, locale: strin
     "isPartOf": {
       "@type": "Blog",
       "name": "Coffi Blog",
-      "url": `${baseUrl}/${locale}/blog`
+      "url": absoluteUrl(toSiteLocale(locale), "/blog")
     },
     "inLanguage": locale,
     "keywords": isSpanish ? blogData.keywords.es.join(", ") : blogData.keywords.en.join(", "),

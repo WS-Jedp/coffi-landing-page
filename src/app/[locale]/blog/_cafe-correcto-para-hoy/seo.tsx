@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { generateBlogMetadata, generateBlogStructuredData } from "@/lib/blog-seo";
+import { getBlogPost, postAlternates } from "@/lib/seo/routes";
 import {
   CAFE_POST_BASE_URL,
   CAFE_POST_META_TITLE,
@@ -20,14 +21,7 @@ export function cafePostMetadata(lang: CafePostLang): Metadata {
     // Short <title> (< 60 chars) instead of the generic "| Coffi Blog - Coworking Medellín" suffix.
     title: { absolute: title },
     // EN and ES live under different slugs, so hreflang must point at each real URL.
-    alternates: {
-      canonical: url,
-      languages: {
-        en: cafePostUrl("en"),
-        es: cafePostUrl("es"),
-        "x-default": cafePostUrl("en"),
-      },
-    },
+    alternates: postAlternates(getBlogPost("the-right-cafe-for-today"), lang),
     openGraph: {
       ...base.openGraph,
       url,

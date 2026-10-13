@@ -47,17 +47,13 @@ Copy the layout.tsx from existing blog posts and update the blogData object with
 - Add relevant images with alt text
 - Use schema.org markup for articles
 
-## 4. Update sitemap.ts
-Add your new blog post to the `blogPosts` array:
-```typescript
-{
-  en: '/blog/your-english-slug',
-  es: '/blog/your-spanish-slug'
-}
-```
+## 4. Add the post to the registry
+Add one entry to `BLOG_POSTS` in `src/lib/seo/routes.ts` (EN and ES slugs, `publishDate`,
+`lastModified`, and the blog index card data). That single entry feeds the blog index,
+`/sitemap.xml`, the canonical/hreflang alternates and the article dates, so there is nothing
+to update in the sitemap or the blog index page.
 
-## 5. Update blog index page
-Add your post to the `blogPosts` array in `src/app/[locale]/blog/page.tsx`
+Use the real last-modified date: a `lastModified` that is wrong or always changes is ignored by Google.
 
 ## SEO Optimization Checklist:
 
