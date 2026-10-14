@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "the-space-you-choose-today",
+    slugs: {
+      en: "the-space-you-choose-today",
+      es: "el-espacio-que-eliges-hoy",
+    },
+    publishDate: "2026-10-14",
+    lastModified: "2026-10-14",
+    title: {
+      en: "The space you choose today decides your rhythm (and it's not just the Wi-Fi)",
+      es: "El espacio que eliges hoy decide tu ritmo (y no es solo el Wi-Fi)"
+    },
+    excerpt: {
+      en: "In Medellín, the noise, the people, and the vibe of a café change hour by hour. Science shows how the environment affects your focus. Here's why real-time context matters more than static lists.",
+      es: "En Medellín, el ruido, la gente y el vibe de un café cambian hora a hora. La ciencia muestra cómo el ambiente afecta tu foco. Aquí está por qué el contexto real importa más que las listas estáticas."
+    },
+    readingTime: "5 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     id: "remote-work-and-loneliness",
     slugs: {
       en: "remote-work-and-loneliness",
