@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "medellin-2026-where-your-rhythm-finds-its-place",
+    slugs: {
+      en: "medellin-2026-where-your-rhythm-finds-its-place",
+      es: "medellin-2026-donde-tu-ritmo-encuentra-su-lugar",
+    },
+    publishDate: "2026-10-17",
+    lastModified: "2026-10-17",
+    title: {
+      en: "Medellín in 2026 is no longer “cheap”: it’s where your rhythm finds its place",
+      es: "Medellín en 2026 ya no es “barato”: es donde tu ritmo encuentra su lugar"
+    },
+    excerpt: {
+      en: "Medellín is still in the global top 30 for digital nomads. But the game changed: Laureles won, a comfortable month is $1,200–1,800, and what matters is the context of your day. Here’s how to choose for real.",
+      es: "Medellín sigue en el top 30 mundial de nómadas digitales. Pero el juego cambió: Laureles ganó, el costo real está entre $1.200–1.800, y lo que importa es el contexto de tu día. Aquí está cómo elegir de verdad."
+    },
+    readingTime: "3 min",
+    category: {
+      en: "City Guide",
+      es: "Guía de Ciudad"
+    },
+    featured: false
+  },
+  {
     id: "the-space-you-choose-today",
     slugs: {
       en: "the-space-you-choose-today",
