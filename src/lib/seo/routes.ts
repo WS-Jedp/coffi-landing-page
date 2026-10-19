@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "500-contacts-and-no-one-to-call",
+    slugs: {
+      en: "500-contacts-and-no-one-to-call",
+      es: "500-contactos-y-nadie-a-quien-llamar",
+    },
+    publishDate: "2026-10-19",
+    lastModified: "2026-10-19",
+    title: {
+      en: "500 contacts and no one to call: why the nomad community in Medellín stays on the surface",
+      es: "500 contactos y nadie a quien llamar: por qué la comunidad de nomads en Medellín se queda en la superficie"
+    },
+    excerpt: {
+      en: "You meet people all week in Laureles or El Poblado and still feel alone. Why nomad friendships stay shallow and how to create real moments in Medellín.",
+      es: "Conoces gente toda la semana en Laureles o El Poblado y aún te sientes solo. Por qué las amistades nomad se quedan superficiales y cómo crear momentos reales en Medellín."
+    },
+    readingTime: "5 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     id: "medellin-2026-where-your-rhythm-finds-its-place",
     slugs: {
       en: "medellin-2026-where-your-rhythm-finds-its-place",
