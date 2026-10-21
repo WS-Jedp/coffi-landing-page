@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "you-only-get-2-3-hours-of-real-focus-a-day",
+    slugs: {
+      en: "you-only-get-2-3-hours-of-real-focus-a-day",
+      es: "solo-tienes-2-3-horas-de-foco-real-al-dia",
+    },
+    publishDate: "2026-10-21",
+    lastModified: "2026-10-21",
+    title: {
+      en: "You only get 2–3 hours of real focus a day. The environment decides if you use them or lose them",
+      es: "Solo tienes 2-3 horas de foco real al día. El ambiente decide si las usas o las pierdes"
+    },
+    excerpt: {
+      en: "2026 data shows the average worker gets only 2–3 hours of deep focus. It’s not discipline—it’s context. Learn how to choose the space that protects your energy so you can thrive.",
+      es: "Datos de 2026 muestran que el trabajador promedio solo logra 2-3 horas de deep focus. No es disciplina: es contexto. Aprende a elegir el espacio que protege tu energía y te deja thrivar."
+    },
+    readingTime: "4 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     id: "500-contacts-and-no-one-to-call",
     slugs: {
       en: "500-contacts-and-no-one-to-call",
