@@ -60,7 +60,7 @@
     "connect": {
       "eyebrow": "Community",
       "title": "Connect with the people creating nearby",
-      "description": "See in real time <b>who is creating near you</b>. Check in to meet the room and, with Nomad, find where your people are before you head out.",
+      "description": "See in real time <b>who's creating near you</b>. Let yourself be found in your room and, with Nomad, find your people before you head out.",
       "chipsLabel": "Filter by what they do",
       "count": "{n, plural, =0 {nobody nearby} one {# person} other {# people}}",
       "roles": {
@@ -84,7 +84,7 @@
     "points": {
       "eyebrow": "Coffi Points",
       "title": "Earn while you create",
-      "description": "Every check-in, review, report or photo <b>earns you Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces.",
+      "description": "With every check-in, every review and the time you stay findable, <b>you earn Coffi Points</b>. Redeem them for exclusive perks at your favourite spaces.",
       "pin": "Live offer: {discount}% off for {points} points",
       "pinShort": "{discount}% off · {points} pts",
       "pinPlan": {
@@ -209,7 +209,7 @@
       "title": "Powered by Community,",
       "subTitle": "Designed for You",
       "description": "Coffi thrives on its vibrant community of digital nomads, making real-time insights possible.",
-      "2ndDescription": "By updating conditions, checking in or leaving a review, you earn Coffi Points—redeemable for rewards like coupons.",
+      "2ndDescription": "By checking in, leaving a review or letting yourself be found in your room, you earn Coffi Points—redeemable for rewards like coupons.",
       "3rdDescription": "Join the Nomad plan to find your people across the city, earn double rewards, and never miss out on the best places for work or relaxation."
     },
     "professions": {
@@ -256,12 +256,13 @@
         "price": "Free",
         "priceText": "Forever! you just need an account.",
         "action": "Start Exploring",
-        "why": "Find places to work, see how they're doing in real time, and earn Coffi Points from your first check-in.",
+        "why": "Find the right place to create, see how it feels in real time and let your people find you. You earn Coffi Points from your first check-in.",
         "benefits": {
           "allSpots": "Official and community-discovered spots",
           "filters": "Filters by type, amenities, and real-time vibe",
           "liveStatus": "Live space status: how busy it is and what people came to do",
-          "sessions": "Sessions: check in with your intent and see who's in the room",
+          "sessions": "Rooms: check in, see who's here with you and let your people find you",
+          "visibleTimePoints": "Earn Coffi Points for the time you stay findable",
           "coffiPoints": "Earn Coffi Points and redeem them for rewards at spaces",
           "freeForever": "Free forever, no card needed"
         }
@@ -277,24 +278,26 @@
         "yearly": "Yearly",
         "yearlyPrice": "Billed annually · works out to {price} COP a month",
         "monthlyPrice": "Or {price} COP a year and save {percent}%",
-        "action": "Upgrade to Nomad Plan",
-        "why": "Explorer tells you you're not alone. Nomad tells you where your people are right now: who's at each space in the city, so you can choose before you go.",
+        "action": "See Nomad",
+        "why": "Explorer lets you be found. Nomad lets you find: see who's at every space in the city before you leave home.",
         "benefits": {
           "explorerBenefits": "All Explorer Plan benefits",
-          "cityPresence": "See who's at each space in the city before you go",
+          "cityPresence": "See who's at every space before you go, no check-in needed",
           "presenceFilter": "Filter spaces by who's there: purpose and profession",
-          "visibleInCity": "Make yourself visible in the city so your people can find you",
+          "visibleInCity": "Be found across the city, whenever you choose",
           "2xCoffiPoints": "Earn double Coffi Points (except profile and referrals)",
+          "visibleTimePoints": "Earn double Coffi Points for the time you stay findable",
           "exclusivePerks": "Nomad-only rewards at spaces"
         },
         "benefitsDescriptions": {
-          "cityPresence": "From the map and each space's card, see who chose to be visible in the city, what they came to do, and what they work on.",
-          "2xCoffiPoints": "Check-ins, reports, photos, and reviews earn you double. Completing your profile and referrals earn the same on every plan.",
+          "cityPresence": "From the map and each space card, see who chose to be found, what they came to do and what they work on.",
+          "visibleInCity": "\"Visible in the city\" is already on, so other Nomad members can find you before they arrive. You can turn it off anytime. It goes together with your room: hide in your room and you're hidden everywhere.",
+          "2xCoffiPoints": "Check-ins, reviews and the time you stay findable earn you double. Completing your profile and referrals earn the same on every plan.",
           "exclusivePerks": "Spaces create rewards just for Nomad members, on top of the ones open to everyone."
         },
         "checkout": {
           "getStarted": "Let's Coffi! You're just a few clicks away.",
-          "description": "See who's in the city before you head out, earn double Coffi Points, and unlock exclusive rewards.",
+          "description": "Find your people before you head out: see who's at every space, earn double Coffi Points and unlock exclusive rewards.",
           "coffiEmailAccount": "Enter your Coffi account email",
           "validEmail": "Please enter a valid email to continue",
           "emailValidated": "Email found! Let's keep going 🚀",
@@ -310,11 +313,11 @@
       },
       "wanderlust": {
         "title": "Wanderlust",
-        "description": "For the true adventurer, ready to redefine their journey.",
-        "comingSoon": "Coming Soon",
-        "working": "We’re working hard to improve really fast.",
-        "action": "Know More",
-        "why": "The ultimate plan for ambitious nomads, offering advanced personalization and features to elevate your Coffi experience."
+        "description": "We're preparing something new for the community of creators.",
+        "comingSoon": "Coming soon",
+        "working": "Arriving when it's ready for you.",
+        "action": "Learn more",
+        "why": "Meanwhile, Explorer and Nomad already take you to the right space and to your people."
       }
     }
   },

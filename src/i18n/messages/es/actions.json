@@ -22,7 +22,6 @@
         "done": "Hecho"
     },
     "subscriptions": {
-        "startExploring": "Comienza a explorar",
-        "upgradeToNomad": "Actualiza al Plan de Nómada"
+        "startExploring": "Comienza a explorar"
     }
 }

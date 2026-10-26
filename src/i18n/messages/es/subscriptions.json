@@ -1,15 +1,15 @@
 {
     "nomad": {
         "success": {
-            "title": "¡Bienvenido a la vida Nómada 🚀!",
-            "nomadPlanUnlocked": "¡Has desbloqueado oficialmente el Plan Nómada!",
+            "title": "¡Bienvenido a la vida Nomad 🚀!",
+            "nomadPlanUnlocked": "¡Has desbloqueado oficialmente el Plan Nomad!",
             "welcomeMessage": "Nos emociona tenerte aquí. Tu próxima aventura comienza ahora, estés donde estés.",
             "whatsNext": "¿Qué sigue ahora?",
             "emailConfirmation": "Suscripción confirmada con:",
             "nextSteps": {
-                "explore": "En tu próximo check-in, activa «Visible en la ciudad» para que tu gente te encuentre.",
+                "explore": "Desde ahora ves quién está en cada espacio antes de salir. «Visible en la ciudad» ya está activado en tus check-ins, así que otros miembros Nomad también te encuentran desde la ciudad. Puedes apagarlo cuando quieras.",
                 "connect": "Filtra el mapa por el propósito y la profesión de quienes están en cada espacio.",
-                "enjoy": "Gana el doble de Coffi Points y canjéalos por recompensas exclusivas."
+                "enjoy": "Gana el doble de Coffi Puntos y canjéalos por recompensas exclusivas."
             },
             "receiptEmail": "Pronto recibirás un correo de confirmación con tu recibo."
         },

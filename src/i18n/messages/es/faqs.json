@@ -1,0 +1,85 @@
+{
+  "title": "Preguntas frecuentes",
+  "general": {
+    "title": "Preguntas generales",
+    "whatIsCoffi": {
+      "question": "¿Qué es Coffi?",
+      "answer": "Coffi es una plataforma pensada para ayudar a nómadas digitales y trabajadores remotos a descubrir los espacios ideales para trabajar, estudiar y descansar. Combina información curada de cada espacio con datos en tiempo real que aporta la comunidad."
+    },
+    "isCoffiFree": {
+      "question": "¿Coffi es gratis?",
+      "answer": "Sí. Con Explorer encuentras el espacio correcto para crear, ves cómo se vive cada espacio en tiempo real, haces check-in, ves quién está contigo y te dejas encontrar por tu gente mientras sumas Coffi Puntos. Si quieres encontrar a tu gente antes de salir y ver quién está en cada espacio sin hacer check-in, está Nomad."
+    }
+  },
+  "privacy": {
+    "title": "Privacidad y seguridad",
+    "personalInfo": {
+      "question": "¿Qué información personal recoge Coffi?",
+      "answer": "Cuando creas una cuenta, Coffi recoge información personal básica, como tu nombre y tu correo. También puede recoger datos sobre cómo usas la plataforma, información de tu dispositivo y cookies para mejorar el servicio."
+    },
+    "dataProtection": {
+      "question": "¿Cómo protege Coffi mis datos?",
+      "answer": "Coffi aplica medidas de seguridad razonables para proteger tus datos de accesos, divulgaciones o usos no autorizados. Aun así, ningún método de almacenamiento en línea es totalmente seguro, así que te recomendamos usar contraseñas seguras y no compartir tus datos de acceso."
+    },
+    "thirdParties": {
+      "question": "¿Coffi comparte mi información con terceros?",
+      "answer": "Coffi puede compartir tu información con proveedores externos de confianza para mejorar sus servicios o cumplir obligaciones legales. Ten la tranquilidad de que tus datos nunca se venderán con fines de marketing."
+    },
+    "whoCanSeeMe": {
+      "question": "¿Quién puede verme en Coffi y cómo me oculto?",
+      "answer": "Cuando haces check-in y te muestras en tu sala, te encuentran quienes están en ese espacio y los miembros Nomad que buscan a su gente antes de salir. Ven tu nombre, foto, profesión, a qué viniste, a qué hora llegaste y si estás en pausa, solo mientras tu sala está abierta. Cuando llevas un rato visible, empiezas a sumar Coffi Puntos. Si prefieres no aparecer, apaga «Visible en esta sala» cuando quieras: nadie te verá, ni aquí ni en la ciudad, y sigues contando sin nombre en las gráficas del espacio."
+    },
+    "whoCanSeeMeNomad": {
+      "question": "Si soy Nomad, ¿quién me ve?",
+      "answer": "Cuando te muestras en tu sala, te encuentran quienes están en ese espacio. Como «Visible en la ciudad» ya viene activado, también te encuentran otros miembros Nomad desde fuera, antes de llegar; puedes apagarlo cuando quieras. Si te ocultas en tu sala, te ocultas en todas partes, y aun así ves a quienes se dejaron encontrar. Y cuando miras un espacio desde fuera, nadie ahí ve que lo estás mirando."
+    }
+  },
+  "plans": {
+    "title": "Planes de suscripción",
+    "whichPlans": {
+      "question": "¿Qué planes tiene Coffi?",
+      "intro": "Hoy puedes elegir entre dos.",
+      "explorer": "<b>Explorer</b>, gratis: te dejas encontrar en tu sala y ganas Coffi Puntos por tus check-ins, tus reseñas y el tiempo que te dejas encontrar.",
+      "nomad": "<b>Nomad</b>: encuentras a tu gente antes de salir, ves quién está en cada espacio sin hacer check-in, filtras la ciudad por profesión y propósito, otros miembros Nomad te encuentran también desde la ciudad con «Visible en la ciudad», que ya viene activado y puedes apagar cuando quieras, y ganas el doble de Coffi Puntos en casi todas las acciones.",
+      "wanderlust": "<b>Wanderlust</b>: próximamente."
+    },
+    "cancel": {
+      "question": "¿Puedo cancelar mi suscripción en cualquier momento?",
+      "answer": "Sí, puedes cancelar tu suscripción en cualquier momento. Eso sí, los reembolsos están sujetos a la política de reembolsos de Coffi."
+    },
+    "upgrade": {
+      "question": "¿Cómo me paso a Nomad?",
+      "answer": "Desde la app, toca «Ver Nomad», o entra a la página de Nomad en nuestra web (/es/subscribe-nomad-plan). El cambio aplica de inmediato, incluso si ya tienes tu sala abierta."
+    }
+  },
+  "community": {
+    "title": "Uso de la plataforma y comunidad",
+    "contribute": {
+      "question": "¿Puedo aportar actualizaciones en tiempo real a Coffi?",
+      "answer": "¡Sí! Puedes aportar información en tiempo real sobre los espacios que visitas, como el nivel de ruido, los puestos disponibles o la señal del Wi-Fi. Estas actualizaciones ayudan a que la comunidad de Coffi esté al día."
+    },
+    "rewards": {
+      "question": "¿Hay recompensas por aportar actualizaciones?",
+      "answer": "¡Sí! Al aportar actualizaciones en tiempo real o descubrir espacios nuevos, ganas Coffi Puntos, que puedes canjear por funciones exclusivas, insignias u otras recompensas."
+    },
+    "inappropriateContent": {
+      "question": "¿Qué pasa si publico contenido inapropiado?",
+      "answer": "Publicar contenido ofensivo, falso o ilegal está prohibido y puede llevar a la suspensión o al cierre de tu cuenta."
+    }
+  },
+  "support": {
+    "title": "Cuenta y soporte técnico",
+    "forgotPassword": {
+      "question": "Olvidé mi contraseña. ¿Cómo la restablezco?",
+      "answer": "Puedes restablecerla con el enlace «¿Olvidaste tu contraseña?» de la pantalla para entrar a tu cuenta y siguiendo las instrucciones que te enviamos al correo con el que te registraste."
+    },
+    "deleteAccount": {
+      "question": "¿Cómo puedo eliminar mi cuenta?",
+      "answer": "Si quieres eliminar tu cuenta, puedes hacerlo desde la configuración de tu perfil o escribirnos a letscoffi@gmail.com y te ayudamos."
+    },
+    "technicalIssues": {
+      "question": "¿A quién contacto si tengo problemas técnicos?",
+      "answer": "Si tienes cualquier problema técnico, escríbele a nuestro equipo de soporte a letscoffi@gmail.com."
+    }
+  }
+}
