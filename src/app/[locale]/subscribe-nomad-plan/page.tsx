@@ -7,7 +7,9 @@ import { SimpleDarkButton } from "@/components/buttons";
 import { ToggleSwitch } from "@/components/inputs/toggle";
 import {
   Check,
+  Clock,
   Coffee,
+  MapPin,
   Sparkles,
   Users,
   Loader2,
@@ -26,12 +28,15 @@ import Link from "next/link";
 import { PRICING_COP, formatCOP, savePercent } from "@/data/pricing";
 import {
   NOMAD_CHECKOUT_BENEFITS,
+  hasCheckoutDescription,
   type NomadCheckoutBenefit,
 } from "@/data/planBenefits";
 
 const CHECKOUT_BENEFIT_ICONS: Record<NomadCheckoutBenefit, React.ReactNode> = {
   cityPresence: <Users className="text-coffi-white" size={20} />,
+  visibleInCity: <MapPin className="text-coffi-white" size={20} />,
   "2xCoffiPoints": <Sparkles className="text-coffi-white" size={20} />,
+  visibleTimePoints: <Clock className="text-coffi-white" size={20} />,
   exclusivePerks: <Coffee className="text-coffi-white" size={20} />,
 };
 
@@ -77,7 +82,7 @@ const Feature = ({
 }: {
   icon: React.ReactNode;
   title: string;
-  description: string;
+  description?: string;
   index: number;
 }) => {
   // Define interfaces for variant animations
@@ -125,7 +130,9 @@ const Feature = ({
       <div className="mt-1 bg-coffi-purple-100/20 p-2 rounded-full">{icon}</div>
       <div>
         <h3 className="font-bold text-white text-lg">{title}</h3>
-        <p className="text-sm text-coffi-white/80">{description}</p>
+        {description && (
+          <p className="text-sm text-coffi-white/80">{description}</p>
+        )}
       </div>
     </motion.div>
   );
@@ -451,9 +458,13 @@ export default function NomadPlanPage() {
                       key={key}
                       icon={CHECKOUT_BENEFIT_ICONS[key]}
                       title={t(`home.subscriptions.plans.nomad.benefits.${key}`)}
-                      description={t(
-                        `home.subscriptions.plans.nomad.benefitsDescriptions.${key}`
-                      )}
+                      description={
+                        hasCheckoutDescription(key)
+                          ? t(
+                              `home.subscriptions.plans.nomad.benefitsDescriptions.${key}`
+                            )
+                          : undefined
+                      }
                       index={index}
                     />
                   ))}

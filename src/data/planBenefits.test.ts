@@ -11,6 +11,7 @@ import {
   EXPLORER_BENEFITS,
   NOMAD_BENEFITS,
   NOMAD_CHECKOUT_BENEFITS,
+  NOMAD_CHECKOUT_DESCRIBED,
 } from "./planBenefits.ts";
 
 type Plans = Record<
@@ -41,7 +42,7 @@ for (const locale of LOCALES) {
     for (const key of NOMAD_BENEFITS) {
       assert.ok(plans.nomad.benefits[key], `nomad.benefits.${key}`);
     }
-    for (const key of NOMAD_CHECKOUT_BENEFITS) {
+    for (const key of NOMAD_CHECKOUT_DESCRIBED) {
       assert.ok(
         plans.nomad.benefitsDescriptions?.[key],
         `nomad.benefitsDescriptions.${key}`
@@ -62,7 +63,20 @@ for (const locale of LOCALES) {
     );
     assert.deepEqual(
       Object.keys(plans.nomad.benefitsDescriptions ?? {}).sort(),
-      [...NOMAD_CHECKOUT_BENEFITS].sort()
+      [...NOMAD_CHECKOUT_DESCRIBED].sort()
     );
   });
 }
+
+test("the checkout lists the city and visible-time lines", () => {
+  for (const key of ["visibleInCity", "visibleTimePoints"] as const) {
+    assert.ok(NOMAD_CHECKOUT_BENEFITS.includes(key), key);
+  }
+  assert.ok(EXPLORER_BENEFITS.includes("visibleTimePoints"));
+});
+
+test("every described checkout line is a checkout line", () => {
+  for (const key of NOMAD_CHECKOUT_DESCRIBED) {
+    assert.ok(NOMAD_CHECKOUT_BENEFITS.includes(key), key);
+  }
+});

@@ -21,6 +21,8 @@ export async function loadMessages(locale: string) {
     .default;
   const blogBestCafesAndWorkFriendlySpaces = (await import(`../../i18n/messages/${locale}/bestCafesAndWorkFriendlySpaces.json`))
     .default;
+  const faqs = (await import(`../../i18n/messages/${locale}/faqs.json`))
+    .default;
 
   return {
     home,
@@ -33,6 +35,7 @@ export async function loadMessages(locale: string) {
     forPlaces,
     subscriptions,
     blogWorkFriendlySpaces,
-    blogBestCafesAndWorkFriendlySpaces
+    blogBestCafesAndWorkFriendlySpaces,
+    faqs
   };
 }

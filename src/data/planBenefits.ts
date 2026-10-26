@@ -14,6 +14,7 @@ export const EXPLORER_BENEFITS = [
   "filters",
   "liveStatus",
   "sessions",
+  "visibleTimePoints",
   "coffiPoints",
   "freeForever",
 ] as const;
@@ -24,17 +25,37 @@ export const NOMAD_BENEFITS = [
   "presenceFilter",
   "visibleInCity",
   "2xCoffiPoints",
+  "visibleTimePoints",
   "exclusivePerks",
 ] as const;
 
 /**
- * The three the checkout explains at length, each with a line under
- * `nomad.benefitsDescriptions`. Only what Explorer does not already have.
+ * What the checkout lists, each with an icon. Only what Explorer does not
+ * already have.
  */
 export const NOMAD_CHECKOUT_BENEFITS = [
   "cityPresence",
+  "visibleInCity",
   "2xCoffiPoints",
+  "visibleTimePoints",
   "exclusivePerks",
 ] as const satisfies readonly (typeof NOMAD_BENEFITS)[number][];
 
 export type NomadCheckoutBenefit = (typeof NOMAD_CHECKOUT_BENEFITS)[number];
+
+/**
+ * The checkout lines that carry a longer explanation under
+ * `nomad.benefitsDescriptions`. `visibleTimePoints` has none: the
+ * `2xCoffiPoints` line already explains it.
+ */
+export const NOMAD_CHECKOUT_DESCRIBED = [
+  "cityPresence",
+  "visibleInCity",
+  "2xCoffiPoints",
+  "exclusivePerks",
+] as const satisfies readonly NomadCheckoutBenefit[];
+
+export const hasCheckoutDescription = (
+  key: NomadCheckoutBenefit
+): key is (typeof NOMAD_CHECKOUT_DESCRIBED)[number] =>
+  (NOMAD_CHECKOUT_DESCRIBED as readonly string[]).includes(key);

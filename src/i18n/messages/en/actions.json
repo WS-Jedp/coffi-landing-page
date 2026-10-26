@@ -22,7 +22,6 @@
         "done": "Done"
     },
     "subscriptions": {
-        "startExploring": "Start exploring",
-        "upgradeToNomad": "Upgrade to Nomad Plan"
+        "startExploring": "Start exploring"
     }
 }
