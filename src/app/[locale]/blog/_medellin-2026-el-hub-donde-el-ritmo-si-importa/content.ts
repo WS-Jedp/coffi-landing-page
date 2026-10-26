@@ -113,7 +113,7 @@ export interface MedellinHubCopy {
   thrive: { h2: string; p1: string; p2: string; items: string[]; p3: string };
   coffi: { h2: string; p1: Rich; p2: string; p3: string };
   signoff: string;
-  footnotes: [string, string];
+  footnotes: string[];
   related: { label: string; ids: string[] };
 }
 
@@ -179,7 +179,7 @@ export const MEDELLIN_HUB_COPY: Record<MedellinHubLang, MedellinHubCopy> = {
       p3: "Google Maps te dice que hay un café cerca. No te dice si hoy está lleno de conversaciones altas o si el wifi está saturado. Tampoco te dice quién más está trabajando allí en ese momento.",
     },
     thrive: {
-      h2: "Cómo thrivar en la ciudad (sin improvisar cada mañana)",
+      h2: "Cómo prosperar en la ciudad (sin improvisar cada mañana)",
       p1: "La forma más simple de no perder el día es tratar a Medellín como lo que es: una ciudad con varios contextos simultáneos, no un solo “lugar para nómadas”.",
       p2: "Algunas prácticas que funcionan:",
       items: [
@@ -197,11 +197,10 @@ export const MEDELLIN_HUB_COPY: Record<MedellinHubLang, MedellinHubCopy> = {
         " no es un directorio de coworkings. Es la capa que conecta tu contexto del momento (qué necesitas hacer, cómo estás, qué tipo de ambiente te sirve) con los espacios que realmente están funcionando así ahora mismo.",
       ],
       p2: "En una ciudad como Medellín, donde hay muchas opciones y varios ritmos conviviendo, esa diferencia se nota. Te ahorra el trial-and-error de las primeras semanas y te deja más energía para lo que realmente viniste a hacer — o para lo que quieres vivir después de las 6.",
-      p3: "La ciudad está viva. El ecosistema tech crece. La comunidad de remote workers también. Lo que falta no es más lugares. Es saber, con claridad, dónde thrivar hoy.",
+      p3: "La ciudad está viva. El ecosistema tech crece. La comunidad de remote workers también. Lo que falta no es más lugares. Es saber, con claridad, dónde prosperar hoy.",
     },
     signoff: "Be where you thrive.",
     footnotes: [
-      "Qué investigué: Datos recientes de Ruta N y cobertura de El Espectador/Forbes sobre el ecosistema de startups en Medellín (inversión 2026, número de empresas, empleo). Guías actualizadas de barrios y coworkings (Laureles vs Poblado) de TravelDojo, Vidala y otras fuentes locales de octubre 2026. Tendencias generales de productividad remota y comunidad nómada.",
       "Fuentes clave: El Espectador (25 oct 2026), Forbes Colombia / Ruta N (Pulso CTI), TravelDojo (guías Medellín digital nomads).",
     ],
     related: { label: "Blog Coffi", ids: MEDELLIN_HUB_RELATED_IDS },
@@ -274,7 +273,6 @@ export const MEDELLIN_HUB_COPY: Record<MedellinHubLang, MedellinHubCopy> = {
     },
     signoff: "Be where you thrive.",
     footnotes: [
-      "What I researched: Recent Ruta N data and coverage from El Espectador/Forbes on Medellín’s startup ecosystem (2026 investment, number of companies, employment). Updated neighborhood and coworking guides (Laureles vs Poblado) from TravelDojo, Vidala, and other local sources from October 2026. General remote productivity and nomad community trends.",
       "Key sources: El Espectador (Oct 25, 2026), Forbes Colombia / Ruta N (Pulso CTI), TravelDojo (Medellín digital nomad guides).",
     ],
     related: { label: "Coffi Blog", ids: MEDELLIN_HUB_RELATED_IDS },
