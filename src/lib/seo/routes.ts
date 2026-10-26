@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "medellin-2026-the-hub-where-rhythm-actually-matters",
+    slugs: {
+      en: "medellin-2026-the-hub-where-rhythm-actually-matters",
+      es: "medellin-2026-el-hub-donde-el-ritmo-si-importa",
+    },
+    publishDate: "2026-10-26",
+    lastModified: "2026-10-26",
+    title: {
+      en: "Medellín 2026: The Hub Where Rhythm Actually Matters",
+      es: "Medellín 2026: el hub donde el ritmo sí importa"
+    },
+    excerpt: {
+      en: "Medellín is no longer just coffee and views. It’s a growing tech ecosystem and a city with multiple rhythms. Here’s how to choose the right place for what you need today — without improvising every morning.",
+      es: "Medellín ya no es solo café y vista. Es un ecosistema tech en auge y una ciudad con ritmos distintos. Aquí va cómo elegir el lugar correcto según lo que necesitas hoy — sin improvisar."
+    },
+    readingTime: "4 min",
+    category: {
+      en: "City Guide",
+      es: "Guía de Ciudad"
+    },
+    featured: false
+  },
+  {
     id: "you-only-get-2-3-hours-of-real-focus-a-day",
     slugs: {
       en: "you-only-get-2-3-hours-of-real-focus-a-day",
