@@ -62,6 +62,29 @@ export interface BlogPostEntry {
 // To publish a post, add it here (see BLOG_TEMPLATE.md).
 export const BLOG_POSTS: BlogPostEntry[] = [
   {
+    id: "the-right-place-today-isnt-the-usual-one",
+    slugs: {
+      en: "the-right-place-today-isnt-the-usual-one",
+      es: "el-lugar-correcto-hoy-no-es-el-de-siempre",
+    },
+    publishDate: "2026-10-28",
+    lastModified: "2026-10-28",
+    title: {
+      en: "The Right Place Today Isn't the Usual One",
+      es: "El lugar correcto hoy no es el de siempre"
+    },
+    excerpt: {
+      en: "Your usual café isn't always the right place today. Light, noise, air and your own energy shape your day — and static maps can't see any of it.",
+      es: "Tu café de siempre no siempre es el lugar correcto hoy. La luz, el ruido, el aire y tu energía moldean tu día — y los mapas estáticos no ven nada de eso."
+    },
+    readingTime: "5 min",
+    category: {
+      en: "Workspace Guide",
+      es: "Guía de Espacios"
+    },
+    featured: false
+  },
+  {
     id: "medellin-2026-the-hub-where-rhythm-actually-matters",
     slugs: {
       en: "medellin-2026-the-hub-where-rhythm-actually-matters",
