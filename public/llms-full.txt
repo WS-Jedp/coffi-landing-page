@@ -1,0 +1,785 @@
+# Coffi
+
+> Coffi is an app that helps remote workers, creators and digital nomads find the right space to create in their city, based on what people at each space are sharing right now, and find their people there. Tagline: "Be where you thrive." Launching in Medellín, Colombia.
+
+Website: https://coffi.com.co (Spanish: https://coffi.com.co/es)
+App: https://app.coffi.com.co
+Support: letscoffi@gmail.com
+Short index of this site: https://coffi.com.co/llms.txt
+
+## What Coffi is
+
+Coffi starts from a simple idea: the environment shapes the results. The place you work from changes how well you focus, how much you get done and who you meet, and the right place today is not always your usual one. Coffi helps you choose the right space for what you want to do right now and arrive where other creators are.
+
+Coffi is not a social network. There is no feed, no follower count and no public directory of people. What you see is the space and the room: who chose to be visible there and what they came to do.
+
+Coffi is also not a booking or reservation platform, and it does not own or run any space. It works with cafés, coworkings, libraries and other work-friendly spaces in the city.
+
+## Key terms
+
+- Space: the physical place (a café, coworking, library, rooftop, and so on).
+- Room: your time at a space after you check in. People in the same space share the room.
+- Check-in: how you tell Coffi you are at a space and what you came to do.
+- Coffi Points: the points you earn by using and contributing to Coffi, redeemable for rewards at spaces.
+
+## How it works
+
+### Find the right space
+
+Coffi shows spaces on a map. You can tell Coffi what you are after today, such as deep focus, a meetings day, build mode, network and chill, work and wellness, or weekend work with a view, and filter spaces by type of place, amenities (for example fast Wi-Fi, power outlets or outdoor seating), the vibe people are creating there and how full a space feels right now.
+
+### Live information from the community
+
+When members are at a space, they can optionally share a quick reading of how it is right now: the vibe of the space, the noise level or roughly how many people are there. Each space also shows what people came to do, grouped as focus, build, connect or unwind. These readings are what the live filters use. They are always optional.
+
+### Check in and your room
+
+When you arrive, you check in and choose what you came to do. You decide whether to be visible in your room. If you are visible, people at that space can find you. If you are not, nobody sees you, and you still count in the space's anonymous activity. You can change this at any time.
+
+New spaces are added by Coffi and its ambassadors.
+
+### Coffi Points
+
+You earn Coffi Points for using and contributing to Coffi, for example for checking in, sharing a reading of how a space is right now, reviewing a space you visit, the time you spend visible in your room, completing your profile and referring friends. You can redeem Coffi Points for rewards that spaces offer, such as discounts or free access. Nomad members earn double Coffi Points on most actions (completing your profile and referrals earn the same on every plan), and some rewards are only for Nomad members.
+
+## Plans
+
+### Explorer (free)
+
+Every Coffi account is Explorer by default. It is free, with no card needed. Explorer includes the map and filters, live space status (how busy a space is and what people came to do), check-ins with your intent, seeing who is in your room, being visible in your room, and earning and redeeming Coffi Points.
+
+### Nomad (premium)
+
+Nomad includes everything in Explorer, plus:
+
+- See who is at each space in the city before you head out: who chose to be visible, what they came to do and what they work on.
+- Filter spaces by who is there, by purpose and profession.
+- Be visible in the city, so other Nomad members can find you before they arrive. You can turn "Visible in the city" off at any time.
+- Earn double Coffi Points (except for completing your profile and referrals).
+- Nomad-only rewards at spaces.
+
+Explorer lets you be found. Nomad lets you find your people, before you head out.
+
+Subscribe: https://coffi.com.co/subscribe-nomad-plan (Spanish: https://coffi.com.co/es/subscribe-nomad-plan)
+
+### Wanderlust (coming soon)
+
+Wanderlust is a future plan. It is not available yet.
+
+## Brand
+
+Tagline: "Be where you thrive."
+
+Coffi believes that the environment shapes the results and that the right space at the right time gives your day energy. Its story follows three ideas: the uncertainty of not knowing whether you picked the right place, the connection with people who create like you, and Coworking 2.0, where the city itself becomes your office.
+
+Campaigns:
+
+- "Everything Great Starts With A Good Coffi": the campaign that introduces Coffi to a new city, telling that story through presentation cards with a QR code that opens the app.
+- "Morning Shot with Coffi": a campaign for people who start their Sunday mornings on Medellín's wellness routes, inviting them to keep that energy going in a space that fits their rhythm. "It doesn't matter which rhythm you have, Coffi will be with you."
+
+## Medellín
+
+Coffi is launching in Medellín, Colombia, a growing hub for remote workers and digital nomads with many work-friendly cafés and coworkings.
+
+More: https://coffi.com.co/blog/medellin-2026-the-hub-where-rhythm-actually-matters (Spanish: https://coffi.com.co/es/blog/medellin-2026-el-hub-donde-el-ritmo-si-importa)
+
+## Frequently asked questions
+
+Full FAQs: https://coffi.com.co/faqs (Spanish: https://coffi.com.co/es/faqs)
+
+## Contact and support
+
+Email: letscoffi@gmail.com
+Contact page: https://coffi.com.co/contact-us (Spanish: https://coffi.com.co/es/contact-us)
+
+## Pages
+
+- Home: https://coffi.com.co (Spanish: https://coffi.com.co/es)
+- About: https://coffi.com.co/about-us (Spanish: https://coffi.com.co/es/about-us)
+- Coffi for spaces: https://coffi.com.co/for-places (Spanish: https://coffi.com.co/es/for-places)
+- Blog: https://coffi.com.co/blog (Spanish: https://coffi.com.co/es/blog)
+- Privacy policy: https://coffi.com.co/privacy-policy (Spanish: https://coffi.com.co/es/privacy-policy)
+- Terms of service: https://coffi.com.co/terms-of-service (Spanish: https://coffi.com.co/es/terms-of-service)
+
+## Blog posts
+
+### The Right Place Today Isn't the Usual One
+URL: https://coffi.com.co/blog/the-right-place-today-isnt-the-usual-one (Spanish: https://coffi.com.co/es/blog/el-lugar-correcto-hoy-no-es-el-de-siempre)
+Published: 2026-10-28
+
+There are days when your usual café feels perfect. The sun comes in just right, the music is low, there's a seat by the window, and your head works. Other days, the same place feels heavy: too much noise, too little light, stagnant air, and after two hours you're already checking the clock.
+
+The place didn't change. You did. Your energy, your intention, the city's weather, even what you ate. And that matters more than we think.
+
+Most of us keep choosing spaces as if they were fixed: the usual coworking, the corner café, the apartment table. Google Maps tells you where it's open and how far it is. It doesn't tell you if that place is aligned with what your brain needs *today*.
+
+#### The environment isn't background. It's part of the work
+
+Indoor Environmental Quality (IEQ) research is clear: temperature, ventilation, natural light, noise, and the presence of natural elements are not details. They directly influence attention, creativity, fatigue, and wellbeing.
+
+Recent studies show that temperatures between 22 and 26 °C are associated with better cognitive performance. High CO₂ levels reduce attention and working memory. Noise above ~60 dBA starts to affect tasks that require concentration. Optimized natural light dramatically reduces visual fatigue and improves alertness.
+
+It's not just comfort. It's biology. Your nervous system responds to the environment automatically. A space with good light and a bit of green restores you; a dark and noisy one drains you, even if you don't notice.
+
+In Medellín this is especially noticeable. The city of eternal spring (around 20–24 °C most of the year) makes it easy to go out and work. But it also makes the differences between neighborhoods and between one café and another more subtle and, at the same time, more important. Laureles can feel more local and walkable; El Poblado more densely connected with other nomads. The same café can be ideal at 9 a.m. and heavy at 3 p.m. after the afternoon rain.
+
+#### Why “the usual place” stops working
+
+There are three main reasons:
+
+1. **Your state changes faster than the place.** There are deep-work days and collaboration or recovery days. A space excellent for concentration can be the worst for a call or for simply not feeling alone.
+2. **Static maps don't see context.** They know the address, the hours, and the average reviews. They don't know if it's full today, if the air conditioning is failing, if there's a group talking loudly, or if the afternoon light comes in perfectly. They also don't know how *you* are.
+3. **Attention restoration is real.** Attention Restoration Theory shows that environments with “soft fascination”—plants, views, natural light, a certain level of coherence—help recover directed attention. A space that only offers noise and strong stimuli doesn't restore; it exhausts.
+
+The result is familiar: you choose the comfortable place out of habit and end up with a day of half productivity, more fatigue than necessary, and the feeling that “today didn't work.”
+
+#### How to choose according to the day, not the habit
+
+It's not about changing places every day for sport. It's about having enough information to decide with clarity.
+
+Some practical signals that people who work from different spaces learn to read:
+
+- **High energy + need for deep focus:** Look for natural light, little conversational noise, good ventilation. A corner with a view or a quieter space. In Medellín, cafés like Naturalia or Zeppelin in Laureles often offer that profile in the mornings.
+- **You need collaboration or don't want to be alone:** Places with more movement, shared tables, or spaces where people are already working (not just tourists). Pergamino or Semilla work well for that.
+- **You're low on energy or recovering:** Prioritize places with natural elements, soft light, less density. Sometimes a change of neighborhood or simply a café with plants and fewer people changes the rest of the day.
+- **Climate and time of day:** In Medellín, rainy afternoons change the dynamics of many cafés. A place that works perfectly in the morning can get saturated after lunch.
+
+The point isn't to find the “best” place in the city. It's to find the place that fits your intention and your state *in this moment*.
+
+#### What maps can't see (and the community can)
+
+Google Maps is excellent for navigating. It's terrible for this. Because the real context of a space—noise level right now, quality of light, whether there are people working or just passing through, whether the air feels fresh—changes constantly and isn't on any static listing.
+
+Only the person who's there, or who just left, knows that.
+
+That's where a community network changes the game. When people report the real state of a space (noise, occupancy, energy, recent photos), the map stops being a list of addresses and becomes something alive. You can see not only “where there are cafés,” but “where there's a space that probably fits what you need now.”
+
+It's not magic. It's contextual information put in the hands of the person who needs it. And in cities like Medellín, where the climate invites you out and there's a real density of cafés and workspaces, that difference is noticeable day to day.
+
+#### The right place is the one that lets you thrive today
+
+The usual place has its value. Familiarity reduces friction. But when it becomes the only option, you start working *despite* the environment instead of *with* it.
+
+The science is consistent: the environment modulates your attention, your energy, and your ability to recover. In a world where many of us can choose where to work, ignoring that is leaving performance and wellbeing on the table.
+
+The right place today may not be the usual one. And that's fine. The question isn't “where do I usually go?”. It's “where can I thrive *today*, with the energy and intention I have now?”.
+
+When you have that clarity, the day changes. Not because the café is magic. Because the environment stopped being an invisible obstacle and became a conscious decision.
+
+Be where you thrive.
+
+Want Coffi to help you see the real context of the spaces near you? Explore the map and discover what's happening right now.
+
+### Medellín 2026: The Hub Where Rhythm Actually Matters
+URL: https://coffi.com.co/blog/medellin-2026-the-hub-where-rhythm-actually-matters (Spanish: https://coffi.com.co/es/blog/medellin-2026-el-hub-donde-el-ritmo-si-importa)
+Published: 2026-10-26
+
+You land in Medellín with your bag and laptop. Within two days you have three “recommended” cafés, a WeWork on your list, and the feeling that everyone else knows exactly where to go except you.
+
+It’s not that there aren’t enough options. It’s that the city has several rhythms running at the same time — and yours changes depending on the day.
+
+Medellín in 2026 is not the same nomad destination it was five years ago. It’s a real tech hub. According to Ruta N data, the city has more than 740 active startups generating over 17,000 direct jobs. In 2026 so far, they’ve raised around $216 million in investment — 38% more than all of 2025. It concentrates 24% of Colombia’s DeepTech startups and a significant share of talent in software, energy, and fintech.
+
+That changes the kind of people who are here. Not just passing nomads. Local founders, designers who stayed, engineers who arrived for a project and ended up staying for months.
+
+And that, in turn, changes how the city feels when you open the map and look for where to work today.
+
+#### Two main rhythms (and several nuances)
+
+El Poblado is still the easy landing. Provenza and Manila have a high density of coworking spaces, cafés with decent wifi, and people who speak English. It’s comfortable when you first arrive and don’t want to think. But it’s also more expensive, steeper, and sometimes noisier than you need.
+
+Laureles is the other pole. Flat, walkable, with a more local-expat mix and friendlier prices. People who stay longer than a month often end up here or nearby. Coworking spaces are smaller, neighborhood life is more present, and the rhythm is less “international hub” and more “real city.”
+
+Neither is better in the abstract. It depends on what you’re bringing today:
+
+- If you need deep focus and relative quiet, a small coworking space in Laureles or a calm café in the area usually wins.
+- If you arrived yesterday and want to cross paths with people who are also just starting out, Poblado speeds things up.
+- If your energy is low and you want something that doesn’t demand socializing, the context changes again.
+
+The difference isn’t in “the best neighborhood.” It’s in knowing which of those rhythms matches what you need right now.
+
+#### The environment still decides the day
+
+2026 productivity data keeps pointing in the same direction: remote and hybrid work can be more productive, but the real environment matters. Noise, density of people, wifi quality in the moment, and overall vibe aren’t details. They’re the filter that makes hours count or dissolve.
+
+In Medellín this is especially clear. A deep-work day in a place with loud conversations and constant food deliveries is different from one where the noise level is low and the people around you are in a similar mode. The same applies if what you need is brainstorming or an important call.
+
+Google Maps tells you there’s a café nearby. It doesn’t tell you if it’s full of loud conversations today or if the wifi is saturated. It also doesn’t tell you who else is working there right now.
+
+#### How to thrive in the city (without improvising every morning)
+
+The simplest way not to waste the day is to treat Medellín as what it is: a city with several simultaneous contexts, not a single “place for nomads.”
+
+A few practices that work:
+
+- Define the intent of the day before you leave (focus, call, light exploration, social).
+- Choose neighborhood and type of space based on that intent, not on what you used yesterday.
+- Rotate between 2–3 known places instead of searching for “the perfect spot” every time.
+- Pay attention to the hours: many spaces change energy between morning and afternoon.
+
+When the day ends, the rhythm changes too. Coffi Nights exists precisely for that: helping you disconnect without losing contact with what’s happening in the city. Work and life don’t have to compete if the environment supports you in both.
+
+#### Coffi in this context
+
+Coffi isn’t a coworking directory. It’s the layer that connects your context of the moment (what you need to do, how you feel, what kind of environment serves you) with the spaces that are actually functioning that way right now.
+
+In a city like Medellín, where there are many options and several rhythms coexisting, that difference is noticeable. It saves you the trial-and-error of the first weeks and leaves you with more energy for what you actually came to do — or for what you want to live after 6 pm.
+
+The city is alive. The tech ecosystem is growing. The remote worker community is too. What’s missing isn’t more places. It’s knowing, with clarity, where to thrive today.
+
+Be where you thrive.
+
+Key sources: El Espectador (Oct 25, 2026), Forbes Colombia / Ruta N (Pulso CTI), TravelDojo (Medellín digital nomad guides).
+
+### You only get 2–3 hours of real focus a day. The environment decides if you use them or lose them
+URL: https://coffi.com.co/blog/you-only-get-2-3-hours-of-real-focus-a-day (Spanish: https://coffi.com.co/es/blog/solo-tienes-2-3-horas-de-foco-real-al-dia)
+Published: 2026-10-21
+
+Remote work gave you freedom. It also removed the walls that, for better or worse, used to protect your attention.
+
+According to the **Hubstaff 2026 Global Benchmarks Report**, which analyzed more than 140,000 workers across 17,000 organizations, the average amount of real focus time—uninterrupted blocks without meetings, messages, or tool-switching—is **2 to 3 hours a day**. Only 39% of tracked time falls into deep focus. Hybrid teams drop to 31%. Managers sometimes land at 27%.
+
+It’s not that people are less disciplined. The system fragments the day. And when you leave home, the space you choose can multiply or waste those precious hours.
+
+#### Context isn’t a detail. It’s the engine.
+
+Science has been saying this for years: the environment changes how your brain works.
+
+A classic study by Ravi Mehta and colleagues (published in the *Journal of Consumer Research*) found that moderate ambient noise—around **70 decibels**, the murmur of a busy café—improves creative thinking. Total silence or high noise (85 dB+) makes it worse. That “distracted focus” pushes the mind toward more abstract thinking and new ideas.
+
+For deep analytical work, complex coding, or precise writing, silence or very low noise works better. The perfect café for brainstorming can be the enemy of a three-hour deep-work block.
+
+The same is true for light, temperature, air quality, and the presence of nature. Studies on **biophilic design** (plants, green views, natural materials, natural light) show sustained productivity gains on the order of 9–13% in buildings designed with these principles. It’s not magic. The nervous system regulates and attention lasts longer.
+
+In Medellín this feels clear. A café in Laureles with good light and controlled murmur can be ideal for ideation. A coworking space with a quiet zone and stable Wi-Fi becomes the refuge when something heavy needs to ship. The mistake isn’t choosing poorly once. It’s choosing blindly every day.
+
+#### How to protect your 2–3 hours (without fighting your energy)
+
+It’s not about willpower. It’s about aligning the space with what you need **today**.
+
+1. **Name the intent before you leave.**
+   Deep analytical focus? Look for relative silence, good ergonomics, low foot traffic.
+   Creativity or brainstorming? An environment with 50–70 dB and living energy usually helps more.
+   Calls and collaboration? A place with booths or zones where you won’t disturb (or be disturbed).
+2. **Watch the real signals, not the photos.**
+   Current noise, density of people, Wi-Fi quality, natural light, temperature. A beautiful space at 9 a.m. can be hell at 11. Context changes minute by minute.
+3. **Use the city as a system, not a catalog.**
+   In Medellín, Laureles has several cafés and coworkings that combine specialty coffee with spaces designed for work (Semilla, Café Euge and others in the area appear consistently). El Poblado concentrates more nomad density. The key isn’t “the best place in the city,” but the best one for *this* block of work.
+4. **Close the loop.**
+   When you finish the block, note what worked. That feedback turns the city into a personal productivity map, not a static list.
+
+#### Coffi exists for this
+
+Most tools show you places. Coffi helps you find the space whose real context (noise, people, vibe, Wi-Fi) matches yours right now.
+
+It’s not magic. It’s infrastructure so those 2–3 hours of focus don’t disappear in the wrong café or in the silence that kills creativity.
+
+Because the environment isn’t decoration. It’s the difference between thriving and just “working.”
+
+Be where you thrive.
+
+Main research: Hubstaff 2026 Global Benchmarks Report (140k+ workers, 17k organizations); Mehta et al. ambient noise and creativity study (Journal of Consumer Research); reviews and studies on biophilic design and Indoor Environmental Quality and their impact on productivity and well-being.
+
+### 500 contacts and no one to call: why the nomad community in Medellín stays on the surface
+URL: https://coffi.com.co/blog/500-contacts-and-no-one-to-call (Spanish: https://coffi.com.co/es/blog/500-contactos-y-nadie-a-quien-llamar)
+Published: 2026-10-19
+
+You land in Medellín. Within a week you have WhatsApp numbers from half a dozen people. You’ve been to a language exchange, a founders meetup, and two cafés in Laureles where “everyone knows everyone.”
+
+You have contacts.
+You have no one to call on a Tuesday at 8 pm when the day feels empty.
+
+It’s not that you’re bad at socializing. It’s the structure. The remote worker and digital nomad community is wide, active, and easy to enter. At the same time, many of those connections stay on the surface. Like every encounter is the first chapter of a friendship that never reaches the second.
+
+This isn’t a personal failure. It’s the pattern of a lifestyle that rewards movement and novelty over repetition.
+
+#### The threshold almost no one crosses
+
+A study by Jeffrey Hall (University of Kansas, 2018) measured how much time it takes for a relationship to progress. It’s not magic. It’s accumulation:
+
+- Around 50 hours of shared time to go from acquaintance to casual friend.
+- About 90 hours for it to feel like a real friendship.
+- More than 200 hours for it to become close.
+
+Those hours are not equal. Leisure time — talking without an agenda, sharing a meal, laughing at something absurd, watching the same sunset twice — weighs much more than sitting in the same coworking working in parallel.
+
+Most nomads in Medellín stay between 2 and 6 weeks. In that window it’s almost impossible to accumulate 50 quality hours with the same person. You collect first chapters. You close the book. You start another in the next city or the next neighborhood.
+
+The result is familiar: a full social calendar, the feeling of loneliness intact.
+
+#### In Medellín the entrance is easy. Depth is not.
+
+Medellín has one of the most accessible nomad communities in Latin America. Language exchanges, WhatsApp groups, events in Laureles and Provenza, coworkings where people arrive alone and leave with three new contacts. The city is warm. People are open. The weather invites you out.
+
+And still, many report the same experience: real friendliness, shallow friendship.
+
+Part of the phenomenon is cultural. In Colombia, deep friendships are usually built through repetition and proximity over time — the same park, the same class, the same circle. A foreigner who arrives for a month easily enters the greeting and the “parceros,” but the closed circle takes longer.
+
+Another part is the tacit agreement of nomad life: both of us know this is temporary. So we keep the conversation light. We protect the emotional investment. No one is to blame. The system simply doesn’t reward continuity.
+
+There’s a quiet cost. Every goodbye, even a small one, leaves a micro-loss. Over time, some people invest less. They prefer a pleasant one-night conversation to the possibility of something that hurts to leave behind.
+
+#### What actually builds depth (and it’s not another meetup)
+
+Research and the experience of those who stay longer point to three simple things:
+
+1. **Repetition in the same context.** Seeing the same person in the same place more than once. Not a one-off event; a rhythm.
+2. **Context shift.** Moving from “we met at the coworking” to “we had coffee without laptops” or “we went up the hill.” Hall called it a “context shift.” That’s where the relationship stops being utilitarian.
+3. **Time without an agenda.** Not networking. Not “let’s see if something comes up.” Time where nothing needs to be produced. Just being there.
+
+In Medellín this shows clearly in those who stay two or three months in Laureles or Envigado. They stop collecting events and start having places where they expect to find the same people. The city stops being a backdrop and becomes a rhythm.
+
+#### Moments, not feeds
+
+Coffi is not a social network or an event directory. It doesn’t pretend that more contacts will solve loneliness.
+
+What it does is create the conditions for real moments to happen: the right space, at the right time, with the people who are there for the same reason as you.
+
+Not a feed of faces. A shared context where repetition can begin. A place where Monday’s “hello” can become Thursday’s coffee without you having to chase it across three WhatsApp groups.
+
+Community isn’t built by accumulating names. It’s built when the same space gives you the chance to see someone more than once, in different moods, without the pressure that this has to be “the” encounter.
+
+That’s Citizen. It’s also Explorer: the freedom to move, with the possibility of belonging wherever you are.
+
+#### A simple practice for this week
+
+If you’re in Medellín (or any city):
+
+- Choose one space and go back three times in seven days.
+- When you meet someone the conversation flows with, propose something specific and small before you say goodbye (“Are you around Thursday at 4?”).
+- Leave an open slot in the calendar with no purpose. Sometimes the best moment is the one that wasn’t planned.
+
+Remote loneliness isn’t solved with more events. It eases when you stop collecting first chapters and start writing the second.
+
+Be where you thrive.
+
+### Medellín in 2026 is no longer “cheap”: it’s where your rhythm finds its place
+URL: https://coffi.com.co/blog/medellin-2026-where-your-rhythm-finds-its-place (Spanish: https://coffi.com.co/es/blog/medellin-2026-donde-tu-ritmo-encuentra-su-lugar)
+Published: 2026-10-17
+
+There’s a joke that keeps circulating in the cafés of Laureles: “I came for a month… three years ago.”
+
+Medellín remains one of the most chosen cities on the planet for remote workers. In 2026 it ranked 23rd in the global Nomads ranking (the only Colombian city in the top 30), above Rome, Vienna or Seoul. The eternal spring climate (18–27 °C year-round), the time zone aligned with the US, reliable fiber, and a real community are real.
+
+But the “it’s cheap” story is no longer enough.
+
+#### The game changed
+
+In 2026 the question is no longer “Can I live here for little?”. The question is: **Can I build a rhythm that lets me thrive — at work and in life — for real?**
+
+A comfortable month for one person usually lands between **USD 1,200 and 1,800**. A leaner budget can drop to 900–1,200; a more generous one rises to 2,000–2,500. Optional coworking sits around 100–150 dollars. Residential fiber internet is standard in the nomad neighborhoods.
+
+Cost is no longer the main differentiator. The differentiator is **context**.
+
+#### Laureles won (and why)
+
+El Poblado is still the perfect landing pad: coworkings, specialty coffee, events, and everything in English. It’s useful for the first week. After that, the hills, tourist pricing, and the bubble start to weigh.
+
+Laureles is where people stay once they’ve tried both. It’s flat, walkable, full of trees and cafés. Rents run 20–40 % lower than El Poblado for similar quality. There’s an international community, but also real local life. La 70 has energy; Primer Parque concentrates the cafés. It’s the neighborhood that lets you live *in* Medellín, not just *from* Medellín.
+
+Envigado appears as the third option: more residential, calmer, still well connected by metro.
+
+The pattern that repeats: you land in El Poblado, then move to Laureles (or Envigado) when you decide to stay.
+
+#### The environment decides more than the neighborhood
+
+Choosing the right neighborhood is only the first filter. Inside it, the space of the day matters more.
+
+The science is clear: noise, density, light, and vibe change focus, creativity, and energy. Intelligible conversation noise is especially distracting. Moderate ambient noise (~70 dB, café-like) can help creativity; silence or controlled noise is better for deep work. Ideal temperature sits around 21–22 °C. Natural light improves mood and alertness.
+
+In Medellín you have real options every day: a quiet Laureles café for deep work, an El Poblado rooftop for brainstorming, a coworking with meeting rooms for calls, or even an outdoor spot when the eternal climate allows it.
+
+The problem isn’t the offer. The problem is the friction of choosing well *today*.
+
+#### How to choose for real (without trial and error)
+
+Three simple questions that change the day:
+
+1. **What do you need to do today?** Deep focus, calls, creative brainstorm, or just being in flow.
+2. **How is your energy?** High, medium, or do you need a place that recharges you.
+3. **What context are you looking for?** Relative silence, people around, natural light, nearby community.
+
+The city has the infrastructure. What’s missing is the intelligence that connects your moment’s context with the right space.
+
+That’s exactly what Coffi does: a real-time match based on your daily intent, not a static directory. It doesn’t say “these are the best cafés in Medellín.” It says “this place, right now, fits what you need.”
+
+#### From landing to thriving
+
+Medellín in 2026 is no longer sold only on price. It’s sold because you can build a real rhythm: work well, disconnect well, meet people, and feel that the place responds to you.
+
+Whether you arrive for a month or stay for years, the secret is the same: **be intentional with the place**. The eternal climate and the community are there. The right context depends on you — and on the tools that help you see it clearly.
+
+Be where you thrive.
+
+Key sources: Nomads 2026 rankings (rank 23), 2026 cost and neighborhood guides (MOVE, Nomada, Digital Nomads Magazine), environmental psychology research on noise, temperature, and productivity.
+
+### The space you choose today decides your rhythm (and it's not just the Wi-Fi)
+URL: https://coffi.com.co/blog/the-space-you-choose-today (Spanish: https://coffi.com.co/es/blog/el-espacio-que-eliges-hoy)
+Published: 2026-10-14
+
+You arrive in Laureles at 9:30. You open your laptop at the café everyone recommends. By 10:15 three tables are talking loudly, the Wi-Fi drops, and that feeling of “this is where I’ll flow” disappears. It’s not that the place is bad. It’s that the place at 9:30 is not the same place at 10:15.
+
+This happens every day in Medellín. There are dozens of excellent cafés and coworkings. The problem isn’t the supply. It’s that almost no one has real information about how the space is *right now* — and that changes your results more than you think.
+
+#### The environment is not a detail. It’s the operating system of your day
+
+The science is clear on this. Noise, crowd density, light, and even air quality affect attention, memory, and energy in measurable ways.
+
+Studies on indoor environmental quality show that conversation noise (what researchers call “irrelevant speech”) is one of the biggest distractors. Raising background noise by just 12 decibels can worsen word recall and leave people more tired and less motivated. In open environments, cognitive performance can drop around 14-17% compared with more controlled spaces.
+
+It’s not just volume. It’s predictability. A café with constant murmur can work for creative work (there’s research suggesting around 70 dB helps creativity). But for deep analytical work, lower levels (40-50 dB) perform better because your brain doesn’t have to filter constantly.
+
+Temperature, ventilation, and light also matter. Comfortable ranges (around 22-26 °C) and good ventilation correlate with better cognitive performance. Adequate light improves attention and visual perception. When these variables go out of range, you don’t just feel uncomfortable: you lose real focus.
+
+In practice, this means two people can be in the same café in Medellín and have completely different experiences depending on the time, the day of the week, and what they need to do in that moment.
+
+#### Medellín has excellent spaces. What’s missing is real-time context
+
+Pergamino, Café Revolución, Semilla, Naturalia, Velvet… the names repeat in the guides. And for good reason: many have good coffee, usable Wi-Fi, and staff who understand that people arrive with laptops.
+
+The detail is that the lists are static. They don’t tell you that in El Poblado, between 2 and 5 in the afternoon, several spots in Provenza fill up with tourists and conversations. Or that in Laureles, Café Revolución can be ideal at 8:30 in the morning and completely different after the executive lunch.
+
+Laureles has established itself as the preferred area for many remote workers for longer, more local sessions: flatter, more walkable, with cafés that tolerate work well. El Poblado remains the landing point with higher density and “ready” options. Both work. Neither is the same at 9 am as at 3 pm.
+
+Most guides tell you *where* you can work. Almost none tell you *how* that place is in the moment you need it.
+
+#### Why trial-and-error costs more than it seems
+
+Every time you arrive at a place and after 20 minutes realize it doesn’t work for what you need to do, you lose more than travel time. You lose momentum. The brain takes time to re-enter deep focus. And if that happens two or three times a week, it accumulates into mental fatigue and days that feel less productive than they could have been.
+
+Esteban (the one arriving in a new city or looking for the spot of the day) feels it as uncertainty: “Will this café work or am I going to lose the morning?” The one who already has roots feels it as constant friction: they know there are better options, but they don’t have a clear way to choose according to what they need today — deep focus, a call, or just a change of scene.
+
+In both cases, the underlying problem is the same: the current infrastructure gives you maps and reviews, but it doesn’t give you living context.
+
+#### How to choose better (without depending on luck)
+
+While a real-time information layer doesn’t exist, some things help:
+
+- **Define the type of work before you leave.** Deep analytical work usually goes better in more controlled spaces and early. Creative or writing work can tolerate more atmosphere.
+- **Hours matter more than the name of the place.** The famous spots in El Poblado and Laureles change radically between 8-10 am and 1-4 pm.
+- **Rotate with intention.** Having 2-3 trusted places per neighborhood and knowing when to use each one reduces trial-and-error.
+- **Observe the environment when you enter.** If there are more than 3-4 active conversations near your table, the cost of filtering noise is already present.
+
+These tactics help, but they remain manual. The real leap happens when the space and your context can be read in the moment.
+
+#### Context is the infrastructure that was missing
+
+**Coffi** exists precisely for this. It’s not another list of cafés. It’s a network that helps you match with the space according to what you need *right now*: the noise level, the density, the vibe, and what you’re trying to achieve in that session.
+
+Because the environment is not a secondary detail. It’s what decides whether your energy goes into filtering noise or stays available for the work that actually matters.
+
+The right place at the right time is not a luxury. It’s the difference between a day that flows and one that feels like constant resistance.
+
+Be where you thrive.
+
+### Remote work gave you freedom. Science says it also left you more alone.
+URL: https://coffi.com.co/blog/remote-work-and-loneliness (Spanish: https://coffi.com.co/es/blog/trabajo-remoto-y-soledad)
+Published: 2026-10-12
+
+A Science study of over 588,000 people shows remote work increases time alone and distress, especially if you live alone. Freedom doesn’t have to cost you connection.
+
+Remote work promised something simple: work from wherever you want, without losing hours at a fixed desk. And it delivered. People prefer it so much that many would accept a pay cut to avoid going back to the office.
+
+But there’s a cost that doesn’t show up in productivity rankings.
+
+A study published in *Science* in June 2026 analyzed more than 588,000 American workers between 2011 and 2024 (excluding the hardest pandemic years). It compared people in “remotable” jobs (those that could be done from home) with those whose jobs weren’t. The result is clear: remote work increases the time you spend alone, worsens mental well-being, and raises the use of mental health services and medication.
+
+The effects are concentrated among people who live alone. For them, the probability of spending the entire day without social contact rose by 7 percentage points — a relative increase of 83%. On average, 84% of remote workers spend their workday completely alone.
+
+The study estimates that the rise of remote work explains about one-third of the overall increase in isolation and mental distress during that period.
+
+It’s not that people hate their work. On the contrary: remote workers often report higher engagement. It’s that work stopped being, automatically, a place where you cross paths with someone.
+
+#### What was lost wasn’t the office. It was the social infrastructure.
+
+Before, the workplace put you near other people without you having to “do networking.” A greeting in the kitchen, a hallway conversation, the background noise of people doing the same thing as you. It wasn’t deep, but it was constant. That low-friction contact disappeared for many.
+
+For digital nomads and remote workers arriving in a new city (or living alone in their own), the void feels stronger. You can be surrounded by full cafés and still not exchange a word with anyone. Nomad connections often stay surface-level: you cross paths once and never see that person again.
+
+The freedom to choose where to work didn’t come with a new way of finding others.
+
+#### The environment doesn’t only affect your focus. It also affects whether you feel alone.
+
+Environmental science already tells us that noise, density, and vibe change how you work. Now we also see that the total absence of other humans has a measurable cost on well-being.
+
+Working from home all day is not the same as working in a space where there are people around, even if you don’t talk to them. Ambient presence — knowing there are other people in the same place, with similar purposes — reduces the feeling of isolation without requiring a forced conversation.
+
+In cities like Medellín, where many remote workers and nomads move between Laureles, El Poblado, and local cafés, that presence exists. The problem is that it isn’t visible or connected to what you actually need that day.
+
+#### What you can do today (without “going to a generic meetup”)
+
+It’s not about forcing socialization. It’s about intentionally rebuilding some of that infrastructure that was lost:
+
+- **Choose spaces with real people, not just Wi-Fi.** A café or coworking where there are other remote workers gives you ambient presence even if you don’t talk. It’s the modern equivalent of “office noise.”
+- **Seek repetition, not one-off events.** Deep connections need accumulated hours. Returning to the same place, at the same time, with the same kind of people, helps more than a loose meetup.
+- **Connect with locals, not just other nomads.** Friendships between nomads have an expiration date. Local ones don’t.
+- **Signal your intention.** Sometimes all that’s missing is permission for the conversation to happen. Knowing someone else is there for focus, for creating, or simply not to be alone changes the dynamic.
+
+The study doesn’t say we should go back to the office. It says freedom alone isn’t enough. We need new ways of being near others while we do our work.
+
+#### The city already has the spaces. What’s missing is the layer that connects them with people.
+
+In Medellín and in any city, there are cafés, rooftops, and third spaces full of people working like you. The difference between “being alone in a pretty place” and “feeling part of something” is knowing who else is there and why.
+
+That’s what **Coffi** seeks: not another productivity app, but the infrastructure that helps you choose the right space according to your context — and find the people who share that moment, without forcing anything.
+
+The freedom to work from wherever you want doesn’t have to mean doing it alone.
+
+Be where you thrive.
+
+### The perfect café doesn’t exist. The right café for today does
+URL: https://coffi.com.co/blog/the-right-cafe-for-today (Spanish: https://coffi.com.co/es/blog/el-cafe-correcto-para-hoy)
+Published: 2026-10-10
+
+In Medellín (and anywhere else), “best cafés for remote work” lists fall short. Conditions change by the hour. Here’s how to find the space that actually works for you today.
+
+You arrive in Laureles with your laptop, open the map, and see a dozen cafés with 4.8 ratings and “good wifi.” You pick one. By 11 a.m. it’s crowded, the blender noise kills your focus, and the call you had at 11:30 turns into a forced concentration exercise. Two hours later you leave with less energy than when you arrived.
+
+This happens to almost every remote worker in Medellín. The problem isn’t a lack of places. The problem is that the “perfect café” doesn’t exist. What exists is the right café for what you need to do today, with the energy you have right now.
+
+The environment isn’t background noise. It’s one of the variables that most determines whether you finish the day with clarity or mental fatigue.
+
+#### Noise isn’t the enemy. The wrong noise is.
+
+A 2012 study (Mehta, Zhu, and Cheema in the Journal of Consumer Research) is still a reference point. They tested how different noise levels affected creativity. The result: around 70 decibels — the level of a moderately busy café — improved performance on creative tasks. Too much silence or too much noise made it worse.
+
+The explanation is interesting. Moderate noise creates a slight “processing disfluency.” The brain has to work a little harder, which pushes it toward more abstract thinking. That’s why ideas sometimes flow better in a café with background conversation than in the absolute silence of home.
+
+But there’s an important nuance: this applies mainly to creative work (brainstorming, design, exploratory writing). When you need precision — reviewing a contract, debugging code, focusing on numbers, or taking an important call — intelligible speech nearby becomes an active distraction. Multiple office environment studies show that clear conversations reduce working memory and increase fatigue more than steady, meaningless noise.
+
+In practice this is simple: the same café can be perfect at 9:30 a.m. and a mistake at 1 p.m. Conditions change.
+
+#### In Medellín, conditions change more than they seem to.
+
+##### Laureles
+
+Laureles is usually calmer and more walkable than El Poblado. Many remote workers end up preferring it precisely because it lets them build a routine without the constant social density of Provenza or Manila. Places like Café Revolución, Naturalia, or Zeppelin come up often in recommendations from people looking for longer, more focused sessions. The wifi in several of them is solid and there are outlets.
+
+##### El Poblado
+
+El Poblado concentrates more energy, more events, and more movement. It can work very well when your task for the day is creative, social, or light networking. But it’s also easier for noise and people to pull you out of the state you were looking for by mid-afternoon.
+
+Even within the same neighborhood, the hour matters.
+
+1. **Mornings:** Mornings tend to be calmer.
+2. **Lunchtime:** Lunchtime brings the midday rush.
+3. **Afternoons:** Afternoons turn more social.
+
+A place that feels like a workspace at 8:30 a.m. can become a meetup spot by 4 p.m.
+
+Then there’s light, temperature, and the simple fact of whether there’s real space to stretch out for two or three hours without feeling like you’re taking someone else’s table. Medellín has mild weather almost year-round, but a café without good ventilation or with direct sun can become uncomfortable quickly.
+
+#### How to choose the space according to what you need today
+
+It’s not about memorizing a list. It’s about asking a short question before you leave:
+
+- Do I need relative quiet today to focus on a precise task?
+- Do I need a bit of background energy to unlock ideas?
+- Will I have calls?
+- How tired am I, and how much time can I actually stay out?
+
+If it’s deep work or important calls, prioritize places that tend to be calmer at that hour and have decent acoustics. If it’s creative or exploratory work, a livelier environment can help. If your energy is low, sometimes the simple change of context (leaving the house and arriving somewhere with natural light and people around) already adds up, even if it’s not the “most productive” café in the abstract.
+
+Some remote workers in Medellín do exactly this intuitively: mornings in Laureles for focus blocks, and when they need a change of pace they move toward areas with more movement. Others rotate between two or three spots depending on the day.
+
+The key isn’t finding the definitive place. It’s stopping treating every session as if it were the same.
+
+#### Context is what’s missing from the lists
+
+The “best cafés to work from in Medellín” guides are useful as a starting point. They tell you where there’s decent wifi and outlets. But they don’t know what you need today, or how the place is right now. Noise, occupancy, vibe, and even connection quality change.
+
+That’s exactly the kind of friction that appears when work became flexible but the infrastructure for deciding where to do it stayed static. You end up doing trial and error, and you pay the cost in hours and mental energy.
+
+Coffi exists to reduce that friction. Instead of giving you a fixed list, it helps you match the space to your current context: what kind of work you have ahead, how you feel, and the real conditions of the place at that moment. It’s not about optimizing every minute. It’s about making the “where do I go” decision stop being a lottery and become something you can feel with clarity.
+
+The perfect café doesn’t exist. But the right café for what you need to do today does. And finding it shouldn’t cost you half a day.
+
+Be where you thrive.
+
+### Understanding Work-Friendly Spaces: The Future of Productive Environments
+URL: https://coffi.com.co/blog/about-work-friendly-spaces (Spanish: https://coffi.com.co/es/blog/sobre-espacios-de-trabajo-amigables)
+Published: 2024-12-16
+
+In the age of remote work, finding the perfect place to stay productive can feel like a daily challenge. The future of work is decentralized, and so too must be the platforms that help us navigate it.
+
+“Where can I work right now that matches my mindset and goals for the day?”
+
+#### What Are Work-Friendly Spaces?
+
+Work-friendly spaces are public or semi-public environments where people can work comfortably and efficiently — not just traditional coworking spaces, but cafés, libraries, rooftops, hotels, cultural centers, and even parks. What sets them apart is the experience they offer: designed with productivity and purpose in mind.
+
+##### Reliable Wi-Fi
+
+Fast and stable internet connection crucial for calls, uploads, and maintaining workflow.
+
+##### Comfort & Lighting
+
+Comfortable seating arrangements and natural light — a necessity for long work sessions.
+
+##### Focused Ambiance
+
+Peaceful environments or focused atmosphere that inspires productivity and meaningful connections.
+
+"These spaces are designed (or discovered) with productivity and purpose in mind — and often, they're hiding in plain sight."
+
+#### The Shift Toward Decentralized Work Environments
+
+The 9-to-5 office isn't just outdated — it's dissolving. In its place is a global network of flexible, autonomous workers who operate on their own schedules, from wherever they feel most productive. In a decentralized work world, the environment adapts to the worker — not the other way around.
+
+#### Why Remote Workers Are Moving Away from Traditional Coworking
+
+##### Cost Barriers
+
+Subscriptions and day passes often exceed local café budgets, making them inaccessible for many remote workers.
+
+##### Lack of Ambiance
+
+Many locations lack the energy or atmosphere people seek, feeling too rigid or impersonal for creative work.
+
+##### Limited Distribution
+
+Often concentrated in a few neighborhoods, leaving other areas overlooked and underserved.
+
+#### Features of the Ideal Work-Friendly Space
+
+Not every café or coworking spot is built equally. The best work-friendly spaces share some core traits that aren't luxuries — they're baseline expectations in the new era of remote work:
+
+- Fast and stable internet — crucial for calls, uploads, and flow
+- Comfortable chairs and natural light — a necessity for long sessions
+- Accessible outlets — no more fighting for power
+- Appropriate noise levels — from deep focus to social vibes
+
+#### Coworking 2.0: Coffi's Vision for the Future
+
+Coffi is not just another directory of cafés or coworking spaces. It's a dynamic, community-powered platform built for people who need the right space at the right time. We call it Coworking 2.0 — a smarter, decentralized way of discovering and experiencing places based on your purpose, mood, and live context.
+
+The result? A more intentional, empowered, and human way of working from anywhere.
+
+#### How Coffi Works
+
+A dynamic, community-powered platform for the modern remote worker
+
+With Coffi, users can:
+
+The platform empowers users to make informed decisions about where to work, study, or connect based on real-time community insights and personal preferences.
+
+##### Discover Spaces
+
+Find spaces near you to work, study, or connect with like-minded people.
+
+##### Smart Filtering
+
+Filter places by Wi-Fi speed, ambiance, noise, crowd level, and more specific criteria.
+
+##### Real-Time Updates
+
+Get live updates from the community on current vibe, availability, and conditions.
+
+"Be where you thrive. That's the new standard of work."
+
+#### Why Decentralization Matters for the Future of Work
+
+##### Local Economic Impact
+
+Small cafés and alternative spaces benefit from increased foot traffic and community support.
+
+##### Environmental Benefits
+
+Reduced commuting and lower carbon footprint through distributed work patterns.
+
+##### Worker Satisfaction
+
+Higher worker satisfaction and autonomy through flexible, personalized work environments.
+
+##### Global Talent Access
+
+Access to a global talent pool unconstrained by geographic limitations.
+
+#### The Future of Remote Work
+
+The future of work is already here. It's not tied to an office or even a coworking chain — it's wherever you thrive. Whether you're looking to focus deeply, collaborate socially, or simply find the right energy to move forward with your goals, there's a space out there for you.
+
+And Coffi is here to help you find it.
+
+#### Join the Movement of Decentralized Work
+
+The future of work is decentralized, flexible, and human-centered. Discover work-friendly spaces that match your needs, contribute to a growing community, and be part of the transformation happening right now.
+
+### Best Cafes and Work-Friendly Spaces in Medellín (2025 Digital Nomad Guide)
+URL: https://coffi.com.co/blog/best-cafes-and-workfriendly-spaces-in-medellin (Spanish: https://coffi.com.co/es/blog/los-mejores-cafes-espacios-de-trabajo-amigables-en-medellin)
+Published: 2025-06-16
+
+Discover the top work-friendly cafés, coworking spaces, and productive environments in Medellín for digital nomads. Real community insights, wifi speeds, and workspace reviews.
+
+“Whether you're visiting for a few days or living here long-term, these are the best work-friendly spots in the city.”
+
+#### What Makes a Great Work-Friendly Spot?
+
+As one of Latin America's top destinations for remote workers and digital nomads, Medellín offers a vibrant mix of cafés, rooftops, coworking spaces, and cultural spots — but knowing which ones actually work for work is another story.
+
+##### Strong, Stable Wi-Fi
+
+Reliable internet connection is non-negotiable for any productive work session.
+
+##### Comfortable Seating & Lighting
+
+Ergonomic seating and good lighting help you stay focused and comfortable for hours.
+
+##### Peaceful or Inspiring Ambiance
+
+The right atmosphere can make or break your productivity and creative flow.
+
+"That's exactly why we built Coffi — to help you find places that match your purpose, mood, and workflow."
+
+#### Best Cafes to Work From in Medellín
+
+These carefully curated cafes offer the perfect blend of atmosphere, amenities, and productivity-friendly features.
+
+##### General Bar Café (Poblado)
+
+This artsy, relaxed café offers cozy indoor seating, good coffee, and a peaceful vibe. Outlets are available near several tables, and the soft music makes it easy to stay focused. Wi-Fi is stable, making it a great pick for deep work or creative sessions.
+
+##### Mil Nueve 32 (Manila)
+
+A hidden gem in Manila with an intimate ambiance and fantastic service. Expect a mix of indoor and outdoor seating, reliable Wi-Fi, and just the right level of background buzz. Great for morning productivity or afternoon reading.
+
+##### Café Dragón (Poblado)
+
+Perfectly balanced between chill and energizing, Café Dragón is a favorite among freelancers and creatives. The open space, strong espresso, and good internet make it a consistent go-to spot.
+
+#### Alternative Workspaces Beyond Cafés
+
+##### Bukz (Las Lomas)
+
+Part library, part cultural hub, Bukz is ideal for long focus sessions. Quiet zones, excellent seating, and a mix of modern and indie vibes. Plus, they host community events where you can network with fellow professionals.
+
+##### Monteluna (Santa Elena)
+
+Escape the city and work among the trees. This mountaintop hideaway offers breathtaking views, quiet surroundings, and a surprisingly strong signal. Great for writing, deep focus, or nature-fueled productivity days.
+
+#### How Coffi Helps You Find the Perfect Place
+
+Unlike static blog lists, Coffi is a dynamic, community-powered platform built by and for remote workers.
+
+- Discover spots by vibe, not just location
+- See live updates on noise, crowd level, and Wi-Fi
+- Filter by your mindset: Work, Study, or Connect
+- Contribute sessions and earn Coffi Points
+- Save favorites and plan your ideal day
+
+#### Digital Nomad FAQ - Medellín Workspaces
+
+**Q: What's the best café for working in El Poblado, Medellín?**
+A: General Bar Café and Café Dragón are top choices in El Poblado for digital nomads. Both offer reliable wifi, comfortable seating, and a productive atmosphere perfect for remote work.
+
+**Q: Are there quiet mountain workspaces near Medellín?**
+A: Yes — Monteluna in Santa Elena offers a peaceful workspace surrounded by nature, perfect for deep focus work with mountain views and fresh air.
+
+**Q: How does Coffi provide real-time workspace data?**
+A: Coffi's community of digital nomads shares live updates on noise levels, crowd density, wifi quality, and workspace availability, giving you accurate information before you arrive.
+
+"Stop wasting time searching for the perfect workspace in Medellín - let the community guide you to productivity."
+
+#### Be Where You Thrive
+
+Whether you're deep into a project, meeting clients, or just journaling over coffee, there's a space for your purpose — and Coffi is the smartest way to discover it.

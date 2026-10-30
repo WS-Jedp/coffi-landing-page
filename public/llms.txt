@@ -1,0 +1,49 @@
+# Coffi
+
+> Coffi is an app that helps remote workers, creators and digital nomads find the right space to create in their city, based on what people at each space are sharing right now, and find their people there. Tagline: "Be where you thrive." Launching in Medellín, Colombia.
+
+Coffi is not a social network and has no feed or people directory. You pick what you came to do today (deep focus, meetings, build mode, network and chill, and more), see how each space is doing live, and check in. Your time at a space is your room: if you choose to be visible there, people at that space can find you. Every account starts on the free Explorer plan. Nomad is the premium plan: it adds seeing who is at each space before you head out and being visible to other Nomad members across the city. Explorer lets you be found; Nomad lets you find your people before you go. Wanderlust is coming soon. Most pages have a Spanish version under /es.
+
+## Product
+
+- [Coffi app](https://app.coffi.com.co): The web app where you find spaces on the map, check in and earn Coffi Points.
+- [Coffi home](https://coffi.com.co): What Coffi is and how it works, in English ([Spanish](https://coffi.com.co/es)).
+- [Plans](https://coffi.com.co/#pricing): Compare Explorer, Nomad and Wanderlust ([Spanish](https://coffi.com.co/es#pricing)).
+- [Explorer plan](https://coffi.com.co/#pricing): The free plan every account starts on, with no card needed ([Spanish](https://coffi.com.co/es#pricing)).
+- [Nomad plan](https://coffi.com.co/subscribe-nomad-plan): The premium plan to see who is at each space before you go, be visible in the city and earn double Coffi Points ([Spanish](https://coffi.com.co/es/subscribe-nomad-plan)).
+- [Wanderlust](https://coffi.com.co/wanderlust): A plan that is coming soon; it is not available yet ([Spanish](https://coffi.com.co/es/wanderlust)).
+
+## How it works
+
+- [The live map](https://coffi.com.co/#features): Find spaces by type, amenities, the vibe people are creating there and how full they feel right now ([Spanish](https://coffi.com.co/es#features)).
+
+## Medellín
+
+- [Coffi in Medellín](https://coffi.com.co/blog/medellin-2026-the-hub-where-rhythm-actually-matters): Coffi's launch city and the spaces you can find there today ([Spanish](https://coffi.com.co/es/blog/medellin-2026-el-hub-donde-el-ritmo-si-importa)).
+
+## Blog
+
+- [Coffi blog](https://coffi.com.co/blog): Guides on choosing the right space for the day, focus, remote work and Medellín ([Spanish](https://coffi.com.co/es/blog)).
+- [The Right Place Today Isn't the Usual One](https://coffi.com.co/blog/the-right-place-today-isnt-the-usual-one): Your usual café isn't always the right place today. Light, noise, air and your own energy shape your day — and static maps can't see any of it. ([Spanish](https://coffi.com.co/es/blog/el-lugar-correcto-hoy-no-es-el-de-siempre)).
+- [Medellín 2026: The Hub Where Rhythm Actually Matters](https://coffi.com.co/blog/medellin-2026-the-hub-where-rhythm-actually-matters): Medellín is no longer just coffee and views. It’s a growing tech ecosystem and a city with multiple rhythms. Here’s how to choose the right place for what you need today — without improvising every morning. ([Spanish](https://coffi.com.co/es/blog/medellin-2026-el-hub-donde-el-ritmo-si-importa)).
+- [You only get 2–3 hours of real focus a day. The environment decides if you use them or lose them](https://coffi.com.co/blog/you-only-get-2-3-hours-of-real-focus-a-day): 2026 data shows the average worker gets only 2–3 hours of deep focus. It’s not discipline—it’s context. Learn how to choose the space that protects your energy so you can thrive. ([Spanish](https://coffi.com.co/es/blog/solo-tienes-2-3-horas-de-foco-real-al-dia)).
+- [500 contacts and no one to call: why the nomad community in Medellín stays on the surface](https://coffi.com.co/blog/500-contacts-and-no-one-to-call): You meet people all week in Laureles or El Poblado and still feel alone. Why nomad friendships stay shallow and how to create real moments in Medellín. ([Spanish](https://coffi.com.co/es/blog/500-contactos-y-nadie-a-quien-llamar)).
+- [Medellín in 2026 is no longer “cheap”: it’s where your rhythm finds its place](https://coffi.com.co/blog/medellin-2026-where-your-rhythm-finds-its-place): Medellín is still in the global top 30 for digital nomads. But the game changed: Laureles won, a comfortable month is $1,200–1,800, and what matters is the context of your day. Here’s how to choose for real. ([Spanish](https://coffi.com.co/es/blog/medellin-2026-donde-tu-ritmo-encuentra-su-lugar)).
+- [The space you choose today decides your rhythm (and it's not just the Wi-Fi)](https://coffi.com.co/blog/the-space-you-choose-today): In Medellín, the noise, the people, and the vibe of a café change hour by hour. Science shows how the environment affects your focus. Here's why real-time context matters more than static lists. ([Spanish](https://coffi.com.co/es/blog/el-espacio-que-eliges-hoy)).
+- [Remote work gave you freedom. Science says it also left you more alone.](https://coffi.com.co/blog/remote-work-and-loneliness): Science study of over 588,000 people: remote work increases time alone and distress, especially if you live alone. Freedom doesn’t have to cost you connection. ([Spanish](https://coffi.com.co/es/blog/trabajo-remoto-y-soledad)).
+- [The perfect café doesn’t exist. The right café for today does](https://coffi.com.co/blog/the-right-cafe-for-today): In Medellín, “best cafés for remote work” lists fall short. Conditions change by the hour. Here’s how to find the space that actually works for you today. ([Spanish](https://coffi.com.co/es/blog/el-cafe-correcto-para-hoy)).
+- [Understanding Work-Friendly Spaces: The Future of Productive Environments](https://coffi.com.co/blog/about-work-friendly-spaces): Discover what makes a space truly work-friendly and how the concept has evolved beyond traditional coworking. ([Spanish](https://coffi.com.co/es/blog/sobre-espacios-de-trabajo-amigables)).
+- [Best Cafes and Work-Friendly Spaces in Medellín (2025 Digital Nomad Guide)](https://coffi.com.co/blog/best-cafes-and-workfriendly-spaces-in-medellin): Discover the best work-friendly cafes and spaces in Medellín for digital nomads. From cozy cafes in Poblado to mountain workspaces in Santa Elena. ([Spanish](https://coffi.com.co/es/blog/los-mejores-cafes-espacios-de-trabajo-amigables-en-medellin)).
+
+## Contact and support
+
+- [FAQs](https://coffi.com.co/faqs): Answers about plans, privacy, accounts and using Coffi ([Spanish](https://coffi.com.co/es/faqs)).
+- [Contact](https://coffi.com.co/contact-us): Write to the Coffi team at letscoffi@gmail.com ([Spanish](https://coffi.com.co/es/contact-us)).
+
+## Optional
+
+- [About Coffi](https://coffi.com.co/about-us): The story and mission behind Coffi ([Spanish](https://coffi.com.co/es/about-us)).
+- [Coffi for spaces](https://coffi.com.co/for-places): Information for cafés, coworkings and other spaces that want to join Coffi ([Spanish](https://coffi.com.co/es/for-places)).
+- [Privacy policy](https://coffi.com.co/privacy-policy): How Coffi handles your data ([Spanish](https://coffi.com.co/es/privacy-policy)).
+- [Terms of service](https://coffi.com.co/terms-of-service): The terms for using Coffi ([Spanish](https://coffi.com.co/es/terms-of-service)).
+- [Full text for LLMs](https://coffi.com.co/llms-full.txt): The extended plain-text description of Coffi.
